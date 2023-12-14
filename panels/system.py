@@ -1,6 +1,9 @@
 import logging
 import os
 import gi
+import shutil 
+import datetime
+import subprocess
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib
@@ -35,6 +38,9 @@ class Panel(ScreenPanel):
         self.refresh = self._gtk.Button('refresh', _('Refresh'), 'color2')
         self.refresh.connect("clicked", self.refresh_updates)
         self.refresh.set_vexpand(False)
+        self.reset_printer = self._gtk.Button('refresh', _('Reset'), 'color2')
+        self.reset_printer.connect("clicked", self.show_reset_confirm)
+        self.reset_printer.set_vexpand(False)
 
         reboot = self._gtk.Button('refresh', _('Restart'), 'color3')
         reboot.connect("clicked", self.reboot_poweroff, "reboot")
@@ -79,11 +85,12 @@ class Panel(ScreenPanel):
 
         scroll.add(infogrid)
 
-        grid.attach(scroll, 0, 0, 4, 2)
+        grid.attach(scroll, 0, 0, 5, 2)
         grid.attach(update_all, 0, 2, 1, 1)
-        grid.attach(self.refresh, 1, 2, 1, 1)
-        grid.attach(reboot, 2, 2, 1, 1)
-        grid.attach(shutdown, 3, 2, 1, 1)
+        grid.attach(self.reset_printer, 1, 2, 1, 1)
+        grid.attach(self.refresh, 2, 2, 1, 1)
+        grid.attach(reboot, 3, 2, 1, 1)
+        grid.attach(shutdown, 4, 2, 1, 1)
         self.content.add(grid)
 
     def activate(self):
@@ -339,3 +346,55 @@ class Panel(ScreenPanel):
                 self._screen._ws.send_method("machine.reboot")
             else:
                 self._screen._ws.send_method("machine.shutdown")
+
+    def show_reset_confirm(self, widget):
+        if self._printer.state in ["printing", "paused"]:
+            self._screen.show_popup_message(_("Please wait for the print job to end"), level=1)
+            return
+        scroll = self._gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_halign(Gtk.Align.CENTER)
+        vbox.set_valign(Gtk.Align.CENTER)
+        label = Gtk.Label(label=_("Are you sure you wish to reset the printer?") + "\n\n" + _("Data will be deleted"))
+        vbox.add(label)
+        scroll.add(vbox)
+        buttons = [
+            {"name": _("Accept"), "response": Gtk.ResponseType.OK},
+            {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
+        ]
+
+        title = _("Reset Printer")
+        self._gtk.Dialog(title, buttons, scroll, self.reset_printer_confirm)        
+    
+    def reset_printer_confirm(self, dialog, response_id):
+        self._gtk.remove_dialog(dialog)
+        if response_id == Gtk.ResponseType.OK:
+            self._screen.show_popup_message(_("Resetting printer, will restart, please wait..."), level=1)
+            source_dir = '~/printer_data'
+            origin_dir = '/usr/local/src/printer_data'  
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")   
+            target_dir = f"printer_data_{timestamp}.tar.gz"  
+            target_dir = os.path.join('/tmp', target_dir)
+            gcodes = os.path.join(source_dir, 'gcodes')
+            logs = os.path.join(source_dir, 'logs')
+            try:  
+                mounted_devices = subprocess.check_output("mount | awk '{print $1}'", shell=True).decode().split('\n')
+                usb_devices = [device for device in mounted_devices if device.startswith("/dev/sd")]
+                for u in usb_devices:
+                    os.system(f"sudo umount {u}")
+                os.system(f"rm -rf {gcodes}")
+                os.system(f"rm -rf {logs}")
+                os.system(f"tar -zcvf {target_dir} {source_dir} && rm -rf {source_dir}")
+ 
+            except Exception as e:  
+                self._screen.show_popup_message(_("Backup fail"), level=3)
+                logging.exception(f"An error occurred: {e}")
+                return
+            try:
+                os.system(f"cp -ar {origin_dir} ~/") 
+                self._screen._ws.klippy.restart_firmware()
+            except Exception as e:  
+                self._screen.show_popup_message(_("Reset fail"), level=3)
+                print(f"error = {e}")
+                logging.exception(f"An error occurred: {e}")

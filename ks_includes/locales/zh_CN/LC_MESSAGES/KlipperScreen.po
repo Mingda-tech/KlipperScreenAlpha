@@ -42,7 +42,7 @@ msgid "Acceleration:"
 msgstr "加速度："
 
 msgid "Accept"
-msgstr "接受"
+msgstr "确定"
 
 msgid "Add profile"
 msgstr "添加配置文件"
@@ -105,6 +105,9 @@ msgstr "床网"
 
 msgid "Bed screw configuration:"
 msgstr "热床螺丝配置："
+
+msgid "Brightest"
+msgstr "最亮"
 
 msgid "Calibrate"
 msgstr "校准"
@@ -211,7 +214,7 @@ msgid "Extra Large"
 msgstr "特大"
 
 msgid "Extrude"
-msgstr "挤出"
+msgstr "进料"
 
 msgid "Extrusion +"
 msgstr "挤压+"
@@ -258,11 +261,20 @@ msgstr "结束"
 msgid "Firmware Restart"
 msgstr "重启Klipper固件"
 
+msgid "Flow +"
+msgstr "流量 +"
+
+msgid "Flow -"
+msgstr "流量 -"
+
 msgid "Flow:"
 msgstr "流量："
 
 msgid "Flowrate:"
 msgstr "流速："
+
+msgid "Force Cancel"
+msgstr "强制取消"
 
 msgid "Font Size"
 msgstr "字体大小"
@@ -388,11 +400,14 @@ msgstr "灯珠"
 msgid "Left:"
 msgstr "剩余时间："
 
+msgid "Leveling"
+msgstr "调平"
+
 msgid "Limits"
 msgstr "打印机限制"
 
 msgid "Load"
-msgstr "载入耗材"
+msgstr "进料"
 
 msgid "Lower Nozzle"
 msgstr "降低喷嘴"
@@ -518,8 +533,14 @@ msgstr "电源"
 msgid "Power On Printer"
 msgstr "打印机通电"
 
+msgid "Poweroff"
+msgstr "关机"
+
 msgid "Pressure Advance:"
 msgstr "压力推进："
+
+msgid "Preheat"
+msgstr "预热"
 
 msgid "Print"
 msgstr "打印"
@@ -556,6 +577,9 @@ msgstr "龙门架调平"
 
 msgid "Raise Nozzle"
 msgstr "升高喷嘴"
+
+msgid "Reboot"
+msgstr "重启"
 
 msgid "Recover"
 msgstr "恢复"
@@ -718,7 +742,7 @@ msgid "Unknown screw position"
 msgstr "未知螺丝位置"
 
 msgid "Unload"
-msgstr "卸载耗材"
+msgstr "退料"
 
 msgid "Unretract Extra Length"
 msgstr "回料长度"
@@ -922,9 +946,6 @@ msgstr "mm³/s"
 
 #~ msgid "Number Pad"
 #~ msgstr "数字键盘"
-
-#~ msgid "Preheat"
-#~ msgstr "预热"
 
 #~ msgid "Screen will show in less than one second"
 #~ msgstr "屏幕将在1秒内显示"

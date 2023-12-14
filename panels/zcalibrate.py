@@ -44,9 +44,9 @@ class Panel(ScreenPanel):
         functions = []
         pobox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-        if "Z_ENDSTOP_CALIBRATE" in self._printer.available_commands:
-            self._add_button("Endstop", "endstop", pobox)
-            functions.append("endstop")
+        # if "Z_ENDSTOP_CALIBRATE" in self._printer.available_commands:
+        #     self._add_button("Endstop", "endstop", pobox)
+        #     functions.append("endstop")
         if "PROBE_CALIBRATE" in self._printer.available_commands:
             self._add_button("Probe", "probe", pobox)
             functions.append("probe")

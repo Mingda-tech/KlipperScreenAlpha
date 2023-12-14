@@ -24,7 +24,11 @@ class Panel(ScreenPanel):
         self.scales = {}
         self.buttons = []
         self.leds = self._printer.get_leds()
-        self.current_led = self.leds[0] if len(self.leds) == 1 else None
+        self.current_led = None 
+        for l in self.leds:
+            if 'lighting' in l.lower():
+                self.current_led = l
+                break
         self.open_selector(None, self.current_led)
 
     def color_available(self, idx):
@@ -42,19 +46,22 @@ class Panel(ScreenPanel):
     def set_title(self, title):
         self._screen.base_panel.set_title(self.prettify(title))
 
-    def back(self):
-        if len(self.leds) > 1 and self.current_led:
-            self.set_title(self._screen.panels[self._screen._cur_panels[-1]].title)
-            self.open_selector(led=None)
-            return True
-        return False
+    # def back(self):
+    #     # if len(self.leds) > 1 and self.current_led:
+    #     #     self.set_title(self._screen.panels[self._screen._cur_panels[-1]].title)
+    #     #     self.open_selector(led=None)
+    #     #     return True
+    #     # return False
+    #     if self.current_led:
+    #         self.open_selector(self.current_led)
+    #     return True
 
     def open_selector(self, widget=None, led=None):
-        for child in self.content.get_children():
-            self.content.remove(child)
-        if led is None:
-            self.content.add(self.led_selector())
-        else:
+        # for child in self.content.get_children():
+        #     self.content.remove(child)
+        if led is not None:
+        #     self.content.add(self.led_selector())
+        # else:
             self.content.add(self.color_selector(led))
         self.content.show_all()
 
@@ -79,7 +86,7 @@ class Panel(ScreenPanel):
         self.color_order = self._printer.get_led_color_order(led)
         if self.color_order is None:
             logging.error("Error: Color order is None")
-            self.back()
+            # self.back()
             return
         on = [1 if self.color_available(i) else 0 for i in range(4)]
         self.presets["on"] = on
@@ -89,6 +96,14 @@ class Panel(ScreenPanel):
                 continue
             color = [0, 0, 0, 0]
             color[idx] = 1
+
+            stop_btn = self._gtk.Button("cancel", _("Turn off"), "color1")
+            stop_btn.set_hexpand(False)
+            stop_btn.connect("clicked", self.update_brightness, [0,0,0,0])
+            max_btn = self._gtk.Button("light", _("Brightest"), "color2")
+            max_btn.set_hexpand(False)
+            max_btn.connect("clicked", self.update_brightness, [1, 1, 1, 1])
+
             button = self._gtk.Button()
             preview = Gtk.DrawingArea(width_request=self.da_size, height_request=self.da_size)
             preview.connect("draw", self.on_draw, color)
@@ -104,9 +119,10 @@ class Panel(ScreenPanel):
             scale.connect("button-release-event", self.apply_scales)
             scale.connect("value_changed", self.update_preview)
             self.scales[idx] = scale
-            scale_grid.attach(button, 0, idx, 1, 1)
+            scale_grid.attach(stop_btn, 0, idx, 1, 1)
             scale_grid.attach(scale, 1, idx, 3, 1)
-        grid.attach(scale_grid, 0, 0, 3, 1)
+            scale_grid.attach(max_btn, 4, idx, 1, 1)
+        grid.attach(scale_grid, 0, 0, 1, 1)
 
         columns = 3 if self._screen.vertical_mode else 2
         data_misc = self._screen.apiclient.send_request(
@@ -133,10 +149,10 @@ class Panel(ScreenPanel):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.add(preview_box)
         box.add(scroll)
-        if self._screen.vertical_mode:
-            grid.attach(box, 0, 1, 3, 1)
-        else:
-            grid.attach(box, 3, 0, 2, 1)
+        # if self._screen.vertical_mode:
+        #     grid.attach(box, 0, 1, 3, 1)
+        # else:
+        #     grid.attach(box, 3, 0, 2, 1)
         return grid
 
     def on_draw(self, da, ctx, color=None):
@@ -188,6 +204,9 @@ class Panel(ScreenPanel):
         name = self.current_led.split()[1] if len(self.current_led.split()) > 1 else self.current_led
         self._screen._send_action(None, "printer.gcode.script",
                                   {"script": KlippyGcodes.set_led_color(name, color_data)})
+        
+    def update_brightness(self, widget, color_data):
+        self.set_led_color(color_data)
 
     @staticmethod
     def parse_presets(presets_data) -> {}:

@@ -10,6 +10,7 @@ import traceback  # noqa
 import locale
 import sys
 import gi
+import configparser
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib, Pango
@@ -95,7 +96,7 @@ class KlipperScreen(Gtk.Window):
     wayland = False
     windowed = False
     notification_log = []
-
+    auto_check = True
     def __init__(self, args):
         try:
             super().__init__(title="KlipperScreen")
@@ -169,6 +170,31 @@ class KlipperScreen(Gtk.Window):
         self.set_screenblanking_timeout(self._config.get_main_config().get('screen_blanking'))
         self.log_notification("KlipperScreen Started", 1)
         self.initial_connection()
+
+        self.setup_init = 0
+        self.klippy_config_path = None
+        self.klippy_config = None
+        
+    def load_klipper_config(self):
+        try:
+            variables = self.printer.get_config_section("save_variables")
+            
+            if "filename" in variables:
+                self.klippy_config_path = os.path.expanduser(variables['filename'])
+            if self.klippy_config_path is not None:
+                self.klippy_config = configparser.ConfigParser()
+                self.klippy_config.read(self.klippy_config_path)
+                if not self.klippy_config.has_section("Variables"):
+                    self.klippy_config = None
+        except KeyError as Kerror:
+            msg = f"Error reading config: {self.config_path}\n{Kerror}"
+            logging.exception(msg)
+        except ValueError as Verror:
+            msg = f"Invalid Value in the config:\n{Verror}"
+            logging.exception(msg)
+        except Exception as e:
+            msg = f"Unknown error with the config:\n{e}"
+            logging.exception(msg)
 
     def initial_connection(self):
         self.printers = self._config.get_printers()
@@ -699,6 +725,32 @@ class KlipperScreen(Gtk.Window):
             return
         self.show_panel("main_menu", None, remove_all=True, items=self._config.get_menu_items("__main"))
 
+        #bed mesh
+        bm = self.printer.get_stat("bed_mesh")
+        if bm is not None: 
+            pn = self.printer.get_stat("bed_mesh", "profile_name")
+            ps = self.printer.get_stat("bed_mesh", "profiles")
+            if pn == "" and 'default' in ps:
+                script = 'BED_MESH_PROFILE LOAD="default"'
+                self._ws.klippy.gcode_script(script)
+
+        self.load_klipper_config()
+        if self.klippy_config is not None and self.setup_init == 0:
+            self.setup_init = self.klippy_config.getint("Variables", "setup_step", fallback=0)
+
+        if self.setup_init == 1:
+            self.show_panel("setup_wizard", "Choose Language", remove_all=True)
+        elif self.setup_init == 2:
+            self.show_panel("select_timezone", "Choose Timezone", remove_all=True)
+        elif self.setup_init == 3:
+            self.show_panel("zcalibrate_mesh", "Leveling", remove_all=True)
+        elif self.setup_init == 4:
+            self.show_panel("select_wifi", "Select WiFi", remove_all=True)
+        elif self.auto_check:
+            self.show_panel("self_check", "Self-check", remove_all=True)
+        self.auto_check = False
+
+
     def state_startup(self):
         self.printer_initializing(_("Klipper is attempting to start"))
 
@@ -727,6 +779,14 @@ class KlipperScreen(Gtk.Window):
         self._config.save_user_config_options()
         self.reload_panels()
 
+    def change_language_without_reload(self, widget, lang):
+        self._config.install_language(lang)
+        self.lang_ltr = set_text_direction(lang)
+        self.env.install_gettext_translations(self._config.get_lang())
+        self._config._create_configurable_options(self)
+        self._config.set('main', 'language', lang)
+        self._config.save_user_config_options()
+
     def reload_panels(self, *args):
         if "printer_select" in self._cur_panels:
             self.show_printer_select()
@@ -751,7 +811,8 @@ class KlipperScreen(Gtk.Window):
         elif action == "notify_status_update" and self.printer.state != "shutdown":
             self.printer.process_update(data)
             if 'manual_probe' in data and data['manual_probe']['is_active'] and 'zcalibrate' not in self._cur_panels:
-                self.show_panel("zcalibrate", _('Z Calibrate'))
+                if self.setup_init == 0:
+                    self.show_panel("zcalibrate", _('Z Calibrate'))
         elif action == "notify_filelist_changed":
             if self.files is not None:
                 self.files.process_update(data)
@@ -797,6 +858,12 @@ class KlipperScreen(Gtk.Window):
             {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
         ]
 
+        if params['script'].lower() == "save_config":
+                    buttons = [
+            {"name": _("Save"), "response": Gtk.ResponseType.OK},
+            {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
+        ]
+                    
         try:
             j2_temp = self.env.from_string(text)
             text = j2_temp.render()
@@ -824,6 +891,9 @@ class KlipperScreen(Gtk.Window):
             self._send_action(None, method, params)
         if method == "server.files.delete_directory":
             GLib.timeout_add_seconds(2, self.files.refresh_files)
+            
+        if params == {"script": "POWEROFF_RESUME"} and response_id == Gtk.ResponseType.CANCEL:
+            self._send_action(None, method, {"script": "REMOVE_POWEROFF_RESUME"})
 
     def _send_action(self, widget, method, params):
         logging.info(f"{method}: {params}")
@@ -1059,6 +1129,13 @@ class KlipperScreen(Gtk.Window):
             self.aspect_ratio = new_ratio
             logging.info(f"Vertical mode: {self.vertical_mode}")
 
+    def save_init_step(self):
+        try:
+            self.klippy_config["Variables"]["setup_step"] = str(self.setup_init)
+            with open(self.klippy_config_path, 'w') as file:
+                self.klippy_config.write(file)
+        except Exception as e:
+            logging.error(f"Error writing configuration file in {self.klippy_config_path}:\n{e}")        
 
 def main():
     minimum = (3, 7)
@@ -1103,3 +1180,4 @@ if __name__ == "__main__":
     except Exception as ex:
         logging.exception(f"Fatal error in main loop:\n{ex}\n\n{traceback.format_exc()}")
         sys.exit(1)
+

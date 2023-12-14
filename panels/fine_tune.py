@@ -9,7 +9,7 @@ from ks_includes.screen_panel import ScreenPanel
 
 
 class Panel(ScreenPanel):
-    z_deltas = ["0.01", "0.05"]
+    z_deltas = ["0.02", "0.1"]
     z_delta = z_deltas[-1]
     speed_deltas = ['5', '25']
     s_delta = speed_deltas[-1]
@@ -21,7 +21,7 @@ class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         if self.ks_printer_cfg is not None:
-            bs = self.ks_printer_cfg.get("z_babystep_values", "0.01, 0.05")
+            bs = self.ks_printer_cfg.get("z_babystep_values", "0.02, 0.1")
             if re.match(r'^[0-9,\.\s]+$', bs):
                 bs = [str(i.strip()) for i in bs.split(',')]
                 if 1 < len(bs) < 3:
@@ -84,8 +84,8 @@ class Panel(ScreenPanel):
         self.labels['speedfactor'] = self._gtk.Button("refresh", "  100%",
                                                       "color3", self.bts, Gtk.PositionType.LEFT, 1)
 
-        self.labels['extrude+'] = self._gtk.Button("flow+", _("Extrusion +"), "color4")
-        self.labels['extrude-'] = self._gtk.Button("flow-", _("Extrusion -"), "color4")
+        self.labels['extrude+'] = self._gtk.Button("flow+", _("Flow +"), "color4")
+        self.labels['extrude-'] = self._gtk.Button("flow-", _("Flow -"), "color4")
         self.labels['extrudefactor'] = self._gtk.Button("refresh", "  100%",
                                                         "color4", self.bts, Gtk.PositionType.LEFT, 1)
         if self._screen.vertical_mode:
@@ -174,7 +174,7 @@ class Panel(ScreenPanel):
         elif direction == "reset":
             self.speed = 100
 
-        self.speed = max(self.speed, 1)
+        self.speed = max(self.speed, 5)
         self.labels['speedfactor'].set_label(f"  {self.speed:3}%")
         self._screen._send_action(widget, "printer.gcode.script", {"script": KlippyGcodes.set_speed_rate(self.speed)})
 

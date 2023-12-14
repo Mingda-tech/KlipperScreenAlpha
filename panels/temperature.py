@@ -139,7 +139,7 @@ class Panel(ScreenPanel):
                 name = heater.split()[1] if len(heater.split()) > 1 else heater
                 if direction == "+":
                     target += int(self.tempdelta)
-                    max_temp = int(float(self._printer.get_config_section(heater)['max_temp']))
+                    max_temp = int(float(self._printer.get_config_section(heater)['max_temp'])) - 3.9
                     if target > max_temp:
                         target = max_temp
                         self._screen.show_popup_message(_("Can't set above the maximum:") + f' {target}')
@@ -220,7 +220,7 @@ class Panel(ScreenPanel):
         else:
             for heater in self.active_heaters:
                 target = None
-                max_temp = float(self._printer.get_config_section(heater)['max_temp'])
+                max_temp = float(self._printer.get_config_section(heater)['max_temp']) - 3.9
                 name = heater.split()[1] if len(heater.split()) > 1 else heater
                 with suppress(KeyError):
                     for i in self.preheat_options[setting]:
@@ -411,7 +411,7 @@ class Panel(ScreenPanel):
 
     def verify_max_temp(self, temp):
         temp = int(temp)
-        max_temp = int(float(self._printer.get_config_section(self.active_heater)['max_temp']))
+        max_temp = int(float(self._printer.get_config_section(self.active_heater)['max_temp'])) - 3.9
         logging.debug(f"{temp}/{max_temp}")
         if temp > max_temp:
             self._screen.show_popup_message(_("Can't set above the maximum:") + f' {max_temp}')

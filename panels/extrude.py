@@ -17,15 +17,15 @@ class Panel(ScreenPanel):
         self.load_filament = any("LOAD_FILAMENT" in macro.upper() for macro in macros)
         self.unload_filament = any("UNLOAD_FILAMENT" in macro.upper() for macro in macros)
 
-        self.speeds = ['1', '2', '5', '25']
-        self.distances = ['5', '10', '15', '25']
+        self.speeds = ['2', '5']
+        self.distances = ['10', '25', '50', '100']
         if self.ks_printer_cfg is not None:
-            dis = self.ks_printer_cfg.get("extrude_distances", '5, 10, 15, 25')
+            dis = self.ks_printer_cfg.get("extrude_distances", '10, 25, 50, 100')
             if re.match(r'^[0-9,\s]+$', dis):
                 dis = [str(i.strip()) for i in dis.split(',')]
                 if 1 < len(dis) < 5:
                     self.distances = dis
-            vel = self.ks_printer_cfg.get("extrude_speeds", '1, 2, 5, 25')
+            vel = self.ks_printer_cfg.get("extrude_speeds", '2, 5')
             if re.match(r'^[0-9,\s]+$', vel):
                 vel = [str(i.strip()) for i in vel.split(',')]
                 if 1 < len(vel) < 5:
@@ -34,11 +34,11 @@ class Panel(ScreenPanel):
         self.distance = int(self.distances[1])
         self.speed = int(self.speeds[1])
         self.buttons = {
-            'extrude': self._gtk.Button("extrude", _("Extrude"), "color4"),
+            'extrude': self._gtk.Button("extrude", _("Load"), "color4"),
             'load': self._gtk.Button("arrow-down", _("Load"), "color3"),
             'unload': self._gtk.Button("arrow-up", _("Unload"), "color2"),
-            'retract': self._gtk.Button("retract", _("Retract"), "color1"),
-            'temperature': self._gtk.Button("heat-up", _("Temperature"), "color4"),
+            'retract': self._gtk.Button("retract", _("Unload"), "color1"),
+            'temperature': self._gtk.Button("heat-up", _("Preheat"), "color4"),
             'spoolman': self._gtk.Button("spoolman", "Spoolman", "color3"),
         }
         self.buttons['extrude'].connect("clicked", self.extrude, "+")
@@ -156,10 +156,10 @@ class Panel(ScreenPanel):
             grid.attach(speedbox, 0, 4, 4, 1)
             grid.attach(sensors, 0, 5, 4, 1)
         else:
-            grid.attach(self.buttons['extrude'], 0, 2, 1, 1)
-            grid.attach(self.buttons['load'], 1, 2, 1, 1)
-            grid.attach(self.buttons['unload'], 2, 2, 1, 1)
-            grid.attach(self.buttons['retract'], 3, 2, 1, 1)
+            grid.attach(self.buttons['extrude'], 0, 2, 2, 1)
+            # grid.attach(self.buttons['load'], 1, 2, 1, 1)
+            # grid.attach(self.buttons['unload'], 2, 2, 1, 1)
+            grid.attach(self.buttons['retract'], 2, 2, 2, 1)
             grid.attach(distbox, 0, 3, 2, 1)
             grid.attach(speedbox, 2, 3, 2, 1)
             grid.attach(sensors, 0, 4, 4, 1)
@@ -239,8 +239,19 @@ class Panel(ScreenPanel):
         self.speed = speed
 
     def extrude(self, widget, direction):
-        self._screen._ws.klippy.gcode_script(KlippyGcodes.EXTRUDE_REL)
-        self._screen._send_action(widget, "printer.gcode.script",
+        temp = self._printer.get_dev_stat(self.current_extruder, "temperature")
+        if temp < 200:
+            script = {"script": "M104 S240"}
+            self._screen._confirm_send_action(None,
+                                              _("The nozzle temperature is too low, Are you sure you want to heat it?"),
+                                              "printer.gcode.script", script)
+        else:
+            self._screen._ws.klippy.gcode_script(KlippyGcodes.EXTRUDE_REL)
+            if direction == "-":
+                self._screen._send_action(widget, "printer.gcode.script",
+                                  {"script": f"G1 E{direction}75 F1200"})
+            else:
+                self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"G1 E{direction}{self.distance} F{self.speed * 60}"})
 
     def load_unload(self, widget, direction):

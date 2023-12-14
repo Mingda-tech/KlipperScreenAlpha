@@ -32,10 +32,54 @@ class Panel(ScreenPanel):
         self.labels['lang_menu'] = self._gtk.ScrolledWindow()
         self.labels['lang'] = Gtk.Grid()
         self.labels['lang_menu'].add(self.labels['lang'])
+        language_dict = {
+            'ps': 'Pashto',
+            'es': 'Español',
+            'en': 'English',
+            'pt': 'Português',
+            'zh': '中文',
+            'ar': 'العربية',
+            'fr': 'Français',
+            'de': 'Deutsch',
+            'el': 'Ελληνικά',
+            'hi': 'हिन्दी',
+            'id': 'Bahasa Indonesia',
+            'fa': 'فارسی',
+            'ga': 'Gaeilge',
+            'it': 'Italiano',
+            'ja': '日本語',
+            'sw': 'Kiswahili',
+            'ms': 'Bahasa Melayu',
+            'nl': 'Nederlands',
+            'mi': 'Te Reo Māori',
+            'ur': 'پاکستان',
+            'fil': 'Filipino ',
+            'pl': 'Polski',
+            'ru': 'Русский',
+            'zu': 'isiZulu',
+            'ko': '한국어',
+            'sv': 'Svenska',
+            'th': 'ไทย',
+            'tr': 'Türkçe',
+            'vi': 'Tiếng Việt',
+            'fi': 'Suomi',
+            'no': 'Norsk',
+            'cs': 'Čeština',
+            'da': 'Dansk',
+            'he': 'עברית',
+            'hu': 'Magyar',
+            'jp': '日本語',
+            'uk': 'Українська',
+            'zh_CN': '简体中文',
+            'zh_TW': '繁體中文',
+            'de_formal': 'Deutsch (Formal)',
+            'lt': 'lietuvių',
+        }        
         for lang in self._config.lang_list:
             self.langs[lang] = {
-                "name": lang,
+                "code": lang,
                 "type": "lang",
+                "name": language_dict[lang],
             }
             self.add_option("lang", self.langs, lang, self.langs[lang])
 
@@ -126,7 +170,7 @@ class Panel(ScreenPanel):
             dev.add(open_menu)
         elif option['type'] == "lang":
             select = self._gtk.Button("load", style="color3")
-            select.connect("clicked", self._screen.change_language, option['name'])
+            select.connect("clicked", self._screen.change_language, option['code'])
             select.set_hexpand(False)
             select.set_halign(Gtk.Align.END)
             dev.add(select)
