@@ -386,7 +386,7 @@ class Panel(ScreenPanel):
                 os.system(f"rm -rf {gcodes}")
                 os.system(f"rm -rf {logs}")
                 os.system(f"tar -zcvf {target_dir} {source_dir} && rm -rf {source_dir}")
- 
+
             except Exception as e:  
                 self._screen.show_popup_message(_("Backup fail"), level=3)
                 logging.exception(f"An error occurred: {e}")
@@ -394,6 +394,7 @@ class Panel(ScreenPanel):
             try:
                 os.system(f"cp -ar {origin_dir} ~/") 
                 self._screen._ws.klippy.restart_firmware()
+                subprocess.Popen(["sudo", "systemctl", "restart", "KlipperScreen.service"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             except Exception as e:  
                 self._screen.show_popup_message(_("Reset fail"), level=3)
                 print(f"error = {e}")

@@ -202,7 +202,6 @@ class Panel(ScreenPanel):
 
         directory = 'calibration'
         col = math.floor(self.pos / 2)
-        logging.debug(f"directory = {directory}  aaaaaaa11111111111")
         if self.pos % 2:
             self.dir_panels[directory].attach(self.files[filepath], 1, col, 1, 1)
             xx = 1

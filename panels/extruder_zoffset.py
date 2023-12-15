@@ -21,6 +21,7 @@ class Panel(ScreenPanel):
         if self._screen.klippy_config is not None:
             try:
                 self.z_offset = self._screen.klippy_config.getfloat("Variables", "e1_zoffset")
+                self.zendstop = self._screen.klippy_config.getfloat("Variables", "zendstop", fallback=0)
             except Exception as e:
                 logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")
 
@@ -29,7 +30,7 @@ class Panel(ScreenPanel):
         self.is_start_calibrate = False
 
         self.pos = {}
-        self.pos['z'] = None
+        self.pos['z'] = 100
         self.pos['l_z'] = None
         self.pos['r_z'] = None
         self.zmax = float(self._printer.get_config_section("stepper_z")['position_max'])
@@ -106,13 +107,19 @@ class Panel(ScreenPanel):
         self.labels['popover'].show_all()
 
     def start_calibration(self, widget):
-        self.pos['z'] = None
+        self.pos['z'] = 100
         self.pos['l_z'] = None
         self.pos['r_z'] = None
+        try:
+            self.z_offset = self._screen.klippy_config.getfloat("Variables", "e1_zoffset")
+        except Exception as e:
+                logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")        
         self.buttons_not_calibrating()
-        self.buttons['start'].set_sensitive(False)
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
+            self._screen.show_popup_message(_("Need home axis"), level=1)
             self._screen._ws.klippy.gcode_script("G28")
+            return
+        self.buttons['start'].set_sensitive(False)
         current_extruder = self._printer.get_stat("toolhead", "extruder")
         if current_extruder != "extruder":
             self.change_extruder(widget=None, extruder="extruder")
@@ -146,6 +153,8 @@ class Panel(ScreenPanel):
                 self._screen.show_popup_message(_("Failed, adjust position first"))
                 logging.info(data)
             elif "zoffset_button:" in data.lower():
+                if self.zendstop > float(self.pos['z']):
+                    return
                 button_state = data.split()[-1].lower()
                 if self.is_start_calibrate:
                     dir = '+'
@@ -162,7 +171,7 @@ class Panel(ScreenPanel):
                             else:
                                 self.pos['r_z'] = self.pos['z']
                             move_distance = 10
-                            logging.info(f"{current_extruder} {self.pos['z']} --888888888")
+                            logging.info(f"{current_extruder} {self.pos['z']}")
                     else:
                         dir = '-'
                     self.move_to_target(widget=None, direction=dir, distance=move_distance)

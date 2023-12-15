@@ -289,6 +289,8 @@ class Panel(ScreenPanel):
             try:
                 self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
                 self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
+                self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
+                self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
                 logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
