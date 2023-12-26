@@ -12,8 +12,6 @@ class Panel(ScreenPanel):
     widgets = {}
     distances = ['.01', '.05', '.1', '.5', '1', '5']
     distance = distances[-2]
-    # steps = ['4', '2', '1', '0.8', '0.4', '0.2', '0.1']
-    steps = ['0.4', '0.2', '0.1']
     step_index = 0
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -128,9 +126,6 @@ class Panel(ScreenPanel):
         self._screen._ws.klippy.gcode_script("QUERY_BUTTON button=zoffset_button")
 
     def activate(self):
-    #     if self._printer.get_stat("manual_probe", "is_active"):
-    #         self.buttons_calibrating()
-    #     else:
         self.buttons_not_calibrating()
 
     def process_update(self, action, data):
@@ -139,12 +134,7 @@ class Panel(ScreenPanel):
                 self.widgets['zposition'].set_text("Z: ?")
             elif "gcode_move" in data and "gcode_position" in data['gcode_move']:
                 self.update_position(data['gcode_move']['gcode_position'])
-                
-            # if "manual_probe" in data:
-            #     if data["manual_probe"]["is_active"]:
-            #         self.buttons_calibrating()
-            #     else:
-            #         self.buttons_not_calibrating()                    
+                                   
         elif action == "notify_gcode_response":
             if "out of range" in data.lower():
                 self._screen.show_popup_message(data)
@@ -157,24 +147,21 @@ class Panel(ScreenPanel):
                     return
                 button_state = data.split()[-1].lower()
                 if self.is_start_calibrate:
-                    dir = '+'
                     change_extruder_flag = False
-                    if self.step_index < len(self.steps) -1:
-                        self.step_index += 1 
-                    move_distance = self.steps[self.step_index]
                     if button_state == "pressed":
-                        if self.step_index == len(self.steps)-1:
+                        if True:
                             current_extruder = self._printer.get_stat("toolhead", "extruder")
                             if current_extruder == "extruder":
                                 self.pos['l_z'] = self.pos['z']
                                 change_extruder_flag = True
                             else:
                                 self.pos['r_z'] = self.pos['z']
-                            move_distance = 10
                             logging.info(f"{current_extruder} {self.pos['z']}")
+                        script = f"G0 Z{self.pos['z']+10} F1200"
+                        self._screen._send_action(None, "printer.gcode.script", {"script": script})
                     else:
-                        dir = '-'
-                    self.move_to_target(widget=None, direction=dir, distance=move_distance)
+                        script = f"G0 Z{self.pos['z']-0.1} F180"
+                        self._screen._send_action(None, "printer.gcode.script", {"script": script})
                     if self.pos['l_z'] is None or self.pos['r_z'] is None:
                         if change_extruder_flag:
                             self.change_extruder(widget=None, extruder="extruder1")
