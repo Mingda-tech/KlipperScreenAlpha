@@ -476,5 +476,4 @@ class Panel(ScreenPanel):
         self._screen.setup_init = 0
         self._screen.save_init_step()
         self._screen._ws.klippy.restart_firmware()
-        # self._screen.show_panel("main_menu", None, remove_all=True, items=self._config.get_menu_items("__main"))
         subprocess.Popen(["sudo", "systemctl", "restart", "KlipperScreen.service"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
