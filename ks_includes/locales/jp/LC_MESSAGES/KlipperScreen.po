@@ -888,7 +888,7 @@ msgstr "電源喪失時の復旧、印刷を再開しますか？"
 msgid "Please wait until the bed and nozzle are heated before calibrating."
 msgstr "キャリブレーション前にベッドとノズルが温まるまでお待ちください。"
 
-msgid "Current language:"
+msgid "Current language: "
 msgstr "現在の言語:"
 
 msgid "Skip All"
