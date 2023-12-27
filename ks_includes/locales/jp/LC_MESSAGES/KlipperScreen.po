@@ -894,6 +894,21 @@ msgstr "現在の言語:"
 msgid "Skip All"
 msgstr "全部スキップ"
 
+msgid "Do not touch the printer during self-check."
+msgstr "セルフチェック中はプリンターに触れないでください"
+
+msgid "Current timezone: "
+msgstr "現在のタイムゾーン:"
+
+msgid "Confirm"
+msgstr "確認する"
+
+msgid "Choose a timezone"
+msgstr "タイムゾーンを選択してください"
+
+msgid "Choose a language"
+msgstr "言語を選択してください"
+
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreenは再起動します"
 

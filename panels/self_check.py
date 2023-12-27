@@ -50,10 +50,9 @@ class Panel(ScreenPanel):
 
         grid = self._gtk.HomogeneousGrid()
         grid.set_row_homogeneous(False)
+        self.labels['warning'] = Gtk.Label()
         message = _("Do not touch the printer during self-check.")
-        message = f'<span color="red"><b>{message}</b></span>'
-        self.labels['warning'] = Gtk.Label(message)
-        # self.labels['warning'].set_markup(f'<span foreground="red">{message}</span>')
+        self.labels['warning'].set_markup(f'<span foreground="red">{message}</span>')
         grid.attach(self.labels['warning'], 0, 0, 4, 1)
         for i, text in enumerate(self.test_items):
             self.labels[text] = 0
@@ -68,7 +67,7 @@ class Panel(ScreenPanel):
             grid.attach(image, 2, i, 1, 1)
             grid.attach(Gtk.Label(), 3, i, 1, 1)
         
-        self.labels['confirm'] = self._gtk.Button(None, "Confirm", "color1")
+        self.labels['confirm'] = self._gtk.Button(None, _("Confirm"), "color1")
         self.labels['confirm'].connect("clicked", self.confirm_action)
         grid.attach(self.labels['confirm'], 0, len(self.test_items)+1, 4, 1)
 

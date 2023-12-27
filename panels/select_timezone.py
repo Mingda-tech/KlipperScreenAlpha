@@ -33,7 +33,7 @@ class Panel(ScreenPanel):
         grid.attach(self.labels['back'], 0, 0, 1, 1)
 
         self.labels['tip'] = Gtk.Label()
-        self.labels['tip'].set_text("Choose a timezone")
+        self.labels['tip'].set_text(_("Choose a timezone"))
         grid.attach(self.labels['tip'], 1, 0, 3, 1)
 
         self.labels['next'] = self._gtk.Button("arrow-right", None, "color1", .66)
@@ -86,7 +86,8 @@ class Panel(ScreenPanel):
         # Execute the command to change the timezone
         try:
             subprocess.run(command, shell=True, check=True)
-            self.labels['tip'].set_markup(f"Current timezone: {new_timezone}")
+            message = _("Current timezone: ") + new_timezone
+            self.labels['tip'].set_markup(message)
             # self.labels['next'].set_sensitive(True)
             logging.info(f"System timezone set to {new_timezone}")
         except subprocess.CalledProcessError as e:

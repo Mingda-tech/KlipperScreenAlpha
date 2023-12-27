@@ -20,12 +20,12 @@ class Panel(ScreenPanel):
 
         grid = self._gtk.HomogeneousGrid()
 
-        self.labels['skip'] = self._gtk.Button(None, "Skip All", "color1", .66)
+        self.labels['skip'] = self._gtk.Button(None, _("Skip All"), "color1", .66)
         self.labels['skip'].connect("clicked", self.on_skip_click)
         grid.attach(self.labels['skip'], 0, 0, 1, 1)
 
         self.labels['tip'] = Gtk.Label()
-        self.labels['tip'].set_text("Choose a language")
+        self.labels['tip'].set_text(_("Choose a language"))
         grid.attach(self.labels['tip'], 1, 0, 3, 1)
 
         self.labels['next'] = self._gtk.Button("arrow-right", None, "color1", .66)

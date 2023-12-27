@@ -290,6 +290,6 @@ class Panel(ScreenPanel):
         self._screen.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)        
 
     def on_next_click(self, widget=None):
-        self._screen.setup_init = 5
+        self._screen.setup_init = 4
         self._screen.save_init_step()
         self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
