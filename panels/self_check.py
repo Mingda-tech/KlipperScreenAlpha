@@ -50,14 +50,16 @@ class Panel(ScreenPanel):
 
         grid = self._gtk.HomogeneousGrid()
         grid.set_row_homogeneous(False)
-        self.labels['warning'] = Gtk.Label()
-        self.labels['warning'].set_markup(f'<span foreground="red">Do not touch the printer during self-check.</span>')
+        message = _("Do not touch the printer during self-check.")
+        message = f'<span color="red"><b>{message}</b></span>'
+        self.labels['warning'] = Gtk.Label(message)
+        # self.labels['warning'].set_markup(f'<span foreground="red">{message}</span>')
         grid.attach(self.labels['warning'], 0, 0, 4, 1)
         for i, text in enumerate(self.test_items):
             self.labels[text] = 0
             i = i + 1
             grid.attach(Gtk.Label(), 0, i, 1, 1)
-            label = Gtk.Label(label=text)
+            label = Gtk.Label(label=_(text))
             label.set_vexpand(True)
             grid.attach(label, 1, i, 1, 1)
             image = Gtk.Image()

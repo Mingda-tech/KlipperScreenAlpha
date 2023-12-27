@@ -249,7 +249,7 @@ class Panel(ScreenPanel):
 
     def confirm_extrude_position(self, widget):
         if self._printer.extrudercount < 2:
-            self._screen.show_popup_message("Only one extruder does not require calibration.", level = 2)
+            self._screen.show_popup_message(_("Only one extruder does not require calibration."), level = 2)
             return
         self.current_extruder = self._printer.get_stat("toolhead", "extruder")
 
@@ -282,7 +282,7 @@ class Panel(ScreenPanel):
         if self.pos['e1_xoffset'] is None or self.pos['e1_yoffset'] is None:
             return
         if self.pos['ox'] is None or self.pos['oy'] is None:
-            self._screen.show_popup_message("Need to recalculate the offset value.", level = 2)
+            self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
         else:
             self.pos['e1_xoffset'] += self.pos['ox']
             self.pos['e1_yoffset'] += self.pos['oy']
@@ -301,7 +301,7 @@ class Panel(ScreenPanel):
                     self._screen._menu_go_back()
             except Exception as e:
                 logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
-                self._screen.show_popup_message("Error writing configuration")
+                self._screen.show_popup_message(_("Error writing configuration"))
                 self.pos['e1_xoffset'] -= self.pos['ox']
                 self.pos['e1_yoffset'] -= self.pos['oy']
             
@@ -320,7 +320,7 @@ class Panel(ScreenPanel):
         logging.info(f"video filters: {vf}")
 
         if check_web_page_access(url) == False:
-            self._screen.show_popup_message(f'Please wait for the camera initialization to complete.', level=1)
+            self._screen.show_popup_message(_("Please wait for the camera initialization to complete."), level=1)
             return
         self.reset_pos()
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
@@ -419,7 +419,7 @@ class Panel(ScreenPanel):
         source_file = "/home/mingda/printer_data/config/crowsnest2.conf"
         create_symbolic_link(source_file, symbolic_link)
         os.system('sudo systemctl restart crowsnest.service')
-        self._screen.show_popup_message("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'", level=2)
+        self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
 
     def deactivate(self):
         symbolic_link = "/home/mingda/printer_data/config/crowsnest.conf"

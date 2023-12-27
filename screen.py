@@ -739,17 +739,16 @@ class KlipperScreen(Gtk.Window):
             self.setup_init = self.klippy_config.getint("Variables", "setup_step", fallback=0)
 
         if self.setup_init == 1:
-            self.show_panel("setup_wizard", "Choose Language", remove_all=True)
+            self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
         elif self.setup_init == 2:
-            self.show_panel("select_timezone", "Choose Timezone", remove_all=True)
+            self.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)
         elif self.setup_init == 3:
-            self.show_panel("zcalibrate_mesh", "Leveling", remove_all=True)
+            self.show_panel("zcalibrate_mesh", _("Leveling"), remove_all=True)
         elif self.setup_init == 4:
-            self.show_panel("select_wifi", "Select WiFi", remove_all=True)
+            self.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
         elif self.auto_check:
-            self.show_panel("self_check", "Self-check", remove_all=True)
+            self.show_panel("self_check", _("Self-check"), remove_all=True)
         self.auto_check = False
-
 
     def state_startup(self):
         self.printer_initializing(_("Klipper is attempting to start"))

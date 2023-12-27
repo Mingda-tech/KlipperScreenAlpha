@@ -109,9 +109,6 @@ msgstr "構成済み"
 msgid "Calibrating"
 msgstr "校正中"
 
-msgid "Camera"
-msgstr ""
-
 msgid "Can't set above the maximum:"
 msgstr "上限値を超えて設定できません:"
 
@@ -384,9 +381,6 @@ msgstr "左:"
 
 msgid "Limits"
 msgstr "制限"
-
-msgid "Load"
-msgstr ""
 
 msgid "Lower Nozzle"
 msgstr "ノズルが低い"
@@ -785,6 +779,117 @@ msgstr ""
 
 msgid "mm³/s"
 msgstr ""
+
+msgid "Preheat"
+msgstr "予熱"
+
+msgid "Load"
+msgstr "ロード"
+
+msgid "Leveling"
+msgstr "レベリング"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "ノズルの温度が低すぎます。本当に加熱しますか？"
+
+msgid "General"
+msgstr "ユニバーサル"
+
+msgid "Turn off"
+msgstr "電源を切る"
+
+msgid "Brightest"
+msgstr "最も明るい"
+
+msgid "Manual"
+msgstr "マニュアル"
+
+msgid "Troubleshooting"
+msgstr "トラブルシューティング"
+
+msgid "Cautions"
+msgstr "注意事項"
+
+msgid "Maintenance"
+msgstr "メンテナンス"
+
+msgid "Calibration"
+msgstr "キャリブレーション"
+
+msgid "XY Offset"
+msgstr "XY オフセット"
+
+msgid "Z Offset"
+msgstr "Z オフセット"
+
+msgid "Only one extruder does not require calibration."
+msgstr "1つのエクストルーダーはキャリブレーションが必要ありません。"
+
+msgid "Please confirm left extruder position."
+msgstr "左のエクストルーダーの位置を確認してください。"
+
+msgid "Need to recalculate the offset value."
+msgstr "オフセットの値を再計算する必要があります。"
+
+msgid "Error writing configuration"
+msgstr "構成の書き込みエラー"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "カメラの初期化が完了するまでお待ちください。"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "「開始」をクリックする前に、カメラの補助灯が5秒間点灯するのをお待ちください。"
+
+msgid "Couldn't get the calibration camera position."
+msgstr "キャリブレーションカメラの位置が取得できませんでした。"
+
+msgid "Need home axis"
+msgstr "ホーム軸が必要です"
+
+msgid "Choose Language"
+msgstr "言語を選択"
+
+msgid "Choose Timezone"
+msgstr "タイムゾーンを選択"
+
+msgid "Select WiFi"
+msgstr "WiFiを選択"
+
+msgid "Self-check"
+msgstr "セルフチェック"
+
+msgid "Nozzle Heating"
+msgstr "ノズル加熱"
+
+msgid "Hot Bed Heating"
+msgstr "ホットベッド加熱"
+
+msgid "Nozzle Cooling Fan"
+msgstr "ノズル冷却ファン"
+
+msgid "Hotend Cooling Fan"
+msgstr "ホットエンド冷却ファン"
+
+msgid "Filament Detection"
+msgstr "フィラメント検知"
+
+msgid "Auto Leveling"
+msgstr "自動レベリング"
+
+msgid "Camera"
+msgstr "カメラ"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "電源喪失時の復旧、印刷を再開しますか？"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "キャリブレーション前にベッドとノズルが温まるまでお待ちください。"
+
+msgid "Current language:"
+msgstr "現在の言語:"
 
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreenは再起動します"

@@ -29,13 +29,6 @@ class Panel(ScreenPanel):
         self.buttons['calib'].connect("clicked", self.calibrate_mesh)
         self.buttons['calib'].set_hexpand(True)
 
-        # topbar = Gtk.Box(spacing=5)
-        # topbar.set_hexpand(True)
-        # topbar.set_vexpand(False)
-        # topbar.add(self.buttons['add'])
-        # topbar.add(self.buttons['clear'])
-        # topbar.add(self.buttons['calib'])
-
         # Create a grid for all profiles
         self.labels['profiles'] = Gtk.Grid()
         self.labels['profiles'].set_valign(Gtk.Align.CENTER)
@@ -269,7 +262,7 @@ class Panel(ScreenPanel):
         widget.set_sensitive(False)
         self.labels['back'].set_sensitive(False)
         self.labels['next'].set_sensitive(False)
-        self._screen.show_popup_message(_("Please wait until the bed and nozzle is heated before calibrating."), level=1)
+        # self._screen.show_popup_message(_("Please wait until the bed and nozzle is heated before calibrating."), level=1)
 
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script("G28")
@@ -294,9 +287,9 @@ class Panel(ScreenPanel):
         self.remove_profile(profile)
 
     def on_back_click(self, widget=None):
-        self._screen.show_panel("select_timezone", "Choose Timezone", remove_all=True)        
+        self._screen.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)        
 
     def on_next_click(self, widget=None):
         self._screen.setup_init = 5
         self._screen.save_init_step()
-        self._screen.show_panel("select_wifi", "Select WiFi", remove_all=True)
+        self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)

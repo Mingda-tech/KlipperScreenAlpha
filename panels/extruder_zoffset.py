@@ -156,11 +156,11 @@ class Panel(ScreenPanel):
                                 change_extruder_flag = True
                             else:
                                 self.pos['r_z'] = self.pos['z']
-                            logging.info(f"{current_extruder} {self.pos['z']}")
-                        script = f"G0 Z{self.pos['z']+10} F1200"
+                            logging.info(f"{current_extruder} {self.pos['z']:.3f}")
+                        script = f"G0 Z{10+self.pos['z']:.3f} F1200"
                         self._screen._send_action(None, "printer.gcode.script", {"script": script})
                     else:
-                        script = f"G0 Z{self.pos['z']-0.1} F180"
+                        script = f"G0 Z{-0.1 + self.pos['z']:.3f} F180"
                         self._screen._send_action(None, "printer.gcode.script", {"script": script})
                     if self.pos['l_z'] is None or self.pos['r_z'] is None:
                         if change_extruder_flag:
@@ -256,7 +256,7 @@ class Panel(ScreenPanel):
             z_position = self._screen.klippy_config.getfloat("Variables", "switch_zpos")            
         except:
             logging.error("Couldn't get the calibration camera position.")
-            self._screen.show_popup_message("Couldn't get the calibration camera position.", level=2)
+            self._screen.show_popup_message(_("Couldn't get the calibration camera position."), level=2)
             return
 
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
