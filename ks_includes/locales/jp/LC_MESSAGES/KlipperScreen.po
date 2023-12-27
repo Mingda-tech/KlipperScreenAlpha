@@ -909,6 +909,25 @@ msgstr "タイムゾーンを選択してください"
 msgid "Choose a language"
 msgstr "言語を選択してください"
 
+msgid "Please wait for the print job to end"
+msgstr "印刷ジョブの終了をお待ちください"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "プリンタをリセットしますか？"
+
+msgid "Data will be deleted"
+msgstr "データが削除されます"
+
+msgid "Reset Printer"
+msgstr "プリンタをリセット"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "プリンタをリセット中、再起動します。お待ちください..."
+
+msgid "Reset"
+msgstr "リセット"
+
+
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreenは再起動します"
 
