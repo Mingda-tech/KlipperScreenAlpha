@@ -891,6 +891,9 @@ msgstr "キャリブレーション前にベッドとノズルが温まるまで
 msgid "Current language:"
 msgstr "現在の言語:"
 
+msgid "Skip All"
+msgstr "全部スキップ"
+
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreenは再起動します"
 
