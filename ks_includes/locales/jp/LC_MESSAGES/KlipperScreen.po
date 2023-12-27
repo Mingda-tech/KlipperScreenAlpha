@@ -374,7 +374,7 @@ msgid "Layer:"
 msgstr "レイヤー:"
 
 msgid "Leds"
-msgstr ""
+msgstr "ランプ"
 
 msgid "Left:"
 msgstr "左:"
