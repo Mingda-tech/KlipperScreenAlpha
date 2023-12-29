@@ -845,3 +845,144 @@ msgstr ""
 
 #~ msgid "Calibrating..."
 #~ msgstr "Calibrando..."
+
+msgid "Leveling"
+msgstr "Nivelamento"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "A temperatura da bico está muito baixa. Tem certeza de que deseja aquecê-la?"
+
+msgid "General"
+msgstr "Geral"
+
+msgid "Turn off"
+msgstr "Desligar"
+
+msgid "Brightest"
+msgstr "Mais brilhante"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Troubleshooting"
+msgstr "Solução de problemas"
+
+msgid "Cautions"
+msgstr "Cuidados"
+
+msgid "Maintenance"
+msgstr "Manutenção"
+
+msgid "Calibration"
+msgstr "Calibração"
+
+msgid "XY Offset"
+msgstr "Deslocamento XY"
+
+msgid "Z Offset"
+msgstr "Deslocamento Z"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Apenas um extrusor não requer calibração."
+
+msgid "Please confirm left extruder position."
+msgstr "Por favor, confirme a posição do extrusor esquerdo."
+
+msgid "Need to recalculate the offset value."
+msgstr "Necessidade de recalcular o valor do deslocamento."
+
+msgid "Error writing configuration"
+msgstr "Erro ao escrever a configuração"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Por favor, aguarde a inicialização da câmera ser concluída."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Aguarde a luz de preenchimento da câmera acender por 5 segundos antes de clicar em 'Iniciar'."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Não foi possível obter a posição da câmera de calibração."
+
+msgid "Need home axis"
+msgstr "Necessidade de posicionar a origem do eixo"
+
+msgid "Choose Language"
+msgstr "Escolha o idioma"
+
+msgid "Choose Timezone"
+msgstr "Escolha o fuso horário"
+
+msgid "Select WiFi"
+msgstr "Selecione o WiFi"
+
+msgid "Self-check"
+msgstr "Autoverificação"
+
+msgid "Nozzle Heating"
+msgstr "Aquecimento do bico"
+
+msgid "Hot Bed Heating"
+msgstr "Aquecimento da cama"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Ventilador de resfriamento do bico"
+
+msgid "Hotend Cooling Fan"
+msgstr "Ventilador de resfriamento do Hotend"
+
+msgid "Filament Detection"
+msgstr "Detecção de filamento"
+
+msgid "Auto Leveling"
+msgstr "Nivelamento automático"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Recuperação após perda de energia, continuar a impressão?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Aguarde até que a cama e o bico estejam aquecidos antes de calibrar."
+
+msgid "Current language:"
+msgstr "Idioma atual:"
+
+msgid "Skip All"
+msgstr "Ignorar tudo"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Não toque na impressora durante a autoverificação."
+
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgid "Current timezone:"
+msgstr "Fuso horário atual:"
+
+msgid "Choose a timezone"
+msgstr "Escolha um fuso horário"
+
+msgid "Choose a language"
+msgstr "Escolha um idioma"
+
+msgid "Please wait for the print job to end"
+msgstr "Aguarde o término do trabalho de impressão"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Tem certeza de que deseja redefinir a impressora?"
+
+msgid "Data will be deleted"
+msgstr "Os dados serão excluídos"
+
+msgid "Reset Printer"
+msgstr "Redefinir impressora"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Redefinindo a impressora, irá reiniciar, por favor, aguarde..."
+
+msgid "Reset"
+msgstr "Redefinir"
+
+msgid "Poweroff"
+msgstr "Desligar"

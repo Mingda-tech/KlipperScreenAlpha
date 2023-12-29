@@ -957,3 +957,144 @@ msgstr "mm³/s"
 
 #~ msgid "Change Printer"
 #~ msgstr "Cambia Stampante"
+
+msgid "Leveling"
+msgstr "Livellamento"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "La temperatura della testina è troppo bassa. Sei sicuro di volerla riscaldare?"
+
+msgid "General"
+msgstr "Generale"
+
+msgid "Turn off"
+msgstr "Spegni"
+
+msgid "Brightest"
+msgstr "Più luminoso"
+
+msgid "Manual"
+msgstr "Manuale"
+
+msgid "Troubleshooting"
+msgstr "Risoluzione dei problemi"
+
+msgid "Cautions"
+msgstr "Avvertenze"
+
+msgid "Maintenance"
+msgstr "Manutenzione"
+
+msgid "Calibration"
+msgstr "Calibrazione"
+
+msgid "XY Offset"
+msgstr "Offset XY"
+
+msgid "Z Offset"
+msgstr "Offset Z"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Solo un estrusore non richiede calibrazione."
+
+msgid "Please confirm left extruder position."
+msgstr "Conferma la posizione dell'estrusore sinistro."
+
+msgid "Need to recalculate the offset value."
+msgstr "È necessario ricalcolare il valore di offset."
+
+msgid "Error writing configuration"
+msgstr "Errore nella scrittura della configurazione"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Attendi che l'inizializzazione della fotocamera sia completata."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Attendi che la luce di riempimento della fotocamera si accenda per 5 secondi prima di cliccare su 'Start'."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Impossibile ottenere la posizione della fotocamera di calibrazione."
+
+msgid "Need home axis"
+msgstr "Necessità di posizione di riposo"
+
+msgid "Choose Language"
+msgstr "Scegli la lingua"
+
+msgid "Choose Timezone"
+msgstr "Scegli il fuso orario"
+
+msgid "Select WiFi"
+msgstr "Seleziona WiFi"
+
+msgid "Self-check"
+msgstr "Autoverifica"
+
+msgid "Nozzle Heating"
+msgstr "Riscaldamento testina"
+
+msgid "Hot Bed Heating"
+msgstr "Riscaldamento piano riscaldato"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Ventola di raffreddamento della testina"
+
+msgid "Hotend Cooling Fan"
+msgstr "Ventola di raffreddamento dell'hotend"
+
+msgid "Filament Detection"
+msgstr "Rilevamento filamento"
+
+msgid "Auto Leveling"
+msgstr "Livellamento automatico"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Ripristino dopo interruzione di corrente, si desidera riprendere la stampa?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Attendi che il piano e la testina siano riscaldati prima di procedere alla calibrazione."
+
+msgid "Current language:"
+msgstr "Lingua corrente:"
+
+msgid "Skip All"
+msgstr "Salta tutto"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Non toccare la stampante durante l'autoverifica."
+
+msgid "Confirm"
+msgstr "Conferma"
+
+msgid "Current timezone:"
+msgstr "Fuso orario corrente:"
+
+msgid "Choose a timezone"
+msgstr "Scegli un fuso orario"
+
+msgid "Choose a language"
+msgstr "Scegli una lingua"
+
+msgid "Please wait for the print job to end"
+msgstr "Attendi che il lavoro di stampa sia completato"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Sei sicuro di voler ripristinare la stampante?"
+
+msgid "Data will be deleted"
+msgstr "I dati verranno cancellati"
+
+msgid "Reset Printer"
+msgstr "Ripristina la stampante"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Ripristino della stampante, verrà riavviata, attendere..."
+
+msgid "Reset"
+msgstr "Ripristina"
+
+msgid "Poweroff"
+msgstr "Spegni"

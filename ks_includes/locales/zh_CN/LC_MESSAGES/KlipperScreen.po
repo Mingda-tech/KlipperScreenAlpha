@@ -295,10 +295,10 @@ msgid "Hide"
 msgstr "隐藏"
 
 msgid "Hide sensors in Temp."
-msgstr "在温度显示中隐藏传感器"
+msgstr "在温度显示中隐藏传感器。"
 
 msgid "Hide temp."
-msgstr "隐藏温度"
+msgstr "隐藏温度。"
 
 msgid "Home"
 msgstr "归零"
@@ -985,3 +985,144 @@ msgstr "mm³/s"
 
 #~ msgid "Screen Blanking Time"
 #~ msgstr "关闭屏幕时间"
+
+msgid "Leveling"
+msgstr "调平"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "喷嘴温度过低，确定要加热吗？"
+
+msgid "General"
+msgstr "常规"
+
+msgid "Turn off"
+msgstr "关闭"
+
+msgid "Brightest"
+msgstr "最亮"
+
+msgid "Manual"
+msgstr "手册"
+
+msgid "Troubleshooting"
+msgstr "故障排除"
+
+msgid "Cautions"
+msgstr "注意事项"
+
+msgid "Maintenance"
+msgstr "维护"
+
+msgid "Calibration"
+msgstr "校准"
+
+msgid "XY Offset"
+msgstr "XY偏移校准"
+
+msgid "Z Offset"
+msgstr "Z偏移校准"
+
+msgid "Only one extruder does not require calibration."
+msgstr "只有一个挤出机不需要校准。"
+
+msgid "Please confirm left extruder position."
+msgstr "请先确认左挤出机位置。"
+
+msgid "Need to recalculate the offset value."
+msgstr "需要重新计算偏移值。"
+
+msgid "Error writing configuration"
+msgstr "写入配置错误"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "请等待摄像头初始化完成。"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "请等待摄像头的补光灯点亮5秒，然后点击“开始”。"
+
+msgid "Couldn't get the calibration camera position."
+msgstr "无法获取校准摄像头位置。"
+
+msgid "Need home axis"
+msgstr "需要先回零"
+
+msgid "Choose Language"
+msgstr "选择语言"
+
+msgid "Choose Timezone"
+msgstr "选择时区"
+
+msgid "Select WiFi"
+msgstr "选择WiFi"
+
+msgid "Self-check"
+msgstr "自检"
+
+msgid "Nozzle Heating"
+msgstr "喷嘴加热"
+
+msgid "Hot Bed Heating"
+msgstr "热床加热"
+
+msgid "Nozzle Cooling Fan"
+msgstr "喷嘴冷却风扇"
+
+msgid "Hotend Cooling Fan"
+msgstr "喉管冷却风扇"
+
+msgid "Filament Detection"
+msgstr "检测耗材"
+
+msgid "Auto Leveling"
+msgstr "自动调平"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "断电续打恢复，是否继续打印？"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "在校准前，请等待床和喷嘴加热。"
+
+msgid "Current language:"
+msgstr "当前语言："
+
+msgid "Skip All"
+msgstr "全部跳过"
+
+msgid "Do not touch the printer during self-check."
+msgstr "在自检过程中请勿触摸打印机。"
+
+msgid "Confirm"
+msgstr "确认"
+
+msgid "Current timezone:"
+msgstr "当前时区："
+
+msgid "Choose a timezone"
+msgstr "选择时区"
+
+msgid "Choose a language"
+msgstr "选择语言"
+
+msgid "Please wait for the print job to end"
+msgstr "请等待打印作业结束"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "确定要重置打印机吗？"
+
+msgid "Data will be deleted"
+msgstr "数据将被删除"
+
+msgid "Reset Printer"
+msgstr "重置打印机"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "正在重置打印机，将重新启动，请等待..."
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Poweroff"
+msgstr "关机"

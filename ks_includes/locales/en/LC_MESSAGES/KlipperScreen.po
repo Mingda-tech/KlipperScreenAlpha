@@ -789,3 +789,144 @@ msgstr ""
 
 msgid "mm³/s"
 msgstr ""
+
+msgid "Leveling"
+msgstr ""
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Turn off"
+msgstr ""
+
+msgid "Brightest"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Troubleshooting"
+msgstr ""
+
+msgid "Cautions"
+msgstr ""
+
+msgid "Maintenance"
+msgstr ""
+
+msgid "Calibration"
+msgstr ""
+
+msgid "XY Offset"
+msgstr ""
+
+msgid "Z Offset"
+msgstr ""
+
+msgid "Only one extruder does not require calibration."
+msgstr ""
+
+msgid "Please confirm left extruder position."
+msgstr ""
+
+msgid "Need to recalculate the offset value."
+msgstr ""
+
+msgid "Error writing configuration"
+msgstr ""
+
+msgid "Please wait for the camera initialization to complete."
+msgstr ""
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr ""
+
+msgid "Couldn't get the calibration camera position."
+msgstr ""
+
+msgid "Need home axis"
+msgstr ""
+
+msgid "Choose Language"
+msgstr ""
+
+msgid "Choose Timezone"
+msgstr ""
+
+msgid "Select WiFi"
+msgstr ""
+
+msgid "Self-check"
+msgstr ""
+
+msgid "Nozzle Heating"
+msgstr ""
+
+msgid "Hot Bed Heating"
+msgstr ""
+
+msgid "Nozzle Cooling Fan"
+msgstr ""
+
+msgid "Hotend Cooling Fan"
+msgstr ""
+
+msgid "Filament Detection"
+msgstr ""
+
+msgid "Auto Leveling"
+msgstr ""
+
+msgid "WiFi"
+msgstr ""
+
+msgid "Power loss recovery, is resume print?"
+msgstr ""
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr ""
+
+msgid "Current language:"
+msgstr ""
+
+msgid "Skip All"
+msgstr ""
+
+msgid "Do not touch the printer during self-check."
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Current timezone:"
+msgstr ""
+
+msgid "Choose a timezone"
+msgstr ""
+
+msgid "Choose a language"
+msgstr ""
+
+msgid "Please wait for the print job to end"
+msgstr ""
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr ""
+
+msgid "Data will be deleted"
+msgstr ""
+
+msgid "Reset Printer"
+msgstr ""
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Poweroff"
+msgstr ""

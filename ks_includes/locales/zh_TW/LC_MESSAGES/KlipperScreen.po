@@ -963,3 +963,144 @@ msgstr "mm³/s"
 
 #~ msgid "Screen Blanking Time"
 #~ msgstr "关闭屏幕时间"
+
+msgid "Leveling"
+msgstr "調平"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "噴頭溫度太低，確定要加熱嗎？"
+
+msgid "General"
+msgstr "通用"
+
+msgid "Turn off"
+msgstr "關閉"
+
+msgid "Brightest"
+msgstr "最亮"
+
+msgid "Manual"
+msgstr "手動"
+
+msgid "Troubleshooting"
+msgstr "疑難排解"
+
+msgid "Cautions"
+msgstr "注意事項"
+
+msgid "Maintenance"
+msgstr "維護"
+
+msgid "Calibration"
+msgstr "校準"
+
+msgid "XY Offset"
+msgstr "XY 偏移"
+
+msgid "Z Offset"
+msgstr "Z 偏移"
+
+msgid "Only one extruder does not require calibration."
+msgstr "只有一個擠出機不需要校準。"
+
+msgid "Please confirm left extruder position."
+msgstr "請確認左擠出機位置。"
+
+msgid "Need to recalculate the offset value."
+msgstr "需要重新計算偏移值。"
+
+msgid "Error writing configuration"
+msgstr "寫入配置錯誤"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "請等待攝影機初始化完成。"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "請等待攝影機的填光燈亮起 5 秒後再點擊 '啟動'"
+
+msgid "Couldn't get the calibration camera position."
+msgstr "無法獲取校準攝影機位置。"
+
+msgid "Need home axis"
+msgstr "需要歸零軸"
+
+msgid "Choose Language"
+msgstr "選擇語言"
+
+msgid "Choose Timezone"
+msgstr "選擇時區"
+
+msgid "Select WiFi"
+msgstr "選擇 WiFi"
+
+msgid "Self-check"
+msgstr "自檢"
+
+msgid "Nozzle Heating"
+msgstr "噴頭加熱"
+
+msgid "Hot Bed Heating"
+msgstr "熱床加熱"
+
+msgid "Nozzle Cooling Fan"
+msgstr "噴頭散熱風扇"
+
+msgid "Hotend Cooling Fan"
+msgstr "熱端散熱風扇"
+
+msgid "Filament Detection"
+msgstr "檢測線料"
+
+msgid "Auto Leveling"
+msgstr "自動調平"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "電源喪失恢復，是否恢復打印？"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "在校準前，請等待床和噴頭加熱。"
+
+msgid "Current language:"
+msgstr "當前語言："
+
+msgid "Skip All"
+msgstr "全部跳過"
+
+msgid "Do not touch the printer during self-check."
+msgstr "在自檢過程中請勿觸摸印表機。"
+
+msgid "Confirm"
+msgstr "確認"
+
+msgid "Current timezone:"
+msgstr "當前時區："
+
+msgid "Choose a timezone"
+msgstr "選擇時區"
+
+msgid "Choose a language"
+msgstr "選擇語言"
+
+msgid "Please wait for the print job to end"
+msgstr "請等待打印作業結束"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "確定要重置印表機嗎？"
+
+msgid "Data will be deleted"
+msgstr "數據將被刪除"
+
+msgid "Reset Printer"
+msgstr "重置印表機"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "正在重置印表機，將重新啟動，請稍候..."
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Poweroff"
+msgstr "關機"

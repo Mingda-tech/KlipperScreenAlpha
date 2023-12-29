@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2023-10-24 19:36\n"
+"Project-Id-Version: 2023-12-17 01:36\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-20 00:09-0300\n"
-"PO-Revision-Date: 2023-10-24 00:27+0300\n"
+"PO-Revision-Date: 2023-12-17 00:58+0200\n"
 "Last-Translator: Andrii Komarovskyi\n"
 "Language-Team: Andrii Komarovskyi\n"
 "Language: uk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -212,8 +212,8 @@ msgstr "Дуже Великий"
 
 msgid "Extrude"
 msgstr ""
-"Заміна\n"
-"пластику"
+"Заміна пластику\n"
+"Продавити"
 
 msgid "Extrusion +"
 msgstr "Видавити +"
@@ -598,7 +598,9 @@ msgid "Resume"
 msgstr "ВІДНОВИТИ"
 
 msgid "Retract"
-msgstr "Ретракт"
+msgstr ""
+"Доатково\n"
+"вийняти"
 
 msgid "Retraction"
 msgstr ""
@@ -914,3 +916,144 @@ msgstr "мм/с³"
 #~ msgstr ""
 #~ "ПРИМІТКА. Відредагуйте файл printer.cfg, щоб зберегти зміни калібрування "
 #~ "вручну."
+
+msgid "Leveling"
+msgstr "Вирівнювання"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "Температура сопла занадто низька. Ви впевнені, що хочете її підігріти?"
+
+msgid "General"
+msgstr "Загальне"
+
+msgid "Turn off"
+msgstr "Вимкнути"
+
+msgid "Brightest"
+msgstr "Найяскравіше"
+
+msgid "Manual"
+msgstr "Ручний"
+
+msgid "Troubleshooting"
+msgstr "Усунення неполадок"
+
+msgid "Cautions"
+msgstr "Попередження"
+
+msgid "Maintenance"
+msgstr "Обслуговування"
+
+msgid "Calibration"
+msgstr "Калібрування"
+
+msgid "XY Offset"
+msgstr "Зміщення XY"
+
+msgid "Z Offset"
+msgstr "Зміщення Z"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Лише один екструдер не потребує калібрування."
+
+msgid "Please confirm left extruder position."
+msgstr "Будь ласка, підтвердьте позицію лівого екструдера."
+
+msgid "Need to recalculate the offset value."
+msgstr "Потрібно перерахувати значення зміщення."
+
+msgid "Error writing configuration"
+msgstr "Помилка запису конфігурації"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Будь ласка, зачекайте на завершення ініціалізації камери."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Будь ласка, зачекайте, поки світло заповнення камери не загориться протягом 5 секунд, перед тим як натискати 'Старт'."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Не вдалося отримати позицію калібрувальної камери."
+
+msgid "Need home axis"
+msgstr "Потрібна домашня ось"
+
+msgid "Choose Language"
+msgstr "Оберіть мову"
+
+msgid "Choose Timezone"
+msgstr "Оберіть часовий пояс"
+
+msgid "Select WiFi"
+msgstr "Виберіть WiFi"
+
+msgid "Self-check"
+msgstr "Самоперевірка"
+
+msgid "Nozzle Heating"
+msgstr "Нагрів сопла"
+
+msgid "Hot Bed Heating"
+msgstr "Нагрів робочого столу"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Вентилятор охолодження сопла"
+
+msgid "Hotend Cooling Fan"
+msgstr "Вентилятор охолодження гарячого кінця"
+
+msgid "Filament Detection"
+msgstr "Виявлення філату"
+
+msgid "Auto Leveling"
+msgstr "Автоматичне вирівнювання"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Відновлення при втраті живлення, продовжити друк?"
+
+msgid "Please wait until the bed and nozzle is heated before calibrating."
+msgstr "Будь ласка, зачекайте, поки ліжко та сопло не нагріються перед калібруванням."
+
+msgid "Current language:"
+msgstr "Поточна мова:"
+
+msgid "Skip All"
+msgstr "Пропустити все"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Не торкайтеся принтера під час самоперевірки."
+
+msgid "Confirm"
+msgstr "Підтвердити"
+
+msgid "Current timezone:"
+msgstr "Поточний часовий пояс:"
+
+msgid "Choose a timezone"
+msgstr "Оберіть часовий пояс"
+
+msgid "Choose a language"
+msgstr "Оберіть мову"
+
+msgid "Please wait for the print job to end"
+msgstr "Будь ласка, зачекайте на завершення друкарського завдання"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Ви впевнені, що хочете скинути налаштування принтера?"
+
+msgid "Data will be deleted"
+msgstr "Дані будуть видалені"
+
+msgid "Reset Printer"
+msgstr "Скинути налаштування принтера"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Скидаю налаштування принтера, буде перезапущено, будь ласка, зачекайте..."
+
+msgid "Reset"
+msgstr "Скинути"
+
+msgid "Poweroff"
+msgstr "Вимкнути"

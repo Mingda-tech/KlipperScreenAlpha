@@ -803,3 +803,144 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr "mm³/s"
+
+msgid "Leveling"
+msgstr "Lyginimas"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "Dūzės temperatūra per žema. Ar tikrai norite ją kaitinti?"
+
+msgid "General"
+msgstr "Bendra informacija"
+
+msgid "Turn off"
+msgstr "Išjungti"
+
+msgid "Brightest"
+msgstr "Šviesiausias"
+
+msgid "Manual"
+msgstr "Rankinis"
+
+msgid "Troubleshooting"
+msgstr "Problemų šalinimas"
+
+msgid "Cautions"
+msgstr "Įspėjimai"
+
+msgid "Maintenance"
+msgstr "Priežiūra"
+
+msgid "Calibration"
+msgstr "Kalibravimas"
+
+msgid "XY Offset"
+msgstr "XY poslinkis"
+
+msgid "Z Offset"
+msgstr "Z poslinkis"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Tik vienas ekstrūderis nereikalauja kalibravimo."
+
+msgid "Please confirm left extruder position."
+msgstr "Patvirtinkite kairės ekstrūderio poziciją."
+
+msgid "Need to recalculate the offset value."
+msgstr "Reikia iš naujo apskaičiuoti poslinkio reikšmę."
+
+msgid "Error writing configuration"
+msgstr "Klaida rašant konfigūraciją"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Palaukite, kol kamera bus paruošta."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Palaukite, kol kamerai užsidegs papildomas šviesos signalas 5 sekundėms prieš spustelėdami „Pradėti“."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Nepavyko gauti kalibravimo kameros pozicijos."
+
+msgid "Need home axis"
+msgstr "Reikia grįžti į namų ašį"
+
+msgid "Choose Language"
+msgstr "Pasirinkite kalbą"
+
+msgid "Choose Timezone"
+msgstr "Pasirinkite laiko juostą"
+
+msgid "Select WiFi"
+msgstr "Pasirinkite WiFi"
+
+msgid "Self-check"
+msgstr "Savęs patikra"
+
+msgid "Nozzle Heating"
+msgstr "Dūzės šildymas"
+
+msgid "Hot Bed Heating"
+msgstr "Karšto lovos šildymas"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Dūzės vėdinimo ventiliatorius"
+
+msgid "Hotend Cooling Fan"
+msgstr "Karšto galinio vėdinimo ventiliatorius"
+
+msgid "Filament Detection"
+msgstr "Filamento aptikimas"
+
+msgid "Auto Leveling"
+msgstr "Automatinis lyginimas"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Nuskaičius galiai, ar norite tęsti spausdinimą?"
+
+msgid "Please wait until the bed and nozzle is heated before calibrating."
+msgstr "Palaukite, kol lova ir dūzė bus pašildytos prieš kalibravimą."
+
+msgid "Current language:"
+msgstr "Dabartinė kalba:"
+
+msgid "Skip All"
+msgstr "Praleisti viską"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Nelieskite spausdintuvo patikrinimo metu."
+
+msgid "Confirm"
+msgstr "Patvirtinti"
+
+msgid "Current timezone:"
+msgstr "Dabartinė laiko juosta:"
+
+msgid "Choose a timezone"
+msgstr "Pasirinkite laiko juostą"
+
+msgid "Choose a language"
+msgstr "Pasirinkite kalbą"
+
+msgid "Please wait for the print job to end"
+msgstr "Palaukite, kol spausdinimo užduotis bus baigta"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Ar tikrai norite pernaušinti spausdintuvą?"
+
+msgid "Data will be deleted"
+msgstr "Duomenys bus ištrinti"
+
+msgid "Reset Printer"
+msgstr "Pernaušinti spausdintuvą"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Spausdintuvas pernaušinamas, paleidžiamas iš naujo, palaukite..."
+
+msgid "Reset"
+msgstr "Pernaušinti"
+
+msgid "Poweroff"
+msgstr "Išjungti"

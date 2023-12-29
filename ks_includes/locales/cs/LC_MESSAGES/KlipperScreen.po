@@ -834,3 +834,144 @@ msgstr "mm³/s"
 #, python-format
 #~ msgid "Sending Power ON signal to: %s"
 #~ msgstr "Odeslat ZAP do %s"
+
+msgid "Leveling"
+msgstr "Vyrovnání"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "Teplota trysky je příliš nízká, Opravdu chcete ohřát?"
+
+msgid "General"
+msgstr "Obecné"
+
+msgid "Turn off"
+msgstr "Vypnout"
+
+msgid "Brightest"
+msgstr "Nejjasnější"
+
+msgid "Manual"
+msgstr "Ruční"
+
+msgid "Troubleshooting"
+msgstr "Řešení problémů"
+
+msgid "Cautions"
+msgstr "Upozornění"
+
+msgid "Maintenance"
+msgstr "Údržba"
+
+msgid "Calibration"
+msgstr "Kalibrace"
+
+msgid "XY Offset"
+msgstr "XY posun"
+
+msgid "Z Offset"
+msgstr "Z posun"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Pouze jeden extruder nevyžaduje kalibraci."
+
+msgid "Please confirm left extruder position."
+msgstr "Prosím potvrďte pozici levého extruderu."
+
+msgid "Need to recalculate the offset value."
+msgstr "Je nutné přepočítat hodnotu posunu."
+
+msgid "Error writing configuration"
+msgstr "Chyba při zápisu konfigurace"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Počkejte, až inicializace kamery dokončí."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Počkejte, až se plné světlo kamery rozsvítí po dobu 5 sekund, než kliknete na 'Start'."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Nepodařilo se získat pozici kamery pro kalibraci."
+
+msgid "Need home axis"
+msgstr "Je potřeba nastavit domovskou osu"
+
+msgid "Choose Language"
+msgstr "Vyberte jazyk"
+
+msgid "Choose Timezone"
+msgstr "Vyberte časové pásmo"
+
+msgid "Select WiFi"
+msgstr "Vybrat WiFi"
+
+msgid "Self-check"
+msgstr "Samo-kontrola"
+
+msgid "Nozzle Heating"
+msgstr "Ohřev trysky"
+
+msgid "Hot Bed Heating"
+msgstr "Ohřev vyhřívaného stolu"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Ventilátor chlazení trysky"
+
+msgid "Hotend Cooling Fan"
+msgstr "Ventilátor chlazení Hotendu"
+
+msgid "Filament Detection"
+msgstr "Detekce filamentu"
+
+msgid "Auto Leveling"
+msgstr "Automatické vyrovnání"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Obnovení po výpadku napájení, pokračovat v tisku?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Počkejte, až se vyhřeje podložka a tryska před kalibrací."
+
+msgid "Current language:"
+msgstr "Aktuální jazyk:"
+
+msgid "Skip All"
+msgstr "Přeskočit vše"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Během samo-kontroly nedotýkejte tiskárny."
+
+msgid "Confirm"
+msgstr "Potvrdit"
+
+msgid "Current timezone:"
+msgstr "Aktuální časové pásmo:"
+
+msgid "Choose a timezone"
+msgstr "Vyberte časové pásmo"
+
+msgid "Choose a language"
+msgstr "Vyberte jazyk"
+
+msgid "Please wait for the print job to end"
+msgstr "Počkejte, až skončí tisková úloha"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Opravdu chcete resetovat tiskárnu?"
+
+msgid "Data will be deleted"
+msgstr "Data budou smazána"
+
+msgid "Reset Printer"
+msgstr "Resetovat tiskárnu"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Resetuji tiskárnu, bude restartována, počkejte prosím..."
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Poweroff"
+msgstr "Vypnout"

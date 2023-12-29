@@ -932,3 +932,144 @@ msgstr ""
 
 #~ msgid "Temp"
 #~ msgstr "Temp"
+
+msgid "Leveling"
+msgstr "Nivellering"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "Dysetemperaturen er for lav. Er du sikker på, du vil opvarme den?"
+
+msgid "General"
+msgstr "Generelt"
+
+msgid "Turn off"
+msgstr "Sluk"
+
+msgid "Brightest"
+msgstr "Lysest"
+
+msgid "Manual"
+msgstr "Manuel"
+
+msgid "Troubleshooting"
+msgstr "Fejlfinding"
+
+msgid "Cautions"
+msgstr "Advarsler"
+
+msgid "Maintenance"
+msgstr "Vedligeholdelse"
+
+msgid "Calibration"
+msgstr "Kalibrering"
+
+msgid "XY Offset"
+msgstr "XY-offset"
+
+msgid "Z Offset"
+msgstr "Z-offset"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Kun en ekstruder kræver ikke kalibrering."
+
+msgid "Please confirm left extruder position."
+msgstr "Bekræft venstre ekstruderposition."
+
+msgid "Need to recalculate the offset value."
+msgstr "Skal beregne offsetværdien igen."
+
+msgid "Error writing configuration"
+msgstr "Fejl ved skrivning af konfiguration"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Vent på, at kamerainitialiseringen er færdig."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Vent, indtil kameraets fyldelys lyser i 5 sekunder, før du klikker på 'Start'."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Kunne ikke få kalibreringskameraets position."
+
+msgid "Need home axis"
+msgstr "Behov for hjemmeakse"
+
+msgid "Choose Language"
+msgstr "Vælg sprog"
+
+msgid "Choose Timezone"
+msgstr "Vælg tidszone"
+
+msgid "Select WiFi"
+msgstr "Vælg WiFi"
+
+msgid "Self-check"
+msgstr "Selvtest"
+
+msgid "Nozzle Heating"
+msgstr "Opvarmning af dyse"
+
+msgid "Hot Bed Heating"
+msgstr "Opvarmning af varmebed"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Dyseafkølingsblæser"
+
+msgid "Hotend Cooling Fan"
+msgstr "Hotend-afkølingsblæser"
+
+msgid "Filament Detection"
+msgstr "Filamentdetektion"
+
+msgid "Auto Leveling"
+msgstr "Automatisk nivellering"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Gendannelse efter strømafbrydelse, vil genoptage udskrivning?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Vent, indtil sengen og dysen er opvarmet, før du kalibrerer."
+
+msgid "Current language:"
+msgstr "Aktuelt sprog:"
+
+msgid "Skip All"
+msgstr "Spring alle over"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Berør ikke printeren under selvtesten."
+
+msgid "Confirm"
+msgstr "Bekræft"
+
+msgid "Current timezone:"
+msgstr "Aktuel tidszone:"
+
+msgid "Choose a timezone"
+msgstr "Vælg tidszone"
+
+msgid "Choose a language"
+msgstr "Vælg sprog"
+
+msgid "Please wait for the print job to end"
+msgstr "Vent, indtil printopgaven er afsluttet"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Er du sikker på, at du vil nulstille printeren?"
+
+msgid "Data will be deleted"
+msgstr "Data vil blive slettet"
+
+msgid "Reset Printer"
+msgstr "Nulstil printer"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Nulstiller printeren, genstarter, vent venligst..."
+
+msgid "Reset"
+msgstr "Nulstil"
+
+msgid "Poweroff"
+msgstr "Sluk"

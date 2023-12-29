@@ -792,3 +792,144 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr "mm³/s"
+
+msgid "Leveling"
+msgstr "Szintezés"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "A dyza hőmérséklete túl alacsony. Biztos, hogy fel akarja melegíteni?"
+
+msgid "General"
+msgstr "Általános"
+
+msgid "Turn off"
+msgstr "Kikapcsolás"
+
+msgid "Brightest"
+msgstr "Legfényesebb"
+
+msgid "Manual"
+msgstr "Kézi"
+
+msgid "Troubleshooting"
+msgstr "Hibaelhárítás"
+
+msgid "Cautions"
+msgstr "Figyelmeztetések"
+
+msgid "Maintenance"
+msgstr "Karbantartás"
+
+msgid "Calibration"
+msgstr "Kalibrálás"
+
+msgid "XY Offset"
+msgstr "XY kiegyenlítés"
+
+msgid "Z Offset"
+msgstr "Z kiegyenlítés"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Csak egy extruder nem igényel kalibrációt."
+
+msgid "Please confirm left extruder position."
+msgstr "Kérjük, erősítse meg a bal extruder pozícióját."
+
+msgid "Need to recalculate the offset value."
+msgstr "Újra kell számolni az eltolás értékét."
+
+msgid "Error writing configuration"
+msgstr "Hiba a konfiguráció írásakor"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Kérjük, várjon, amíg a kamera inicializálása befejeződik."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Kérjük, várjon, amíg a kamera feltöltése 5 másodpercig fel nem gyullad, mielőtt rákattintana a 'Start' gombra."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Nem sikerült elérni a kalibrálási kamera pozícióját."
+
+msgid "Need home axis"
+msgstr "Szükség van az otthoni tengelyre"
+
+msgid "Choose Language"
+msgstr "Válasszon nyelvet"
+
+msgid "Choose Timezone"
+msgstr "Válasszon időzónát"
+
+msgid "Select WiFi"
+msgstr "Válassza ki a WiFi-t"
+
+msgid "Self-check"
+msgstr "Önellenőrzés"
+
+msgid "Nozzle Heating"
+msgstr "Dyza fűtés"
+
+msgid "Hot Bed Heating"
+msgstr "Meleg ágy fűtés"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Dyza hűtőventilátor"
+
+msgid "Hotend Cooling Fan"
+msgstr "Hotend hűtőventilátor"
+
+msgid "Filament Detection"
+msgstr "Filament érzékelés"
+
+msgid "Auto Leveling"
+msgstr "Automatikus szintezés"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Áramvesztés visszanyerése, folytatja a nyomtatást?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Kérjük, várjon, amíg a medence és a dyza fel nem melegszik a kalibrálás előtt."
+
+msgid "Current language:"
+msgstr "Jelenlegi nyelv:"
+
+msgid "Skip All"
+msgstr "Mindet kihagy"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Ne érintse meg a nyomtatót az önellenőrzés közben."
+
+msgid "Confirm"
+msgstr "Megerősít"
+
+msgid "Current timezone:"
+msgstr "Jelenlegi időzóna:"
+
+msgid "Choose a timezone"
+msgstr "Válasszon időzónát"
+
+msgid "Choose a language"
+msgstr "Válasszon nyelvet"
+
+msgid "Please wait for the print job to end"
+msgstr "Kérjük, várjon, amíg a nyomtatási feladat befejeződik"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Biztos benne, hogy visszaállítja a nyomtatót?"
+
+msgid "Data will be deleted"
+msgstr "Az adatok törlődnek"
+
+msgid "Reset Printer"
+msgstr "Nyomtató visszaállítása"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Nyomtató visszaállítása, újraindul, kérjük, várjon..."
+
+msgid "Reset"
+msgstr "Visszaállítás"
+
+msgid "Poweroff"
+msgstr "Kikapcsolás"

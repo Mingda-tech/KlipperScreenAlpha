@@ -85,7 +85,7 @@ class KlipperScreenConfig:
             logging.exception(msg)
             self.errors.append(msg)
 
-        printers = sorted([i for i in self.config.sections() if i.startswith("printer ")])
+        printers = [i for i in self.config.sections() if i.startswith("printer ")]
         if len(printers) == 0:
             printers.append("Printer Printer")
         self.printers = [
@@ -173,7 +173,7 @@ class KlipperScreenConfig:
                 strs = (
                     'moonraker_api_key', 'moonraker_host', 'titlebar_name_type',
                     'screw_positions', 'power_devices', 'titlebar_items', 'z_babystep_values',
-                    'extrude_distances', "extrude_speeds",
+                    'extrude_distances', 'extrude_speeds', 'move_distances',
                 )
                 numbers = (
                     'moonraker_port', 'move_speed_xy', 'move_speed_z', 'screw_rotation',

@@ -1016,3 +1016,144 @@ msgstr "mm³/s"
 
 #~ msgid "Tool 1"
 #~ msgstr "Outil 1"
+
+msgid "Leveling"
+msgstr "Nivellement"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "La température de la buse est trop basse, êtes-vous sûr de vouloir la chauffer ?"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Turn off"
+msgstr "Éteindre"
+
+msgid "Brightest"
+msgstr "Le plus lumineux"
+
+msgid "Manual"
+msgstr "Manuel"
+
+msgid "Troubleshooting"
+msgstr "Dépannage"
+
+msgid "Cautions"
+msgstr "Mises en garde"
+
+msgid "Maintenance"
+msgstr "Entretien"
+
+msgid "Calibration"
+msgstr "Calibrage"
+
+msgid "XY Offset"
+msgstr "Décalage XY"
+
+msgid "Z Offset"
+msgstr "Décalage Z"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Seul un extrudeur ne nécessite pas de calibrage."
+
+msgid "Please confirm left extruder position."
+msgstr "Veuillez confirmer la position de l'extrudeur gauche."
+
+msgid "Need to recalculate the offset value."
+msgstr "Besoin de recalculer la valeur de décalage."
+
+msgid "Error writing configuration"
+msgstr "Erreur d'écriture de la configuration"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Veuillez attendre que l'initialisation de la caméra soit terminée."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Veuillez attendre que la lumière de remplissage de la caméra s'allume pendant 5 secondes avant de cliquer sur 'Démarrer'."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Impossible d'obtenir la position de la caméra de calibrage."
+
+msgid "Need home axis"
+msgstr "Besoin de l'axe de départ"
+
+msgid "Choose Language"
+msgstr "Choisir la langue"
+
+msgid "Choose Timezone"
+msgstr "Choisir le fuseau horaire"
+
+msgid "Select WiFi"
+msgstr "Sélectionner le WiFi"
+
+msgid "Self-check"
+msgstr "Auto-test"
+
+msgid "Nozzle Heating"
+msgstr "Chauffage de la buse"
+
+msgid "Hot Bed Heating"
+msgstr "Chauffage du lit chauffant"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Ventilateur de refroidissement de la buse"
+
+msgid "Hotend Cooling Fan"
+msgstr "Ventilateur de refroidissement Hotend"
+
+msgid "Filament Detection"
+msgstr "Détection du filament"
+
+msgid "Auto Leveling"
+msgstr "Nivellement automatique"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Récupération après perte de puissance, reprendre l'impression ?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Veuillez attendre que le lit et la buse soient chauffés avant de calibrer."
+
+msgid "Current language:"
+msgstr "Langue actuelle :"
+
+msgid "Skip All"
+msgstr "Tout ignorer"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Ne touchez pas l'imprimante pendant l'auto-test."
+
+msgid "Confirm"
+msgstr "Confirmer"
+
+msgid "Current timezone:"
+msgstr "Fuseau horaire actuel :"
+
+msgid "Choose a timezone"
+msgstr "Choisir un fuseau horaire"
+
+msgid "Choose a language"
+msgstr "Choisir une langue"
+
+msgid "Please wait for the print job to end"
+msgstr "Veuillez attendre la fin de l'impression"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Êtes-vous sûr de vouloir réinitialiser l'imprimante ?"
+
+msgid "Data will be deleted"
+msgstr "Les données seront supprimées"
+
+msgid "Reset Printer"
+msgstr "Réinitialiser l'imprimante"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Réinitialisation de l'imprimante, redémarrage en cours, veuillez patienter..."
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
+msgid "Poweroff"
+msgstr "Éteindre"

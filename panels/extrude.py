@@ -249,9 +249,9 @@ class Panel(ScreenPanel):
             self._screen._ws.klippy.gcode_script(KlippyGcodes.EXTRUDE_REL)
             if direction == "-":
                 self._screen._send_action(widget, "printer.gcode.script",
-                                  {"script": f"G1 E10 F300"})
+                                  {"script": f"G1 E{direction}20 F1800"})
                 self._screen._send_action(widget, "printer.gcode.script",
-                                  {"script": f"G1 E{direction}75 F1200"})
+                                  {"script": f"G1 E{direction}37 F120"})
             else:
                 self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"G1 E{direction}{self.distance} F{self.speed * 60}"})

@@ -1025,3 +1025,144 @@ msgstr ""
 
 #~ msgid "Tool 1"
 #~ msgstr "כלי 1"
+
+msgid "Leveling"
+msgstr "ישור"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "טמפרטורת הדיוזה נמוכה מדי, אתה בטוח שברצונך לחמם אותה?"
+
+msgid "General"
+msgstr "כללי"
+
+msgid "Turn off"
+msgstr "כבה"
+
+msgid "Brightest"
+msgstr "הבהיר ביותר"
+
+msgid "Manual"
+msgstr "ידני"
+
+msgid "Troubleshooting"
+msgstr "איתור תקלות"
+
+msgid "Cautions"
+msgstr "אזהרות"
+
+msgid "Maintenance"
+msgstr "תחזוקה"
+
+msgid "Calibration"
+msgstr "כיבוד"
+
+msgid "XY Offset"
+msgstr "היסט X-Y"
+
+msgid "Z Offset"
+msgstr "היסט Z"
+
+msgid "Only one extruder does not require calibration."
+msgstr "רק מדפיס אחד אינו דורש כיבוד."
+
+msgid "Please confirm left extruder position."
+msgstr "אנא אשר מיקום הדפס שמאל."
+
+msgid "Need to recalculate the offset value."
+msgstr "צריך לחשב מחדש את ערך ההיסט."
+
+msgid "Error writing configuration"
+msgstr "שגיאה בכתיבת הגדרות"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "אנא המתן עד שהאתחול של המצלמה יסתיים."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "אנא המתן עד שאור המילוי של המצלמה ידלק למשך 5 שניות לפני ללחוץ על 'התחל'"
+
+msgid "Couldn't get the calibration camera position."
+msgstr "לא הצלחנו לקבוע את מיקום הקליברציה של המצלמה."
+
+msgid "Need home axis"
+msgstr "צריך ציר הבית"
+
+msgid "Choose Language"
+msgstr "בחר שפה"
+
+msgid "Choose Timezone"
+msgstr "בחר אזור זמן"
+
+msgid "Select WiFi"
+msgstr "בחר WiFi"
+
+msgid "Self-check"
+msgstr "בדיקת עצמית"
+
+msgid "Nozzle Heating"
+msgstr "חימום דיוזה"
+
+msgid "Hot Bed Heating"
+msgstr "חימום מיטת הדפסה"
+
+msgid "Nozzle Cooling Fan"
+msgstr "מאוורר קירור דיוזה"
+
+msgid "Hotend Cooling Fan"
+msgstr "מאוורר קירור Hotend"
+
+msgid "Filament Detection"
+msgstr "איתור חוט"
+
+msgid "Auto Leveling"
+msgstr "ישור אוטומטי"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "שחזור אחרי אובדן חשמל, האם להמשיך להדפיס?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "אנא המתן עד שמיטת ההדפסה והדיוזה יחממו לפני הכיבוד."
+
+msgid "Current language:"
+msgstr "שפה נוכחית:"
+
+msgid "Skip All"
+msgstr "דלג על הכל"
+
+msgid "Do not touch the printer during self-check."
+msgstr "אל תיגע במדפסת במהלך בדיקה עצמית."
+
+msgid "Confirm"
+msgstr "אשר"
+
+msgid "Current timezone:"
+msgstr "אזור זמן נוכחי:"
+
+msgid "Choose a timezone"
+msgstr "בחר אזור זמן"
+
+msgid "Choose a language"
+msgstr "בחר שפה"
+
+msgid "Please wait for the print job to end"
+msgstr "אנא המתן עד שההדפסה תסתיים"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "האם אתה בטוח שברצונך לאתחל את המדפסת?"
+
+msgid "Data will be deleted"
+msgstr "הנתונים יימחקו"
+
+msgid "Reset Printer"
+msgstr "אתחל מדפסת"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "מאתחל את המדפסת, המערכת תיתחיל מחדש, אנא המתן..."
+
+msgid "Reset"
+msgstr "איפוס"
+
+msgid "Poweroff"
+msgstr "כבה"

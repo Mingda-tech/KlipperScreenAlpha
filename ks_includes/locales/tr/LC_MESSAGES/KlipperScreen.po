@@ -904,3 +904,144 @@ msgstr "mm³/s"
 
 #~ msgid "Z Position"
 #~ msgstr "Z Pozisyonu"
+
+msgid "Leveling"
+msgstr "Seviyeleme"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "Nozul sıcaklığı çok düşük, Gerçekten ısıtmak istiyor musunuz?"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Turn off"
+msgstr "Kapat"
+
+msgid "Brightest"
+msgstr "En Parlak"
+
+msgid "Manual"
+msgstr "Manuel"
+
+msgid "Troubleshooting"
+msgstr "Sorun Giderme"
+
+msgid "Cautions"
+msgstr "Uyarılar"
+
+msgid "Maintenance"
+msgstr "Bakım"
+
+msgid "Calibration"
+msgstr "Kalibrasyon"
+
+msgid "XY Offset"
+msgstr "XY Ofset"
+
+msgid "Z Offset"
+msgstr "Z Ofset"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Sadece bir ekstruder kalibrasyon gerektirmiyor."
+
+msgid "Please confirm left extruder position."
+msgstr "Lütfen sol ekstruder pozisyonunu onaylayın."
+
+msgid "Need to recalculate the offset value."
+msgstr "Ofset değerini yeniden hesaplamak gerekiyor."
+
+msgid "Error writing configuration"
+msgstr "Yapılandırma yazma hatası"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Lütfen kamera başlatma işleminin tamamlanmasını bekleyin."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Lütfen 'Başlat' düğmesine basmadan önce kameranın dolum ışığının 5 saniye boyunca yanmasını bekleyin."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Kalibrasyon kamera pozisyonu alınamadı."
+
+msgid "Need home axis"
+msgstr "Ana eksene ihtiyaç var"
+
+msgid "Choose Language"
+msgstr "Dil Seçin"
+
+msgid "Choose Timezone"
+msgstr "Saat Dilimi Seçin"
+
+msgid "Select WiFi"
+msgstr "WiFi Seçin"
+
+msgid "Self-check"
+msgstr "Kendi kendine kontrol"
+
+msgid "Nozzle Heating"
+msgstr "Nozul Isıtma"
+
+msgid "Hot Bed Heating"
+msgstr "Sıcak Yatak Isıtma"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Nozul Soğutma Fanı"
+
+msgid "Hotend Cooling Fan"
+msgstr "Hotend Soğutma Fanı"
+
+msgid "Filament Detection"
+msgstr "Filament Algılama"
+
+msgid "Auto Leveling"
+msgstr "Otomatik Seviyeleme"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Güç kaybı iyileştirmesi, yazdırmaya devam edilsin mi?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Kalibrasyon öncesi yatağın ve nozülün ısınmasını bekleyin."
+
+msgid "Current language:"
+msgstr "Geçerli dil:"
+
+msgid "Skip All"
+msgstr "Tümünü Atla"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Kendi kendine kontrol sırasında yazıcıya dokunmayın."
+
+msgid "Confirm"
+msgstr "Onayla"
+
+msgid "Current timezone:"
+msgstr "Geçerli saat dilimi:"
+
+msgid "Choose a timezone"
+msgstr "Bir saat dilimi seçin"
+
+msgid "Choose a language"
+msgstr "Bir dil seçin"
+
+msgid "Please wait for the print job to end"
+msgstr "Baskı işleminin bitmesini bekleyin"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Yazıcıyı sıfırlamak istediğinizden emin misiniz?"
+
+msgid "Data will be deleted"
+msgstr "Veriler silinecek"
+
+msgid "Reset Printer"
+msgstr "Yazıcıyı Sıfırla"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Yazıcıyı sıfırlıyorum, yeniden başlatılacak, lütfen bekleyin..."
+
+msgid "Reset"
+msgstr "Sıfırla"
+
+msgid "Poweroff"
+msgstr "Kapat"

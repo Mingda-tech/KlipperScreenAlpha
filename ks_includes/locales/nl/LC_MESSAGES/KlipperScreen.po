@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-20 00:09-0300\n"
-"PO-Revision-Date: 2023-12-02 13:25+0000\n"
-"Last-Translator: Thijs Triemstra <info@collab.nl>\n"
+"PO-Revision-Date: 2023-12-17 01:27+0000\n"
+"Last-Translator: Maxime Carrein <maxime.c.work@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/klipperscreen/"
 "klipperscreen/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -68,7 +68,7 @@ msgid "Are you sure do you want to exclude the object?"
 msgstr "Weet je zeker dat je het object wilt uitsluiten?"
 
 msgid "Are you sure you want to run Emergency Stop?"
-msgstr "Weet je zeker dat je de Nood Stop wilt inschakelen?"
+msgstr "Weet je zeker dat je de Noodstop wilt inschakelen?"
 
 msgid "Are you sure you wish to cancel this print?"
 msgstr "Weet je zeker dat je deze print wilt annuleren?"
@@ -823,3 +823,144 @@ msgstr "mm³/s"
 
 #~ msgid "Slicer Time correction (%)"
 #~ msgstr "Slicer Tijd correctie (%)"
+
+msgid "Leveling"
+msgstr "Nivelleren"
+
+msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
+msgstr "De temperatuur van de nozzle is te laag. Weet u zeker dat u het wilt verwarmen?"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Turn off"
+msgstr "Uitzetten"
+
+msgid "Brightest"
+msgstr "Helderste"
+
+msgid "Manual"
+msgstr "Handmatig"
+
+msgid "Troubleshooting"
+msgstr "Probleemoplossing"
+
+msgid "Cautions"
+msgstr "Waarschuwingen"
+
+msgid "Maintenance"
+msgstr "Onderhoud"
+
+msgid "Calibration"
+msgstr "Kalibratie"
+
+msgid "XY Offset"
+msgstr "XY-offset"
+
+msgid "Z Offset"
+msgstr "Z-offset"
+
+msgid "Only one extruder does not require calibration."
+msgstr "Slechts één extruder hoeft niet te worden gekalibreerd."
+
+msgid "Please confirm left extruder position."
+msgstr "Bevestig de positie van de linker extruder."
+
+msgid "Need to recalculate the offset value."
+msgstr "De offsetwaarde moet opnieuw worden berekend."
+
+msgid "Error writing configuration"
+msgstr "Fout bij het schrijven van de configuratie"
+
+msgid "Please wait for the camera initialization to complete."
+msgstr "Wacht tot de camera-initialisatie is voltooid."
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
+msgstr "Wacht tot het invullicht van de camera 5 seconden brandt voordat u op 'Start' klikt."
+
+msgid "Couldn't get the calibration camera position."
+msgstr "Kon de positie van de kalibratiecamera niet verkrijgen."
+
+msgid "Need home axis"
+msgstr "Thuispositie van de as nodig"
+
+msgid "Choose Language"
+msgstr "Kies taal"
+
+msgid "Choose Timezone"
+msgstr "Kies tijdzone"
+
+msgid "Select WiFi"
+msgstr "Selecteer WiFi"
+
+msgid "Self-check"
+msgstr "Zelfcontrole"
+
+msgid "Nozzle Heating"
+msgstr "Nozzle verwarmen"
+
+msgid "Hot Bed Heating"
+msgstr "Hot bed verwarmen"
+
+msgid "Nozzle Cooling Fan"
+msgstr "Nozzle koelventilator"
+
+msgid "Hotend Cooling Fan"
+msgstr "Hotend koelventilator"
+
+msgid "Filament Detection"
+msgstr "Filamentdetectie"
+
+msgid "Auto Leveling"
+msgstr "Automatisch nivelleren"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Power loss recovery, is resume print?"
+msgstr "Herstel bij stroomuitval, doorgaan met afdrukken?"
+
+msgid "Please wait until the bed and nozzle are heated before calibrating."
+msgstr "Wacht tot het bed en de nozzle zijn verwarmd voordat u gaat kalibreren."
+
+msgid "Current language:"
+msgstr "Huidige taal:"
+
+msgid "Skip All"
+msgstr "Alles overslaan"
+
+msgid "Do not touch the printer during self-check."
+msgstr "Raak de printer niet aan tijdens zelfcontrole."
+
+msgid "Confirm"
+msgstr "Bevestigen"
+
+msgid "Current timezone:"
+msgstr "Huidige tijdzone:"
+
+msgid "Choose a timezone"
+msgstr "Kies een tijdzone"
+
+msgid "Choose a language"
+msgstr "Kies een taal"
+
+msgid "Please wait for the print job to end"
+msgstr "Wacht tot de afdrukopdracht is voltooid"
+
+msgid "Are you sure you wish to reset the printer?"
+msgstr "Weet u zeker dat u de printer wilt resetten?"
+
+msgid "Data will be deleted"
+msgstr "Gegevens worden verwijderd"
+
+msgid "Reset Printer"
+msgstr "Printer resetten"
+
+msgid "Resetting printer, will restart, please wait..."
+msgstr "Printer wordt gereset, zal opnieuw opstarten, even geduld..."
+
+msgid "Reset"
+msgstr "Resetten"
+
+msgid "Poweroff"
+msgstr "Uitzetten"

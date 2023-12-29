@@ -27,7 +27,6 @@ def format_label(widget, lines=2):
         label.set_ellipsize(Pango.EllipsizeMode.END)
         label.set_lines(lines)
 
-
 class KlippyGtk:
     labels = {}
 
