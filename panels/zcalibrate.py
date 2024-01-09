@@ -44,23 +44,27 @@ class Panel(ScreenPanel):
         functions = []
         pobox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-        # if "Z_ENDSTOP_CALIBRATE" in self._printer.available_commands:
-        #     self._add_button("Endstop", "endstop", pobox)
-        #     functions.append("endstop")
-        if "PROBE_CALIBRATE" in self._printer.available_commands:
+        if "MD_DIST_CALIBRATE" in self._printer.available_commands:
             self._add_button("Probe", "probe", pobox)
-            functions.append("probe")
-        if "BED_MESH_CALIBRATE" in self._printer.available_commands and "probe" not in functions:
-            # This is used to do a manual bed mesh if there is no probe
-            self._add_button("Bed mesh", "mesh", pobox)
-            functions.append("mesh")
-        if "DELTA_CALIBRATE" in self._printer.available_commands:
-            if "probe" in functions:
-                self._add_button("Delta Automatic", "delta", pobox)
-                functions.append("delta")
-            # Since probes may not be accturate enough for deltas, always show the manual method
-            self._add_button("Delta Manual", "delta_manual", pobox)
-            functions.append("delta_manual")
+            functions.append("md_dist")
+        else:
+            # if "Z_ENDSTOP_CALIBRATE" in self._printer.available_commands:
+            #     self._add_button("Endstop", "endstop", pobox)
+            #     functions.append("endstop")
+            if "PROBE_CALIBRATE" in self._printer.available_commands:
+                self._add_button("Probe", "probe", pobox)
+                functions.append("probe")
+            if "BED_MESH_CALIBRATE" in self._printer.available_commands and "probe" not in functions:
+                # This is used to do a manual bed mesh if there is no probe
+                self._add_button("Bed mesh", "mesh", pobox)
+                functions.append("mesh")
+            if "DELTA_CALIBRATE" in self._printer.available_commands:
+                if "probe" in functions:
+                    self._add_button("Delta Automatic", "delta", pobox)
+                    functions.append("delta")
+                # Since probes may not be accturate enough for deltas, always show the manual method
+                self._add_button("Delta Manual", "delta_manual", pobox)
+                functions.append("delta_manual")
 
         logging.info(f"Available functions for calibration: {functions}")
 
@@ -126,6 +130,9 @@ class Panel(ScreenPanel):
     def start_calibration(self, widget, method):
         self.labels['popover'].popdown()
         self.buttons['start'].set_sensitive(False)
+        if method == "md_dist":
+            self._screen._ws.klippy.gcode_script("MD_DIST_CALIBRATE")
+            return
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script("G28")
         if method == "probe":
