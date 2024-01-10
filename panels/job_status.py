@@ -442,8 +442,8 @@ class Panel(ScreenPanel):
             {"name": _("Cancel Print"), "response": Gtk.ResponseType.OK},
             {"name": _("Go Back"), "response": Gtk.ResponseType.CANCEL}
         ]
-        if len(self._printer.get_stat("exclude_object", "objects")) > 1:
-            buttons.insert(0, {"name": _("Exclude Object"), "response": Gtk.ResponseType.APPLY})
+        # if len(self._printer.get_stat("exclude_object", "objects")) > 1:
+        #     buttons.insert(0, {"name": _("Exclude Object"), "response": Gtk.ResponseType.APPLY})
         label = Gtk.Label()
         label.set_markup(_("Are you sure you wish to cancel this print?"))
         label.set_hexpand(True)
