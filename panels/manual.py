@@ -50,6 +50,9 @@ class Panel(ScreenPanel):
             filename = self.image_files[self.current_image_index]
             new_width = 900
             new_height = 450
+            if self._screen.width == 1280 and self._screen.height == 800:
+                new_width = 1000
+                new_height = 600
             scaled_pixbuf = scale_image(filename, new_width, new_height)
             # pixbuf = GdkPixbuf.Pixbuf.new_from_file()
             self.image.set_from_pixbuf(scaled_pixbuf)

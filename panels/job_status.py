@@ -548,7 +548,13 @@ class Panel(ScreenPanel):
                 self.speed_factor = float(data["gcode_move"]["speed_factor"])
                 self.labels['speed_factor'].set_label(f"{self.speed:3}%")
             with suppress(KeyError):
-                self.req_speed = round(float(data["gcode_move"]["speed"]) / 60 * self.speed_factor)
+                eps = 1e-9
+                self.req_speed = 100
+                if abs(self.speed_factor) > eps:
+                    self.req_speed = round(float(data["gcode_move"]["speed"]) / 60 * self.speed_factor)
+                
+                if self.req_speed > 1000:
+                    self.req_speed = 1000
                 self.labels['req_speed'].set_label(
                     f"{self.speed}% {self.vel:3.0f}/{self.req_speed:3.0f} "
                     f"{f'{self.mms}' if self.vel < 1000 and self.req_speed < 1000 and self._screen.width > 500 else ''}"

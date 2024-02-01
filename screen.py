@@ -118,7 +118,7 @@ class KlipperScreen(Gtk.Window):
         self.env.install_gettext_translations(self._config.get_lang())
 
         self.connect("key-press-event", self._key_press_event)
-        self.connect("configure_event", self.update_size)
+        # self.connect("configure_event", self.update_size)
         monitor = Gdk.Display.get_default().get_primary_monitor()
         if monitor is None:
             self.wayland = True
@@ -146,6 +146,7 @@ class KlipperScreen(Gtk.Window):
         self.vertical_mode = self.aspect_ratio < 1.0
         logging.info(f"Screen resolution: {self.width}x{self.height}")
         self.theme = self._config.get_main_config().get('theme')
+           
         self.show_cursor = self._config.get_main_config().getboolean("show_cursor", fallback=False)
         self.gtk = KlippyGtk(self)
         self.init_style()
@@ -750,6 +751,12 @@ class KlipperScreen(Gtk.Window):
             self.show_panel("self_check", _("Self-check"), remove_all=True)
         self.auto_check = False
 
+        self.on_filament_box_power = self._config.get_main_config().getboolean("filament_box_power", fallback=False)
+        if self.on_filament_box_power and (self.printer is not None) and ('SET_FILAMENT_BOX_POWER' in self.printer.get_gcode_macros()):
+            script  = 'SET_FILAMENT_BOX_POWER S=1'
+            self._ws.klippy.gcode_script(script)        
+
+
     def state_startup(self):
         self.printer_initializing(_("Klipper is attempting to start"))
 
@@ -793,6 +800,13 @@ class KlipperScreen(Gtk.Window):
         self._remove_all_panels()
         if self.printer is not None:
             self.printer.change_state(self.printer.state)
+
+    def set_filament_box_power(self, is_on):
+        if 'SET_FILAMENT_BOX_POWER' in self.printer.get_gcode_macros():
+            script  = 'SET_FILAMENT_BOX_POWER S=0'
+            if is_on:
+                script  = 'SET_FILAMENT_BOX_POWER S=1'
+            self._ws.klippy.gcode_script(script)
 
     def _websocket_callback(self, action, data):
         if self.connecting:
@@ -1118,7 +1132,7 @@ class KlipperScreen(Gtk.Window):
         width, height = self.get_size()
         if width != self.width or height != self.height:
             logging.info(f"Size changed: {self.width}x{self.height}")
-        self.width, self.height = width, height
+        #self.width, self.height = width, height
         new_ratio = self.width / self.height
         new_mode = new_ratio < 1.0
         ratio_delta = abs(self.aspect_ratio - new_ratio)
