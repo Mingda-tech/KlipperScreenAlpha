@@ -14,7 +14,7 @@ class Panel(ScreenPanel):
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         for i, cam in enumerate(self._printer.cameras):
-            if not cam["enabled"]:
+            if not cam["enabled"] or cam["name"] == "calicam":
                 continue
             logging.info(cam)
             cam[cam["name"]] = self._gtk.Button(
