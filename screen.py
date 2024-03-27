@@ -175,6 +175,7 @@ class KlipperScreen(Gtk.Window):
         self.setup_init = 0
         self.klippy_config_path = None
         self.klippy_config = None
+        self.is_show_manual = True
         
     def load_klipper_config(self):
         try:
@@ -740,7 +741,11 @@ class KlipperScreen(Gtk.Window):
             self.setup_init = self.klippy_config.getint("Variables", "setup_step", fallback=0)
 
         if self.setup_init == 1:
-            self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
+            if self.check_image_files():
+                self.is_show_manual = True
+                self.show_panel("manual", _("Manual"), remove_all=True)
+            else :
+                self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
         elif self.setup_init == 2:
             self.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)
         elif self.setup_init == 3:
@@ -1150,6 +1155,18 @@ class KlipperScreen(Gtk.Window):
         except Exception as e:
             logging.error(f"Error writing configuration file in {self.klippy_config_path}:\n{e}")        
 
+    def check_image_files(self, directory="/home/mingda/printer_data/resources/manual"):
+        if not os.path.exists(directory):
+            return False
+    
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                if file.endswith(".jpg") or file.endswith(".png"):
+                    print(f"Found image file: {os.path.join(root, file)}")
+                    return True
+    
+        return False
+    
 def main():
     minimum = (3, 7)
     if not sys.version_info >= minimum:

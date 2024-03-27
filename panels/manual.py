@@ -53,6 +53,9 @@ class Panel(ScreenPanel):
             if self._screen.width == 1280 and self._screen.height == 800:
                 new_width = 1000
                 new_height = 600
+            elif self._screen.width == 800 and self._screen.height == 480:
+                new_width = 600
+                new_height = 320
             scaled_pixbuf = scale_image(filename, new_width, new_height)
             # pixbuf = GdkPixbuf.Pixbuf.new_from_file()
             self.image.set_from_pixbuf(scaled_pixbuf)
@@ -69,6 +72,9 @@ class Panel(ScreenPanel):
             self.update_label()
 
     def on_next_clicked(self, widget):
+        if self.current_image_index == len(self.image_files) - 1 and self._screen.setup_init == 1 and self._screen.is_show_manual:
+            self._screen.is_show_manual = False
+            self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
         if self.current_image_index < len(self.image_files) - 1:
             self.current_image_index += 1
             self.update_image()
