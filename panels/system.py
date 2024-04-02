@@ -32,11 +32,11 @@ class Panel(ScreenPanel):
         grid = self._gtk.HomogeneousGrid()
         grid.set_row_homogeneous(False)
 
-        update_all = self._gtk.Button('arrow-up', _('Full Update'), 'color1')
-        update_all.connect("clicked", self.show_update_info, "full")
-        update_all.set_vexpand(False)
+        # update_all = self._gtk.Button('arrow-up', _('Full Update'), 'color1')
+        # update_all.connect("clicked", self.show_update_info, "full")
+        # update_all.set_vexpand(False)
         self.refresh = self._gtk.Button('refresh', _('Refresh'), 'color2')
-        self.refresh.connect("clicked", self.refresh_updates)
+        # self.refresh.connect("clicked", self.refresh_updates)
         self.refresh.set_vexpand(False)
         self.reset_printer = self._gtk.Button('refresh', _('Reset'), 'color2')
         self.reset_printer.connect("clicked", self.show_reset_confirm)
@@ -74,27 +74,28 @@ class Panel(ScreenPanel):
                 if prog in ALLOWED_SERVICES:
                     self.labels[f"{prog}_restart"] = self._gtk.Button("refresh", scale=.7)
                     self.labels[f"{prog}_restart"].connect("clicked", self.restart, prog)
-                    infogrid.attach(self.labels[f"{prog}_restart"], 0, i, 1, 1)
+                    # infogrid.attach(self.labels[f"{prog}_restart"], 0, i, 1, 1)
+                    self.labels[f"{prog}_status"].set_sensitive(False)
 
-                infogrid.attach(self.labels[f"{prog}_status"], 2, i, 1, 1)
+                # infogrid.attach(self.labels[f"{prog}_status"], 2, i, 1, 1)
                 self.update_program_info(prog)
 
-                infogrid.attach(self.labels[prog], 1, i, 1, 1)
+                infogrid.attach(self.labels[prog], 0, i, 1, 1)
                 self.labels[prog].get_style_context().add_class('updater-item')
                 i = i + 1
 
         scroll.add(infogrid)
 
-        grid.attach(scroll, 0, 0, 5, 2)
-        grid.attach(update_all, 0, 2, 1, 1)
-        grid.attach(self.reset_printer, 1, 2, 1, 1)
-        grid.attach(self.refresh, 2, 2, 1, 1)
-        grid.attach(reboot, 3, 2, 1, 1)
-        grid.attach(shutdown, 4, 2, 1, 1)
+        grid.attach(scroll, 1, 0, 2, 2)
+        # grid.attach(update_all, 0, 2, 1, 1)
+        grid.attach(self.reset_printer, 0, 2, 1, 1)
+        # grid.attach(self.refresh, 1, 2, 1, 1)
+        grid.attach(reboot, 1, 2, 1, 1)
+        grid.attach(shutdown, 2, 2, 1, 1)
         self.content.add(grid)
 
-    def activate(self):
-        self.get_updates()
+    # def activate(self):
+    #     self.get_updates()
 
     def refresh_updates(self, widget=None):
         self.refresh.set_sensitive(False)
@@ -378,6 +379,10 @@ class Panel(ScreenPanel):
             target_dir = os.path.join('/tmp', target_dir)
             gcodes = os.path.join(source_dir, 'gcodes')
             logs = os.path.join(source_dir, 'logs')
+            if (not os.path.exists(origin_dir)):
+                self._screen.show_popup_message(_("Backup file not found."), level=1)
+                return
+            
             try:  
                 mounted_devices = subprocess.check_output("mount | awk '{print $1}'", shell=True).decode().split('\n')
                 usb_devices = [device for device in mounted_devices if device.startswith("/dev/sd")]

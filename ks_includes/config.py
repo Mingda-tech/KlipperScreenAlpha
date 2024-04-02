@@ -154,13 +154,13 @@ class KlipperScreenConfig:
             bools = strs = numbers = ()
             if section == 'main':
                 bools = (
-                    'invert_x', 'invert_y', 'invert_z', '24htime', 'only_heaters', 'show_cursor', 'confirm_estop',
-                    'autoclose_popups', 'use_dpms', 'use_default_menu', 'side_macro_shortcut', 'use-matchbox-keyboard',
-                    'show_heater_power', "show_scroll_steppers", "auto_open_extrude", "voice_notify", "shutdown_print_end", "filament_box_power"
+                    'invert_x', 'invert_y', 'invert_z',  'show_cursor', 'confirm_estop',
+                    'autoclose_popups', 'use_dpms', 'use_default_menu', 'use-matchbox-keyboard',
+                      "voice_notify", "shutdown_print_end",
                 )
                 strs = (
-                    'default_printer', 'language', 'print_sort_dir', 'theme', 'screen_blanking', 'font_size',
-                    'print_estimate_method', 'screen_blanking', "screen_on_devices", "screen_off_devices",
+                    'default_printer', 'language', 'print_sort_dir', 'screen_blanking', 
+                    'print_estimate_method', 'screen_blanking',  "screen_off_devices",
                 )
                 numbers = (
                     'job_complete_timeout', 'job_error_timeout', 'move_speed_xy', 'move_speed_z',
@@ -238,10 +238,10 @@ class KlipperScreenConfig:
                 "section": "main", "name": _("Language"), "type": None, "value": "system_lang",
                 "callback": screen.change_language, "options": [
                     {"name": _("System") + " " + _("(default)"), "value": "system_lang"}]}},
-            {"theme": {
-                "section": "main", "name": _("Icon Theme"), "type": "dropdown",
-                "value": "z-bolt", "callback": screen.restart_ks, "options": [
-                    {"name": "Z-bolt" + " " + _("(default)"), "value": "z-bolt"}]}},
+            # {"theme": {
+            #     "section": "main", "name": _("Icon Theme"), "type": "dropdown",
+            #     "value": "z-bolt", "callback": screen.restart_ks, "options": [
+            #         {"name": "Z-bolt" + " " + _("(default)"), "value": "z-bolt"}]}},
             {"print_estimate_method": {
                 "section": "main", "name": _("Estimated Time Method"), "type": "dropdown",
                 "value": "auto", "options": [
@@ -254,36 +254,36 @@ class KlipperScreenConfig:
                 "value": "3600", "callback": screen.set_screenblanking_timeout, "options": [
                     {"name": _("Never"), "value": "off"}]
             }},
-            {"24htime": {"section": "main", "name": _("24 Hour Time"), "type": "binary", "value": "True"}},
-            {"side_macro_shortcut": {
-                "section": "main", "name": _("Macro shortcut on sidebar"), "type": "binary",
-                "value": "True", "callback": screen.toggle_shortcut}},
-            {"font_size": {
-                "section": "main", "name": _("Font Size"), "type": "dropdown",
-                "value": "medium", "callback": screen.restart_ks, "options": [
-                    {"name": _("Small"), "value": "small"},
-                    {"name": _("Medium") + " " + _("(default)"), "value": "medium"},
-                    {"name": _("Large"), "value": "large"},
-                    {"name": _("Extra Large"), "value": "extralarge"},
-                    {"name": _("Maximum"), "value": "max"}]}},
+            # {"24htime": {"section": "main", "name": _("24 Hour Time"), "type": "binary", "value": "True"}},
+            # {"side_macro_shortcut": {
+            #     "section": "main", "name": _("Macro shortcut on sidebar"), "type": "binary",
+            #     "value": "True", "callback": screen.toggle_shortcut}},
+            # {"font_size": {
+            #     "section": "main", "name": _("Font Size"), "type": "dropdown",
+            #     "value": "medium", "callback": screen.restart_ks, "options": [
+            #         {"name": _("Small"), "value": "small"},
+            #         {"name": _("Medium") + " " + _("(default)"), "value": "medium"},
+            #         {"name": _("Large"), "value": "large"},
+            #         {"name": _("Extra Large"), "value": "extralarge"},
+            #         {"name": _("Maximum"), "value": "max"}]}},
             {"confirm_estop": {"section": "main", "name": _("Confirm Emergency Stop"), "type": "binary",
                                "value": "False"}},
-            {"only_heaters": {"section": "main", "name": _("Hide sensors in Temp."), "type": "binary",
-                              "value": "False", "callback": screen.reload_panels}},
+            # {"only_heaters": {"section": "main", "name": _("Hide sensors in Temp."), "type": "binary",
+            #                   "value": "False", "callback": screen.reload_panels}},
             {"use_dpms": {"section": "main", "name": _("Screen DPMS"), "type": "binary",
                           "value": "True", "callback": screen.set_dpms}},
             {"autoclose_popups": {"section": "main", "name": _("Auto-close notifications"), "type": "binary",
                                   "value": "True"}},
-            {"show_heater_power": {"section": "main", "name": _("Show Heater Power"), "type": "binary",
-                                   "value": "False", "callback": screen.reload_panels}},
-            {"show_scroll_steppers": {"section": "main", "name": _("Show Scrollbars Buttons"), "type": "binary",
-                                      "value": "False", "callback": screen.reload_panels}},
-            {"auto_open_extrude": {"section": "main", "name": _("Auto-open Extrude On Pause"), "type": "binary",
-                                   "value": "True", "callback": screen.reload_panels}},
+            # {"show_heater_power": {"section": "main", "name": _("Show Heater Power"), "type": "binary",
+            #                        "value": "False", "callback": screen.reload_panels}},
+            # {"show_scroll_steppers": {"section": "main", "name": _("Show Scrollbars Buttons"), "type": "binary",
+            #                           "value": "False", "callback": screen.reload_panels}},
+            # {"auto_open_extrude": {"section": "main", "name": _("Auto-open Extrude On Pause"), "type": "binary",
+            #                        "value": "True", "callback": screen.reload_panels}},
             {"voice_notify": {"section": "main", "name": _("Voice Notify"), "type": "binary", "value": "False"}},
             {"shutdown_print_end": {"section": "main", "name": _("Shutdown Print End"), "type": "binary", "value": "False"}},                                                                                  
-            {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
-                                    "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
+            # {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
+            #                         "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
             # {"": {"section": "main", "name": _(""), "type": ""}}
         ]
 
@@ -300,12 +300,12 @@ class KlipperScreenConfig:
         self.configurable_options.extend(panel_options)
 
         t_path = os.path.join(klipperscreendir, 'styles')
-        themes = [d for d in os.listdir(t_path) if (not os.path.isfile(os.path.join(t_path, d)) and d != "z-bolt")]
-        themes.sort()
-        theme_opt = self.configurable_options[1]['theme']['options']
+        # themes = [d for d in os.listdir(t_path) if (not os.path.isfile(os.path.join(t_path, d)) and d != "z-bolt")]
+        # themes.sort()
+        # theme_opt = self.configurable_options[1]['theme']['options']
 
-        for theme in themes:
-            theme_opt.append({"name": theme, "value": theme})
+        # for theme in themes:
+        #     theme_opt.append({"name": theme, "value": theme})
 
         index = self.configurable_options.index(
             [i for i in self.configurable_options if list(i)[0] == "screen_blanking"][0])
