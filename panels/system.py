@@ -325,8 +325,8 @@ class Panel(ScreenPanel):
         vbox.add(label)
         scroll.add(vbox)
         buttons = [
-            {"name": _("Host"), "response": Gtk.ResponseType.OK},
-            {"name": _("Printer"), "response": Gtk.ResponseType.APPLY},
+            {"name": _("Confirm"), "response": Gtk.ResponseType.OK},
+            # {"name": _("Printer"), "response": Gtk.ResponseType.APPLY},
             {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
         ]
         if method == "reboot":
