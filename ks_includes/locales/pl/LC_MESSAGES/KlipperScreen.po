@@ -975,5 +975,5 @@ msgstr "Wyłącz po zakończeniu drukowania"
 msgid "Voice Notify"
 msgstr "Powiadomienie głosowe"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Zasilanie pudelka filamentu"

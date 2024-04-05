@@ -156,7 +156,7 @@ class KlipperScreenConfig:
                 bools = (
                     'invert_x', 'invert_y', 'invert_z',  'show_cursor', 'confirm_estop',
                     'autoclose_popups', 'use_dpms', 'use_default_menu', 'use-matchbox-keyboard',
-                      "voice_notify", "shutdown_print_end",
+                      "voice_notify", "shutdown_print_end", "filament_box_power"
                 )
                 strs = (
                     'default_printer', 'language', 'print_sort_dir', 'screen_blanking', 
@@ -282,8 +282,8 @@ class KlipperScreenConfig:
             #                        "value": "True", "callback": screen.reload_panels}},
             {"voice_notify": {"section": "main", "name": _("Voice Notify"), "type": "binary", "value": "False"}},
             {"shutdown_print_end": {"section": "main", "name": _("Shut down after printing completes"), "type": "binary", "value": "False"}},                                                                                  
-            # {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
-            #                         "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
+            {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
+                                    "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
             # {"": {"section": "main", "name": _(""), "type": ""}}
         ]
 

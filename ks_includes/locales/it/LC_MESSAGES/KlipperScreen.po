@@ -1108,5 +1108,5 @@ msgstr "Spegni al termine della stampa"
 msgid "Voice Notify"
 msgstr "Notifica vocale"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Alimentazione scatola di filamento"

@@ -1026,5 +1026,5 @@ msgstr "Stäng av efter att utskriften är klar"
 msgid "Voice Notify"
 msgstr "Röstdialog"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Strömförsörjning för filamentlåda"

@@ -27,6 +27,9 @@ class Panel(ScreenPanel):
         self.labels['settings_menu'].add(self.labels['settings'])
         for option in options:
             name = list(option)[0]
+            if name == "filament_box_power" and "SET_FILAMENT_BOX_POWER" not in self._printer.get_gcode_macros():
+                continue
+
             self.add_option('settings', self.settings, name, option[name])
 
         self.labels['lang_menu'] = self._gtk.ScrolledWindow()

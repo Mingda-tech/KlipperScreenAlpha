@@ -1123,5 +1123,5 @@ msgstr "Herunterfahren nach Abschluss des Druckvorgangs"
 msgid "Voice Notify"
 msgstr "Sprachbenachrichtigung"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Stromversorgung des Filamentkorbs"

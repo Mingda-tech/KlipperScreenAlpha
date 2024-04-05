@@ -1083,5 +1083,5 @@ msgstr "Sluk efter udskrivning færdiggjort"
 msgid "Voice Notify"
 msgstr "Stemmebesked"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Filamentboks strøm"

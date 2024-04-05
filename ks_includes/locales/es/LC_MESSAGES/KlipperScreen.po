@@ -1148,5 +1148,5 @@ msgstr "Apagar tras completar la impresión"
 msgid "Voice Notify"
 msgstr "Notificación por voz"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Suministro de energía para caja de filamento"

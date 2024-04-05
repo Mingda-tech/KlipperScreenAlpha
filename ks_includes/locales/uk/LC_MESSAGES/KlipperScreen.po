@@ -1067,5 +1067,5 @@ msgstr "Вимкнути після завершення друку"
 msgid "Voice Notify"
 msgstr "Голосове сповіщення"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Питання для касети з філаментом"

@@ -939,5 +939,5 @@ msgstr ""
 msgid "Voice Notify"
 msgstr ""
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr ""

@@ -1123,5 +1123,5 @@ msgstr "Abschalten, wenn's gedruckt hat"
 msgid "Voice Notify"
 msgstr "Sprachbenachrichtigung (ungezwungen)"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Filamentkorb-Stromversorgung"

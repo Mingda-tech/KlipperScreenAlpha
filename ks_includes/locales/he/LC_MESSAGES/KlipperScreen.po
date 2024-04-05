@@ -1176,5 +1176,5 @@ msgstr "כשהדפסה מסתיימת, כבה"
 msgid "Voice Notify"
 msgstr "התראה קולית"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "ספק החשמל של תיבת פילמנט"

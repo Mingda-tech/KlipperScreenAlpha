@@ -1055,5 +1055,5 @@ msgstr "Yazdırmayı tamamladıktan sonra kapat"
 msgid "Voice Notify"
 msgstr "Sesli Bildirim"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Filament kutusu güç"

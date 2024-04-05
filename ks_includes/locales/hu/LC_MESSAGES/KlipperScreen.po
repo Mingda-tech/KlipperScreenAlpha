@@ -943,5 +943,5 @@ msgstr "Leállítás nyomtatás befejeztével"
 msgid "Voice Notify"
 msgstr "Hangjelzés"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Filamentdoboz energiaellátása"

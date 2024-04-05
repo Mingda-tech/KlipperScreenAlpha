@@ -954,5 +954,5 @@ msgstr "Išjunkite po spausdinimo pabaigos"
 msgid "Voice Notify"
 msgstr "Balsinis pranešimas"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Filamentų dėžės maitinimas"

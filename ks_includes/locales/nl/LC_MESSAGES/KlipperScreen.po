@@ -974,5 +974,5 @@ msgstr "Uitschakelen na voltooiing van het printen"
 msgid "Voice Notify"
 msgstr "Stemmelding"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Voeding van filamentdoos"

@@ -1144,5 +1144,5 @@ msgstr "Выключить после завершения печати"
 msgid "Voice Notify"
 msgstr "Голосовое уведомление"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Питание коробки с.filаментом"

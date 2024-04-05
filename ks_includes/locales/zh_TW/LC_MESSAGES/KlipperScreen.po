@@ -1114,5 +1114,5 @@ msgstr "打印完關機"
 msgid "Voice Notify"
 msgstr "語音提示"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "耗材箱電源"

@@ -985,5 +985,5 @@ msgstr "Vypnout po dokončení tisku"
 msgid "Voice Notify"
 msgstr "Hlasové oznámení"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "Napájení filamentové skříně"

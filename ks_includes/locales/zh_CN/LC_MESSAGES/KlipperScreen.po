@@ -986,9 +986,6 @@ msgstr "mm³/s"
 #~ msgid "Screen Blanking Time"
 #~ msgstr "关闭屏幕时间"
 
-msgid "Leveling"
-msgstr "调平"
-
 msgid "The nozzle temperature is too low, Are you sure you want to heat it?"
 msgstr "喷嘴温度过低，确定要加热吗？"
 
@@ -997,9 +994,6 @@ msgstr "常规"
 
 msgid "Turn off"
 msgstr "关闭"
-
-msgid "Brightest"
-msgstr "最亮"
 
 msgid "Manual"
 msgstr "手册"
@@ -1124,9 +1118,6 @@ msgstr "正在重置打印机，将重新启动，请等待..."
 msgid "Reset"
 msgstr "重置"
 
-msgid "Poweroff"
-msgstr "关机"
-
 msgid "Confirm Pos"
 msgstr "确认位置"
 
@@ -1136,5 +1127,5 @@ msgstr "打印完关机"
 msgid "Voice Notify"
 msgstr "语音提示"
 
-msgid "filament box power"
+msgid "Filament Box Power"
 msgstr "耗材箱电源"
