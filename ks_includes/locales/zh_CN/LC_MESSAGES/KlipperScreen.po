@@ -1126,3 +1126,15 @@ msgstr "重置"
 
 msgid "Poweroff"
 msgstr "关机"
+
+msgid "Confirm Pos"
+msgstr "确认位置"
+
+msgid "Shut down after printing completes"
+msgstr "打印完关机"
+
+msgid "Voice Notify"
+msgstr "语音提示"
+
+msgid "filament box power"
+msgstr "耗材箱电源"

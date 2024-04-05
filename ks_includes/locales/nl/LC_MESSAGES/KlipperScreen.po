@@ -964,3 +964,15 @@ msgstr "Resetten"
 
 msgid "Poweroff"
 msgstr "Uitzetten"
+
+msgid "Confirm Pos"
+msgstr "bevestig de positie"
+
+msgid "Shut down after printing completes"
+msgstr "Uitschakelen na voltooiing van het printen"
+
+msgid "Voice Notify"
+msgstr "Stemmelding"
+
+msgid "filament box power"
+msgstr "Voeding van filamentdoos"

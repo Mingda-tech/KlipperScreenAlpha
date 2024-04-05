@@ -986,3 +986,15 @@ msgstr "Redefinir"
 
 msgid "Poweroff"
 msgstr "Desligar"
+
+msgid "Confirm Pos"
+msgstr "Confirmar posição"
+
+msgid "Shut down after printing completes"
+msgstr "Desligar após a impressão ser concluída"
+
+msgid "Voice Notify"
+msgstr "Notificação por Voz"
+
+msgid "filament box power"
+msgstr "Fonte de alimentação da caixa de filamento"

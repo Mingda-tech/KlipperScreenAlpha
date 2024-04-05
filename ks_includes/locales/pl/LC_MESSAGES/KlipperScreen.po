@@ -965,3 +965,15 @@ msgstr "Resetuj"
 
 msgid "Poweroff"
 msgstr "Wyłącz"
+
+msgid "Confirm Pos"
+msgstr "Potwierdź położenie"
+
+msgid "Shut down after printing completes"
+msgstr "Wyłącz po zakończeniu drukowania"
+
+msgid "Voice Notify"
+msgstr "Powiadomienie głosowe"
+
+msgid "filament box power"
+msgstr "Zasilanie pudelka filamentu"

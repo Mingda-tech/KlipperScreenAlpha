@@ -1045,3 +1045,15 @@ msgstr "Sıfırla"
 
 msgid "Poweroff"
 msgstr "Kapat"
+
+msgid "Confirm Pos"
+msgstr "Doğrula konum"
+
+msgid "Shut down after printing completes"
+msgstr "Yazdırmayı tamamladıktan sonra kapat"
+
+msgid "Voice Notify"
+msgstr "Sesli Bildirim"
+
+msgid "filament box power"
+msgstr "Filament kutusu güç"

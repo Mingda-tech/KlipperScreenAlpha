@@ -1016,7 +1016,7 @@ msgid "Please wait for the camera initialization to complete."
 msgstr "請等待攝影機初始化完成。"
 
 msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
-msgstr "請等待攝影機的填光燈亮起 5 秒後再點擊 '啟動'"
+msgstr "請等待攝影機的填光燈亮起 5 秒後再點擊 '開始'"
 
 msgid "Couldn't get the calibration camera position."
 msgstr "無法獲取校準攝影機位置。"
@@ -1104,3 +1104,15 @@ msgstr "重置"
 
 msgid "Poweroff"
 msgstr "關機"
+
+msgid "Confirm Pos"
+msgstr "確認位置"
+
+msgid "Shut down after printing completes"
+msgstr "打印完關機"
+
+msgid "Voice Notify"
+msgstr "語音提示"
+
+msgid "filament box power"
+msgstr "耗材箱電源"

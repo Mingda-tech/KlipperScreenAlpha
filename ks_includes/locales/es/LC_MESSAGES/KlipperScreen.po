@@ -1138,3 +1138,15 @@ msgstr "Reiniciar"
 
 msgid "Poweroff"
 msgstr "Apagar"
+
+msgid "Confirm Pos"
+msgstr "confirme la posición"
+
+msgid "Shut down after printing completes"
+msgstr "Apagar tras completar la impresión"
+
+msgid "Voice Notify"
+msgstr "Notificación por voz"
+
+msgid "filament box power"
+msgstr "Suministro de energía para caja de filamento"

@@ -975,3 +975,15 @@ msgstr "Reset"
 
 msgid "Poweroff"
 msgstr "Vypnout"
+
+msgid "Confirm Pos"
+msgstr "Potvrdit pozici"
+
+msgid "Shut down after printing completes"
+msgstr "Vypnout po dokončení tisku"
+
+msgid "Voice Notify"
+msgstr "Hlasové oznámení"
+
+msgid "filament box power"
+msgstr "Napájení filamentové skříně"

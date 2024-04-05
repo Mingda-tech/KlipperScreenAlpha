@@ -1029,3 +1029,15 @@ msgstr "재설정"
 
 msgid "Poweroff"
 msgstr "전원 끄기"
+
+msgid "Confirm Pos"
+msgstr "위치 확인"
+
+msgid "Shut down after printing completes"
+msgstr "인쇄가 완료되면 종료"
+
+msgid "Voice Notify"
+msgstr "음성 알림"
+
+msgid "filament box power"
+msgstr "필라멘트 상자 전원"

@@ -933,3 +933,15 @@ msgstr "Visszaállítás"
 
 msgid "Poweroff"
 msgstr "Kikapcsolás"
+
+msgid "Confirm Pos"
+msgstr "erősítse meg a pozíciót"
+
+msgid "Shut down after printing completes"
+msgstr "Leállítás nyomtatás befejeztével"
+
+msgid "Voice Notify"
+msgstr "Hangjelzés"
+
+msgid "filament box power"
+msgstr "Filamentdoboz energiaellátása"

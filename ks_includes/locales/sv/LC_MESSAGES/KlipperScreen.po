@@ -1016,3 +1016,15 @@ msgstr "Återställ"
 
 msgid "Poweroff"
 msgstr "Stäng av"
+
+msgid "Confirm Pos"
+msgstr "Bekräfta positionen"
+
+msgid "Shut down after printing completes"
+msgstr "Stäng av efter att utskriften är klar"
+
+msgid "Voice Notify"
+msgstr "Röstdialog"
+
+msgid "filament box power"
+msgstr "Strömförsörjning för filamentlåda"

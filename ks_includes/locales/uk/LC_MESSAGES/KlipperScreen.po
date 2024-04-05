@@ -1057,3 +1057,15 @@ msgstr "Скинути"
 
 msgid "Poweroff"
 msgstr "Вимкнути"
+
+msgid "Confirm Pos"
+msgstr "Підтвердити позицію"
+
+msgid "Shut down after printing completes"
+msgstr "Вимкнути після завершення друку"
+
+msgid "Voice Notify"
+msgstr "Голосове сповіщення"
+
+msgid "filament box power"
+msgstr "Питання для касети з філаментом"

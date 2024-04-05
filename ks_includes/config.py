@@ -281,7 +281,7 @@ class KlipperScreenConfig:
             # {"auto_open_extrude": {"section": "main", "name": _("Auto-open Extrude On Pause"), "type": "binary",
             #                        "value": "True", "callback": screen.reload_panels}},
             {"voice_notify": {"section": "main", "name": _("Voice Notify"), "type": "binary", "value": "False"}},
-            {"shutdown_print_end": {"section": "main", "name": _("Shutdown Print End"), "type": "binary", "value": "False"}},                                                                                  
+            {"shutdown_print_end": {"section": "main", "name": _("Shut down after printing completes"), "type": "binary", "value": "False"}},                                                                                  
             # {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
             #                         "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
             # {"": {"section": "main", "name": _(""), "type": ""}}

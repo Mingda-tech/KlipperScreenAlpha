@@ -944,3 +944,15 @@ msgstr "Pernaušinti"
 
 msgid "Poweroff"
 msgstr "Išjungti"
+
+msgid "Confirm Pos"
+msgstr "Patvirtinti poziciją"
+
+msgid "Shut down after printing completes"
+msgstr "Išjunkite po spausdinimo pabaigos"
+
+msgid "Voice Notify"
+msgstr "Balsinis pranešimas"
+
+msgid "filament box power"
+msgstr "Filamentų dėžės maitinimas"

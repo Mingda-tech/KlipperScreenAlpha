@@ -50,27 +50,27 @@ class Panel(ScreenPanel):
         self.buttons['z-'].connect("clicked", self.move, "Z", "-")
 
         grid = self._gtk.HomogeneousGrid()
-        limit = 2
+        # limit = 2
         i = 0
         self.extruders = [extruder for extruder in self._printer.get_tools()]
-        for extruder in self._printer.get_tools():
-            if self._printer.extrudercount > 1:
-                self.labels[extruder] = self._gtk.Button(None, f"T{self._printer.get_tool_number(extruder)}")
-                self.labels[extruder].connect("clicked", self.change_extruder, extruder)
-            else:
-                self.labels[extruder] = self._gtk.Button(None, "extruder")
-            if extruder == self.current_extruder:
-                self.labels[extruder].get_style_context().add_class("button_active")
-            if i < limit:
-                grid.attach(self.labels[extruder], i, 0, 1, 1)
-                i += 1
+        # for extruder in self._printer.get_tools():
+        #     if self._printer.extrudercount > 1:
+        #         self.labels[extruder] = self._gtk.Button(None, f"T{self._printer.get_tool_number(extruder)}")
+        #         self.labels[extruder].connect("clicked", self.change_extruder, extruder)
+        #     else:
+        #         self.labels[extruder] = self._gtk.Button(None, "extruder")
+        #     if extruder == self.current_extruder:
+        #         self.labels[extruder].get_style_context().add_class("button_active")
+        #     if i < limit:
+        #         grid.attach(self.labels[extruder], i, 0, 1, 1)
+        #         i += 1
         grid.attach(self.buttons['x+'], 0, 1, 1, 1)
         grid.attach(self.buttons['x-'], 1, 1, 1, 1)
         grid.attach(self.buttons['y+'], 0, 2, 1, 1)
         grid.attach(self.buttons['y-'], 1, 2, 1, 1)
 
         distgrid = self._gtk.HomogeneousGrid()
-        self.labels['move_dist'] = Gtk.Label(_("Move Distance"))
+        self.labels['move_dist'] = Gtk.Label(_("Move Distance (mm)"))
         distgrid.attach(self.labels['move_dist'], 0, 0, len(self.distances), 1)            
         for j, i in enumerate(self.distances):
             self.labels[i] = self._gtk.Button(label=i)
@@ -92,7 +92,7 @@ class Panel(ScreenPanel):
 
         offsetgrid = self._gtk.HomogeneousGrid()
         offsetgrid = Gtk.Grid()
-        self.labels['confirm'] = self._gtk.Button(None, "Confirm Pos", "color1")
+        self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
         self.labels['save'] = self._gtk.Button(None, "Save", "color1")
 
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
@@ -107,7 +107,7 @@ class Panel(ScreenPanel):
                 continue
             logging.info(cam)
             cam[cam["name"]] = self._gtk.Button(
-                image_name="camera", label="Start", style=f"color{i % 4 + 1}",
+                image_name="camera", label=_("Start"), style=f"color{i % 4 + 1}",
                 scale=self.bts, position=Gtk.PositionType.LEFT, lines=1
             )
             cam[cam["name"]].set_hexpand(True)
@@ -271,10 +271,6 @@ class Panel(ScreenPanel):
                 self.labels['save'].set_sensitive(True)                      
 
     def change_extruder(self, widget, extruder):
-        logging.info(f"Changing extruder to {extruder}")
-        for tool in self._printer.get_tools():
-            self.labels[tool].get_style_context().remove_class("button_active")
-        self.labels[extruder].get_style_context().add_class("button_active")
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
         

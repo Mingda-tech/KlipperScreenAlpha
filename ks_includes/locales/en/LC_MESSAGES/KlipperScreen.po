@@ -930,3 +930,14 @@ msgstr ""
 
 msgid "Poweroff"
 msgstr ""
+
+msgid "Confirm Pos"
+msgstr ""
+
+msgid "Shut down after printing completes"
+msgstr ""
+msgid "Voice Notify"
+msgstr ""
+
+msgid "filament box power"
+msgstr ""

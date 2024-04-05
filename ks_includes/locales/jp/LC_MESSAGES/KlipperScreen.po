@@ -963,3 +963,15 @@ msgstr "リセット"
 
 msgid "Poweroff"
 msgstr "電源オフ"
+
+msgid "Confirm Pos"
+msgstr "位置を確認する"
+
+msgid "Shut down after printing completes"
+msgstr "印刷が完了したらシャットダウン"
+
+msgid "Voice Notify"
+msgstr "音声通知"
+
+msgid "filament box power"
+msgstr "フィラメントボックスの電源"

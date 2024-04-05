@@ -60,6 +60,8 @@ class Panel(ScreenPanel):
             grid.attach(Gtk.Label(), 0, i, 1, 1)
             label = Gtk.Label(label=_(text))
             label.set_vexpand(True)
+            label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+            label.set_line_wrap(True)            
             grid.attach(label, 0, i, 2, 1)
             image = Gtk.Image()
             image.set_from_file(self.image_loading)

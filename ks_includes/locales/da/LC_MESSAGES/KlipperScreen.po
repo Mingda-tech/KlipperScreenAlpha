@@ -1073,3 +1073,15 @@ msgstr "Nulstil"
 
 msgid "Poweroff"
 msgstr "Sluk"
+
+msgid "Confirm Pos"
+msgstr "Bekræft position"
+
+msgid "Shut down after printing completes"
+msgstr "Sluk efter udskrivning færdiggjort"
+
+msgid "Voice Notify"
+msgstr "Stemmebesked"
+
+msgid "filament box power"
+msgstr "Filamentboks strøm"

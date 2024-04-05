@@ -1098,3 +1098,15 @@ msgstr "Ripristina"
 
 msgid "Poweroff"
 msgstr "Spegni"
+
+msgid "Confirm Pos"
+msgstr "conferma la posizione"
+
+msgid "Shut down after printing completes"
+msgstr "Spegni al termine della stampa"
+
+msgid "Voice Notify"
+msgstr "Notifica vocale"
+
+msgid "filament box power"
+msgstr "Alimentazione scatola di filamento"

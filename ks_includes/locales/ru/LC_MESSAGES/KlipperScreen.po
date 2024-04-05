@@ -1134,3 +1134,15 @@ msgstr "Сброс"
 
 msgid "Poweroff"
 msgstr "Выключение"
+
+msgid "Confirm Pos"
+msgstr "Подтвердите позицию"
+
+msgid "Shut down after printing completes"
+msgstr "Выключить после завершения печати"
+
+msgid "Voice Notify"
+msgstr "Голосовое уведомление"
+
+msgid "filament box power"
+msgstr "Питание коробки с.filаментом"

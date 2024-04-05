@@ -34,6 +34,8 @@ class Panel(ScreenPanel):
 
         self.labels['tip'] = Gtk.Label()
         self.labels['tip'].set_text(_("Choose a timezone"))
+        self.labels['tip'].set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        self.labels['tip'].set_line_wrap(True)          
         grid.attach(self.labels['tip'], 1, 0, 3, 1)
 
         self.labels['next'] = self._gtk.Button("arrow-right", None, "color1", .66)
