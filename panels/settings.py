@@ -1,4 +1,5 @@
 import gi
+import os
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
@@ -28,6 +29,14 @@ class Panel(ScreenPanel):
         for option in options:
             name = list(option)[0]
             if name == "filament_box_power" and "SET_FILAMENT_BOX_POWER" not in self._printer.get_gcode_macros():
+                continue
+
+            script_file = "/home/mingda/printer_data/script/print_end.sh"
+            if name == "shutdown_print_end" and ("SHUTDOWN_PRINT_END" not in self._printer.get_gcode_macros() or not os.path.exists(script_file)):
+                continue
+
+            script_file = "/home/mingda/printer_data/script/voice_notify.sh"
+            if (name == "voice_notify") and ("VOICE_NOTIFY" not in self._printer.get_gcode_macros() or not os.path.exists(script_file)):
                 continue
 
             self.add_option('settings', self.settings, name, option[name])
@@ -79,6 +88,8 @@ class Panel(ScreenPanel):
             'lt': 'lietuvių',
         }        
         for lang in self._config.lang_list:
+            if lang not in language_dict:
+                continue
             self.langs[lang] = {
                 "code": lang,
                 "type": "lang",
