@@ -39,7 +39,7 @@ button:active {
     border-color: @solarized-base02;
     border-style: solid;
     border-radius: 1em;
-    background-color: @solarized-base02;
+    background-color: @solarized-orange;
 }
 
 button.color1 {
