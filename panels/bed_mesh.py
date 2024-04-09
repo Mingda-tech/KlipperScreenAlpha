@@ -257,6 +257,7 @@ class Panel(ScreenPanel):
             self._screen._ws.klippy.gcode_script("M109 S170")
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script("G28")
+        self._screen._ws.klippy.gcode_script("T0")
 
         self._screen._send_action(widget, "printer.gcode.script", {"script": "BED_MESH_CALIBRATE"})
 
