@@ -282,6 +282,6 @@ class KlippyGtk:
                           Gdk.EventMask.TOUCH_MASK |
                           Gdk.EventMask.BUTTON_RELEASE_MASK)
         scroll.set_kinetic_scrolling(True)
-        if self.screen._config.get_main_config().getboolean("show_scroll_steppers", fallback=False) and steppers:
+        if self.screen._config.get_main_config().getboolean("show_scroll_steppers", fallback=True) and steppers:
             scroll.get_vscrollbar().get_style_context().add_class("with-steppers")
         return scroll
