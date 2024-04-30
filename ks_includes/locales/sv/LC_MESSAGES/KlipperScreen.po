@@ -348,23 +348,23 @@ msgstr "Invertera Z"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr "Det kan ta mer än 5 minuter beroende på värmarens effekt."
 
-msgid "Klipper Restart"
-msgstr "Klipper Omstart"
+#msgid "Firmware Restart"
+#msgstr "Starta om firmware"
 
-msgid "Klipper has disconnected"
-msgstr "Klipper har kopplat bort"
+msgid "Firmware has disconnected"
+msgstr "Firmware har kopplats från"
 
-msgid "Klipper has encountered an error."
-msgstr "Klipper har stött på ett fel."
+msgid "Firmware has encountered an error."
+msgstr "Firmware har stött på ett fel."
 
-msgid "Klipper has shutdown"
-msgstr "Klipper har stängts av"
+msgid "Firmware has shutdown"
+msgstr "Firmware har stängts av"
 
-msgid "Klipper is attempting to start"
-msgstr "Klipper försöker starta"
+msgid "Firmware is attempting to start"
+msgstr "Firmware försöker starta"
 
-msgid "Klipper will reboot"
-msgstr "Klipper kommer att starta om"
+msgid "Firmware will reboot"
+msgstr "Firmware kommer att startas om"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"

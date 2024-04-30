@@ -694,11 +694,11 @@ class KlipperScreen(Gtk.Window):
         self.close_screensaver()
         self.initialized = False
         self.reinit_count = 0
-        self._init_printer(_("Klipper has disconnected"), remove=True)
+        self._init_printer(_("Firmware has disconnected"), remove=True)
 
     def state_error(self):
         self.close_screensaver()
-        msg = _("Klipper has encountered an error.") + "\n"
+        msg = _("Firmware has encountered an error.") + "\n"
         state = self.printer.get_stat("webhooks", "state_message")
         if "FIRMWARE_RESTART" in state:
             msg += _("A FIRMWARE_RESTART may fix the issue.") + "\n"
@@ -763,13 +763,13 @@ class KlipperScreen(Gtk.Window):
 
 
     def state_startup(self):
-        self.printer_initializing(_("Klipper is attempting to start"))
+        self.printer_initializing(_("Firmware is attempting to start"))
 
     def state_shutdown(self):
         self.close_screensaver()
         msg = self.printer.get_stat("webhooks", "state_message")
         msg = msg if "ready" not in msg else ""
-        self.printer_initializing(_("Klipper has shutdown") + "\n\n" + msg, remove=True)
+        self.printer_initializing(_("Firmware has shutdown") + "\n\n" + msg, remove=True)
 
     def toggle_shortcut(self, show):
         if show and not self.printer.get_printer_status_data()["printer"]["gcode_macros"]["count"] > 0:
@@ -859,7 +859,7 @@ class KlipperScreen(Gtk.Window):
                     script = {"script": "SAVE_CONFIG"}
                     self._confirm_send_action(
                         None,
-                        _("Save configuration?") + "\n\n" + _("Klipper will reboot"),
+                        _("Save configuration?") + "\n\n" + _("Firmware will reboot"),
                         "printer.gcode.script",
                         script
                     )
@@ -1161,7 +1161,7 @@ class KlipperScreen(Gtk.Window):
     
         for root, dirs, files in os.walk(directory):
             for file in files:
-                if file.endswith(".jpg") or file.endswith(".png"):
+                if file.endswith(".jpg") or file.endswith(".png") or file.endswith(".gif"):
                     print(f"Found image file: {os.path.join(root, file)}")
                     return True
     

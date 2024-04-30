@@ -30,7 +30,7 @@ msgid "24 Hour Time"
 msgstr "使用24小时制"
 
 msgid "A FIRMWARE_RESTART may fix the issue."
-msgstr "重启Klipper固件可能会解决这个问题。"
+msgstr "重启固件可能会解决这个问题。"
 
 msgid "ADXL Not Configured"
 msgstr "未配置ADXL"
@@ -259,7 +259,7 @@ msgid "Finish"
 msgstr "结束"
 
 msgid "Firmware Restart"
-msgstr "重启Klipper固件"
+msgstr "重启固件"
 
 msgid "Flow +"
 msgstr "流量 +"
@@ -360,23 +360,23 @@ msgstr "反转Z轴"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr "这可能需要5分钟以上的时间，这取决于加热器的功率。"
 
-msgid "Klipper Restart"
-msgstr "重启Klipper"
+#msgid "Firmware Restart"
+#msgstr "重启固件"
 
-msgid "Klipper has disconnected"
-msgstr "Klipper已断开连接"
+msgid "Firmware has disconnected"
+msgstr "固件已断开连接"
 
-msgid "Klipper has encountered an error."
-msgstr "Klipper遇到一个错误。"
+msgid "Firmware has encountered an error."
+msgstr "固件遇到一个错误。"
 
-msgid "Klipper has shutdown"
-msgstr "Klipper已关闭"
+msgid "Firmware has shutdown"
+msgstr "固件已关闭"
 
-msgid "Klipper is attempting to start"
-msgstr "Klipper正在启动"
+msgid "Firmware is attempting to start"
+msgstr "固件正在启动"
 
-msgid "Klipper will reboot"
-msgstr "Klipper将重新启动"
+msgid "Firmware will reboot"
+msgstr "固件将重新启动"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"
@@ -926,7 +926,7 @@ msgstr "mm³/s"
 #~ "请为主板重新烧录固件。"
 
 #~ msgid ""
-#~ "Klipper has encountered an error.\n"
+#~ "Firmware has encountered an error.\n"
 #~ "Issue a FIRMWARE_RESTART to attempt fixing the issue."
 #~ msgstr ""
 #~ "Klipper 遇到错误。\n"

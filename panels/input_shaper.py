@@ -136,7 +136,7 @@ class Panel(ScreenPanel):
         script = {"script": "SAVE_CONFIG"}
         self._screen._confirm_send_action(
             None,
-            _("Save configuration?") + "\n\n" + _("Klipper will reboot"),
+            _("Save configuration?") + "\n\n" + _("Firmware will reboot"),
             "printer.gcode.script",
             script
         )

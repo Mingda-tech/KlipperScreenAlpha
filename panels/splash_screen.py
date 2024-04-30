@@ -20,7 +20,7 @@ class Panel(ScreenPanel):
 
         self.labels['menu'] = self._gtk.Button("settings", _("Menu"), "color4")
         self.labels['menu'].connect("clicked", self._screen._go_to_submenu, "")
-        self.labels['restart'] = self._gtk.Button("refresh", _("Klipper Restart"), "color1")
+        self.labels['restart'] = self._gtk.Button("refresh", _("Firmware Restart"), "color1")
         self.labels['restart'].connect("clicked", self.restart)
         self.labels['firmware_restart'] = self._gtk.Button("refresh", _("Firmware Restart"), "color2")
         self.labels['firmware_restart'].connect("clicked", self.firmware_restart)
@@ -73,7 +73,7 @@ class Panel(ScreenPanel):
                 self.add_power_button(power_devices)
 
         if self._screen.initialized:
-            self.labels['actions'].add(self.labels['restart'])
+            # self.labels['actions'].add(self.labels['restart'])
             self.labels['actions'].add(self.labels['firmware_restart'])
         else:
             self.labels['actions'].add(self.labels['restart_system'])

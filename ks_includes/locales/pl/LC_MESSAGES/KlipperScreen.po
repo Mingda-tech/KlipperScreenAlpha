@@ -345,23 +345,23 @@ msgstr "Odwróć Z"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr "Może to potrwać dłużej niż 5 minut w zależności od mocy grzałki."
 
-msgid "Klipper Restart"
-msgstr "Restartuj Klipper"
+#msgid "Firmware Restart"
+#msgstr "Restart oprogramowania układowego"
 
-msgid "Klipper has disconnected"
-msgstr "Klipper został odłączony"
+msgid "Firmware has disconnected"
+msgstr "Firmware został odłączony"
 
-msgid "Klipper has encountered an error."
-msgstr "Klipper napotkał błąd."
+msgid "Firmware has encountered an error."
+msgstr "W firmware wystąpił błąd."
 
-msgid "Klipper has shutdown"
-msgstr "Klipper został wyłączony"
+msgid "Firmware has shutdown"
+msgstr "Firmware został zakończony"
 
-msgid "Klipper is attempting to start"
-msgstr "Klipper próbuje się uruchomić"
+msgid "Firmware is attempting to start"
+msgstr "Firmware próbuje się uruchomić"
 
-msgid "Klipper will reboot"
-msgstr "Klipper uruchomi się ponownie"
+msgid "Firmware will reboot"
+msgstr "Firmware zostanie ponownie uruchomiony"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"

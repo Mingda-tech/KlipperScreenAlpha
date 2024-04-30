@@ -347,23 +347,23 @@ msgstr "Z Ters çevir"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr "Isıtıcı gücüne bağlı olarak 5 dakikadan fazla sürebilir."
 
-msgid "Klipper Restart"
-msgstr "Klipper Yeniden başlat"
+#msgid "Firmware Restart"
+#msgstr "Yeniden Başlat"
 
-msgid "Klipper has disconnected"
-msgstr "Klipper bağlantısı kesildi"
+msgid "Firmware has disconnected"
+msgstr "Firmware bağlantısı kesildi"
 
-msgid "Klipper has encountered an error."
-msgstr "Klipper bir hatayla karşılaştı."
+msgid "Firmware has encountered an error."
+msgstr "Firmware bir hata ile karşılaştı."
 
-msgid "Klipper has shutdown"
-msgstr "Klipper Kapandı"
+msgid "Firmware has shutdown"
+msgstr "Firmware kapatıldı"
 
-msgid "Klipper is attempting to start"
-msgstr "Klipper başlatılmaya çalışılıyor"
+msgid "Firmware is attempting to start"
+msgstr "Firmware başlatmaya çalışıyor"
 
-msgid "Klipper will reboot"
-msgstr "Klipper yeniden başlayacak"
+msgid "Firmware will reboot"
+msgstr "Firmware yeniden başlayacak"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"

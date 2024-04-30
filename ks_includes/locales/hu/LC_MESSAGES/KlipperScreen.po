@@ -343,23 +343,23 @@ msgstr "Fordított Z"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr "A fűtés teljesítményétől függően több mint 5 percig tarthat."
 
-msgid "Klipper Restart"
-msgstr "A Klipper újraindítása"
+#msgid "Firmware Restart"
+#msgstr "Firmware újraindítása"
 
-msgid "Klipper has disconnected"
-msgstr "A Klipper szétkapcsolt"
+msgid "Firmware has disconnected"
+msgstr "A firmware leválasztódott"
 
-msgid "Klipper has encountered an error."
-msgstr "A Klipper hibát észlelt."
+msgid "Firmware has encountered an error."
+msgstr "Hiba történt a firmware-ben."
 
-msgid "Klipper has shutdown"
-msgstr "A Klipper leállt"
+msgid "Firmware has shutdown"
+msgstr "A firmware leállt"
 
-msgid "Klipper is attempting to start"
-msgstr "A Klipper megpróbál elindulni"
+msgid "Firmware is attempting to start"
+msgstr "A firmware próbál indulni"
 
-msgid "Klipper will reboot"
-msgstr "A Klipper újraindul"
+msgid "Firmware will reboot"
+msgstr "A firmware újraindul"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"

@@ -255,8 +255,8 @@ msgstr "Ladění"
 msgid "Finish"
 msgstr "Konec"
 
-msgid "Firmware Restart"
-msgstr "Firmware Restart"
+#msgid "Firmware Restart"
+#msgstr "Firmware Restart"
 
 msgid "Flow:"
 msgstr "Tok:"
@@ -348,23 +348,23 @@ msgstr "Otočit Z"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr "V závislosti na výkonu ohřívače to může trvat déle než 5 minut."
 
-msgid "Klipper Restart"
-msgstr "Klipper Restart"
+msgid "Firmware Restart"
+msgstr "Restartování firmware"
 
-msgid "Klipper has disconnected"
-msgstr "Klipper odpojen"
+msgid "Firmware has disconnected"
+msgstr "Firmware byl odpojen"
 
-msgid "Klipper has encountered an error."
-msgstr "Klipper zaznamenal chybu."
+msgid "Firmware has encountered an error."
+msgstr "Firmware narazil na chybu."
 
-msgid "Klipper has shutdown"
-msgstr "Klipper zastaven"
+msgid "Firmware has shutdown"
+msgstr "Firmware byl vypnut"
 
-msgid "Klipper is attempting to start"
-msgstr "Klipper startuje"
+msgid "Firmware is attempting to start"
+msgstr "Firmware se pokouší spustit"
 
-msgid "Klipper will reboot"
-msgstr "Klipper se restartuje"
+msgid "Firmware will reboot"
+msgstr "Firmware se restartuje"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"

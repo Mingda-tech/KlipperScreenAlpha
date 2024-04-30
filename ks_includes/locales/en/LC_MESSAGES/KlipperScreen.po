@@ -342,22 +342,22 @@ msgstr ""
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr ""
 
-msgid "Klipper Restart"
+#msgid "Firmware Restart"
+#msgstr ""
+
+msgid "Firmware has disconnected"
 msgstr ""
 
-msgid "Klipper has disconnected"
+msgid "Firmware has encountered an error."
 msgstr ""
 
-msgid "Klipper has encountered an error."
+msgid "Firmware has shutdown"
 msgstr ""
 
-msgid "Klipper has shutdown"
+msgid "Firmware is attempting to start"
 msgstr ""
 
-msgid "Klipper is attempting to start"
-msgstr ""
-
-msgid "Klipper will reboot"
+msgid "Firmware will reboot"
 msgstr ""
 
 msgid ""

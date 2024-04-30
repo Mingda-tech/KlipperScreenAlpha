@@ -342,23 +342,23 @@ msgstr "X軸を反対にする"
 msgid "It may take more than 5 minutes depending on the heater power."
 msgstr ""
 
-msgid "Klipper Restart"
-msgstr "Klipperを再起動する"
+#msgid "Firmware Restart"
+#msgstr "ファームウェア再起動"
 
-msgid "Klipper has disconnected"
-msgstr "Klipperの接続が切れました"
+msgid "Firmware has disconnected"
+msgstr "ファームウェアが切断されました"
 
-msgid "Klipper has encountered an error."
-msgstr "Klipperのエラーが発生しました"
+msgid "Firmware has encountered an error."
+msgstr "ファームウェアでエラーが発生しました。"
 
-msgid "Klipper has shutdown"
-msgstr "Klipperはシャットダウンしました"
+msgid "Firmware has shutdown"
+msgstr "ファームウェアがシャットダウンしました"
 
-msgid "Klipper is attempting to start"
-msgstr "Klipperは起動中です"
+msgid "Firmware is attempting to start"
+msgstr "ファームウェアが起動を試みています"
 
-msgid "Klipper will reboot"
-msgstr "Klipperは再起動します"
+msgid "Firmware will reboot"
+msgstr "ファームウェアが再起動します"
 
 msgid ""
 "LOAD_FILAMENT/UNLOAD_FILAMENT are hidden and should be used from extrude"
