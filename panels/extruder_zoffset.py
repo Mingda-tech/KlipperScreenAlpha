@@ -118,7 +118,9 @@ class Panel(ScreenPanel):
             self._screen.show_popup_message(_("Need home axis"), level=1)
             self._screen._ws.klippy.gcode_script("G28")
             return
-        self.send_clear_mesh(widget)
+        if self.bed_mesh_profile_name is not None:
+            self.send_clear_mesh(widget)
+            
         self.buttons['start'].set_sensitive(False)
         current_extruder = self._printer.get_stat("toolhead", "extruder")
         if current_extruder != "extruder":
