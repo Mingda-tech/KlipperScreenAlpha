@@ -31,6 +31,7 @@ class Panel(ScreenPanel):
         self.pos['z'] = 100
         self.pos['l_z'] = None
         self.pos['r_z'] = None
+        self.bed_mesh_profile_name = None
         self.zmax = float(self._printer.get_config_section("stepper_z")['position_max'])
         pos = self._gtk.HomogeneousGrid()
         pos.attach(self.widgets['zposition'], 0, 1, 2, 1)
@@ -117,6 +118,7 @@ class Panel(ScreenPanel):
             self._screen.show_popup_message(_("Need home axis"), level=1)
             self._screen._ws.klippy.gcode_script("G28")
             return
+        self.send_clear_mesh(widget)
         self.buttons['start'].set_sensitive(False)
         current_extruder = self._printer.get_stat("toolhead", "extruder")
         if current_extruder != "extruder":
@@ -127,6 +129,12 @@ class Panel(ScreenPanel):
 
     def activate(self):
         self.buttons_not_calibrating()
+        self.bed_mesh_profile_name = self._printer.get_stat("bed_mesh", "profile_name")
+
+    def deactivate(self):
+        prifile_name = self._printer.get_stat("bed_mesh", "profile_name")
+        if prifile_name != self.bed_mesh_profile_name and self.bed_mesh_profile_name is not None:
+            self.send_load_mesh(widget=None, profile_name=self.bed_mesh_profile_name)
 
     def process_update(self, action, data):
         if action == "notify_status_update":
@@ -272,3 +280,9 @@ class Panel(ScreenPanel):
             "printer.gcode.script",
             script
         )             
+
+    def send_clear_mesh(self, widget):
+        self._screen._send_action(widget, "printer.gcode.script", {"script": "BED_MESH_CLEAR"})    
+
+    def send_load_mesh(self, widget, profile):
+        self._screen._send_action(widget, "printer.gcode.script", {"script": KlippyGcodes.bed_mesh_load(profile)})        
