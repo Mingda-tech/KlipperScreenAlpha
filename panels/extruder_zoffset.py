@@ -135,7 +135,7 @@ class Panel(ScreenPanel):
 
     def deactivate(self):
         prifile_name = self._printer.get_stat("bed_mesh", "profile_name")
-        if prifile_name != self.bed_mesh_profile and self.bed_mesh_profile is not None:
+        if prifile_name != self.bed_mesh_profile and self.bed_mesh_profile is not None and self.bed_mesh_profile != "":
             self.send_load_mesh(widget=None, profile=self.bed_mesh_profile)
 
     def process_update(self, action, data):
