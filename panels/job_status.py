@@ -379,7 +379,8 @@ class Panel(ScreenPanel):
         self.buttons['restart'].connect("clicked", self.restart)
         self.buttons['resume'].connect("clicked", self.resume)
         self.buttons['save_offset_probe'].connect("clicked", self.save_offset, "probe")
-        self.buttons['save_offset_endstop'].connect("clicked", self.save_offset, "endstop")
+        if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
+            self.buttons['save_offset_endstop'].connect("clicked", self.save_offset, "endstop")
 
     def save_offset(self, widget, device):
         sign = "+" if self.zoffset > 0 else "-"
@@ -413,6 +414,7 @@ class Panel(ScreenPanel):
             if device == "probe":
                 self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_PROBE")
             # if device == "endstop":
+            if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
                 self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_ENDSTOP")
             # self._screen._ws.klippy.gcode_script("SAVE_CONFIG")
 
