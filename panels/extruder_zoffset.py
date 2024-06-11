@@ -128,6 +128,8 @@ class Panel(ScreenPanel):
         self._calculate_position()
         self.is_start_calibrate = True
         self._screen._ws.klippy.gcode_script("QUERY_BUTTON button=zoffset_button")
+        self._screen.is_system_busy = True
+        self._screen.show_busy_dialog(_("Calibrating right extruder Z offset"))
 
     def activate(self):
         self.buttons_not_calibrating()
@@ -183,6 +185,8 @@ class Panel(ScreenPanel):
                             self.z_offset += offset
                         self.buttons_calibrating()
                     self._screen._ws.klippy.gcode_script("QUERY_BUTTON button=zoffset_button")            
+        if self._screen.warning_dialog is None and self._screen.is_system_busy:
+            self._screen.show_busy_dialog(label=_("Calibrating right extruder Z offset, Please Wait..."))
         return
 
     def update_position(self, position):
@@ -240,6 +244,8 @@ class Panel(ScreenPanel):
         self.buttons['complete'].get_style_context().add_class('color3')
         self.buttons['cancel'].set_sensitive(True)
         self.buttons['cancel'].get_style_context().add_class('color2')
+        self._screen.is_system_busy = False
+        self._screen.remove_busy_dialog()
 
     def buttons_not_calibrating(self):
         self.buttons['start'].get_style_context().add_class('color3')

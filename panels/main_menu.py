@@ -267,6 +267,10 @@ class Panel(MenuPanel):
                     self._printer.get_dev_stat(x, "target"),
                     self._printer.get_dev_stat(x, "power"),
                 )
+        if self._screen.is_system_busy:
+            self._screen.show_busy_dialog(label=_("Powerloss Resuming, Please Wait..."))     
+        else:
+            self._screen.remove_busy_dialog()   
 
     def show_numpad(self, widget, device):
 

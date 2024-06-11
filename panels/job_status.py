@@ -349,6 +349,7 @@ class Panel(ScreenPanel):
         ctx.stroke()
 
     def activate(self):
+        self._screen.is_system_busy = True
         if self.flow_timeout is None:
             self.flow_timeout = GLib.timeout_add_seconds(2, self.update_flow)
 
@@ -508,6 +509,7 @@ class Panel(ScreenPanel):
         elif action != "notify_status_update":
             return
 
+        i = 0
         for x in self._printer.get_temp_devices():
             if x in data:
                 self.update_temp(
@@ -520,6 +522,21 @@ class Panel(ScreenPanel):
                     self.buttons['extruder'][x].set_label(self.labels[x].get_text())
                 elif x in self.buttons['heater']:
                     self.buttons['heater'][x].set_label(self.labels[x].get_text())
+            cur_temp = self._printer.get_dev_stat(x, "temperature")
+            target_temp = self._printer.get_dev_stat(x, "target")
+            if cur_temp is not None and target_temp is not None:
+                if cur_temp > target_temp - 5:
+                    if cur_temp > 150:
+                        i = i | 1
+                    elif "bed" in x.lower():
+                        i = i | 2
+                    if i == 3:
+                        if self._screen.is_system_busy:
+                            self._screen.remove_busy_dialog()
+                            self._screen.is_system_busy = False
+
+        if self._screen.is_system_busy:
+            self._screen.show_busy_dialog(label=_("Printer is preheating, please wait..."))
 
         if "display_status" in data and "message" in data["display_status"]:
             self.labels['lcdmessage'].set_label(

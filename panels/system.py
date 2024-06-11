@@ -269,7 +269,8 @@ class Panel(ScreenPanel):
             return
 
         info = self.update_status['version_info'][p]
-
+        firmware = _("Firmware")
+        sc = _("Screen")
         if p == "system":
             self.labels[p].set_markup("<b>System</b>")
             if info['package_count'] == 0:
@@ -285,23 +286,45 @@ class Panel(ScreenPanel):
                     self._already_updated(p, info)
                     self.labels[f"{p}_status"].get_style_context().remove_class('invalid')
                 else:
-                    self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']} -> {info['remote_version']}")
+                    if p == "klipper":
+                        self.labels[p].set_markup(f"<b>{firmware}</b>\n{info['version']} -> {info['remote_version']}")
+                    elif p == "KlipperScreen":
+                        self.labels[p].set_markup(f"<b>{sc}</b>\n{info['version']} -> {info['remote_version']}")
+                    else:
+                        self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']} -> {info['remote_version']}")
                     self._needs_update(p, info['version'], info['remote_version'])
             else:
                 logging.info(f"Invalid {p} {info['version']}")
-                self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']}")
+                if p == "klipper":
+                    self.labels[p].set_markup(f"<b>{firmware}</b>\n{info['version']}")
+                elif p == "KlipperScreen":
+                    self.labels[p].set_markup(f"<b>{sc}</b>\n{info['version']}")
+                else:
+                    self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']}")                
                 self.labels[f"{p}_status"].set_label(_("Invalid"))
                 self.labels[f"{p}_status"].get_style_context().add_class('invalid')
                 self.labels[f"{p}_status"].set_sensitive(True)
         elif 'version' in info and info['version'] == info['remote_version']:
             self._already_updated(p, info)
         else:
-            self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']} -> {info['remote_version']}")
+            if p == "klipper":
+               self.labels[p].set_markup(f"<b>{firmware}</b>\n{info['version']} -> {info['remote_version']}")
+            elif p == "KlipperScreen":
+                self.labels[p].set_markup(f"<b>{sc}</b>\n{info['version']} -> {info['remote_version']}")
+            else:
+                self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']} -> {info['remote_version']}")
             self._needs_update(p, info['version'], info['remote_version'])
 
     def _already_updated(self, p, info):
         logging.info(f"{p} {info['version']}")
-        self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']}")
+        if p == "klipper":
+           firmware = _("Firmware")
+           sc = _("Screen")
+           self.labels[p].set_markup(f"<b>{firmware}</b>\n{info['version']}")
+        elif p == "KlipperScreen":
+            self.labels[p].set_markup(f"<b>{sc}</b>\n{info['version']}")
+        else:
+            self.labels[p].set_markup(f"<b>{p}</b>\n{info['version']}")        
         self.labels[f"{p}_status"].set_label(_("Up To Date"))
         self.labels[f"{p}_status"].get_style_context().remove_class('update')
         self.labels[f"{p}_status"].set_sensitive(False)

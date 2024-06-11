@@ -431,7 +431,7 @@ class Panel(ScreenPanel):
             self.update_timeout = None
 
     def on_back_click(self, widget=None):
-        self._screen.show_panel("zcalibrate_mesh", _("Leveling"), remove_all=True)
+        self._screen.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)
 
     def on_next_click(self, widget=None):
         self._screen.setup_init = 0

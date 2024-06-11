@@ -220,8 +220,8 @@ class KlippyGtk:
         for button in buttons:
             dialog.add_button(button['name'], button['response'])
             button = dialog.get_widget_for_response(button['response'])
-            button.set_size_request((self.width - 30) / 3, self.height / 5)
-            format_label(button, 3)
+            button.set_size_request((self.width - 30) / 4, self.height / 5)
+            format_label(button, 4)
 
         dialog.connect("response", self.screen.reset_screensaver_timeout)
         dialog.connect("response", callback, *args)

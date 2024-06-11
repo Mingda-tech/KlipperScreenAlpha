@@ -179,6 +179,9 @@ class Panel(ScreenPanel):
         if 'bed_mesh' in data and 'profile_name' in data['bed_mesh']:
             self.activate_mesh(data['bed_mesh']['profile_name'])
 
+        if self._screen.warning_dialog is None and self._screen.is_system_busy:
+            self._screen.show_busy_dialog(label=_("Calibrating the bed mesh can take a few minutes. Please wait..."))
+
     def remove_create(self):
         if self.show_create is False:
             return
@@ -250,9 +253,10 @@ class Panel(ScreenPanel):
 
     def calibrate_mesh(self, widget):
         widget.set_sensitive(False)
-        self._screen.show_popup_message(_("Calibrating"), level=1)
+        self._screen.is_system_busy = True
+        # self._screen.show_popup_message(_("Calibrating"), level=1)
         if "MD_S1" in self._printer.get_gcode_macros() or "MD_S2" in self._printer.get_gcode_macros() or "MD_S3" in self._printer.get_gcode_macros():
-            self._screen.show_popup_message(_("Please wait until the bed and nozzle is heated before calibrating."), level=1)
+            # self._screen.show_popup_message(_("Please wait until the bed and nozzle is heated before calibrating."), level=1)
             self._screen._ws.klippy.gcode_script("M190 S65")
             self._screen._ws.klippy.gcode_script("M109 S170")
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
@@ -262,8 +266,8 @@ class Panel(ScreenPanel):
         self._screen._send_action(widget, "printer.gcode.script", {"script": "BED_MESH_CALIBRATE"})
 
         # Load zcalibrate to do a manual mesh
-        if not self._printer.get_probe():
-            self.menu_item_clicked(widget, {"name": _("Mesh calibrate"), "panel": "zcalibrate"})
+        # if not self._printer.get_probe():
+        #     self.menu_item_clicked(widget, {"name": _("Mesh calibrate"), "panel": "zcalibrate"})
 
     def send_clear_mesh(self, widget):
         self._screen._send_action(widget, "printer.gcode.script", {"script": "BED_MESH_CLEAR"})

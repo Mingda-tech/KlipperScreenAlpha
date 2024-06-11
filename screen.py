@@ -109,6 +109,8 @@ class KlipperScreen(Gtk.Window):
         self.dialogs = []
         self.confirm = None
         self.panels_reinit = []
+        self.warning_dialog = None
+        self.is_system_busy = False
 
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
@@ -354,6 +356,7 @@ class KlipperScreen(Gtk.Window):
         self.process_update("notify_log", log_entry)
 
     def show_popup_message(self, message, level=3):
+        self.remove_busy_dialog()
         self.close_screensaver()
         if self.popup_message is not None:
             self.close_popup_message()
@@ -404,6 +407,51 @@ class KlipperScreen(Gtk.Window):
             GLib.source_remove(self.popup_timeout)
         self.popup_message = self.popup_timeout = None
         return False
+
+    def show_busy_dialog(self, widget=None, title=None, label=None):
+        if self.warning_dialog is not None:
+            self.remove_busy_dialog()
+        scroll = self.gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_halign(Gtk.Align.CENTER)
+        vbox.set_valign(Gtk.Align.CENTER)
+        theme = os.path.join(klipperscreendir, "styles", self.theme)
+        img_file = os.path.join(theme, "images", "forbidden_touch.svg")
+        if os.path.exists(img_file):
+            img = Gtk.Image()
+            img.set_from_file(img_file)
+            vbox.add(img)
+        if label is None:
+            label=_("System busy, please wait...")
+        label = Gtk.Label(label=label)
+        label.set_hexpand(True)
+        label.set_halign(Gtk.Align.CENTER)
+        label.set_vexpand(True)
+        label.set_valign(Gtk.Align.CENTER)
+        label.set_line_wrap(True)
+        label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        vbox.add(label)
+        scroll.add(vbox)
+        buttons = [
+            {"name": _("Emergency Stop"), "response": Gtk.ResponseType.CANCEL}
+        ]
+
+        if title is None:
+            title = _("Warning")
+        self.warning_dialog = self.gtk.Dialog(title, buttons, scroll, self.emergency_stop)
+
+    def remove_busy_dialog(self):
+        if self.warning_dialog is None:
+            return
+        
+        self.gtk.remove_dialog(self.warning_dialog)
+        self.warning_dialog = None
+
+    def emergency_stop(self, widget, response_id):
+        self._ws.klippy.emergency_stop()
+        self.is_system_busy = False
+        self.remove_busy_dialog()
 
     def show_error_modal(self, err, e=""):
         logging.error(f"Showing error modal: {err} {e}")
@@ -749,8 +797,8 @@ class KlipperScreen(Gtk.Window):
         elif self.setup_init == 2:
             self.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)
         elif self.setup_init == 3:
-            self.show_panel("zcalibrate_mesh", _("Leveling"), remove_all=True)
-        elif self.setup_init == 4:
+        #     self.show_panel("zcalibrate_mesh", _("Leveling"), remove_all=True)
+        # elif self.setup_init == 4:
             self.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
         elif self.auto_check:
             self.show_panel("self_check", _("Self-check"), remove_all=True)
@@ -899,8 +947,10 @@ class KlipperScreen(Gtk.Window):
 
         if self.confirm is not None:
             self.gtk.remove_dialog(self.confirm)
+        self.is_system_busy = False
+        self.remove_busy_dialog()
         self.confirm = self.gtk.Dialog(
-            "KlipperScreen", buttons, label, self._confirm_send_action_response, method, params
+            "Screen", buttons, label, self._confirm_send_action_response, method, params
         )
 
     def _confirm_send_action_response(self, dialog, response_id, method, params):
@@ -918,13 +968,24 @@ class KlipperScreen(Gtk.Window):
         if isinstance(widget, Gtk.Button):
             self.gtk.Button_busy(widget, True)
             self._ws.send_method(method, params, self.enable_widget, widget)
+            if params is not None and 'script' in params:
+                if 'G28' in params['script']:
+                    self.show_busy_dialog(widget, label=_("Homing, Please Wait..."))
+                elif 'POWEROFF_RESUME' in params['script']:
+                    self.is_system_busy = True
+                    self.show_busy_dialog(widget, label=_("Powerloss Resuming, Please Wait..."))
         else:
             self._ws.send_method(method, params)
+            if params is not None and 'script' in params:
+                if 'POWEROFF_RESUME' in params['script']:
+                    self.is_system_busy = True
+                    self.show_busy_dialog(widget, label=_("Powerloss Resuming, Please Wait..."))
 
     def enable_widget(self, *args):
         for x in args:
             if isinstance(x, Gtk.Button):
                 GLib.timeout_add(150, self.gtk.Button_busy, x, False)
+        self.remove_busy_dialog()
 
     def printer_initializing(self, msg, remove=False):
         if 'splash_screen' not in self.panels or remove:
@@ -1010,7 +1071,7 @@ class KlipperScreen(Gtk.Window):
         if state['result']['klippy_connected'] is False:
             logging.info("Klipper not connected")
             msg = _("Moonraker: connected") + "\n\n"
-            msg += f"Klipper: {state['result']['klippy_state']}" + "\n\n"
+            msg += f"Firmware: {state['result']['klippy_state']}" + "\n\n"
             if self.reinit_count <= self.max_retries:
                 msg += _("Retrying") + f' #{self.reinit_count}'
             return self._init_printer(msg)
