@@ -264,7 +264,7 @@ class Panel(ScreenPanel):
             self._screen._ws.klippy.gcode_script("T0")
         try:
             x_position = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
-            y_position = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
+            y_position = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
         except:
             logging.error("Couldn't get the calibration camera position.")
             return
