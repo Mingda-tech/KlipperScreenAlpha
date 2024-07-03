@@ -36,7 +36,7 @@ class Panel(ScreenPanel):
             'z+': self._gtk.Button("z-farther", "Z+", "color3"),
             'z-': self._gtk.Button("z-closer", "Z-", "color3"),
             'start': self._gtk.Button("start", _("Start"), "color4"),
-            'save': self._gtk.Button("motor-off", _("Disable Motors"), "color4"),
+            'save': self._gtk.Button("complete", _("Save"), "color4"),
         }
         self.buttons['x+'].connect("clicked", self.move, "X", "+")
         self.buttons['x-'].connect("clicked", self.move, "X", "-")
@@ -285,10 +285,6 @@ class Panel(ScreenPanel):
 
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
-                    if self.mpv:
-                        self.mpv.terminate()
-                        self.mpv = None
-                    self.save_config()                    
                     self._screen._menu_go_back()
             except Exception as e:
                 logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
