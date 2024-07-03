@@ -44,29 +44,10 @@ class Panel(ScreenPanel):
         functions = []
         pobox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-        if "MD_DIST_CALIBRATE" in self._printer.available_commands:
-            self._add_button("Probe", "probe", pobox)
-            functions.append("md_dist")
-        else:
-            # if "Z_ENDSTOP_CALIBRATE" in self._printer.available_commands:
-            #     self._add_button("Endstop", "endstop", pobox)
-            #     functions.append("endstop")
-            if "PROBE_CALIBRATE" in self._printer.available_commands:
-                self._add_button("Probe", "probe", pobox)
-                functions.append("probe")
-            if "BED_MESH_CALIBRATE" in self._printer.available_commands and "probe" not in functions:
-                # This is used to do a manual bed mesh if there is no probe
-                self._add_button("Bed mesh", "mesh", pobox)
-                functions.append("mesh")
-            if "DELTA_CALIBRATE" in self._printer.available_commands:
-                if "probe" in functions:
-                    self._add_button("Delta Automatic", "delta", pobox)
-                    functions.append("delta")
-                # Since probes may not be accturate enough for deltas, always show the manual method
-                self._add_button("Delta Manual", "delta_manual", pobox)
-                functions.append("delta_manual")
 
-        logging.info(f"Available functions for calibration: {functions}")
+        if "Z_ENDSTOP_CALIBRATE" in self._printer.available_commands:
+            self._add_button("Endstop", "endstop", pobox)
+            functions.append("endstop")
 
         self.labels['popover'] = Gtk.Popover()
         self.labels['popover'].add(pobox)
@@ -130,95 +111,11 @@ class Panel(ScreenPanel):
     def start_calibration(self, widget, method):
         self.labels['popover'].popdown()
         self.buttons['start'].set_sensitive(False)
-        if method == "md_dist":
-            self._screen._ws.klippy.gcode_script("MD_DIST_CALIBRATE")
-            return
-        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
-            self._screen._ws.klippy.gcode_script("G28")
-        if method == "probe":
-            self._move_to_position()
-            self._screen._ws.klippy.gcode_script("PROBE_CALIBRATE")
-        elif method == "mesh":
-            self._screen._ws.klippy.gcode_script("BED_MESH_CALIBRATE")
-        elif method == "delta":
-            self._screen._ws.klippy.gcode_script("DELTA_CALIBRATE")
-        elif method == "delta_manual":
-            self._screen._ws.klippy.gcode_script("DELTA_CALIBRATE METHOD=manual")
-        elif method == "endstop":
+        self._screen._ws.klippy.gcode_script("G28")
+        if method == "endstop":
+            if "MD_1000D" in self._printer.available_commands:
+                self._screen._ws.klippy.gcode_script("G1 Y200")
             self._screen._ws.klippy.gcode_script("Z_ENDSTOP_CALIBRATE")
-
-    def _move_to_position(self):
-        x_position = y_position = None
-        z_hop = speed = None
-        # Get position from config
-        if self.ks_printer_cfg is not None:
-            x_position = self.ks_printer_cfg.getfloat("calibrate_x_position", None)
-            y_position = self.ks_printer_cfg.getfloat("calibrate_y_position", None)
-
-        if self.probe:
-            if "sample_retract_dist" in self.probe:
-                z_hop = self.probe['sample_retract_dist']
-            if "speed" in self.probe:
-                speed = self.probe['speed']
-
-        # Use safe_z_home position
-        if "safe_z_home" in self._printer.get_config_section_list():
-            safe_z = self._printer.get_config_section("safe_z_home")
-            safe_z_xy = safe_z['home_xy_position']
-            safe_z_xy = [str(i.strip()) for i in safe_z_xy.split(',')]
-            if x_position is None:
-                x_position = float(safe_z_xy[0])
-                logging.debug(f"Using safe_z x:{x_position}")
-            if y_position is None:
-                y_position = float(safe_z_xy[1])
-                logging.debug(f"Using safe_z y:{y_position}")
-            if 'z_hop' in safe_z:
-                z_hop = safe_z['z_hop']
-            if 'z_hop_speed' in safe_z:
-                speed = safe_z['z_hop_speed']
-
-        speed = 15 if speed is None else speed
-        z_hop = 5 if z_hop is None else z_hop
-        self._screen._ws.klippy.gcode_script(f"G91\nG0 Z{z_hop} F{float(speed) * 60}")
-        if self._printer.get_stat("gcode_move", "absolute_coordinates"):
-            self._screen._ws.klippy.gcode_script("G90")
-
-        if x_position is not None and y_position is not None:
-            logging.debug(f"Configured probing position X: {x_position} Y: {y_position}")
-            self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
-        elif "delta" in self._printer.get_config_section("printer")['kinematics']:
-            logging.info("Detected delta kinematics calibrating at 0,0")
-            self._screen._ws.klippy.gcode_script('G0 X0 Y0 F3000')
-        else:
-            self._calculate_position()
-
-    def _calculate_position(self):
-        logging.debug("Position not configured, probing the middle of the bed")
-        try:
-            xmax = float(self._printer.get_config_section("stepper_x")['position_max'])
-            ymax = float(self._printer.get_config_section("stepper_y")['position_max'])
-        except KeyError:
-            logging.error("Couldn't get max position from stepper_x and stepper_y")
-            return
-        x_position = xmax / 2
-        y_position = ymax / 2
-        logging.info(f"Center position X:{x_position} Y:{y_position}")
-
-        # Find probe offset
-        x_offset = y_offset = None
-        if self.probe:
-            if "x_offset" in self.probe:
-                x_offset = float(self.probe['x_offset'])
-            if "y_offset" in self.probe:
-                y_offset = float(self.probe['y_offset'])
-        logging.info(f"Offset X:{x_offset} Y:{y_offset}")
-        if x_offset is not None:
-            x_position = x_position - x_offset
-        if y_offset is not None:
-            y_position = y_position - y_offset
-
-        logging.info(f"Moving to X:{x_position} Y:{y_position}")
-        self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
 
     def activate(self):
         if self._printer.get_stat("manual_probe", "is_active"):
