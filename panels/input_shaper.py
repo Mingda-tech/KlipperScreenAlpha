@@ -145,7 +145,9 @@ class Panel(ScreenPanel):
         # This will return the current values
         self._screen._ws.klippy.gcode_script('SET_INPUT_SHAPER')
         # Check for the accelerometer
-        self._screen._ws.klippy.gcode_script('ACCELEROMETER_QUERY')
+        chip = self._printer.get_accelerometer_chip()
+        if chip != None:
+            self._screen._ws.klippy.gcode_script(f'ACCELEROMETER_QUERY CHIP={chip}')
         # Send at least two commands, with my accelerometer the first command after a reboot will fail
         self._screen._ws.klippy.gcode_script('MEASURE_AXES_NOISE')
 
