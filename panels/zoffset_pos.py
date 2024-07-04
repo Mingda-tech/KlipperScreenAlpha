@@ -35,7 +35,7 @@ class Panel(ScreenPanel):
             'y-': self._gtk.Button("arrow-down", "Y-", "color2"),
             'z+': self._gtk.Button("z-farther", "Z+", "color3"),
             'z-': self._gtk.Button("z-closer", "Z-", "color3"),
-            'start': self._gtk.Button("home", _("Start"), "color4"),
+            'start': self._gtk.Button("start", _("Start"), "color4"),
             'save': self._gtk.Button("complete", _("Save"), "color4"),
         }
         self.buttons['x+'].connect("clicked", self.move, "X", "+")
