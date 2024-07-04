@@ -270,8 +270,12 @@ class Panel(ScreenPanel):
             return
 
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
-        self._screen._ws.klippy.gcode_script(f'G0 Z{z_position} F3000')
-        self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
+        script = [
+            f"{KlippyGcodes.MOVE_ABSOLUTE}",
+            f"G1 Z{z_position}  F600\n",
+            f"G1 X{x_position} Y{y_position} F6000\n",
+        ]
+        self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})          
         self.pos['z'] = z_position    
         
     def save_config(self):
