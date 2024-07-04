@@ -175,7 +175,7 @@ class Panel(ScreenPanel):
                     if self.pos['l_z'] is None or self.pos['r_z'] is None:
                         if change_extruder_flag:
                             self.change_extruder(widget=None, extruder="extruder1")
-                            # self._calculate_position()
+                            self._calculate_position()
                     else:
                         self.is_start_calibrate = False
                         offset = self.pos['r_z'] - self.pos['l_z']
