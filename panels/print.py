@@ -343,7 +343,10 @@ class Panel(ScreenPanel):
         elif response_id == Gtk.ResponseType.YES:
             logging.info(f"Starting copy print: {filename}")
             homed_axes = self._printer.get_stat("toolhead", "homed_axes")
-            self._screen._ws.klippy.gcode_script("G28")
+            if "z" not in homed_axes:
+                self._screen._ws.klippy.gcode_script("G28 Z")
+            elif "x" not in homed_axes:
+                self._screen._ws.klippy.gcode_script("G28 X")
             self._screen._ws.klippy.gcode_script("M605 S2")
             self._screen._ws.klippy.print_start(filename)
         elif response_id == Gtk.ResponseType.APPLY:
