@@ -423,9 +423,12 @@ class Printer:
         self.spoolman = True
 
     def get_accelerometer_chip(self):
+        logging.info("Getting accelerometer chip1111111111")
         if self.config_section_exists("lis2dw"):
+            logging.info(f"lis2dw found: {iter(self.get_config_section_list("lis2dw "))}")
             return iter(self.get_config_section_list("lis2dw "))
         elif self.config_section_exists("adxl345"):
-            return "adxl345 "
+            logging.info(f"adxl345 found: {iter(self.get_config_section_list("adxl345 "))}")
+            return iter(self.get_config_section_list("adxl345 "))
         
         return None
