@@ -425,8 +425,6 @@ class Printer:
     def get_accelerometer_chip(self):
         chips = self.get_config_section_list("lis2dw ") + self.get_config_section_list("adxl345 ")
         if chips:
-            logging.info(f"11111111111 {chips[0]}")
             return chips[0].split(' ', 1)[-1].strip()
         else:
-            logging.info("222222222")
             return None 
