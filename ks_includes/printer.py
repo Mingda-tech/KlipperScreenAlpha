@@ -425,14 +425,14 @@ class Printer:
     def get_accelerometer_chip(self):
         logging.info("Getting accelerometer chip1111111111")
         if self.config_section_exists("lis2dw"):
-            chip =  {iter(self.get_config_section_list("lis2dw "))}
+            chip =  iter(self.get_config_section_list("lis2dw "))
             if chip == None:
                 logging.info(f"lis2dw not found:222222222")
             else:
-                logging.info(f"lis2dw found:")
+                logging.info(f"lis2dw found: {chip}")
             return iter(self.get_config_section_list("lis2dw "))
         elif self.config_section_exists("adxl345"):
-            logging.info(f"adxl345 found: {iter(self.get_config_section_list("adxl345 "))}")
+            # logging.info(f"adxl345 found: {iter(self.get_config_section_list("adxl345 "))}")
             return iter(self.get_config_section_list("adxl345 "))
         
         return None
