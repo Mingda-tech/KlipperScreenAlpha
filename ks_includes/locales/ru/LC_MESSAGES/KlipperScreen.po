@@ -125,7 +125,7 @@ msgstr "Невозможно установить выше максимума:"
 msgid "Cancel"
 msgstr "Отменить"
 
-msgid "Cancel Print"
+msgid ""
 msgstr "Отменить печать"
 
 msgid "Cancelled"

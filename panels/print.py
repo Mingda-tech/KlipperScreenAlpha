@@ -337,7 +337,6 @@ class Panel(ScreenPanel):
     def confirm_print_response(self, dialog, response_id, filename):
         self._gtk.remove_dialog(dialog)
         if response_id == Gtk.ResponseType.OK:
-            self._screen._ws.klippy.gcode_script("M605 S1")
             logging.info(f"Starting print: {filename}")
             self._screen._ws.klippy.print_start(filename)
         elif response_id == Gtk.ResponseType.YES:

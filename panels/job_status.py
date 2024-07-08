@@ -469,6 +469,8 @@ class Panel(ScreenPanel):
         self.disable_button("pause", "resume", "cancel")
         if response_id == Gtk.ResponseType.OK:
             self._screen._ws.klippy.print_cancel()
+            if 'ACTIVATE_PRIMARY_MODE' in self._printer.get_gcode_macros():
+                self._screen._ws.klippy.gcode_script("ACTIVATE_PRIMARY_MODE")
         elif response_id == Gtk.ResponseType.YES:
             self._screen._ws.klippy.gcode_script("REMOVE_POWEROFF_RESUME")
             self._screen._ws.klippy.emergency_stop()
