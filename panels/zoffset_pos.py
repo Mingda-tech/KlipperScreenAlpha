@@ -9,20 +9,23 @@ from ks_includes.screen_panel import ScreenPanel
 
 
 class Panel(ScreenPanel):
-    distances = ['.1', '.5', '1', '5', '10', '25', '100']
+    distances = ['.01', '.05', '0.1', '0.5', '1', '5', '10']
     distance = distances[-2]
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
         if self.ks_printer_cfg is not None:
-            dis = self.ks_printer_cfg.get("move_distances", '0.1, 0.5, 1, 5, 10, 25, 100')
+            dis = self.ks_printer_cfg.get("move_distances", '0.01, 0.05, 0.1, 0.5, 1, 5, 10')
             if re.match(r'^[0-9,\.\s]+$', dis):
                 dis = [str(i.strip()) for i in dis.split(',')]
                 if 1 < len(dis) <= 7:
                     self.distances = dis
                     self.distance = self.distances[-2]
 
+        self.pos = {}
+        self.pos['x'] = 0
+        self.pos['y'] = 0
         self.settings = {}
         self.menu = ['move_menu']
         self.buttons = {
@@ -32,8 +35,8 @@ class Panel(ScreenPanel):
             'y-': self._gtk.Button("arrow-down", "Y-", "color2"),
             'z+': self._gtk.Button("z-farther", "Z+", "color3"),
             'z-': self._gtk.Button("z-closer", "Z-", "color3"),
-            'home': self._gtk.Button("home", _("Home"), "color4"),
-            'motors_off': self._gtk.Button("motor-off", _("Disable Motors"), "color4"),
+            'start': self._gtk.Button("start", _("Start"), "color4"),
+            'save': self._gtk.Button("complete", _("Save"), "color4"),
         }
         self.buttons['x+'].connect("clicked", self.move, "X", "+")
         self.buttons['x-'].connect("clicked", self.move, "X", "-")
@@ -41,14 +44,12 @@ class Panel(ScreenPanel):
         self.buttons['y-'].connect("clicked", self.move, "Y", "-")
         self.buttons['z+'].connect("clicked", self.move, "Z", "+")
         self.buttons['z-'].connect("clicked", self.move, "Z", "-")
-        self.buttons['home'].connect("clicked", self.home)
-        script = {"script": "M18"}
-        self.buttons['motors_off'].connect("clicked", self._screen._confirm_send_action,
-                                           _("Are you sure you wish to disable motors?"),
-                                           "printer.gcode.script", script)
-        adjust = self._gtk.Button("settings", None, "color2", 1, Gtk.PositionType.LEFT, 1)
-        adjust.connect("clicked", self.load_menu, 'options', _('Settings'))
-        adjust.set_hexpand(False)
+        self.buttons['start'].connect("clicked", self.start)
+        self.buttons['save'].connect("clicked", self.save)
+        self.buttons['save'].set_sensitive(False)
+        # adjust = self._gtk.Button("settings", None, "color2", 1, Gtk.PositionType.LEFT, 1)
+        # adjust.connect("clicked", self.load_menu, 'options', _('Settings'))
+        # adjust.set_hexpand(False)
         grid = self._gtk.HomogeneousGrid()
         if self._screen.vertical_mode:
             if self._screen.lang_ltr:
@@ -77,8 +78,8 @@ class Panel(ScreenPanel):
             grid.attach(self.buttons['z+'], 3, 0, 1, 1)
             grid.attach(self.buttons['z-'], 3, 1, 1, 1)
 
-        grid.attach(self.buttons['home'], 0, 0, 1, 1)
-        grid.attach(self.buttons['motors_off'], 2, 0, 1, 1)
+        grid.attach(self.buttons['start'], 0, 0, 1, 1)
+        grid.attach(self.buttons['save'], 2, 0, 1, 1)
 
         distgrid = Gtk.Grid()
         for j, i in enumerate(self.distances):
@@ -155,15 +156,19 @@ class Panel(ScreenPanel):
                 self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
                 self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
                 self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
+                self.pos['x'] = data['gcode_move']['gcode_position'][0]
+                self.pos['y'] = data['gcode_move']['gcode_position'][1]
         else:
             if "x" in homed_axes:
                 if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
                     self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
+                    self.pos['x'] = data['gcode_move']['gcode_position'][0]
             else:
                 self.labels['pos_x'].set_text("X: ?")
             if "y" in homed_axes:
                 if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
                     self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
+                    self.pos['y'] = data['gcode_move']['gcode_position'][1]                    
             else:
                 self.labels['pos_y'].set_text("Y: ?")
             if "z" in homed_axes:
@@ -250,11 +255,37 @@ class Panel(ScreenPanel):
             return True
         return False
 
-    def home(self, widget):
-        if "delta" in self._printer.get_config_section("printer")['kinematics']:
-            self._screen._send_action(widget, "printer.gcode.script", {"script": 'G28'})
+    def start(self, widget):
+        self._screen._ws.klippy.gcode_script("BED_MESH_CLEAR")
+        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
+            self._screen._ws.klippy.gcode_script("G28")
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        if current_extruder != "extruder":
+            self._screen._ws.klippy.gcode_script("T0")
+        try:
+            x_position = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
+            y_position = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
+        except:
+            logging.error("Couldn't get the calibration camera position.")
             return
-        name = "homing"
-        disname = self._screen._config.get_menu_name("move", name)
-        menuitems = self._screen._config.get_menu_items("move", name)
-        self._screen.show_panel("menu", disname, items=menuitems)
+    
+        logging.info(f"Moving to X:{x_position} Y:{y_position}")
+        script = [
+            f"{KlippyGcodes.MOVE_ABSOLUTE}",
+            f"G1 Z10 F600\n",
+            f"G1 X{x_position} Y{y_position} F6000\n",
+        ]
+        self._screen._send_action(widget, "printer.gcode.script", {"script": "\n".join(script)})  
+        self.buttons['save'].set_sensitive(True)    
+
+    def save(self, widget):
+            try:
+                self._screen.klippy_config.set("Variables", "switch_xpos", f"{self.pos['x']:.2f}")
+                self._screen.klippy_config.set("Variables", "switch_ypos", f"{self.pos['y']:.2f}")
+
+                with open(self._screen.klippy_config_path, 'w') as file:
+                    self._screen.klippy_config.write(file)
+                    self._screen._menu_go_back()
+            except Exception as e:
+                logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
+                self._screen.show_popup_message(_("Error writing configuration"))  

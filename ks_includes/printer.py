@@ -421,3 +421,10 @@ class Printer:
     def enable_spoolman(self):
         logging.info("Enabling Spoolman")
         self.spoolman = True
+
+    def get_accelerometer_chip(self):
+        chips = self.get_config_section_list("lis2dw ") + self.get_config_section_list("adxl345 ")
+        if chips:
+            return chips[0].split(' ', 1)[-1].strip()
+        else:
+            return None 

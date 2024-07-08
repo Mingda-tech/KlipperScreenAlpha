@@ -217,11 +217,16 @@ class KlippyGtk:
         if not self.screen.windowed:
             dialog.fullscreen()
 
+        btn_size = len(buttons)
+        if btn_size > 3:
+            btn_size = 4
+        else:
+            btn_size = 3
         for button in buttons:
             dialog.add_button(button['name'], button['response'])
             button = dialog.get_widget_for_response(button['response'])
-            button.set_size_request((self.width - 30) / 3, self.height / 5)
-            format_label(button, 3)
+            button.set_size_request((self.width - 30) / btn_size, self.height / 5)
+            format_label(button, btn_size)
 
         dialog.connect("response", self.screen.reset_screensaver_timeout)
         dialog.connect("response", callback, *args)
