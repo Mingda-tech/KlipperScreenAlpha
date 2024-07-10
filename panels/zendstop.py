@@ -115,9 +115,6 @@ class Panel(ScreenPanel):
         if method == "endstop":
             if "MD_1000D" in self._printer.available_commands:
                 self._screen._ws.klippy.gcode_script("G1 Y200")
-            if "z" in self._printer.get_stat("toolhead", "homed_axes"):
-                self._screen._ws.klippy.gcode_script("M18")
-
             self._screen._ws.klippy.gcode_script("Z_ENDSTOP_CALIBRATE")
 
     def activate(self):

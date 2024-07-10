@@ -131,6 +131,8 @@ class Panel(ScreenPanel):
         self.labels['popover'].popdown()
         self.buttons['start'].set_sensitive(False)
         if method == "md_dist":
+            if "z" in self._printer.get_stat("toolhead", "homed_axes"):
+                self._screen._ws.klippy.gcode_script("M18")            
             self._screen._ws.klippy.gcode_script("MD_DIST_CALIBRATE")
             return
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
