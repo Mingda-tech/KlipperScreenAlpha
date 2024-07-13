@@ -288,7 +288,7 @@ class BasePanel(ScreenPanel):
             self.control['ipaddr'].set_text(label_text)
         return True
 
-    def get_host_ip():
+    def get_host_ip(self):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.connect(("8.8.8.8", 80))
