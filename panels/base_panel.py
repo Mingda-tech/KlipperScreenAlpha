@@ -75,7 +75,7 @@ class BasePanel(ScreenPanel):
         self.titlelbl.set_ellipsize(Pango.EllipsizeMode.END)
         self.set_title(title)
 
-        self.control['ipaddr'] = Gtk.Label(label="00:00 AM")
+        self.control['ipaddr'] = Gtk.Label(label="IP: 127.0.0.1  ")
         self.control['ipaddr_box'] = Gtk.Box()
         self.control['ipaddr_box'].set_halign(Gtk.Align.END)
         self.control['ipaddr_box'].pack_end(self.control['ipaddr'], True, True, 10)
@@ -283,8 +283,9 @@ class BasePanel(ScreenPanel):
 
     def update_ipaddr(self):
         new_ipaddr = self.get_host_ip()
-        if new_ipaddr != self.control['ipaddr'].get_text():
-            self.control['ipaddr'].set_text(new_ipaddr)
+        label_text = "IP: " + new_ipaddr + "  "
+        if label_text != self.control['ipaddr'].get_text():
+            self.control['ipaddr'].set_text(label_text)
         return True
 
     def get_host_ip():
