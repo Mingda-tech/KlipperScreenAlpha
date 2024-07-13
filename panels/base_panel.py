@@ -294,7 +294,7 @@ class BasePanel(ScreenPanel):
             s.connect(("8.8.8.8", 80))
             ip = s.getsockname()[0]
         except Exception as e:
-            ip = "Unable to determine IP address"
+            ip = "127.0.0.1"
         finally:
             s.close()
         return ip
