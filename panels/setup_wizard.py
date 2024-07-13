@@ -139,7 +139,7 @@ class Panel(ScreenPanel):
     def on_next_click(self, widget=None):
         self._screen.setup_init = 2
         self._screen.save_init_step()
-        self._screen.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)
+        self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
         
     def change_language(self, widget, lang_name, lang_code):
         message = _("Current language: ") + lang_name

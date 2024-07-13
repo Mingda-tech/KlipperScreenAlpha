@@ -746,14 +746,6 @@ class KlipperScreen(Gtk.Window):
                 self.show_panel("manual", _("Manual"), remove_all=True)
             else :
                 self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
-        elif self.setup_init == 2:
-            self.show_panel("select_timezone", _("Choose Timezone"), remove_all=True)
-        elif self.setup_init == 3:
-            self.show_panel("zcalibrate_mesh", _("Leveling"), remove_all=True)
-        elif self.setup_init == 4:
-            self.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
-        elif self.auto_check:
-            self.show_panel("self_check", _("Self-check"), remove_all=True)
         self.auto_check = False
 
         self.on_filament_box_power = self._config.get_main_config().getboolean("filament_box_power", fallback=False)
