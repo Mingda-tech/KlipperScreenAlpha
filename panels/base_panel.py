@@ -6,7 +6,7 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk, Pango
 from jinja2 import Environment
-from datetime import datetime
+import socket
 from math import log
 from contextlib import suppress
 from ks_includes.screen_panel import ScreenPanel
@@ -16,9 +16,7 @@ class BasePanel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.current_panel = None
-        self.time_min = -1
-        self.time_format = self._config.get_main_config().getboolean("24htime", True)
-        self.time_update = None
+        self.ipaddr_update = None
         self.titlebar_items = []
         self.titlebar_name_type = None
         self.current_extruder = None
@@ -77,17 +75,17 @@ class BasePanel(ScreenPanel):
         self.titlelbl.set_ellipsize(Pango.EllipsizeMode.END)
         self.set_title(title)
 
-        self.control['time'] = Gtk.Label(label="00:00 AM")
-        self.control['time_box'] = Gtk.Box()
-        self.control['time_box'].set_halign(Gtk.Align.END)
-        self.control['time_box'].pack_end(self.control['time'], True, True, 10)
+        self.control['ipaddr'] = Gtk.Label(label="00:00 AM")
+        self.control['ipaddr_box'] = Gtk.Box()
+        self.control['ipaddr_box'].set_halign(Gtk.Align.END)
+        self.control['ipaddr_box'].pack_end(self.control['ipaddr'], True, True, 10)
 
         self.titlebar = Gtk.Box(spacing=5)
         self.titlebar.get_style_context().add_class("title_bar")
         self.titlebar.set_valign(Gtk.Align.CENTER)
         self.titlebar.add(self.control['temp_box'])
         self.titlebar.add(self.titlelbl)
-        self.titlebar.add(self.control['time_box'])
+        self.titlebar.add(self.control['ipaddr_box'])
 
         # Main layout
         self.main_grid = Gtk.Grid()
@@ -103,7 +101,7 @@ class BasePanel(ScreenPanel):
             self.main_grid.attach(self.titlebar, 1, 0, 1, 1)
             self.main_grid.attach(self.content, 1, 1, 1, 1)
 
-        self.update_time()
+        self.update_ipaddr()
 
     def show_heaters(self, show=True):
         try:
@@ -180,8 +178,8 @@ class BasePanel(ScreenPanel):
             return self._gtk.Image("heat-up", img_size, img_size)
 
     def activate(self):
-        if self.time_update is None:
-            self.time_update = GLib.timeout_add_seconds(1, self.update_time)
+        if self.ipaddr_update is None:
+            self.ipaddr_update = GLib.timeout_add_seconds(10, self.update_ipaddr)
 
     def add_content(self, panel):
         show = self._printer is not None and self._printer.state not in ('disconnected', 'startup', 'shutdown', 'error')
@@ -283,18 +281,23 @@ class BasePanel(ScreenPanel):
 
         self.titlelbl.set_label(f"{self._screen.connecting_to_printer} | {title}")
 
-    def update_time(self):
-        now = datetime.now()
-        confopt = self._config.get_main_config().getboolean("24htime", True)
-        if now.minute != self.time_min or self.time_format != confopt:
-            if confopt:
-                self.control['time'].set_text(f'{now:%H:%M }')
-            else:
-                self.control['time'].set_text(f'{now:%I:%M %p}')
-            self.time_min = now.minute
-            self.time_format = confopt
+    def update_ipaddr(self):
+        new_ipaddr = self.get_host_ip()
+        if new_ipaddr != self.control['ipaddr'].get_text():
+            self.control['ipaddr'].set_text(new_ipaddr)
         return True
 
+    def get_host_ip():
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            ip = s.getsockname()[0]
+        except Exception as e:
+            ip = "Unable to determine IP address"
+        finally:
+            s.close()
+        return ip
+    
     def set_ks_printer_cfg(self, printer):
         ScreenPanel.ks_printer_cfg = self._config.get_printer_config(printer)
         if self.ks_printer_cfg is not None:
