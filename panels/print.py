@@ -338,6 +338,8 @@ class Panel(ScreenPanel):
         self._gtk.remove_dialog(dialog)
         if response_id == Gtk.ResponseType.OK:
             logging.info(f"Starting print: {filename}")
+            if 'MD_400D' in self._printer.get_gcode_macros():
+                self._screen._ws.klippy.gcode_script("M605 S1")
             self._screen._ws.klippy.print_start(filename)
         elif response_id == Gtk.ResponseType.YES:
             logging.info(f"Starting copy print: {filename}")
