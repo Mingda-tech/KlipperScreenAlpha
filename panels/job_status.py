@@ -887,6 +887,7 @@ class Panel(ScreenPanel):
             self._screen.klippy_config.set("Variables", "fileposition", f"{self.file_position}")
             self._screen.klippy_config.set("Variables", "heaterbedtarget", f"{self.bed_target:.2f}")
             self._screen.klippy_config.set("Variables", "positionz", f"{self.pos_z:.2f}")
+            self.absolute_extrude = False            
             self._screen.klippy_config.set("Variables", "was_absolute_extrude", f"{self.absolute_extrude}")
             self._screen.klippy_config.set("Variables", "resumeflag", "1")
             logging.info(f"Saving print state to {self._screen.klippy_config_path} successfully!")
