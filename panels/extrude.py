@@ -240,7 +240,7 @@ class Panel(ScreenPanel):
 
     def extrude(self, widget, direction):
         temp = self._printer.get_dev_stat(self.current_extruder, "temperature")
-        if temp < 200:
+        if temp < 190:
             script = {"script": "M104 S240"}
             self._screen._confirm_send_action(None,
                                               _("The nozzle temperature is too low, Are you sure you want to heat it?"),
