@@ -265,6 +265,7 @@ class Panel(ScreenPanel):
         try:
             x_position = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
             y_position = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
+            z_position = self._screen.klippy_config.getfloat("Variables", "switch_zpos")
         except:
             logging.error("Couldn't get the calibration camera position.")
             return
@@ -272,7 +273,7 @@ class Panel(ScreenPanel):
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
         script = [
             f"{KlippyGcodes.MOVE_ABSOLUTE}",
-            f"G1 Z10 F600\n",
+            f"G1 Z{z_position} F600\n",
             f"G1 X{x_position} Y{y_position} F6000\n",
         ]
         self._screen._send_action(widget, "printer.gcode.script", {"script": "\n".join(script)})  
