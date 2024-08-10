@@ -151,7 +151,7 @@ class Panel(ScreenPanel):
         elif direction == "-":
             self.z_offset -= float(self.z_delta)
         current_extruder = self._printer.get_stat("toolhead", "extruder")
-        self._screen.manual_settings[current_extruder]["speedfactor"] = self.z_offset
+        self._screen.manual_settings[current_extruder]["zoffset"] = self.z_offset
         self.labels['zoffset'].set_label(f'  {self.z_offset:.3f}mm')
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"SET_GCODE_OFFSET Z_ADJUST={direction}{self.z_delta} MOVE=1"})
