@@ -712,16 +712,13 @@ class KlipperScreen(Gtk.Window):
         if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
             self.show_panel("extrude", _("Extrude"))
 
-    def state_printing(self):
-        for extruder in self.printer.get_tools():
-            self.manual_settings[extruder]["extruder_temp"] = 0
-            self.manual_settings[extruder]["speedfactor"] = 0
-            self.manual_settings[extruder]["extrudefactor"] = 0
-            self.manual_settings[extruder]["zoffset"] = 99        
+    def state_printing(self):            
         self.close_screensaver()
         for dialog in self.dialogs:
             self.gtk.remove_dialog(dialog)
         self.show_panel("job_status", _("Printing"), remove_all=True)
+        for extruder in self.printer.get_tools():
+            self.manual_settings[extruder] = {"extruder_temp": 0, "speedfactor": 0, "extrudefactor": 0, "zoffset": 99}
 
     def state_ready(self, wait=True):
         # Do not return to main menu if completing a job, timeouts/user input will return
