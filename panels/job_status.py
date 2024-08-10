@@ -638,7 +638,14 @@ class Panel(ScreenPanel):
                 )
             if self.state in ["printing", "paused"]:
                 self.update_time_left()
-
+                if self._screen.manual_settings[self.current_extruder]["extruder_temp"] > 150:
+                    self._screen._send_script(f"M104 S{self._screen.manual_settings[self.current_extruder]['temperature']}")
+                if self._screen.manual_settings[self.current_extruder]["speedfactor"] > 1:
+                    self._screen._send_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
+                if self._screen.manual_settings[self.current_extruder]["extrudefactor"] > 1:
+                    self._screen._send_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
+                if abs(self.zoffset - self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
+                    self._screen._send_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
     def update_flow(self):
         if not self.flowstore:
             self.flowstore.append(0)

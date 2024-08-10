@@ -109,6 +109,7 @@ class KlipperScreen(Gtk.Window):
         self.dialogs = []
         self.confirm = None
         self.panels_reinit = []
+        self.manual_settings = {}
 
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
@@ -712,6 +713,11 @@ class KlipperScreen(Gtk.Window):
             self.show_panel("extrude", _("Extrude"))
 
     def state_printing(self):
+        for extruder in self.printer.get_tools():
+            self.manual_settings[extruder]["extruder_temp"] = 0
+            self.manual_settings[extruder]["speedfactor"] = 0
+            self.manual_settings[extruder]["extrudefactor"] = 0
+            self.manual_settings[extruder]["zoffset"] = 99        
         self.close_screensaver()
         for dialog in self.dialogs:
             self.gtk.remove_dialog(dialog)

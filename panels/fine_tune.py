@@ -150,6 +150,8 @@ class Panel(ScreenPanel):
             self.z_offset += float(self.z_delta)
         elif direction == "-":
             self.z_offset -= float(self.z_delta)
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        self._screen.manual_settings[current_extruder]["speedfactor"] = self.z_offset
         self.labels['zoffset'].set_label(f'  {self.z_offset:.3f}mm')
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"SET_GCODE_OFFSET Z_ADJUST={direction}{self.z_delta} MOVE=1"})
@@ -162,6 +164,8 @@ class Panel(ScreenPanel):
         elif direction == "reset":
             self.extrusion = 100
         self.extrusion = max(self.extrusion, 1)
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        self._screen.manual_settings[current_extruder]["extrudefactor"] = self.extrusion        
         self.labels['extrudefactor'].set_label(f"  {self.extrusion:3}%")
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": KlippyGcodes.set_extrusion_rate(self.extrusion)})
@@ -176,6 +180,8 @@ class Panel(ScreenPanel):
 
         self.speed = max(self.speed, 5)
         self.labels['speedfactor'].set_label(f"  {self.speed:3}%")
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        self._screen.manual_settings[current_extruder]["speedfactor"] = self.speed
         self._screen._send_action(widget, "printer.gcode.script", {"script": KlippyGcodes.set_speed_rate(self.speed)})
 
     def change_percent_delta(self, widget, array, delta):
