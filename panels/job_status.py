@@ -18,6 +18,8 @@ class Panel(ScreenPanel):
         super().__init__(screen, title)
         self.grid = self._gtk.HomogeneousGrid()
         self.grid.set_row_homogeneous(False)
+        for extruder in self._printer.get_tools():
+            self._screen.manual_settings[extruder] = {"extruder_temp": 0, "speedfactor": 0, "extrudefactor": 0, "zoffset": 99}        
         self.pos_z = 0.0
         self.extrusion = 100
         self.speed_factor = 1.0
@@ -44,6 +46,7 @@ class Panel(ScreenPanel):
         self.extruder_target = 0.0
         self.bed_target = 0.0
         self.file_position = '0'
+        self.previous_extruder  = ''
 
         data = ['pos_x', 'pos_y', 'pos_z', 'time_left', 'duration', 'slicer_time', 'file_time',
                 'filament_time', 'est_time', 'speed_factor', 'req_speed', 'max_accel', 'extrude_factor', 'zoffset',
@@ -638,14 +641,28 @@ class Panel(ScreenPanel):
                 )
             if self.state in ["printing", "paused"]:
                 self.update_time_left()
+                if not self._screen.manual_settings or self.previous_extruder == self.current_extruder:
+                    return
+                # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder} +++++++222222")
                 if self._screen.manual_settings[self.current_extruder]["extruder_temp"] > 150:
-                    self._screen._send_script(f"M104 S{self._screen.manual_settings[self.current_extruder]['temperature']}")
+                    # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder} ------3333")
+                    self._screen._ws.klippy.gcode_script(f"M104 S{self._screen.manual_settings[self.current_extruder]['extruder_temp']}")
+                
+                logging.info(f"Setting extruder speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
                 if self._screen.manual_settings[self.current_extruder]["speedfactor"] > 1:
-                    self._screen._send_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
+                    self._screen._ws.klippy.gcode_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
+                    logging.info(f"Setting speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
+                
+                logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
                 if self._screen.manual_settings[self.current_extruder]["extrudefactor"] > 1:
-                    self._screen._send_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
-                if abs(self.zoffset - self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
-                    self._screen._send_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
+                    self._screen._ws.klippy.gcode_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
+                    logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
+                
+                logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
+                if abs(self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
+                    self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
+                    logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
+                self.previous_extruder = self.current_extruder
     def update_flow(self):
         if not self.flowstore:
             self.flowstore.append(0)

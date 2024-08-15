@@ -398,8 +398,8 @@ class Panel(ScreenPanel):
 
         if self.active_heater.startswith('extruder'):
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self.active_heater), temp)
-            if self._printer.state in ["printing", "paused"]:
-                self._screen.manual_settings[self.active_heater]["extruder_temp"] = temp            
+            if self._printer.state in ["printing", "paused"] and self._screen.manual_settings:
+                self._screen.manual_settings[self.active_heater]["extruder_temp"] = temp   
         elif self.active_heater == "heater_bed":
             self._screen._ws.klippy.set_bed_temp(temp)
         elif self.active_heater.startswith('heater_generic '):
