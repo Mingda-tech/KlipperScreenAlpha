@@ -424,6 +424,8 @@ class Panel(ScreenPanel):
             if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
                 self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_ENDSTOP")
             # self._screen._ws.klippy.gcode_script("SAVE_CONFIG")
+            if self._screen.manual_settings is not None and 'extruder1' in self._screen.manual_settings:
+                self.save_e1_zoffset()
 
     def restart(self, widget):
         if self.filename:
@@ -920,3 +922,15 @@ class Panel(ScreenPanel):
         except Exception as e:
             logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
             self._screen.show_popup_message(_("Error writing configuration"))
+
+    def save_e1_zoffset(self):
+            if self._screen.klippy_config is not None and abs(self._screen.manual_settings['extruder1']['zoffset']) < 10:
+                e1_zoffset = self._screen.manual_settings['extruder1']['zoffset']
+                self._screen.klippy_config.set("Variables", "e1_zoffset", f"{e1_zoffset:.2f}")
+                try:
+                    with open(self._screen.klippy_config_path, 'w') as file:
+                        self._screen.klippy_config.write(file)
+                        logging.info(f"Saving extruder1 z-offset: {e1_zoffset:.2f} to {self._screen.klippy_config_path} successfully!")
+                except Exception as e:
+                    logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
+                    self._screen.show_popup_message(_("Error writing configuration")) 
