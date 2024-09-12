@@ -340,7 +340,6 @@ class Panel(ScreenPanel):
             logging.info(f"Starting print: {filename}")
             if 'MD_400D' in self._printer.get_gcode_macros():
                 self._screen._ws.klippy.gcode_script("M605 S1")
-            self._screen._ws.klippy.print_start(filename)
         elif response_id == Gtk.ResponseType.YES:
             logging.info(f"Starting copy print: {filename}")
             homed_axes = self._printer.get_stat("toolhead", "homed_axes")
@@ -349,13 +348,12 @@ class Panel(ScreenPanel):
             elif "x" not in homed_axes:
                 self._screen._ws.klippy.gcode_script("G28 X")
             self._screen._ws.klippy.gcode_script("M605 S2")
-            self._screen._ws.klippy.print_start(filename)
         elif response_id == Gtk.ResponseType.APPLY:
             self._screen._ws.klippy.gcode_script("G28 X")
             self._screen._ws.klippy.gcode_script("M605 S3")
             logging.info(f"Starting mirror print: {filename}")
-            self._screen._ws.klippy.print_start(filename)
-
+        self._screen._ws.klippy.print_start(filename)
+        self._screen.state_printing()
     def delete_file(self, filename):
         directory = os.path.join("gcodes", os.path.dirname(filename)) if os.path.dirname(filename) else "gcodes"
         if directory not in self.filelist or os.path.basename(filename).startswith("."):
