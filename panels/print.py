@@ -352,8 +352,9 @@ class Panel(ScreenPanel):
             self._screen._ws.klippy.gcode_script("G28 X")
             self._screen._ws.klippy.gcode_script("M605 S3")
             logging.info(f"Starting mirror print: {filename}")
-        self._screen._ws.klippy.print_start(filename)
-        self._screen.state_printing()
+        if (response_id != Gtk.ResponseType.CANCEL):
+            self._screen._ws.klippy.print_start(filename)
+            self._screen.state_printing()
     def delete_file(self, filename):
         directory = os.path.join("gcodes", os.path.dirname(filename)) if os.path.dirname(filename) else "gcodes"
         if directory not in self.filelist or os.path.basename(filename).startswith("."):
