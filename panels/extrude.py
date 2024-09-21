@@ -67,8 +67,8 @@ class Panel(ScreenPanel):
             if i < limit:
                 extgrid.attach(self.labels[extruder], i, 0, 1, 1)
                 i += 1
-        if i < (limit - 1):
-            extgrid.attach(self.buttons['temperature'], i + 1, 0, 1, 1)
+        # if i < (limit - 1):
+        #     extgrid.attach(self.buttons['temperature'], i + 1, 0, 1, 1)
         if i < (limit - 2) and self._printer.spoolman:
             extgrid.attach(self.buttons['spoolman'], i + 2, 0, 1, 1)
 
@@ -159,7 +159,8 @@ class Panel(ScreenPanel):
             grid.attach(self.buttons['extrude'], 0, 2, 2, 1)
             # grid.attach(self.buttons['load'], 1, 2, 1, 1)
             # grid.attach(self.buttons['unload'], 2, 2, 1, 1)
-            grid.attach(self.buttons['retract'], 2, 2, 2, 1)
+            # grid.attach(self.buttons['retract'], 2, 2, 2, 1)
+            grid.attach(self.buttons['temperature'], 2, 2, 2, 1)
             grid.attach(distbox, 0, 3, 2, 1)
             grid.attach(speedbox, 2, 3, 2, 1)
             grid.attach(sensors, 0, 4, 4, 1)
