@@ -283,7 +283,9 @@ class KlipperScreenConfig:
             {"voice_notify": {"section": "main", "name": _("Voice Notify"), "type": "binary", "value": "False"}},
             {"shutdown_print_end": {"section": "main", "name": _("Shut down after printing completes"), "type": "binary", "value": "False"}},                                                                                  
             {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
-                                    "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
+                                    "value": "False", "callback": screen.set_filament_box_power}},
+            {"chamber_heater_power": {"section": "main", "name": _("Chamber Heater Power"), "type": "binary", 
+                                    "value": "False", "callback": screen.set_chamber_heater_power}},
             # {"": {"section": "main", "name": _(""), "type": ""}}
         ]
 
