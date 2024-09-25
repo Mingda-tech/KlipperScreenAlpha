@@ -31,9 +31,6 @@ class Panel(ScreenPanel):
             if name == "filament_box_power" and "SET_FILAMENT_BOX_POWER" not in self._printer.get_gcode_macros():
                 continue
 
-            if name == "chamber_heater_power" and "SET_CHAMBER_HEATER_POWER" not in self._printer.get_gcode_macros():
-                continue
-            
             script_file = "/home/mingda/printer_data/script/print_end.sh"
             if name == "shutdown_print_end" and ("SHUTDOWN_PRINT_END" not in self._printer.get_gcode_macros() or not os.path.exists(script_file)):
                 continue

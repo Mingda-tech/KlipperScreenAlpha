@@ -756,11 +756,6 @@ class KlipperScreen(Gtk.Window):
             script  = 'SET_FILAMENT_BOX_POWER S=1'
             self._ws.klippy.gcode_script(script)        
 
-        self.on_chamber_heater_power = self._config.get_main_config().getboolean("chamber_heater_power", fallback=False)
-        if self.on_chamber_heater_power and (self.printer is not None) and ('SET_CHAMBER_HEATER_POWER' in self.printer.get_gcode_macros()):
-            script  = 'SET_CHAMBER_HEATER_POWER S=1'
-            self._ws.klippy.gcode_script(script)        
-
 
     def state_startup(self):
         self.printer_initializing(_("Firmware is attempting to start"))
@@ -811,13 +806,6 @@ class KlipperScreen(Gtk.Window):
             script  = 'SET_FILAMENT_BOX_POWER S=0'
             if is_on:
                 script  = 'SET_FILAMENT_BOX_POWER S=1'
-            self._ws.klippy.gcode_script(script)
-
-    def set_chamber_heater_power(self, is_on):
-        if 'SET_CHAMBER_HEATER_POWER' in self.printer.get_gcode_macros():
-            script  = 'SET_CHAMBER_HEATER_POWER S=0'
-            if is_on:
-                script  = 'SET_CHAMBER_HEATER_POWER S=1'
             self._ws.klippy.gcode_script(script)
 
     def _websocket_callback(self, action, data):
