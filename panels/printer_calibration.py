@@ -466,23 +466,41 @@ class Panel(ScreenPanel):
         fileinfo['size'] = file_size
 
         try:
-            # Open the file for reading
             with open(file_path, "r") as file:
-                # Perform operations on the file
                 for line in file:
-                    if line.startswith(';TIME:'):
-                        fileinfo['estimated_time'] = int(line.strip().split(':')[1])
+                    if line.startswith('; estimated printing time'):
+                        time_str = line.strip().split('=')[1].strip()
+                        fileinfo['estimated_time'] = self.parse_time_to_seconds(time_str)
                         break
         except FileNotFoundError:
             print("The file does not exist.")
         except IOError as e:
             print(f"An error occurred: {e}")
         finally:
-            # Close the file in the "finally" block to ensure it's always closed
             if 'file' in locals():
                 file.close()        
 
         return fileinfo
+
+    def parse_time_to_seconds(self, time_str):
+        total_seconds = 0
+        parts = time_str.split()
+        
+        for part in parts:
+            if part[-1].isalpha() and part[:-1].isdigit():
+                value = int(part[:-1])
+                unit = part[-1]
+                
+                if unit == 'd':
+                    total_seconds += value * 24 * 60 * 60
+                elif unit == 'h':
+                    total_seconds += value * 60 * 60
+                elif unit == 'm':
+                    total_seconds += value * 60
+                elif unit == 's':
+                    total_seconds += value
+        
+        return total_seconds
 
     def reload_files(self, widget=None):
         self.filelist = {'calibration': {'directories': [], 'files': []}}
