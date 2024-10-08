@@ -1019,6 +1019,9 @@ class KlipperScreen(Gtk.Window):
         # Reinitialize printer, in case the printer was shut down and anything has changed.
         self.printer.reinit(printer_info['result'], config['result']['status'])
         self.printer.available_commands = self.apiclient.get_gcode_help()['result']
+        info = self.apiclient.send_request("machine/system_info")
+        if info and 'system_info' in info:
+            self.printer.system_info = info['system_info']
 
         self.ws_subscribe()
         extra_items = (self.printer.get_tools()

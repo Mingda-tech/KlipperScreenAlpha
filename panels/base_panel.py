@@ -6,6 +6,7 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk, Pango
 from jinja2 import Environment
+from datetime import datetime
 import socket
 from math import log
 from contextlib import suppress
@@ -20,17 +21,26 @@ class BasePanel(ScreenPanel):
         self.titlebar_items = []
         self.titlebar_name_type = None
         self.current_extruder = None
+        self.last_usage_report = datetime.now()
+        self.usage_report = 0
         # Action bar buttons
-        abscale = self.bts * 1.1
-        self.control['back'] = self._gtk.Button('back', scale=abscale)
+        self.abscale = self.bts * 1.1
+        self.control['back'] = self._gtk.Button('back', scale=self.abscale)
         self.control['back'].connect("clicked", self.back)
-        self.control['home'] = self._gtk.Button('main', scale=abscale)
+        self.control['home'] = self._gtk.Button('main', scale=self.abscale)
         self.control['home'].connect("clicked", self._screen._menu_go_back, True)
-        self.control['estop'] = self._gtk.Button('emergency', scale=abscale)
-        self.control['estop'].connect("clicked", self.emergency_stop)
         for control in self.control:
             self.set_control_sensitive(False, control)
-        self.control['printer_select'] = self._gtk.Button('shuffle', scale=abscale)
+        self.control['estop'] = self._gtk.Button('emergency', scale=self.abscale)
+        self.control['estop'].connect("clicked", self.emergency_stop)
+        self.control['estop'].set_no_show_all(True)
+        self.shutdown = {
+            "panel": "shutdown", "name": ""
+        }
+        self.control['shutdown'] = self._gtk.Button('shutdown', scale=self.abscale)
+        self.control['shutdown'].connect("clicked", self.menu_item_clicked, self.shutdown)
+        self.control['shutdown'].set_no_show_all(True)
+        self.control['printer_select'] = self._gtk.Button('shuffle', scale=self.abscale)
         self.control['printer_select'].connect("clicked", self._screen.show_printer_select)
         self.control['printer_select'].set_no_show_all(True)
 
@@ -39,7 +49,7 @@ class BasePanel(ScreenPanel):
             "panel": "gcode_macros",
             "icon": "custom-script",
         }
-        self.control['shortcut'] = self._gtk.Button(self.shorcut['icon'], scale=abscale)
+        self.control['shortcut'] = self._gtk.Button(self.shorcut['icon'], scale=self.abscale)
         self.control['shortcut'].connect("clicked", self.menu_item_clicked, self.shorcut)
         self.control['shortcut'].set_no_show_all(True)
 
@@ -62,6 +72,7 @@ class BasePanel(ScreenPanel):
         self.action_bar.add(self.control['printer_select'])
         self.action_bar.add(self.control['shortcut'])
         self.action_bar.add(self.control['estop'])
+        self.action_bar.add(self.control['shutdown'])
         self.show_printer_select(len(self._config.get_printers()) > 1)
 
         # Titlebar
@@ -113,9 +124,7 @@ class BasePanel(ScreenPanel):
 
             img_size = self._gtk.img_scale * self.bts
             for device in devices:
-                self.labels[device] = Gtk.Label()
-                self.labels[device].set_ellipsize(Pango.EllipsizeMode.START)
-
+                self.labels[device] = Gtk.Label(ellipsize=Pango.EllipsizeMode.START)
                 self.labels[f'{device}_box'] = Gtk.Box()
                 icon = self.get_icon(device, img_size)
                 if icon is not None:
@@ -124,18 +133,23 @@ class BasePanel(ScreenPanel):
 
             # Limit the number of items according to resolution
             nlimit = int(round(log(self._screen.width, 10) * 5 - 10.5))
-
             n = 0
-            self.current_extruder = self._printer.get_stat("toolhead", "extruder")
-            if self.current_extruder and f"{self.current_extruder}_box" in self.labels:
-                self.control['temp_box'].add(self.labels[f"{self.current_extruder}_box"])
-                n += 1
-
+            if len(self._printer.get_tools()) > (nlimit - 1):
+                self.current_extruder = self._printer.get_stat("toolhead", "extruder")
+                if self.current_extruder and f"{self.current_extruder}_box" in self.labels:
+                    self.control['temp_box'].add(self.labels[f"{self.current_extruder}_box"])
+            else:
+                self.current_extruder = False
             for device in devices:
-                if device == 'heater_bed':
-                    self.control['temp_box'].add(self.labels['heater_bed_box'])
+                if n >= nlimit:
+                    break
+                if device.startswith("extruder") and self.current_extruder is False:
+                    self.control['temp_box'].add(self.labels[f"{device}_box"])
                     n += 1
-                    continue
+                elif device.startswith("heater"):
+                    self.control['temp_box'].add(self.labels[f"{device}_box"])
+                    n += 1
+            for device in devices:
                 # Users can fill the bar if they want
                 if n >= nlimit + 1:
                     break
@@ -146,13 +160,6 @@ class BasePanel(ScreenPanel):
                         n += 1
                         break
 
-            # If there is enough space fill with heater_generic
-            for device in self._printer.get_heaters():
-                if n >= nlimit:
-                    break
-                if device.startswith("heater_generic"):
-                    self.control['temp_box'].add(self.labels[f"{device}_box"])
-                    n += 1
             self.control['temp_box'].show_all()
         except Exception as e:
             logging.debug(f"Couldn't create heaters box: {e}")
@@ -182,10 +189,13 @@ class BasePanel(ScreenPanel):
             self.ipaddr_update = GLib.timeout_add_seconds(10, self.update_ipaddr)
 
     def add_content(self, panel):
-        show = self._printer is not None and self._printer.state not in ('disconnected', 'startup', 'shutdown', 'error')
-        self.show_shortcut(show)
-        self.show_heaters(show)
-        self.set_control_sensitive(show, control='estop')
+        printing = self._printer and self._printer.state in {"printing", "paused"}
+        connected = self._printer and self._printer.state not in {'disconnected', 'startup', 'shutdown', 'error'}
+        self.control['estop'].set_visible(printing)
+        self.control['shutdown'].set_visible(not printing)
+        self.show_shortcut(connected)
+        self.show_heaters(connected)
+        self.show_printer_select(len(self._config.get_printers()) > 1)
         for control in ('back', 'home'):
             self.set_control_sensitive(len(self._screen._cur_panels) > 1, control=control)
         self.current_panel = panel
@@ -202,6 +212,30 @@ class BasePanel(ScreenPanel):
             self._screen._menu_go_back()
 
     def process_update(self, action, data):
+        if action == "notify_proc_stat_update":
+            cpu = data["system_cpu_usage"]["cpu"]
+            memory = (data["system_memory"]["used"] / data["system_memory"]["total"]) * 100
+            error = "message_popup_error"
+            ctx = self.titlebar.get_style_context()
+            msg = f"CPU: {cpu:2.0f}%    RAM: {memory:2.0f}%"
+            if cpu > 80 or memory > 85:
+                if self.usage_report < 3:
+                    self.usage_report += 1
+                    return
+                self.last_usage_report = datetime.now()
+                if not ctx.has_class(error):
+                    ctx.add_class(error)
+                self._screen.log_notification(f"{self._screen.connecting_to_printer}: {msg}", 2)
+                self.titlelbl.set_label(msg)
+            elif ctx.has_class(error):
+                if (datetime.now() - self.last_usage_report).seconds < 5:
+                    self.titlelbl.set_label(msg)
+                    return
+                self.usage_report = 0
+                ctx.remove_class(error)
+                self.titlelbl.set_label(f"{self._screen.connecting_to_printer}")
+            return
+
         if action == "notify_update_response":
             if self.update_dialog is None:
                 self.show_update_dialog()

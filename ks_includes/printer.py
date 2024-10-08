@@ -28,6 +28,9 @@ class Printer:
         self.cameras = []
         self.available_commands = {}
         self.spoolman = False
+        self.temp_devices = self.sensors = None
+        self.system_info = {}
+        self.warnings = []
 
     def reinit(self, printer_info, data):
         self.config = data['configfile']['config']
@@ -45,6 +48,8 @@ class Printer:
             self.store_timeout = GLib.timeout_add_seconds(1, self._update_temp_store)
         self.tempstore_size = 1200
         self.available_commands = {}
+        self.system_info.clear()
+        self.warnings = []
 
         for x in self.config.keys():
             if x[:8] == "extruder":
