@@ -18,7 +18,7 @@ class Panel(ScreenPanel):
     speed = extrusion = 100
     z_offset = 0.0
     previous_extruder = ''
-
+    extruder_target = 0
     def __init__(self, screen, title):
         super().__init__(screen, title)
         if self.ks_printer_cfg is not None:
@@ -143,30 +143,33 @@ class Panel(ScreenPanel):
                 self.labels['speedfactor'].set_label(f"  {self.speed:3}%")
 
         self.current_extruder = self._printer.get_stat("toolhead", "extruder")
-        if self.previous_extruder != self.current_extruder:
-            if self._screen.manual_settings[self.current_extruder]["extruder_temp"] > 150:
-                self._screen._ws.klippy.gcode_script(f"M104 S{self._screen.manual_settings[self.current_extruder]['extruder_temp']}")
-                logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder}")
+        for x in self._printer.get_temp_devices():
+            if x in data and x == self.current_extruder:
+                self.extruder_target = self._printer.get_dev_stat(x, "target")
+                    
+        if self._screen.manual_settings:
+            extruder_temp = int(self._screen.manual_settings[self.current_extruder]["extruder_temp"])
+            # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder} +++++++222222")
+            if self.previous_extruder == self.current_extruder and self.extruder_target > 150 and extruder_temp > 150 and abs(extruder_temp - self.extruder_target) > 0.0001 :
+                self._screen._ws.klippy.gcode_script(f"M104 S{extruder_temp}")
+                # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder}")
             
-            if self._screen.manual_settings[self.current_extruder]["speedfactor"] > 1:
-                speed = self._screen.manual_settings[self.current_extruder]["speedfactor"]
-                self.labels['speedfactor'].set_label(f"  {speed:3}%")                    
-                self._screen._ws.klippy.gcode_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
-                logging.info(f"Setting speed factor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
-            
-            if self._screen.manual_settings[self.current_extruder]["extrudefactor"] > 1:
-                extrusion = self._screen.manual_settings[self.current_extruder]["extrudefactor"]
-                self.labels['extrudefactor'].set_label(f"  {extrusion:3}%")                    
-                self._screen._ws.klippy.gcode_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
-                logging.info(f"Setting extrude factor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
-            
-            if abs(self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
-                z_offset = self._screen.manual_settings[self.current_extruder]["zoffset"]                    
-                self.labels['zoffset'].set_label(f'  {z_offset:.3f}mm')
-                self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
-                logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
-            self.previous_extruder = self.current_extruder
-
+            if self.previous_extruder != self.current_extruder:
+                # logging.info(f"Setting extruder speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
+                if self._screen.manual_settings[self.current_extruder]["speedfactor"] > 1:
+                    self._screen._ws.klippy.gcode_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
+                    logging.info(f"Setting speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
+                
+                # logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
+                if self._screen.manual_settings[self.current_extruder]["extrudefactor"] > 1:
+                    self._screen._ws.klippy.gcode_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
+                    logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
+                
+                # logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
+                if abs(self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
+                    self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
+                    logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
+                self.previous_extruder = self.current_extruder
     def change_babystepping(self, widget, direction):
         if direction == "reset":
             self.labels['zoffset'].set_label('  0.00mm')

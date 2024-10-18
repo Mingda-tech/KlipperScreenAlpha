@@ -399,7 +399,9 @@ class Panel(ScreenPanel):
         if self.active_heater.startswith('extruder'):
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self.active_heater), temp)
             if self._printer.state in ["printing", "paused"] and self._screen.manual_settings:
-                self._screen.manual_settings[self.active_heater]["extruder_temp"] = temp   
+                self._screen.manual_settings[self.active_heater]["extruder_temp"] = temp 
+                logging.info(f"Setting temperature to {self._screen.manual_settings[self.active_heater]['extruder_temp']}, {self.active_heater}")
+                  
         elif self.active_heater == "heater_bed":
             self._screen._ws.klippy.set_bed_temp(temp)
         elif self.active_heater.startswith('heater_generic '):
@@ -515,6 +517,7 @@ class Panel(ScreenPanel):
     def process_update(self, action, data):
         if action != "notify_status_update":
             return
+        self.current_extruder = self._printer.get_stat("toolhead", "extruder")
         for x in self._printer.get_temp_devices():
             if x in data:
                 self.update_temp(
@@ -523,7 +526,13 @@ class Panel(ScreenPanel):
                     self._printer.get_dev_stat(x, "target"),
                     self._printer.get_dev_stat(x, "power"),
                 )
-
+            if x == self.current_extruder and self._printer.state in ["printing", "paused"]:
+                self.extruder_target = self._printer.get_dev_stat(x, "target")
+                if self._screen.manual_settings: 
+                    extruder_temp = int(self._screen.manual_settings[self.current_extruder]["extruder_temp"])
+                    if self.extruder_target > 150 and extruder_temp > 150 and abs(extruder_temp - self.extruder_target) > 0.0001 :
+                        self._screen._ws.klippy.gcode_script(f"M104 S{extruder_temp}")
+                    
     def show_numpad(self, widget, device=None):
         for d in self.active_heaters:
             self.devices[d]['name'].get_style_context().remove_class("button_active")

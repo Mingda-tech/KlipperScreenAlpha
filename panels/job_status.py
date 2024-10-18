@@ -161,23 +161,29 @@ class Panel(ScreenPanel):
         buttons['fan'].connect("clicked", self.menu_item_clicked, {"panel": "fan", "name": _("Fan")})
         self.buttons.update(buttons)
 
+        self.buttons['extruder'] = {}
+        for i, extruder in enumerate(self._printer.get_tools()):
+            self.labels[extruder] = Gtk.Label(label="-")
+            self.buttons['extruder'][extruder] = self._gtk.Button(f"extruder-{i}", "", None, self.bts,
+                                                                  Gtk.PositionType.LEFT, 1)
+            self.buttons['extruder'][extruder].set_label(self.labels[extruder].get_text())
+            self.buttons['extruder'][extruder].connect("clicked", self.menu_item_clicked,
+                                                       {"panel": "temperature", "name": _("Temperature"),
+                                                        'extra': extruder})
+            self.buttons['extruder'][extruder].set_halign(Gtk.Align.START)
+
         self.labels['temp_grid'] = Gtk.Grid()
         nlimit = 2 if self._screen.width <= 500 else 3
         n = 0
-        self.buttons['extruder'] = {}
-        self.current_extruder = self._printer.get_stat("toolhead", "extruder")
-        if self.current_extruder:
-            for i, extruder in enumerate(self._printer.get_tools()):
-                self.labels[extruder] = Gtk.Label(label="-")
-                self.buttons['extruder'][extruder] = self._gtk.Button(f"extruder-{i}", "", None, self.bts,
-                                                                      Gtk.PositionType.LEFT, 1)
-                self.buttons['extruder'][extruder].set_label(self.labels[extruder].get_text())
-                self.buttons['extruder'][extruder].connect("clicked", self.menu_item_clicked,
-                                                           {"panel": "temperature", "name": _("Temperature"),
-                                                            'extra': self.current_extruder})
-                self.buttons['extruder'][extruder].set_halign(Gtk.Align.START)
-            self.labels['temp_grid'].attach(self.buttons['extruder'][self.current_extruder], n, 0, 1, 1)
-            n += 1
+        if nlimit > 2 and len(self._printer.get_tools()) == 2:
+            for extruder in self.buttons['extruder']:
+                self.labels['temp_grid'].attach(self.buttons['extruder'][extruder], n, 0, 1, 1)
+                n += 1
+        else:
+            self.current_extruder = self._printer.get_stat("toolhead", "extruder")
+            if self.current_extruder:
+                self.labels['temp_grid'].attach(self.buttons['extruder'][self.current_extruder], n, 0, 1, 1)
+                n += 1
         self.buttons['heater'] = {}
         for dev in self._printer.get_heaters():
             if n >= nlimit:
@@ -643,28 +649,30 @@ class Panel(ScreenPanel):
                 )
             if self.state in ["printing", "paused"]:
                 self.update_time_left()
-                if not self._screen.manual_settings or self.previous_extruder == self.current_extruder:
-                    return
-                # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder} +++++++222222")
-                if self._screen.manual_settings[self.current_extruder]["extruder_temp"] > 150:
-                    # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder} ------3333")
-                    self._screen._ws.klippy.gcode_script(f"M104 S{self._screen.manual_settings[self.current_extruder]['extruder_temp']}")
                 
-                logging.info(f"Setting extruder speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
-                if self._screen.manual_settings[self.current_extruder]["speedfactor"] > 1:
-                    self._screen._ws.klippy.gcode_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
-                    logging.info(f"Setting speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
-                
-                logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
-                if self._screen.manual_settings[self.current_extruder]["extrudefactor"] > 1:
-                    self._screen._ws.klippy.gcode_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
-                    logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
-                
-                logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
-                if abs(self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
-                    self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
-                    logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
-                self.previous_extruder = self.current_extruder
+                if self._screen.manual_settings:
+                    extruder_temp = int(self._screen.manual_settings[self.current_extruder]["extruder_temp"])
+                    # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder} +++++++222222")
+                    if self.previous_extruder == self.current_extruder and self.extruder_target > 150 and extruder_temp > 150 and abs(extruder_temp - self.extruder_target) > 0.0001 :
+                        self._screen._ws.klippy.gcode_script(f"M104 S{extruder_temp}")
+                        # logging.info(f"Setting temperature to {self._screen.manual_settings[self.current_extruder]['extruder_temp']}, {self.current_extruder}")
+                    
+                    if self.previous_extruder != self.current_extruder:
+                        # logging.info(f"Setting extruder speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
+                        if self._screen.manual_settings[self.current_extruder]["speedfactor"] > 1:
+                            self._screen._ws.klippy.gcode_script(f"M220 S{self._screen.manual_settings[self.current_extruder]['speedfactor']}")
+                            logging.info(f"Setting speedfactor to {self._screen.manual_settings[self.current_extruder]['speedfactor']}, {self.current_extruder}")
+                        
+                        # logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
+                        if self._screen.manual_settings[self.current_extruder]["extrudefactor"] > 1:
+                            self._screen._ws.klippy.gcode_script(f"M221 S{self._screen.manual_settings[self.current_extruder]['extrudefactor']}")
+                            logging.info(f"Setting extrudefactor to {self._screen.manual_settings[self.current_extruder]['extrudefactor']}, {self.current_extruder}")
+                        
+                        # logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
+                        if abs(self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
+                            self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
+                            logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
+                        self.previous_extruder = self.current_extruder
     def update_flow(self):
         if not self.flowstore:
             self.flowstore.append(0)
