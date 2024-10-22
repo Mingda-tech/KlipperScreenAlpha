@@ -956,3 +956,42 @@ msgstr "Balsinis pranešimas"
 
 msgid "Filament Box Power"
 msgstr "Filamentų dėžės maitinimas"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Jei jūsų kalibravimo įrenginys yra po PEI, prašome pakelti PEI po pradinio nustatymo."
+
+msgid "Homing the printer..."
+msgstr "Nustatoma spausdintuvo pradinė padėtis..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Pradedamas dvigubo purkštuko aukščio kalibravimas..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Prašome stebėti, ar purkštukas yra virš zondo."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Įspėjimas: Aptikta neigiama reikšmė. Tai pavojinga ir gali sugadinti įrenginį. Prašome perkalibruoti."
+
+msgid "New nozzle height difference is: "
+msgstr "Naujas purkštuko aukščio skirtumas yra: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Įspėjimas: Dabartinė reikšmė yra neigiama. Tai pavojinga ir gali sugadinti įrenginį. Prašome perkalibruoti."
+
+msgid "Z Height Diff"
+msgstr "Z aukščio skirtumas"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Koreguoti Zprobe padėtį"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Reikia perkrauti, paleisti iš naujo nedelsiant?"
+
+msgid "Current nozzle height difference: "
+msgstr "Dabartinis purkštuko aukščio skirtumas: "
+
+msgid "New nozzle height difference: "
+msgstr "Naujas purkštuko aukščio skirtumas: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Pavojingas purkštuko aukščio skirtumas: "

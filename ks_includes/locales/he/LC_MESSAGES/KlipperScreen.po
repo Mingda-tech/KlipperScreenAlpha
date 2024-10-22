@@ -1178,3 +1178,42 @@ msgstr "התראה קולית"
 
 msgid "Filament Box Power"
 msgstr "ספק החשמל של תיבת פילמנט"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "אם מכשיר הכיול שלך נמצא מתחת ל-PEI, אנא הרם את ה-PEI לאחר ההומינג."
+
+msgid "Homing the printer..."
+msgstr "מבצע הומינג למדפסת..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "מתחיל כיול גובה דו-נחיר..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "אנא בדוק אם הנחיר ממוקם מעל הגשש."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "אזהרה: התגלה ערך שלילי. זה מסוכן ועלול לגרום נזק למכונה. אנא כייל מחדש."
+
+msgid "New nozzle height difference is: "
+msgstr "הפרש גובה הנחיר החדש הוא: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "אזהרה: הערך הנוכחי שלילי. זה מסוכן ועלול לגרום נזק למכונה. אנא כייל מחדש."
+
+msgid "Z Height Diff"
+msgstr "הפרש גובה Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "התאם מיקום Zprobe"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "?צריך אתחול מחדש, להפעיל מחדש מיד"
+
+msgid "Current nozzle height difference: "
+msgstr "הפרש גובה הנחיר הנוכחי: "
+
+msgid "New nozzle height difference: "
+msgstr "הפרש גובה הנחיר החדש: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "הפרש גובה נחיר מסוכן: "

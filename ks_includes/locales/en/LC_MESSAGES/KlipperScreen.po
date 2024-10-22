@@ -941,3 +941,42 @@ msgstr ""
 
 msgid "Filament Box Power"
 msgstr ""
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr ""
+
+msgid "Homing the printer..."
+msgstr ""
+
+msgid "Starting dual nozzle height calibration..."
+msgstr ""
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr ""
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr ""
+
+msgid "New nozzle height difference is: "
+msgstr ""
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr ""
+
+msgid "Z Height Diff"
+msgstr ""
+
+msgid "Adjust Zprobe Pos"
+msgstr ""
+
+msgid "Need reboot, relaunch immediately?"
+msgstr ""
+
+msgid "Current nozzle height difference: "
+msgstr ""
+
+msgid "New nozzle height difference: "
+msgstr ""
+
+msgid "Dangerous nozzle height difference: "
+msgstr ""

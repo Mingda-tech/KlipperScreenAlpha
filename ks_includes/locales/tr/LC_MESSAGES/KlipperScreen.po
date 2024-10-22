@@ -1057,3 +1057,42 @@ msgstr "Sesli Bildirim"
 
 msgid "Filament Box Power"
 msgstr "Filament kutusu güç"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Kalibrasyon cihazınız PEI'nin altındaysa, lütfen başlangıç konumuna geldikten sonra PEI'yi kaldırın."
+
+msgid "Homing the printer..."
+msgstr "Yazıcı başlangıç konumuna gidiyor..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Çift nozul yükseklik kalibrasyonu başlatılıyor..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Lütfen nozulun probun üzerinde konumlandırılıp konumlandırılmadığını gözlemleyin."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Uyarı: Negatif değer tespit edildi. Bu tehlikelidir ve makineye zarar verebilir. Lütfen yeniden kalibre edin."
+
+msgid "New nozzle height difference is: "
+msgstr "Yeni nozul yükseklik farkı: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Uyarı: Mevcut değer negatif. Bu tehlikelidir ve makineye zarar verebilir. Lütfen yeniden kalibre edin."
+
+msgid "Z Height Diff"
+msgstr "Z Yükseklik Farkı"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Zprobe Konumunu Ayarla"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Yeniden başlatma gerekiyor, hemen yeniden başlatılsın mı?"
+
+msgid "Current nozzle height difference: "
+msgstr "Mevcut nozul yükseklik farkı: "
+
+msgid "New nozzle height difference: "
+msgstr "Yeni nozul yükseklik farkı: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Tehlikeli nozul yükseklik farkı: "

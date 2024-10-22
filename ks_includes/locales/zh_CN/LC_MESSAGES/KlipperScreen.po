@@ -1129,3 +1129,42 @@ msgstr "语音提示"
 
 msgid "Filament Box Power"
 msgstr "耗材箱电源"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "如果您的校准装置在PEI下方，请在归零后掀起PEI。"
+
+msgid "Homing the printer..."
+msgstr "正在归零打印机..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "开始双喷头高度校准..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "请注意观察喷嘴是否落在探针上方。"
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "警告：检测到负值。这很危险，可能会损坏机器。请重新校准。"
+
+msgid "New nozzle height difference is: "
+msgstr "新的喷嘴高度差为："
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "警告：当前值为负数。这很危险，可能会损坏机器。请重新校准。"
+
+msgid "Z Height Diff"
+msgstr "Z高度差"
+
+msgid "Adjust Zprobe Pos"
+msgstr "调整探针位置"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "需要重启，立即重新启动？"
+
+msgid "Current nozzle height difference: "
+msgstr "当前喷嘴高度差: "
+
+msgid "New nozzle height difference: "
+msgstr "新的喷嘴高度差: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "危险的喷嘴高度差: "

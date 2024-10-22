@@ -987,3 +987,42 @@ msgstr "Hlasové oznámení"
 
 msgid "Filament Box Power"
 msgstr "Napájení filamentové skříně"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Pokud je vaše kalibrační zařízení pod PEI, po domácím návratu prosím zvedněte PEI."
+
+msgid "Homing the printer..."
+msgstr "Provádím domácí návrat tiskárny..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Spouštím kalibraci výšky duální trysky..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Prosím sledujte, zda je tryska umístěna nad sondou."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Varování: Byla zjištěna záporná hodnota. To je nebezpečné a může poškodit stroj. Prosím proveďte rekalibraci."
+
+msgid "New nozzle height difference is: "
+msgstr "Nový rozdíl výšky trysek je: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Varování: Aktuální hodnota je záporná. To je nebezpečné a může poškodit stroj. Prosím proveďte rekalibraci."
+
+msgid "Z Height Diff"
+msgstr "Rozdíl výšky Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Nastavit pozici sondy"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Je potřeba restartovat, spustit znovu ihned?"
+
+msgid "Current nozzle height difference: "
+msgstr "Aktuální rozdíl výšky trysky: "
+
+msgid "New nozzle height difference: "
+msgstr "Nový rozdíl výšky trysky: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Nebezpečný rozdíl výšky trysky: "

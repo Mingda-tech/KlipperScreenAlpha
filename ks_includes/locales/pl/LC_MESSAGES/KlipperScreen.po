@@ -977,3 +977,42 @@ msgstr "Powiadomienie głosowe"
 
 msgid "Filament Box Power"
 msgstr "Zasilanie pudelka filamentu"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Jeśli urządzenie kalibracyjne znajduje się pod PEI, proszę podnieść PEI po bazowaniu."
+
+msgid "Homing the printer..."
+msgstr "Bazowanie drukarki..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Rozpoczynanie kalibracji wysokości podwójnej dyszy..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Proszę sprawdzić, czy dysza jest ustawiona nad sondą."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Ostrzeżenie: Wykryto wartość ujemną. To jest niebezpieczne i może uszkodzić maszynę. Proszę ponownie skalibrować."
+
+msgid "New nozzle height difference is: "
+msgstr "Nowa różnica wysokości dyszy wynosi: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Ostrzeżenie: Aktualna wartość jest ujemna. To jest niebezpieczne i może uszkodzić maszynę. Proszę ponownie skalibrować."
+
+msgid "Z Height Diff"
+msgstr "Różnica wysokości Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Dostosuj pozycję Zprobe"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Potrzebny restart, uruchomić ponownie natychmiast?"
+
+msgid "Current nozzle height difference: "
+msgstr "Aktualna różnica wysokości dyszy: "
+
+msgid "New nozzle height difference: "
+msgstr "Nowa różnica wysokości dyszy: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Niebezpieczna różnica wysokości dyszy: "

@@ -1125,3 +1125,42 @@ msgstr "Sprachbenachrichtigung"
 
 msgid "Filament Box Power"
 msgstr "Stromversorgung des Filamentkorbs"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Wenn sich Ihr Kalibriergerät unter der PEI-Platte befindet, heben Sie bitte die PEI-Platte nach dem Homing an."
+
+msgid "Homing the printer..."
+msgstr "Drucker fährt in die Ausgangsposition..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Starte Höhenkalibrierung der Doppeldüse..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Bitte beobachten Sie, ob die Düse über der Sonde positioniert ist."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Warnung: Negativer Wert erkannt. Dies ist gefährlich und kann die Maschine beschädigen. Bitte kalibrieren Sie erneut."
+
+msgid "New nozzle height difference is: "
+msgstr "Neue Düsenhöhendifferenz ist: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Warnung: Der aktuelle Wert ist negativ. Dies ist gefährlich und kann die Maschine beschädigen. Bitte kalibrieren Sie erneut."
+
+msgid "Z Height Diff"
+msgstr "Z-Höhendifferenz"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Zprobe-Position anpassen"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Neustart erforderlich, sofort neu starten?"
+
+msgid "Current nozzle height difference: "
+msgstr "Aktuelle Düsenhöhendifferenz: "
+
+msgid "New nozzle height difference: "
+msgstr "Neue Düsenhöhendifferenz: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Gefährliche Düsenhöhendifferenz: "

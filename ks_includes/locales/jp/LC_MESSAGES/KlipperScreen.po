@@ -975,3 +975,42 @@ msgstr "音声通知"
 
 msgid "Filament Box Power"
 msgstr "フィラメントボックスの電源"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "キャリブレーションデバイスがPEIの下にある場合は、ホーミング後にPEIを持ち上げてください。"
+
+msgid "Homing the printer..."
+msgstr "プリンターをホーミング中..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "デュアルノズル高さキャリブレーションを開始しています..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "ノズルがプローブの上に位置しているか確認してください。"
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "警告：負の値が検出されました。これは危険で、機械を損傷する可能性があります。再キャリブレーションしてください。"
+
+msgid "New nozzle height difference is: "
+msgstr "新しいノズル高さの差は："
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "警告：現在の値が負です。これは危険で、機械を損傷する可能性があります。再キャリブレーションしてください。"
+
+msgid "Z Height Diff"
+msgstr "Z軸高さ差"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Zプローブ位置調整"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "再起動が必要です。すぐに再起動しますか？"
+
+msgid "Current nozzle height difference: "
+msgstr "現在のノズル高さの差: "
+
+msgid "New nozzle height difference: "
+msgstr "新しいノズル高さの差: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "危険なノズル高さの差: "

@@ -1085,3 +1085,42 @@ msgstr "Stemmebesked"
 
 msgid "Filament Box Power"
 msgstr "Filamentboks strøm"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Hvis din kalibreringsanordning er under PEI'en, løft venligst PEI'en efter homing."
+
+msgid "Homing the printer..."
+msgstr "Homing af printeren..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Starter kalibrering af dobbelt dysehøjde..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Observér venligst om dysen er placeret over sonden."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Advarsel: Negativ værdi registreret. Dette er farligt og kan beskadige maskinen. Kalibrer venligst igen."
+
+msgid "New nozzle height difference is: "
+msgstr "Ny dysehøjdeforskel er: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Advarsel: Nuværende værdi er negativ. Dette er farligt og kan beskadige maskinen. Kalibrer venligst igen."
+
+msgid "Z Height Diff"
+msgstr "Z-højdeforskel"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Juster Zprobe-position"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Behov for genstart, genstart straks?"
+
+msgid "Current nozzle height difference: "
+msgstr "Nuværende dysehøjdeforskel: "
+
+msgid "New nozzle height difference: "
+msgstr "Ny dysehøjdeforskel: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Farlig dysehøjdeforskel: "

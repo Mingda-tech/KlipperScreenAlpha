@@ -976,3 +976,42 @@ msgstr "Stemmelding"
 
 msgid "Filament Box Power"
 msgstr "Voeding van filamentdoos"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Als uw kalibratie-apparaat onder de PEI zit, til dan de PEI op na het homen."
+
+msgid "Homing the printer..."
+msgstr "Printer wordt gehomd..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Start dubbele spuitmond hoogte kalibratie..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Controleer of de spuitmond boven de sonde is gepositioneerd."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Waarschuwing: Negatieve waarde gedetecteerd. Dit is gevaarlijk en kan de machine beschadigen. Kalibreer opnieuw."
+
+msgid "New nozzle height difference is: "
+msgstr "Nieuw hoogteverschil spuitmond is: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Waarschuwing: Huidige waarde is negatief. Dit is gevaarlijk en kan de machine beschadigen. Kalibreer opnieuw."
+
+msgid "Z Height Diff"
+msgstr "Z-hoogteverschil"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Pas Zprobe-positie aan"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Herstart nodig, onmiddellijk opnieuw starten?"
+
+msgid "Current nozzle height difference: "
+msgstr "Huidig hoogteverschil spuitmond: "
+
+msgid "New nozzle height difference: "
+msgstr "Nieuw hoogteverschil spuitmond: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Gevaarlijk hoogteverschil spuitmond: "

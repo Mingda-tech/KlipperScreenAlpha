@@ -1065,3 +1065,42 @@ msgstr "Голосове сповіщення"
 
 msgid "Filament Box Power"
 msgstr "Питання для касети з філаментом"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Якщо ваш калібрувальний пристрій знаходиться під PEI, будь ласка, підніміть PEI після повернення в початкове положення."
+
+msgid "Homing the printer..."
+msgstr "Повернення принтера в початкове положення..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Початок калібрування висоти подвійного сопла..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Будь ласка, перевірте, чи сопло розташоване над зондом."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Попередження: Виявлено негативне значення. Це небезпечно і може пошкодити машину. Будь ласка, виконайте повторне калібрування."
+
+msgid "New nozzle height difference is: "
+msgstr "Нова різниця висоти сопла: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Попередження: Поточне значення негативне. Це небезпечно і може пошкодити машину. Будь ласка, виконайте повторне калібрування."
+
+msgid "Z Height Diff"
+msgstr "Різниця висоти Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Налаштування позиції Zprobe"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Потрібне перезавантаження, перезапустити негайно?"
+
+msgid "Current nozzle height difference: "
+msgstr "Поточна різниця висоти сопла: "
+
+msgid "New nozzle height difference: "
+msgstr "Нова різниця висоти сопла: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Небезпечна різниця висоти сопла: "

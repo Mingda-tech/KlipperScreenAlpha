@@ -1110,3 +1110,42 @@ msgstr "Notifica vocale"
 
 msgid "Filament Box Power"
 msgstr "Alimentazione scatola di filamento"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Se il dispositivo di calibrazione è sotto il PEI, sollevare il PEI dopo l'homing."
+
+msgid "Homing the printer..."
+msgstr "Homing della stampante in corso..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Avvio della calibrazione dell'altezza del doppio ugello..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Osservare se l'ugello è posizionato sopra la sonda."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Attenzione: Rilevato valore negativo. Questo è pericoloso e potrebbe danneggiare la macchina. Si prega di ricalibrare."
+
+msgid "New nozzle height difference is: "
+msgstr "La nuova differenza di altezza dell'ugello è: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Attenzione: Il valore attuale è negativo. Questo è pericoloso e potrebbe danneggiare la macchina. Si prega di ricalibrare."
+
+msgid "Z Height Diff"
+msgstr "Differenza altezza Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Regola posizione Zprobe"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Necessario riavvio, rilanciare immediatamente?"
+
+msgid "Current nozzle height difference: "
+msgstr "Differenza di altezza attuale dell'ugello: "
+
+msgid "New nozzle height difference: "
+msgstr "Nuova differenza di altezza dell'ugello: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Differenza di altezza pericolosa dell'ugello: "

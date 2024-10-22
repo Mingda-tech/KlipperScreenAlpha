@@ -1169,3 +1169,42 @@ msgstr "Notification vocale"
 
 msgid "Filament Box Power"
 msgstr "Alimentation de la boîte à filament"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Si votre dispositif de calibration est sous le PEI, veuillez soulever le PEI après la mise à l'origine."
+
+msgid "Homing the printer..."
+msgstr "Mise à l'origine de l'imprimante..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Démarrage de la calibration de hauteur de la double buse..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Veuillez observer si la buse est positionnée au-dessus de la sonde."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Avertissement : Valeur négative détectée. C'est dangereux et peut endommager la machine. Veuillez recalibrer."
+
+msgid "New nozzle height difference is: "
+msgstr "La nouvelle différence de hauteur de buse est : "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Avertissement : La valeur actuelle est négative. C'est dangereux et peut endommager la machine. Veuillez recalibrer."
+
+msgid "Z Height Diff"
+msgstr "Différence de hauteur Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Ajuster la position Zprobe"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Besoin de redémarrer, relancer immédiatement ?"
+
+msgid "Current nozzle height difference: "
+msgstr "Différence de hauteur actuelle de la buse : "
+
+msgid "New nozzle height difference: "
+msgstr "Nouvelle différence de hauteur de la buse : "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Différence de hauteur dangereuse de la buse : "

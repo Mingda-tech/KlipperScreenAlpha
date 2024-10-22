@@ -998,3 +998,42 @@ msgstr "Notificação por Voz"
 
 msgid "Filament Box Power"
 msgstr "Fonte de alimentação da caixa de filamento"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "Se o seu dispositivo de calibração estiver sob o PEI, por favor, levante o PEI após a inicialização."
+
+msgid "Homing the printer..."
+msgstr "Inicializando a impressora..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "Iniciando calibração de altura do bico duplo..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "Por favor, observe se o bico está posicionado acima da sonda."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Aviso: Valor negativo detectado. Isso é perigoso e pode danificar a máquina. Por favor, recalibre."
+
+msgid "New nozzle height difference is: "
+msgstr "A nova diferença de altura do bico é: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "Aviso: O valor atual é negativo. Isso é perigoso e pode danificar a máquina. Por favor, recalibre."
+
+msgid "Z Height Diff"
+msgstr "Diferença de altura Z"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Ajustar posição Zprobe"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "Necessita reiniciar, relançar imediatamente?"
+
+msgid "Current nozzle height difference: "
+msgstr "Diferença de altura atual do bico: "
+
+msgid "New nozzle height difference: "
+msgstr "Nova diferença de altura do bico: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "Diferença de altura perigosa do bico: "

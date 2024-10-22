@@ -1041,3 +1041,42 @@ msgstr "음성 알림"
 
 msgid "Filament Box Power"
 msgstr "필라멘트 상자 전원"
+
+msgid "If your calibration device is under the PEI, please lift the PEI after homing."
+msgstr "보정 장치가 PEI 아래에 있는 경우, 원점 복귀 후 PEI를 들어올려 주세요."
+
+msgid "Homing the printer..."
+msgstr "프린터 원점 복귀 중..."
+
+msgid "Starting dual nozzle height calibration..."
+msgstr "이중 노즐 높이 보정을 시작합니다..."
+
+msgid "Please observe if the nozzle is positioned above the probe."
+msgstr "노즐이 프로브 위에 위치해 있는지 확인해 주세요."
+
+msgid "Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "경고: 음수 값이 감지되었습니다. 이는 위험하며 기계에 손상을 줄 수 있습니다. 다시 보정해 주세요."
+
+msgid "New nozzle height difference is: "
+msgstr "새로운 노즐 높이 차이는: "
+
+msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
+msgstr "경고: 현재 값이 음수입니다. 이는 위험하며 기계에 손상을 줄 수 있습니다. 다시 보정해 주세요."
+
+msgid "Z Height Diff"
+msgstr "Z 높이 차이"
+
+msgid "Adjust Zprobe Pos"
+msgstr "Z프로브 위치 조정"
+
+msgid "Need reboot, relaunch immediately?"
+msgstr "재부팅이 필요합니다. 즉시 재시작하시겠습니까?"
+
+msgid "Current nozzle height difference: "
+msgstr "현재 노즐 높이 차이: "
+
+msgid "New nozzle height difference: "
+msgstr "새로운 노즐 높이 차이: "
+
+msgid "Dangerous nozzle height difference: "
+msgstr "위험한 노즐 높이 차이: "
