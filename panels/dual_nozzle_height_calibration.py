@@ -14,7 +14,7 @@ class Panel(ScreenPanel):
         grid.set_column_homogeneous(True)
 
         self.labels = {
-            'height_diff': Gtk.Label(label=_("Current nozzle height difference: ") + f"{self.nozzle_height_difference:.3f} mm" if self.nozzle_height_difference is not None else _("Current nozzle height difference: ?")),
+            'height_diff': Gtk.Label(label=_("Current nozzle height difference: ") + f"{self.nozzle_height_difference:.3f} mm" if self.nozzle_height_difference is not None else _("Current nozzle height difference: " + "?")),
             'pei_reminder': Gtk.Label(label=_("If your calibration device is under the PEI, please lift the PEI after homing."))
         }
 
@@ -89,7 +89,7 @@ class Panel(ScreenPanel):
             GLib.idle_add(self.buttons['start'].set_sensitive, True)
         else:
             # 正常情况下的处理
-            GLib.idle_add(self.labels['height_diff'].set_text, f"New nozzle height difference: {self.nozzle_height_difference:.3f} mm" if self.nozzle_height_difference is not None else "New nozzle height difference: ?")
+            GLib.idle_add(self.labels['height_diff'].set_text, _("New nozzle height difference: ") + f"{self.nozzle_height_difference:.3f} mm" if self.nozzle_height_difference is not None else _("New nozzle height difference: " + "?"))
             GLib.idle_add(self.buttons['start'].set_sensitive, True)
             # 显示保存配置的确认对话框
             self._screen._confirm_send_action(
@@ -101,7 +101,7 @@ class Panel(ScreenPanel):
 
     def activate(self):
         self.update_nozzle_height_difference()
-        GLib.idle_add(self.labels['height_diff'].set_text, _("Current nozzle height difference: ") + f"{self.nozzle_height_difference:.3f} mm" if self.nozzle_height_difference is not None else _("Current nozzle height difference: ?"))
+        GLib.idle_add(self.labels['height_diff'].set_text, _("Current nozzle height difference: ") + f"{self.nozzle_height_difference:.3f} mm" if self.nozzle_height_difference is not None else _("Current nozzle height difference: " + "?"))
         # 检查是否为负值，如果是，显示警告
         if self.nozzle_height_difference is not None and self.nozzle_height_difference < 0:
             GLib.idle_add(self.labels['pei_reminder'].set_text, _("Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."))
