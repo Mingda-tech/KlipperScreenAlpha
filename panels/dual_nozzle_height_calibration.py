@@ -84,7 +84,7 @@ class Panel(ScreenPanel):
             # 如果是负数，更新 pei_reminder 的文本为警告信息
             GLib.idle_add(self.labels['pei_reminder'].set_text, _("Warning: Negative value detected. This is dangerous and may damage the machine. Please recalibrate."))
             # 更新显示，但不提供保存选项
-            GLib.idle_add(self.labels['height_diff'].set_text, f"Dangerous nozzle height difference: {self.nozzle_height_difference:.3f} mm")
+            GLib.idle_add(self.labels['height_diff'].set_text, _("Dangerous nozzle height difference: ") + f"{self.nozzle_height_difference:.3f} mm")
             # 重新启用 start 按钮以允许重新校准
             GLib.idle_add(self.buttons['start'].set_sensitive, True)
         else:
