@@ -45,9 +45,11 @@ class Panel(ScreenPanel):
         self.labels['lang'] = Gtk.Grid()
         self.labels['lang_menu'].add(self.labels['lang'])
         language_dict = {
+            'bg': 'Български',
             'ps': 'Pashto',
             'es': 'Español',
             'en': 'English',
+            'et': 'Eesti',
             'pt': 'Português',
             'zh': '中文',
             'ar': 'العربية',
@@ -58,6 +60,7 @@ class Panel(ScreenPanel):
             'id': 'Bahasa Indonesia',
             'fa': 'فارسی',
             'ga': 'Gaeilge',
+            'gu': 'ગુજરાતી',
             'it': 'Italiano',
             'ja': '日本語',
             'sw': 'Kiswahili',
@@ -67,9 +70,11 @@ class Panel(ScreenPanel):
             'ur': 'پاکستان',
             'fil': 'Filipino ',
             'pl': 'Polski',
+            'pt_BR': 'Português (Brasil)',
             'ru': 'Русский',
             'zu': 'isiZulu',
             'ko': '한국어',
+            'sl': 'Slovenščina',
             'sv': 'Svenska',
             'th': 'ไทย',
             'tr': 'Türkçe',
