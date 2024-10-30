@@ -1165,3 +1165,6 @@ msgstr "Häälteavitused"
 
 msgid "Filament Box Power"
 msgstr "Filamendikasti toide"
+
+msgid "Saved successfully!"
+msgstr "Edukalt salvestatud!"

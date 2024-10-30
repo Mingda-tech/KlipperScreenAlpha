@@ -1183,7 +1183,7 @@ msgid "Voice Notify"
 msgstr "إشعار صوتي"
 
 msgid "Filament Box Power"
-msgstr "طاقة صندوق الخيوط"
+msgstr "طاق�� صندوق ال��يوط"
 
 msgid "If your calibration device is under the PEI, please lift the PEI after homing."
 msgstr "إذا كان جهاز المعايرة الخاص بك تحت PEI، يرجى رفع PEI بعد العودة إلى الصفر."
@@ -1213,7 +1213,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "ضبط موضع مسبار Z"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "بحاجة إلى إعادة التشغيل، هل تريد إعادة التشغيل فورًا؟"
+msgstr "تحتاج إلى إعادة التشغيل، هل تريد إعادة التشغيل الآن؟"
 
 msgid "Current nozzle height difference: "
 msgstr "فرق ارتفاع الفوهة الحالي: "
@@ -1223,3 +1223,6 @@ msgstr "فرق ارتفاع الفوهة الجديد: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "فرق ارتفاع الفوهة الخطير: "
+
+msgid "Saved successfully!"
+msgstr "تم الحفظ بنجاح!"

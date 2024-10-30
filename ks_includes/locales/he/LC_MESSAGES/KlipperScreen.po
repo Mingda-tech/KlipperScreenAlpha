@@ -766,7 +766,7 @@ msgstr "Z אוף-סט"
 msgid "commit"
 msgid_plural "commits"
 msgstr[0] "שינוי"
-msgstr[1] "שינויים"
+msgstr[1] "שינו��ים"
 msgstr[2] "שינויים"
 msgstr[3] "שינויים"
 
@@ -1207,7 +1207,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "התאם מיקום Zprobe"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "?צריך אתחול מחדש, להפעיל מחדש מיד"
+msgstr "נדרשת הפעלה מחדש, להפעיל מחדש כעת?"
 
 msgid "Current nozzle height difference: "
 msgstr "הפרש גובה הנחיר הנוכחי: "
@@ -1217,3 +1217,6 @@ msgstr "הפרש גובה הנחיר החדש: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "הפרש גובה נחיר מסוכן: "
+
+msgid "Saved successfully!"
+msgstr "נשמר בהצלחה!"

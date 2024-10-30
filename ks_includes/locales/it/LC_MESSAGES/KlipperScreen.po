@@ -1139,7 +1139,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Regola posizione Zprobe"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "Necessario riavvio, rilanciare immediatamente?"
+msgstr "Necessario riavvio, riavviare ora?"
 
 msgid "Current nozzle height difference: "
 msgstr "Differenza di altezza attuale dell'ugello: "
@@ -1149,3 +1149,6 @@ msgstr "Nuova differenza di altezza dell'ugello: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Differenza di altezza pericolosa dell'ugello: "
+
+msgid "Saved successfully!"
+msgstr "Salvato con successo!"

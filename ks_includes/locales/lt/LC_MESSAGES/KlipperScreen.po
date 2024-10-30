@@ -995,3 +995,6 @@ msgstr "Naujas purkštuko aukščio skirtumas: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Pavojingas purkštuko aukščio skirtumas: "
+
+msgid "Saved successfully!"
+msgstr "Succesvol opgeslagen!"

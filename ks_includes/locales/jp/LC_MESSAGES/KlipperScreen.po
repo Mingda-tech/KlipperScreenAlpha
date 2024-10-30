@@ -1014,3 +1014,6 @@ msgstr "新しいノズル高さの差: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "危険なノズル高さの差: "
+
+msgid "Saved successfully!"
+msgstr "保存に成功しました!"

@@ -1179,7 +1179,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Ajustar posición de Zprobe"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "¿Necesita reiniciar, relanzar inmediatamente?"
+msgstr "¿Necesita reiniciar, reiniciar inmediatamente?"
 
 msgid "Current nozzle height difference: "
 msgstr "Diferencia de altura actual de la boquilla: "
@@ -1189,3 +1189,6 @@ msgstr "Nueva diferencia de altura de la boquilla: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Diferencia de altura peligrosa de la boquilla: "
+
+msgid "Saved successfully!"
+msgstr "¡Guardado exitosamente!"

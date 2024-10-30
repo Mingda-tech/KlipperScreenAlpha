@@ -1198,7 +1198,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Ajuster la position Zprobe"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "Besoin de redémarrer, relancer immédiatement ?"
+msgstr "Redémarrage nécessaire, redémarrer maintenant?"
 
 msgid "Current nozzle height difference: "
 msgstr "Différence de hauteur actuelle de la buse : "
@@ -1208,3 +1208,6 @@ msgstr "Nouvelle différence de hauteur de la buse : "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Différence de hauteur dangereuse de la buse : "
+
+msgid "Saved successfully!"
+msgstr "Enregistré avec succès!"

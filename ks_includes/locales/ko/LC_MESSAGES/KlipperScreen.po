@@ -806,7 +806,7 @@ msgstr "mm³/s"
 #~ msgstr "XY 비활성화"
 
 #~ msgid "Slicer Time correction (%)"
-#~ msgstr "슬라이서 시간 보정(%)"
+#~ msgstr "슬라이서 ���간 보정(%)"
 
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "교정됨, 설정을 저장합니다"
@@ -1070,7 +1070,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Z프로브 위치 조정"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "재부팅이 필요합니다. 즉시 재시작하시겠습니까?"
+msgstr "재시작이 필요합니다. 지금 재시작하시겠습니까?"
 
 msgid "Current nozzle height difference: "
 msgstr "현재 노즐 높이 차이: "
@@ -1080,3 +1080,6 @@ msgstr "새로운 노즐 높이 차이: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "위험한 노즐 높이 차이: "
+
+msgid "Saved successfully!"
+msgstr "성공적으로 저장되었습니다!"

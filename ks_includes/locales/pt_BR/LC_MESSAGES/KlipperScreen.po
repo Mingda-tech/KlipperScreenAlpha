@@ -1230,3 +1230,6 @@ msgstr "Nova diferença de altura do bico: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Diferença de altura perigosa do bico: "
+
+msgid "Saved successfully!"
+msgstr "Salvo com sucesso!"

@@ -783,6 +783,10 @@ class KlipperScreen(Gtk.Window):
         self._config._create_configurable_options(self)
         self._config.set('main', 'language', lang)
         self._config.save_user_config_options()
+        
+        # 调用 set_language 更新手册语言
+        self.set_language(lang)
+        
         self.reload_panels()
 
     def change_language_without_reload(self, widget, lang):
@@ -1165,6 +1169,13 @@ class KlipperScreen(Gtk.Window):
     
         return False
     
+    def set_language(self, lang):
+        # 已有的语言设置代码...
+        
+        # 更新手册语言
+        if hasattr(self, "panels") and "manual" in self.panels:
+            self.panels["manual"].update_language(lang)
+
 def main():
     minimum = (3, 7)
     if not sys.version_info >= minimum:

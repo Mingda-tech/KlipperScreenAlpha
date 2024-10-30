@@ -1124,3 +1124,6 @@ msgstr "Ny dysehøjdeforskel: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Farlig dysehøjdeforskel: "
+
+msgid "Saved successfully!"
+msgstr "Gemt med succes!"

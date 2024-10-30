@@ -1026,3 +1026,6 @@ msgstr "Nový rozdíl výšky trysky: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Nebezpečný rozdíl výšky trysky: "
+
+msgid "Saved successfully!"
+msgstr "Úspěšně uloženo!"

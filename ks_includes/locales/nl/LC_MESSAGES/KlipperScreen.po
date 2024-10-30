@@ -1015,3 +1015,6 @@ msgstr "Nieuw hoogteverschil spuitmond: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Gevaarlijk hoogteverschil spuitmond: "
+
+msgid "Saved successfully!"
+msgstr "Zapisano pomyślnie!"

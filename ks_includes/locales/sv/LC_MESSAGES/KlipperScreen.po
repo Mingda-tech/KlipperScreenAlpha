@@ -1067,3 +1067,6 @@ msgstr "Ny munstyckshöjdskillnad: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Farlig munstyckshöjdskillnad: "
+
+msgid "Saved successfully!"
+msgstr "Sparades framgångsrikt!"

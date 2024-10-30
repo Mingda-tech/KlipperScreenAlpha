@@ -1158,7 +1158,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "调整探针位置"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "需要重启，立即重新启动？"
+msgstr "需要重启，是否立即重启?"
 
 msgid "Current nozzle height difference: "
 msgstr "当前喷嘴高度差: "
@@ -1168,3 +1168,6 @@ msgstr "新的喷嘴高度差: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "危险的喷嘴高度差: "
+
+msgid "Saved successfully!"
+msgstr "保存成功!"

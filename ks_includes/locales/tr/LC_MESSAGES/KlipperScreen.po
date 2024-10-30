@@ -1096,3 +1096,6 @@ msgstr "Yeni nozul yükseklik farkı: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Tehlikeli nozul yükseklik farkı: "
+
+msgid "Saved successfully!"
+msgstr "Başarıyla kaydedildi!"

@@ -1104,3 +1104,6 @@ msgstr "Нова різниця висоти сопла: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Небезпечна різниця висоти сопла: "
+
+msgid "Saved successfully!"
+msgstr "Успішно збережено!"

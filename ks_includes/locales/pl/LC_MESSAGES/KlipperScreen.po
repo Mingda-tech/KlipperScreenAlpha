@@ -1006,7 +1006,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Dostosuj pozycję Zprobe"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "Potrzebny restart, uruchomić ponownie natychmiast?"
+msgstr "Wymagany restart, zrestartować teraz?"
 
 msgid "Current nozzle height difference: "
 msgstr "Aktualna różnica wysokości dyszy: "
@@ -1016,3 +1016,6 @@ msgstr "Nowa różnica wysokości dyszy: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Niebezpieczna różnica wysokości dyszy: "
+
+msgid "Saved successfully!"
+msgstr "Zapisano pomyślnie!"

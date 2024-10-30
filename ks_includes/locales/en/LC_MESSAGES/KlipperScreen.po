@@ -980,3 +980,6 @@ msgstr ""
 
 msgid "Dangerous nozzle height difference: "
 msgstr ""
+
+msgid "Saved successfully!"
+msgstr ""

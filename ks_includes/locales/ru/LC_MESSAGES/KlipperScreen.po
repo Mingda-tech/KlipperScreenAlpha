@@ -125,7 +125,7 @@ msgstr "Невозможно установить выше максимума:"
 msgid "Cancel"
 msgstr "Отменить"
 
-msgid ""
+msgid "Cancel Print"
 msgstr "Отменить печать"
 
 msgid "Cancelled"
@@ -323,7 +323,7 @@ msgid "Initializing printer..."
 msgstr "Принтер стартует..."
 
 msgid "Initiate a PID calibration for:"
-msgstr "Запустить калибровку ПИД-регулятора для:"
+msgstr "З��пустить калибровку ПИД-регулятора для:"
 
 msgid "Input Shaper"
 msgstr "Входной шейпер"
@@ -1175,7 +1175,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Настройка позиции Zprobe"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "Требуется перезагрузка, перезапустить немедленно?"
+msgstr "Требуется перезагрузка, перезагрузить сейчас?"
 
 msgid "Current nozzle height difference: "
 msgstr "Текущая разница высоты сопла: "
@@ -1185,3 +1185,6 @@ msgstr "Новая разница высоты сопла: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Опасная разница высоты сопла: "
+
+msgid "Saved successfully!"
+msgstr "Успешно сохранено!"

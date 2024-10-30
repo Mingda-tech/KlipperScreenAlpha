@@ -286,7 +286,17 @@ class Panel(ScreenPanel):
 
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
+                    self.save_config()                    
                     self._screen._menu_go_back()
             except Exception as e:
                 logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
                 self._screen.show_popup_message(_("Error writing configuration"))  
+
+    def save_config(self):
+        script = {"script": "SAVE_CONFIG"}
+        self._screen._confirm_send_action(
+            None,
+            _("Saved successfully!") + "\n\n" + _("Need reboot, relaunch immediately?"),
+            "printer.gcode.script",
+            script
+        )                

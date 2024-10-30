@@ -1241,3 +1241,6 @@ msgstr "Nova razlika v višini šobe: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Nevarna razlika v višini šobe: "
+
+msgid "Saved successfully!"
+msgstr "Uspešno shranjeno!"

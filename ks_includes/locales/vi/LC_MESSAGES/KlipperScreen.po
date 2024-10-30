@@ -1225,3 +1225,6 @@ msgstr "Chênh lệch chiều cao đầu phun mới: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Chênh lệch chiều cao đầu phun nguy hiểm: "
+
+msgid "Saved successfully!"
+msgstr "Đã lưu thành công!"

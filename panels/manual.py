@@ -1,20 +1,56 @@
 import gi
 import os
+import pathlib
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
+klipperscreendir = pathlib.Path(__file__).parent.resolve().parent
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-
-        self.folder_path = "/home/mingda/printer_data/resources/manual"
+        
+        self.base_path = os.path.join(klipperscreendir, "ks_includes", "locales")
+        self.current_lang = self._config.get_main_config().get("language", "en")
+        self.printer_model = self.get_printer_model()
+        self.folder_path = self.get_manual_path()
         self.image_files = self.load_images()
         self.current_image_index = 0
-        # self.bts = self._gtk.bsidescale
         if self.image_files:
-            self.init_ui()       
+            self.init_ui()
+
+    def get_printer_model(self):
+        # 获取打印机型号
+        if "MD_1000D" in self._printer.available_commands:
+            return "1000D"
+        elif "MD_600D" in self._printer.available_commands:
+            return "600D"
+        return "400D"  # 默认机型
+
+    def get_manual_path(self):
+        # 首先尝试获取当前语言和机型的手册路径
+        lang_model_path = os.path.join(self.base_path, self.current_lang, "manual", self.printer_model)
+        if os.path.exists(lang_model_path):
+            return lang_model_path
+        
+        # 如果当前语言的手册不存在，尝试使用英语手册
+        en_model_path = os.path.join(self.base_path, "en", "manual", self.printer_model)
+        if os.path.exists(en_model_path):
+            return en_model_path
+            
+        # 如果英语手册也不存在，使用默认机型(400D)的英语手册
+        return os.path.join(self.base_path, "en", "manual", "400D")
+
+    def update_language(self, lang_code):
+        """当语言改变时更新手册"""
+        self.current_lang = lang_code
+        self.folder_path = self.get_manual_path()
+        self.image_files = self.load_images()
+        self.current_image_index = 0
+        if self.image_files:
+            self.update_image()
+            self.update_label()
 
     def init_ui(self):
         grid = self._gtk.HomogeneousGrid()

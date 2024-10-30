@@ -974,7 +974,7 @@ msgid "Adjust Zprobe Pos"
 msgstr "Zprobe pozíció beállítása"
 
 msgid "Need reboot, relaunch immediately?"
-msgstr "Újraindítás szükséges, azonnal újraindítja?"
+msgstr "Újraindítás szükséges, újraindítja most?"
 
 msgid "Current nozzle height difference: "
 msgstr "Jelenlegi fúvóka magasságkülönbség: "
@@ -984,3 +984,6 @@ msgstr "Új fúvóka magasságkülönbség: "
 
 msgid "Dangerous nozzle height difference: "
 msgstr "Veszélyes fúvóka magasságkülönbség: "
+
+msgid "Saved successfully!"
+msgstr "Sikeresen mentve!"
