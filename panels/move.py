@@ -43,9 +43,13 @@ class Panel(ScreenPanel):
         self.buttons['z-'].connect("clicked", self.move, "Z", "-")
         self.buttons['home'].connect("clicked", self.home)
         script = {"script": "M18"}
-        self.buttons['motors_off'].connect("clicked", self._screen._confirm_send_action,
-                                           _("Are you sure you wish to disable motors?"),
-                                           "printer.gcode.script", script)
+        self.buttons['motors_off'].connect("clicked", lambda x: self._screen._confirm_send_action(
+            x,
+            _("Are you sure you wish to disable motors?"),
+            "printer.gcode.script",
+            script,
+            save_button=False
+        ))
         adjust = self._gtk.Button("settings", None, "color2", 1, Gtk.PositionType.LEFT, 1)
         adjust.connect("clicked", self.load_menu, 'options', _('Settings'))
         adjust.set_hexpand(False)

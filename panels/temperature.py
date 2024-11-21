@@ -430,7 +430,8 @@ class Panel(ScreenPanel):
                 _("Initiate a PID calibration for:") + f" {self.active_heater} @ {temp} ºC"
                 + "\n\n" + _("It may take more than 5 minutes depending on the heater power."),
                 "printer.gcode.script",
-                script
+                script,
+                save_button=False
             )
 
     def create_left_panel(self):

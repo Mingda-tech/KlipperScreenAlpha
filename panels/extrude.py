@@ -245,7 +245,7 @@ class Panel(ScreenPanel):
             script = {"script": "M104 S240"}
             self._screen._confirm_send_action(None,
                                               _("The nozzle temperature is too low, Are you sure you want to heat it?"),
-                                              "printer.gcode.script", script)
+                                              "printer.gcode.script", script, save_button=False)
         else:
             self._screen._ws.klippy.gcode_script(KlippyGcodes.EXTRUDE_REL)
             if direction == "-":

@@ -214,7 +214,7 @@ class Panel(ScreenPanel):
                 script = {"script": "POWEROFF_RESUME"}
                 self._screen._confirm_send_action(None,
                                               _("Power loss recovery, is resume print?"),
-                                              "printer.gcode.script", script)                          
+                                              "printer.gcode.script", script, save_button=False)                          
         self.is_poweroff_resume = 0
 
     def process_update(self, action, data):
