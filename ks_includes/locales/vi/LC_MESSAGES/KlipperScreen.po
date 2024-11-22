@@ -628,8 +628,8 @@ msgid "Outdated by %d"
 msgstr "Lỗi thời bởi %d"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Gói sẽ được cập nhật"
+
+msgstr "Gói sẽ được cập nhật"
 
 msgid "Part Fan"
 msgstr "Quạt phần"
@@ -958,19 +958,19 @@ msgid "Z offset:"
 msgstr "Độ lệch Z:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "commit"
+
+msgstr "commit"
 
 msgid "day"
-msgid_plural "days"
-msgstr[0] "ngày"
+
+msgstr "ngày"
 
 msgid "g"
 msgstr ""
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "giờ"
+
+msgstr "giờ"
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "các macro sử dụng 'rename_existing' đã bị ẩn"
@@ -979,8 +979,8 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "các macro có tên bắt đầu bằng '_' đã bị ẩn"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "phút"
+
+msgstr "phút"
 
 msgid "mm"
 msgstr "mm"
@@ -998,8 +998,8 @@ msgid "s"
 msgstr ""
 
 msgid "second"
-msgid_plural "seconds"
-msgstr[0] "giây"
+
+msgstr "giây"
 
 #~ msgid "Hide temp."
 #~ msgstr "Ẩn nhiệt độ."
@@ -1030,9 +1030,6 @@ msgstr[0] "giây"
 
 #~ msgid "Starting WiFi Association"
 #~ msgstr "Bắt đầu Liên kết WiFi"
-
-#~ msgid "Warning"
-#~ msgstr "Cảnh báo"
 
 #~ msgid "dBm"
 #~ msgstr "dBm"
@@ -1228,3 +1225,388 @@ msgstr "Chênh lệch chiều cao đầu phun nguy hiểm: "
 
 msgid "Saved successfully!"
 msgstr "Đã lưu thành công!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+msgid "Filament Info"
+msgstr "Thông tin dây nhựa"
+
+msgid "Not found"
+msgstr "Không tìm thấy"
+
+msgid "Vendor"
+msgstr "Nhà sản xuất"
+
+msgid "Type"
+msgstr "Loại"
+
+msgid "Color"
+msgstr "Màu sắc"
+
+msgid "Set Color"
+msgstr "Đặt màu"
+
+msgid "Filament Settings"
+msgstr "Cài đặt dây nhựa"
+
+msgid "Multi-Material Box"
+msgstr "Hộp đa vật liệu"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Bạn có chắc chắn muốn khởi động lại phần mềm không?"
+
+msgid "Autofill filament disable"
+msgstr "Vô hiệu hóa tự động điền vật liệu"
+
+msgid "Autofill filament enabled"
+msgstr "Kích hoạt tự động điền vật liệu"
+
+msgid "Autofill filament: %s"
+msgstr "Tự động điền vật liệu: %s"
+
+msgid "Backing up configuration files."
+msgstr "Đang sao lưu các tệp cấu hình."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Hiệu chuẩn vị trí cắt"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Không thể lấy được vị trí hiệu chuẩn của máy cắt."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Chỉ số vật liệu hiện tại là:%s, công cụ đang hoạt động:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Chỉ số vật liệu hiện tại là:%s, công cụ đang hoạt động:%s, công cụ tiếp tục:%s, lý do tạm dừng:%s"
+
+msgid "Current value is %s"
+msgstr "Giá trị hiện tại là %s"
+
+msgid "Cut Filament Test"
+msgstr "Kiểm tra cắt vật liệu"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Bạn có muốn kích hoạt hộp đa vật liệu không?"
+
+msgid "Do you want to use external filament?"
+msgstr "Bạn có muốn sử dụng vật liệu bên ngoài không?"
+
+msgid "Error: Offset values not found"
+msgstr "Lỗi: Không tìm thấy giá trị bù"
+
+msgid "Error: Z offset value not found"
+msgstr "Lỗi: Không tìm thấy giá trị bù Z"
+
+msgid "External Filament"
+msgstr "Vật liệu bên ngoài"
+
+msgid "Extruder not hot enough"
+msgstr "Đầu ép chưa đủ nóng"
+
+msgid "FEED error:External filament not removed"
+msgstr "Lỗi FEED: Vật liệu bên ngoài chưa được tháo ra"
+
+msgid "Filament %s not found"
+msgstr "Không tìm thấy vật liệu %s"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Cảm biến vật liệu%s: Không phát hiện vật liệu, hủy bỏ in ấn"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Cảm biến vật liệu%s: Không phát hiện vật liệu, tạm dừng in ấn"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Cảm biến vật liệu0: Không phát hiện vật liệu, tạm dừng in ấn"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Cảm biến vật liệu1: Không phát hiện vật liệu, tạm dừng in ấn"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Phát hiện vật liệu! Xin vui lòng tháo vật liệu khỏi đầu nóng trước khi kích hoạt hộp đa vật liệu."
+
+msgid "Missing required recovery data"
+msgstr "Thiếu dữ liệu phục hồi cần thiết"
+
+msgid "No power loss recovery data found"
+msgstr "Không tìm thấy dữ liệu phục hồi mất điện"
+
+msgid "No valid params 'S'"
+msgstr "Không có tham số 'S' hợp lệ"
+
+msgid "No"
+msgstr "Không"
+
+msgid "OK"
+msgstr "Đồng ý"
+
+msgid "Options"
+msgstr "Tùy chọn"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Tạm dừng. Lỗi ép của \"đầu ép\"!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Xin vui lòng tháo vật liệu khỏi vòi phun trước"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Xin vui lòng nhập đúng số lệnh thoại: 0-bắt đầu in, 1-kết thúc in, 2-phát hiện mất điện, 3-hủy in, 4-tạm dừng in"
+
+msgid "Please select how you would like to proceed."
+msgstr "Xin vui lòng chọn cách bạn muốn tiếp tục."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Phục hồi sau mất điện, tiếp tục in ấn."
+
+msgid "Power loss, saving print states."
+msgstr "Mất điện, đang lưu trạng thái in ấn."
+
+msgid "Press feedsys button"
+msgstr "Nhấn nút feedsys"
+
+msgid "Print resumed from power loss position"
+msgstr "Tiếp tục in từ vị trí mất điện"
+
+msgid "Printer not homed"
+msgstr "Máy in chưa về vị trí gốc"
+
+msgid "RESUME error:autofill no fil"
+msgstr "Lỗi TIẾP TỤC: không có vật liệu tự động điền"
+
+msgid "RESUME error:no fil"
+msgstr "Lỗi TIẾP TỤC: không có vật liệu"
+
+msgid "RESUME error:residual fil"
+msgstr "Lỗi TIẾP TỤC: còn vật liệu"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Dữ liệu phục hồi: Z=%s, Tệp=%s, Vị trí=%s"
+
+msgid "Save & Restart"
+msgstr "Lưu & Khởi động lại"
+
+msgid "T%s direct feed"
+msgstr "T%s cấp trực tiếp"
+
+msgid "T0 direct feed"
+msgstr "T0 cấp trực tiếp"
+
+msgid "T0 need exit filament"
+msgstr "T0 cần tháo vật liệu"
+
+msgid "T1 direct feed"
+msgstr "T1 cấp trực tiếp"
+
+msgid "T1 need exit filament"
+msgstr "T1 cần tháo vật liệu"
+
+msgid "T2 direct feed"
+msgstr "T2 cấp trực tiếp"
+
+msgid "T2 need exit filament"
+msgstr "T2 cần tháo vật liệu"
+
+msgid "T3 direct feed"
+msgstr "T3 cấp trực tiếp"
+
+msgid "T3 need exit filament"
+msgstr "T3 cần tháo vật liệu"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Lỗi ép của \"đầu ép\"!"
+
+msgid "The current toolheade is T%s"
+msgstr "Đầu công cụ hiện tại là T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Đầu công cụ hiện tại là T0"
+
+msgid "The current toolheade is T1"
+msgstr "Đầu công cụ hiện tại là T1"
+
+msgid "The current toolheade is T2"
+msgstr "Đầu công cụ hiện tại là T2"
+
+msgid "The current toolheade is T3"
+msgstr "Đầu công cụ hiện tại là T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "Hộp vật liệu_%s không có vật liệu"
+
+msgid "The motor is wrong."
+msgstr "Motor bị lỗi."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Còn vật liệu, xin vui lòng tháo và tiếp tục"
+
+msgid "There's a residual filament in box %s"
+msgstr "Có vật liệu dư trong hộp %s"
+
+msgid "There's a residual filament in box 1"
+msgstr "Có vật liệu dư trong hộp 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "Có vật liệu dư trong hộp 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "Có vật liệu dư trong hộp 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "Có vật liệu dư trong hộp 4"
+
+msgid "Unknown fan"
+msgstr "Quạt không xác định"
+
+msgid "Unknown filament"
+msgstr "Vật liệu không xác định"
+
+msgid "Use external filament, please manually exit"
+msgstr "Sử dụng vật liệu bên ngoài, xin vui lòng tháo bằng tay"
+
+msgid "Warning"
+msgstr "Cảnh báo"
+
+msgid "Yes"
+msgstr "Có"
+
+msgid "auto shutdown error"
+msgstr "lỗi tắt máy tự động"
+
+msgid "bed_mash:%s"
+msgstr "giường_mash:%s"
+
+msgid "clean pause_reason"
+msgstr "làm sạch lý do tạm dừng"
+
+msgid "cut filament"
+msgstr "cắt vật liệu"
+
+msgid "cutter press!"
+msgstr "máy cắt đã nhấn!"
+
+msgid "cutter release!"
+msgstr "máy cắt đã thả!"
+
+msgid "feed busy"
+msgstr "đang cấp"
+
+msgid "feed error"
+msgstr "lỗi cấp"
+
+msgid "feed finish"
+msgstr "hoàn thành cấp"
+
+msgid "filament not removed"
+msgstr "vật liệu chưa được tháo"
+
+msgid "filament pause reason"
+msgstr "lý do tạm dừng vật liệu"
+
+msgid "filament press"
+msgstr "vật liệu đã nhấn"
+
+msgid "filament release"
+msgstr "vật liệu đã thả"
+
+msgid "filament remove"
+msgstr "tháo vật liệu"
+
+msgid "filament runout"
+msgstr "vật liệu hết"
+
+msgid "filament%s:%s"
+msgstr "vật liệu%s:%s"
+
+msgid "flush filament"
+msgstr "xả vật liệu"
+
+msgid "motion sensor insert"
+msgstr "chèn cảm biến chuyển động"
+
+msgid "motion sensor runout"
+msgstr "cảm biến chuyển động hết"
+
+msgid "motor_%s press"
+msgstr "motor_%s đã nhấn"
+
+msgid "motor_%s release"
+msgstr "motor_%s đã thả"
+
+msgid "motor_1 press"
+msgstr "motor_1 đã nhấn"
+
+msgid "motor_1 release"
+msgstr "motor_1 đã thả"
+
+msgid "motor_2 press"
+msgstr "motor_2 đã nhấn"
+
+msgid "motor_2 release"
+msgstr "motor_2 đã thả"
+
+msgid "motor_3 press"
+msgstr "motor_3 đã nhấn"
+
+msgid "motor_3 release"
+msgstr "motor_3 đã thả"
+
+msgid "motor_4 press"
+msgstr "motor_4 đã nhấn"
+
+msgid "motor_4 release"
+msgstr "motor_4 đã thả"
+
+msgid "no bed_mash name"
+msgstr "không có tên giường_mash"
+
+msgid "no bed_mash"
+msgstr "không có giường_mash"
+
+msgid "no enabled"
+msgstr "không kích hoạt"
+
+msgid "press button%s"
+msgstr "nhấn nút%s"
+
+msgid "press button1"
+msgstr "nhấn nút1"
+
+msgid "press button2"
+msgstr "nhấn nút2"
+
+msgid "press button3"
+msgstr "nhấn nút3"
+
+msgid "press button4"
+msgstr "nhấn nút4"
+
+msgid "remove filament"
+msgstr "tháo vật liệu"
+
+msgid "residual filament%s"
+msgstr "vật liệu dư%s"
+
+msgid "residual filament0"
+msgstr "vật liệu dư0"
+
+msgid "residual filament1"
+msgstr "vật liệu dư1"
+
+msgid "residual filament2"
+msgstr "vật liệu dư2"
+
+msgid "residual filament3"
+msgstr "vật liệu dư3"
+
+msgid "resume:%s"
+msgstr "tiếp tục:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "tiếp tục_công_cụ:%s lý_do_tạm_dừng:%s"
+
+msgid "Copy Print"
+msgstr "In bản sao"
+
+msgid "Mirror Print"
+msgstr "In gương"

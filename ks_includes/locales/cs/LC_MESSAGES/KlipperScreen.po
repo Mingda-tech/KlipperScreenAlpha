@@ -489,10 +489,7 @@ msgid "PSK for"
 msgstr "PSK pro"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Balíček bude aktualizován"
-msgstr[1] "Balíčky budou aktualizovány"
-msgstr[2] "Balíčky budou aktualizovány"
+msgstr "Balíček bude aktualizován"
 
 msgid "Part Fan"
 msgstr "Částečný ofuk"
@@ -763,19 +760,17 @@ msgid "Z offset:"
 msgstr "Z offset:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "potvrzení"
-msgstr[1] "potvrzení"
-msgstr[2] "potvrzení"
+msgstr "potvrzení"
+
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "hodina"
-msgstr[1] "hodiny"
-msgstr[2] "hodin"
+msgstr "hodina"
+
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "makra, která používají 'rename_existing', jsou skryta"
@@ -784,10 +779,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "makra s názvem začínajícím na '_' jsou skrytá"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minuta"
-msgstr[1] "minuty"
-msgstr[2] "minut"
+msgstr "minuta"
+
+
 
 msgid "mm"
 msgstr "mm"
@@ -804,8 +798,8 @@ msgstr "mm³/s"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen se restartuje"
 
-#~ msgid "Continue"
-#~ msgstr "Pokračuj"
+msgid "Continue"
+msgstr "Pokračuj"
 
 #~ msgid "Actions"
 #~ msgstr "Akce"
@@ -1029,3 +1023,285 @@ msgstr "Nebezpečný rozdíl výšky trysky: "
 
 msgid "Saved successfully!"
 msgstr "Úspěšně uloženo!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Upravit"
+
+msgid "Filament Info"
+msgstr "Informace o filamentu"
+
+msgid "Not found"
+msgstr "Nenalezeno"
+
+msgid "Vendor"
+msgstr "Výrobce"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Color"
+msgstr "Barva"
+
+msgid "Set Color"
+msgstr "Nastavit barvu"
+
+msgid "Filament Settings"
+msgstr "Nastavení filamentu"
+
+msgid "Multi-Material Box"
+msgstr "Box pro více materiálů"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Opravdu chcete restartovat firmware?"
+
+msgid "Autofill filament disable"
+msgstr "Zakázat automatické plnění filamentu"
+
+msgid "Autofill filament enabled"
+msgstr "Automatické plnění filamentu povoleno"
+
+msgid "Autofill filament: %s"
+msgstr "Automatické plnění filamentu: %s"
+
+msgid "Backing up configuration files."
+msgstr "Zálohování konfiguračních souborů."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kalibrace pozice řezačky"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Nelze získat kalibrační pozici řezačky."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Aktuální indexy filamentu jsou:%s, aktivní nástroj:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Aktuální indexy filamentu jsou:%s, aktivní nástroj:%s, nástroj pro obnovení:%s, důvod pozastavení:%s"
+
+msgid "Current value is %s"
+msgstr "Aktuální hodnota je %s"
+
+msgid "Cut Filament Test"
+msgstr "Test řezání filamentu"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Chcete povolit multi-materiálový box?"
+
+msgid "Do you want to use external filament?"
+msgstr "Chcete použít externí filament?"
+
+msgid "Error: Offset values not found"
+msgstr "Chyba: Hodnoty offsetu nebyly nalezeny"
+
+msgid "Error: Z offset value not found"
+msgstr "Chyba: Hodnota Z offsetu nebyla nalezena"
+
+msgid "External Filament"
+msgstr "Externí filament"
+
+msgid "Extruder not hot enough"
+msgstr "Extruder není dostatečně zahřátý"
+
+msgid "FEED error:External filament not removed"
+msgstr "Chyba podávání: Externí filament nebyl odstraněn"
+
+msgid "Filament %s not found"
+msgstr "Filament %s nenalezen"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Senzor filamentu %s: Nebyl detekován filament, rušení tisku"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Senzor filamentu %s: Nebyl detekován filament, pozastavení tisku"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filament detekován! Před povolením multi-materiálového boxu odstraňte filament z hotendu."
+
+msgid "Missing required recovery data"
+msgstr "Chybí požadovaná data pro obnovení"
+
+msgid "No power loss recovery data found"
+msgstr "Nebyla nalezena data pro obnovení po výpadku napájení"
+
+msgid "No valid params 'S'"
+msgstr "Neplatné parametry 'S'"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Možnosti"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Pozastaveno. Chyba extruze \"extruderu\"!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Nejprve prosím vysuňte filament z trysky"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Prosím vyplňte správně číslo hlasu: 0-začátek tisku, 1-konec tisku, 2-detekován výpadek, 3-zrušení tisku, 4-pozastavení tisku"
+
+msgid "Please select how you would like to proceed."
+msgstr "Prosím vyberte, jak chcete pokračovat."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Obnovení po výpadku napájení, pokračování v tisku."
+
+msgid "Power loss, saving print states."
+msgstr "Výpadek napájení, ukládání stavů tisku."
+
+msgid "Press feedsys button"
+msgstr "Stiskněte tlačítko podávacího systému"
+
+msgid "Print resumed from power loss position"
+msgstr "Tisk obnoven z pozice výpadku napájení"
+
+msgid "Printer not homed"
+msgstr "Tiskárna není v výchozí pozici"
+
+msgid "RESUME error:autofill no fil"
+msgstr "Chyba obnovení: automatické plnění bez filamentu"
+
+msgid "RESUME error:no fil"
+msgstr "Chyba obnovení: žádný filament"
+
+msgid "RESUME error:residual fil"
+msgstr "Chyba obnovení: zbytkový filament"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Data obnovení: Z=%s, Soubor=%s, Pozice=%s"
+
+msgid "Save & Restart"
+msgstr "Uložit a restartovat"
+
+msgid "T%s direct feed"
+msgstr "T%s přímé podávání"
+
+msgid "T%s need exit filament"
+msgstr "T%s potřebuje vysunout filament"
+
+msgid "The current toolheade is T%s"
+msgstr "Aktuální tisková hlava je T%s"
+
+msgid "The filament_box_%s no filament"
+msgstr "Box filamentu_%s nemá filament"
+
+msgid "The motor is wrong."
+msgstr "Motor je špatně."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Je zde zbytkový filament, prosím odstraňte jej a pokračujte"
+
+msgid "There's a residual filament in box %s"
+msgstr "V boxu %s je zbytkový filament"
+
+msgid "Unknown fan"
+msgstr "Neznámý ventilátor"
+
+msgid "Unknown filament"
+msgstr "Neznámý filament"
+
+msgid "Use external filament, please manually exit"
+msgstr "Použijte externí filament, prosím ručně vysuňte"
+
+msgid "Warning"
+msgstr "Varování"
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "auto shutdown error"
+msgstr "Chyba automatického vypnutí"
+
+msgid "bed_mash:%s"
+msgstr "bed_mash:%s"
+
+msgid "clean pause_reason"
+msgstr "Vyčistit důvod pozastavení"
+
+msgid "cut filament"
+msgstr "Řezání filamentu"
+
+msgid "cutter press!"
+msgstr "Stisk řezačky!"
+
+msgid "cutter release!"
+msgstr "Uvolnění řezačky!"
+
+msgid "feed busy"
+msgstr "Podávání zaneprázdněno"
+
+msgid "feed error"
+msgstr "Chyba podávání"
+
+msgid "feed finish"
+msgstr "Podávání dokončeno"
+
+msgid "filament not removed"
+msgstr "Filament nebyl odstraněn"
+
+msgid "filament pause reason"
+msgstr "Důvod pozastavení filamentu"
+
+msgid "filament press"
+msgstr "Stisk filamentu"
+
+msgid "filament release"
+msgstr "Uvolnění filamentu"
+
+msgid "filament remove"
+msgstr "Odstranění filamentu"
+
+msgid "filament runout"
+msgstr "Došel filament"
+
+msgid "filament%s:%s"
+msgstr "Filament%s:%s"
+
+msgid "flush filament"
+msgstr "Propláchnout filament"
+
+msgid "motion sensor insert"
+msgstr "Vložení pohybového senzoru"
+
+msgid "motion sensor runout"
+msgstr "Došel pohybový senzor"
+
+msgid "motor_%s press"
+msgstr "Stisk motoru_%s"
+
+msgid "motor_%s release"
+msgstr "Uvolnění motoru_%s"
+
+msgid "no bed_mash name"
+msgstr "Žádný název bed_mash"
+
+msgid "no bed_mash"
+msgstr "Žádný bed_mash"
+
+msgid "no enabled"
+msgstr "Není povoleno"
+
+msgid "press button%s"
+msgstr "Stiskněte tlačítko%s"
+
+msgid "remove filament"
+msgstr "Odstranit filament"
+
+msgid "residual filament%s"
+msgstr "Zbytkový filament%s"
+
+msgid "resume:%s"
+msgstr "Obnovit:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "Nástroj pro obnovení:%s důvod pozastavení:%s"
+
+msgid "Copy Print"
+msgstr "Kopírovat tisk"
+msgid "Mirror Print"
+msgstr "Zrcadlový tisk"

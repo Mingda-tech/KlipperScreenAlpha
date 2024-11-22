@@ -485,9 +485,9 @@ msgid "PSK for"
 msgstr "PSK-nak"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "A csomag frissítésre kerül"
-msgstr[1] "Csomag frissül"
+
+msgstr "A csomag frissítésre kerül"
+
 
 msgid "Part Fan"
 msgstr "Tárgyhűtő"
@@ -758,17 +758,17 @@ msgid "Z offset:"
 msgstr "Z eltolás:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "ajánlás"
-msgstr[1] "ajánlások"
+
+msgstr "ajánlás"
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "óra"
-msgstr[1] "órák"
+
+msgstr "óra"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "a 'rename_existing' használó makrók el vannak rejtve"
@@ -777,9 +777,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "a '_' jellel kezdődő nevű makrók el vannak rejtve"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "perc"
-msgstr[1] "percek"
+
+msgstr "perc"
+
 
 msgid "mm"
 msgstr "mm"
@@ -987,3 +987,388 @@ msgstr "Veszélyes fúvóka magasságkülönbség: "
 
 msgid "Saved successfully!"
 msgstr "Sikeresen mentve!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Szerkesztés"
+
+msgid "Filament Info"
+msgstr "Szál információ"
+
+msgid "Not found"
+msgstr "Nem található"
+
+msgid "Vendor"
+msgstr "Gyártó"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Color"
+msgstr "Szín"
+
+msgid "Set Color"
+msgstr "Szín beállítása"
+
+msgid "Filament Settings"
+msgstr "Szál beállítások"
+
+msgid "Multi-Material Box"
+msgstr "Többanyagos doboz"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Biztosan újra szeretné indítani a firmware-t?"
+
+msgid "Autofill filament disable"
+msgstr "Automata szálbetöltés kikapcsolása"
+
+msgid "Autofill filament enabled"
+msgstr "Automata szálbetöltés engedélyezve"
+
+msgid "Autofill filament: %s"
+msgstr "Automata szálbetöltés: %s"
+
+msgid "Backing up configuration files."
+msgstr "Konfigurációs fájlok mentése."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Vágó pozíció kalibrálása"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Nem sikerült lekérni a vágó kalibrációs pozícióját."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Jelenlegi szálindexek:%s, aktív szerszám:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Jelenlegi szálindexek:%s, aktív szerszám:%s, folytatás_szerszám:%s, szünet_oka:%s"
+
+msgid "Current value is %s"
+msgstr "Jelenlegi érték: %s"
+
+msgid "Cut Filament Test"
+msgstr "Szálvágás teszt"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Szeretné engedélyezni a többanyagos dobozt?"
+
+msgid "Do you want to use external filament?"
+msgstr "Szeretne külső szálat használni?"
+
+msgid "Error: Offset values not found"
+msgstr "Hiba: Eltolási értékek nem találhatók"
+
+msgid "Error: Z offset value not found"
+msgstr "Hiba: Z eltolási érték nem található"
+
+msgid "External Filament"
+msgstr "Külső szál"
+
+msgid "Extruder not hot enough"
+msgstr "Az extruder nem elég forró"
+
+msgid "FEED error:External filament not removed"
+msgstr "ADAGOLÁSI hiba: Külső szál nincs eltávolítva"
+
+msgid "Filament %s not found"
+msgstr "%s szál nem található"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Szál érzékelő%s: Nem észlelhető szál, nyomtatás megszakítása"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Szál érzékelő%s: Nem észlelhető szál, nyomtatás szüneteltetése"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Szál érzékelő0: Nem észlelhető szál, nyomtatás szüneteltetése"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Szál érzékelő1: Nem észlelhető szál, nyomtatás szüneteltetése"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Szál észlelve! Kérjük, távolítsa el a szálat a hotendből a többanyagos doboz engedélyezése előtt."
+
+msgid "Missing required recovery data"
+msgstr "Hiányzó szükséges helyreállítási adatok"
+
+msgid "No power loss recovery data found"
+msgstr "Nem található áramkimaradás helyreállítási adat"
+
+msgid "No valid params 'S'"
+msgstr "Nincs érvényes 'S' paraméter"
+
+msgid "No"
+msgstr "Nem"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Beállítások"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Szünet. Az \"extruder\" adagolási hiba!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Kérjük, először távolítsa el a szálat a fúvókából"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Kérjük, adja meg helyesen a hang számát: 0-nyomtatás indítása, 1-nyomtatás befejezése, 2-kimaradás észlelve, 3-nyomtatás megszakítása, 4-nyomtatás szüneteltetése"
+
+msgid "Please select how you would like to proceed."
+msgstr "Kérjük, válassza ki, hogyan szeretne továbblépni."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Áramkimaradás helyreállítása, nyomtatás folytatása."
+
+msgid "Power loss, saving print states."
+msgstr "Áramkimaradás, nyomtatási állapotok mentése."
+
+msgid "Press feedsys button"
+msgstr "Nyomja meg az adagoló rendszer gombját"
+
+msgid "Print resumed from power loss position"
+msgstr "Nyomtatás folytatása az áramkimaradás pozíciójától"
+
+msgid "Printer not homed"
+msgstr "Nyomtató nincs alaphelyzetbe állítva"
+
+msgid "RESUME error:autofill no fil"
+msgstr "FOLYTATÁS hiba: nincs automata szálbetöltés"
+
+msgid "RESUME error:no fil"
+msgstr "FOLYTATÁS hiba: nincs szál"
+
+msgid "RESUME error:residual fil"
+msgstr "FOLYTATÁS hiba: maradék szál"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Helyreállítási adatok: Z=%s, Fájl=%s, Poz=%s"
+
+msgid "Save & Restart"
+msgstr "Mentés és újraindítás"
+
+msgid "T%s direct feed"
+msgstr "T%s közvetlen adagolás"
+
+msgid "T0 direct feed"
+msgstr "T0 közvetlen adagolás"
+
+msgid "T0 need exit filament"
+msgstr "T0 szál eltávolítása szükséges"
+
+msgid "T1 direct feed"
+msgstr "T1 közvetlen adagolás"
+
+msgid "T1 need exit filament"
+msgstr "T1 szál eltávolítása szükséges"
+
+msgid "T2 direct feed"
+msgstr "T2 közvetlen adagolás"
+
+msgid "T2 need exit filament"
+msgstr "T2 szál eltávolítása szükséges"
+
+msgid "T3 direct feed"
+msgstr "T3 közvetlen adagolás"
+
+msgid "T3 need exit filament"
+msgstr "T3 szál eltávolítása szükséges"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Az \"extruder\" adagolási hiba!"
+
+msgid "The current toolheade is T%s"
+msgstr "Az aktuális szerszámfej T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Az aktuális szerszámfej T0"
+
+msgid "The current toolheade is T1"
+msgstr "Az aktuális szerszámfej T1"
+
+msgid "The current toolheade is T2"
+msgstr "Az aktuális szerszámfej T2"
+
+msgid "The current toolheade is T3"
+msgstr "Az aktuális szerszámfej T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "A szál_doboz_%s üres"
+
+msgid "The motor is wrong."
+msgstr "A motor hibás."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Maradék szál található, kérjük távolítsa el és folytassa"
+
+msgid "There's a residual filament in box %s"
+msgstr "Maradék szál található a %s dobozban"
+
+msgid "There's a residual filament in box 1"
+msgstr "Maradék szál található az 1-es dobozban"
+
+msgid "There's a residual filament in box 2"
+msgstr "Maradék szál található a 2-es dobozban"
+
+msgid "There's a residual filament in box 3"
+msgstr "Maradék szál található a 3-as dobozban"
+
+msgid "There's a residual filament in box 4"
+msgstr "Maradék szál található a 4-es dobozban"
+
+msgid "Unknown fan"
+msgstr "Ismeretlen ventilátor"
+
+msgid "Unknown filament"
+msgstr "Ismeretlen szál"
+
+msgid "Use external filament, please manually exit"
+msgstr "Külső szál használata, kérjük, távolítsa el kézzel"
+
+msgid "Warning"
+msgstr "Figyelmeztetés"
+
+msgid "Yes"
+msgstr "Igen"
+
+msgid "auto shutdown error"
+msgstr "automatikus leállítási hiba"
+
+msgid "bed_mash:%s"
+msgstr "tálca_háló:%s"
+
+msgid "clean pause_reason"
+msgstr "szünet_ok törlése"
+
+msgid "cut filament"
+msgstr "szál vágása"
+
+msgid "cutter press!"
+msgstr "vágó nyomás!"
+
+msgid "cutter release!"
+msgstr "vágó felengedés!"
+
+msgid "feed busy"
+msgstr "adagolás foglalt"
+
+msgid "feed error"
+msgstr "adagolási hiba"
+
+msgid "feed finish"
+msgstr "adagolás befejezve"
+
+msgid "filament not removed"
+msgstr "szál nincs eltávolítva"
+
+msgid "filament pause reason"
+msgstr "szál szüneteltetés oka"
+
+msgid "filament press"
+msgstr "szál nyomás"
+
+msgid "filament release"
+msgstr "szál felengedés"
+
+msgid "filament remove"
+msgstr "szál eltávolítás"
+
+msgid "filament runout"
+msgstr "szál kifogyott"
+
+msgid "filament%s:%s"
+msgstr "szál%s:%s"
+
+msgid "flush filament"
+msgstr "szál öblítés"
+
+msgid "motion sensor insert"
+msgstr "mozgásérzékelő behelyezés"
+
+msgid "motion sensor runout"
+msgstr "mozgásérzékelő kifogyott"
+
+msgid "motor_%s press"
+msgstr "motor_%s nyomás"
+
+msgid "motor_%s release"
+msgstr "motor_%s felengedés"
+
+msgid "motor_1 press"
+msgstr "motor_1 nyomás"
+
+msgid "motor_1 release"
+msgstr "motor_1 felengedés"
+
+msgid "motor_2 press"
+msgstr "motor_2 nyomás"
+
+msgid "motor_2 release"
+msgstr "motor_2 felengedés"
+
+msgid "motor_3 press"
+msgstr "motor_3 nyomás"
+
+msgid "motor_3 release"
+msgstr "motor_3 felengedés"
+
+msgid "motor_4 press"
+msgstr "motor_4 nyomás"
+
+msgid "motor_4 release"
+msgstr "motor_4 felengedés"
+
+msgid "no bed_mash name"
+msgstr "nincs tálca_háló név"
+
+msgid "no bed_mash"
+msgstr "nincs tálca_háló"
+
+msgid "no enabled"
+msgstr "nincs engedélyezve"
+
+msgid "press button%s"
+msgstr "nyomja meg a %s gombot"
+
+msgid "press button1"
+msgstr "nyomja meg az 1-es gombot"
+
+msgid "press button2"
+msgstr "nyomja meg a 2-es gombot"
+
+msgid "press button3"
+msgstr "nyomja meg a 3-as gombot"
+
+msgid "press button4"
+msgstr "nyomja meg a 4-es gombot"
+
+msgid "remove filament"
+msgstr "szál eltávolítása"
+
+msgid "residual filament%s"
+msgstr "maradék szál%s"
+
+msgid "residual filament0"
+msgstr "maradék szál0"
+
+msgid "residual filament1"
+msgstr "maradék szál1"
+
+msgid "residual filament2"
+msgstr "maradék szál2"
+
+msgid "residual filament3"
+msgstr "maradék szál3"
+
+msgid "resume:%s"
+msgstr "folytatás:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "folytatás_szerszám:%s szünet_ok:%s"
+
+msgid "Copy Print"
+msgstr "Másolat nyomtatása"
+
+msgid "Mirror Print"
+msgstr "Tükör nyomtatás"

@@ -323,7 +323,7 @@ msgid "Initializing printer..."
 msgstr "Принтер стартует..."
 
 msgid "Initiate a PID calibration for:"
-msgstr "З��пустить калибровку ПИД-регулятора для:"
+msgstr "Зпустить калибровку ПИД-регулятора для:"
 
 msgid "Input Shaper"
 msgstr "Входной шейпер"
@@ -491,10 +491,10 @@ msgid "PSK for"
 msgstr "PSK для"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Пакет будет обновлен"
-msgstr[1] "Пакеты будут обновляться"
-msgstr[2] "Пакеты будут обновляться"
+
+msgstr "Пакет будет обновлен"
+
+
 
 msgid "Part Fan"
 msgstr "Вентилятор обдува детали"
@@ -765,19 +765,19 @@ msgid "Z offset:"
 msgstr "Смещение Z:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "изменение"
-msgstr[1] "изменения"
-msgstr[2] "изменений"
+
+msgstr "изменение"
+
+
 
 msgid "dBm"
 msgstr "дБм"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "час"
-msgstr[1] "часа"
-msgstr[2] "часов"
+
+msgstr "час"
+
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "макросы, использующие rename_existing, скрыты"
@@ -786,10 +786,10 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "макросы с именем, начинающиеся с '_', скрыты"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "минута"
-msgstr[1] "минуты"
-msgstr[2] "минут"
+
+msgstr "минута"
+
+
 
 msgid "mm"
 msgstr "мм"
@@ -806,8 +806,8 @@ msgstr "мм³/с"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen перезагрузится"
 
-#~ msgid "Continue"
-#~ msgstr "Продолжить"
+msgid "Continue"
+msgstr "Продолжить"
 
 #~ msgid "Fullscreen"
 #~ msgstr "Полный экран"
@@ -1188,3 +1188,388 @@ msgstr "Опасная разница высоты сопла: "
 
 msgid "Saved successfully!"
 msgstr "Успешно сохранено!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Filament Info"
+msgstr "Информация о нити"
+
+msgid "Not found"
+msgstr "Не найдено"
+
+msgid "Vendor"
+msgstr "Производитель"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Set Color"
+msgstr "Установить цвет"
+
+msgid "Filament Settings"
+msgstr "Настройки нити"
+
+msgid "Multi-Material Box"
+msgstr "Мульти-материальный бокс"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Вы уверены, что хотите перезагрузить прошивку?"
+
+msgid "Autofill filament disable"
+msgstr "Отключить автоматическое заполнение филаментом"
+
+msgid "Autofill filament enabled"
+msgstr "Включить автоматическое заполнение филаментом"
+
+msgid "Autofill filament: %s"
+msgstr "Автоматическое заполнение филамента: %s"
+
+msgid "Backing up configuration files."
+msgstr "Создание резервной копии конфигурационных файлов."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Калибровка позиции ножа"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Не удалось получить позицию ножа для калибровки."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Текущие индексы филамента: %s, активный инструмент: %s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Текущие индексы филамента: %s, активный инструмент: %s, инструмент для возобновления: %s, причина паузы: %s"
+
+msgid "Current value is %s"
+msgstr "Текущее значение: %s"
+
+msgid "Cut Filament Test"
+msgstr "Тест резки филамента"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Хотите включить коробку для многоматериальных материалов?"
+
+msgid "Do you want to use external filament?"
+msgstr "Хотите использовать внешний филамент?"
+
+msgid "Error: Offset values not found"
+msgstr "Ошибка: значения смещения не найдены"
+
+msgid "Error: Z offset value not found"
+msgstr "Ошибка: значение смещения Z не найдено"
+
+msgid "External Filament"
+msgstr "Внешний филамент"
+
+msgid "Extruder not hot enough"
+msgstr "Экструдер недостаточно горячий"
+
+msgid "FEED error:External filament not removed"
+msgstr "Ошибка ПОДАЧИ: внешний филамент не удален"
+
+msgid "Filament %s not found"
+msgstr "Филамент %s не найден"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Датчик филамента %s: филамент не обнаружен, отмена печати"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Датчик филамента %s: филамент не обнаружен, приостановка печати"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Датчик филамента 0: филамент не обнаружен, приостановка печати"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Датчик филамента 1: филамент не обнаружен, приостановка печати"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Филамент обнаружен! Пожалуйста, удалите филамент из сопла перед включением коробки для многоматериальных материалов."
+
+msgid "Missing required recovery data"
+msgstr "Отсутствуют необходимые данные для восстановления"
+
+msgid "No power loss recovery data found"
+msgstr "Не найдены данные для восстановления после отключения питания"
+
+msgid "No valid params 'S'"
+msgstr "Нет действительных параметров 'S'"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Пауза. Ошибка экструдера!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Пожалуйста, сначала удалите филамент из сопла"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Пожалуйста, правильно введите номер голосового команды: 0-начать печать, 1-закончить печать, 2-обнаружено отключение, 3-отменить печать, 4-приостановить печать"
+
+msgid "Please select how you would like to proceed."
+msgstr "Пожалуйста, выберите, как вы хотите продолжить."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Восстановление после отключения питания, возобновление печати."
+
+msgid "Power loss, saving print states."
+msgstr "Отключение питания, сохранение состояния печати."
+
+msgid "Press feedsys button"
+msgstr "Нажмите кнопку системы подачи"
+
+msgid "Print resumed from power loss position"
+msgstr "Печать возобновлена с позиции после отключения питания"
+
+msgid "Printer not homed"
+msgstr "Принтер не проинициализирован"
+
+msgid "RESUME error:autofill no fil"
+msgstr "Ошибка ВОССТАНОВЛЕНИЯ: нет филамента для автоматического заполнения"
+
+msgid "RESUME error:no fil"
+msgstr "Ошибка ВОССТАНОВЛЕНИЯ: нет филамента"
+
+msgid "RESUME error:residual fil"
+msgstr "Ошибка ВОССТАНОВЛЕНИЯ: остаточный филамент"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Данные восстановления: Z=%s, Файл=%s, Позиция=%s"
+
+msgid "Save & Restart"
+msgstr "Сохранить и перезагрузить"
+
+msgid "T%s direct feed"
+msgstr "Прямая подача T%s"
+
+msgid "T0 direct feed"
+msgstr "Прямая подача T0"
+
+msgid "T0 need exit filament"
+msgstr "T0 требует удаления филамента"
+
+msgid "T1 direct feed"
+msgstr "Прямая подача T1"
+
+msgid "T1 need exit filament"
+msgstr "T1 требует удаления филамента"
+
+msgid "T2 direct feed"
+msgstr "Прямая подача T2"
+
+msgid "T2 need exit filament"
+msgstr "T2 требует удаления филамента"
+
+msgid "T3 direct feed"
+msgstr "Прямая подача T3"
+
+msgid "T3 need exit filament"
+msgstr "T3 требует удаления филамента"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Ошибка экструдера!"
+
+msgid "The current toolheade is T%s"
+msgstr "Текущая головка инструмента: T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Текущая головка инструмента: T0"
+
+msgid "The current toolheade is T1"
+msgstr "Текущая головка инструмента: T1"
+
+msgid "The current toolheade is T2"
+msgstr "Текущая головка инструмента: T2"
+
+msgid "The current toolheade is T3"
+msgstr "Текущая головка инструмента: T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "В коробке филамента_%s нет филамента"
+
+msgid "The motor is wrong."
+msgstr "Мотор неисправен."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Есть остаточный филамент, пожалуйста, удалите и продолжайте"
+
+msgid "There's a residual filament in box %s"
+msgstr "Есть остаточный филамент в коробке %s"
+
+msgid "There's a residual filament in box 1"
+msgstr "Есть остаточный филамент в коробке 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "Есть остаточный филамент в коробке 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "Есть остаточный филамент в коробке 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "Есть остаточный филамент в коробке 4"
+
+msgid "Unknown fan"
+msgstr "Неизвестный вентилятор"
+
+msgid "Unknown filament"
+msgstr "Неизвестный филамент"
+
+msgid "Use external filament, please manually exit"
+msgstr "Используйте внешний филамент, пожалуйста, удалите вручную"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "auto shutdown error"
+msgstr "ошибка автоматического выключения"
+
+msgid "bed_mash:%s"
+msgstr "bed_mash:%s"
+
+msgid "clean pause_reason"
+msgstr "очистить причину паузы"
+
+msgid "cut filament"
+msgstr "резать филамент"
+
+msgid "cutter press!"
+msgstr "нож нажат!"
+
+msgid "cutter release!"
+msgstr "нож освобожден!"
+
+msgid "feed busy"
+msgstr "подача занята"
+
+msgid "feed error"
+msgstr "ошибка подачи"
+
+msgid "feed finish"
+msgstr "подача завершена"
+
+msgid "filament not removed"
+msgstr "филамент не удален"
+
+msgid "filament pause reason"
+msgstr "причина паузы филамента"
+
+msgid "filament press"
+msgstr "нажатие филамента"
+
+msgid "filament release"
+msgstr "освобождение филамента"
+
+msgid "filament remove"
+msgstr "удаление филамента"
+
+msgid "filament runout"
+msgstr "конец филамента"
+
+msgid "filament%s:%s"
+msgstr "филамент%s:%s"
+
+msgid "flush filament"
+msgstr "очистить филамент"
+
+msgid "motion sensor insert"
+msgstr "вставка датчика движения"
+
+msgid "motion sensor runout"
+msgstr "конец датчика движения"
+
+msgid "motor_%s press"
+msgstr "мотор_%s нажат"
+
+msgid "motor_%s release"
+msgstr "мотор_%s освобожден"
+
+msgid "motor_1 press"
+msgstr "мотор_1 нажат"
+
+msgid "motor_1 release"
+msgstr "мотор_1 освобожден"
+
+msgid "motor_2 press"
+msgstr "мотор_2 нажат"
+
+msgid "motor_2 release"
+msgstr "мотор_2 освобожден"
+
+msgid "motor_3 press"
+msgstr "мотор_3 нажат"
+
+msgid "motor_3 release"
+msgstr "мотор_3 освобожден"
+
+msgid "motor_4 press"
+msgstr "мотор_4 нажат"
+
+msgid "motor_4 release"
+msgstr "мотор_4 освобожден"
+
+msgid "no bed_mash name"
+msgstr "нет имени bed_mash"
+
+msgid "no bed_mash"
+msgstr "нет bed_mash"
+
+msgid "no enabled"
+msgstr "не включен"
+
+msgid "press button%s"
+msgstr "нажмите кнопку%s"
+
+msgid "press button1"
+msgstr "нажмите кнопку1"
+
+msgid "press button2"
+msgstr "нажмите кнопку2"
+
+msgid "press button3"
+msgstr "нажмите кнопку3"
+
+msgid "press button4"
+msgstr "нажмите кнопку4"
+
+msgid "remove filament"
+msgstr "удалить филамент"
+
+msgid "residual filament%s"
+msgstr "остаточный филамент%s"
+
+msgid "residual filament0"
+msgstr "остаточный филамент0"
+
+msgid "residual filament1"
+msgstr "остаточный филамент1"
+
+msgid "residual filament2"
+msgstr "остаточный филамент2"
+
+msgid "residual filament3"
+msgstr "остаточный филамент3"
+
+msgid "resume:%s"
+msgstr "возобновить:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "возобновить_инструмент:%s причина_паузы:%s"
+
+msgid "Copy Print"
+msgstr "Копировать печать"
+
+msgid "Mirror Print"
+msgstr "Зеркальная печать"

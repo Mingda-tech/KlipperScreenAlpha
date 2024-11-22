@@ -482,8 +482,8 @@ msgid "PSK for"
 msgstr ""
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] ""
+
+msgstr ""
 
 msgid "Part Fan"
 msgstr ""
@@ -754,15 +754,15 @@ msgid "Z offset:"
 msgstr ""
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] ""
+
+msgstr ""
 
 msgid "dBm"
 msgstr ""
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] ""
+
+msgstr ""
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr ""
@@ -771,8 +771,8 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr ""
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] ""
+
+msgstr ""
 
 msgid "mm"
 msgstr ""
@@ -789,8 +789,8 @@ msgstr ""
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreenは再起動します"
 
-#~ msgid "Continue"
-#~ msgstr "継続"
+msgid "Continue"
+msgstr "継続"
 
 #~ msgid "Actions"
 #~ msgstr "操作"
@@ -1017,3 +1017,388 @@ msgstr "危険なノズル高さの差: "
 
 msgid "Saved successfully!"
 msgstr "保存に成功しました!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "編集"
+
+msgid "Filament Info"
+msgstr "フィラメント情報"
+
+msgid "Not found"
+msgstr "見つかりません"
+
+msgid "Vendor"
+msgstr "メーカー"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Color"
+msgstr "色"
+
+msgid "Set Color"
+msgstr "色を設定"
+
+msgid "Filament Settings"
+msgstr "フィラメント設定"
+
+msgid "Multi-Material Box"
+msgstr "マルチマテリアルボックス"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "ファームウェアを再起動してもよろしいですか？"
+
+msgid "Autofill filament disable"
+msgstr "フィラメントの自動充填を無効にする"
+
+msgid "Autofill filament enabled"
+msgstr "フィラメントの自動充填が有効になりました"
+
+msgid "Autofill filament: %s"
+msgstr "フィラメントの自動充填: %s"
+
+msgid "Backing up configuration files."
+msgstr "設定ファイルをバックアップしています。"
+
+msgid "Calibrate Cutter Pos"
+msgstr "カッター位置のキャリブレーション"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "カッター位置のキャリブレーションに失敗しました。"
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "現在のフィラメントインデックスは：%s、アクティブなツールは：%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "現在のフィラメントインデックスは：%s、アクティブなツールは：%s、再開するツールは：%s、一時停止の理由は：%s"
+
+msgid "Current value is %s"
+msgstr "現在の値は %s です"
+
+msgid "Cut Filament Test"
+msgstr "フィラメント切断テスト"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "マルチマテリアルボックスを有効にしますか？"
+
+msgid "Do you want to use external filament?"
+msgstr "外部フィラメントを使用しますか？"
+
+msgid "Error: Offset values not found"
+msgstr "エラー: オフセット値が見つかりません"
+
+msgid "Error: Z offset value not found"
+msgstr "エラー: Zオフセット値が見つかりません"
+
+msgid "External Filament"
+msgstr "外部フィラメント"
+
+msgid "Extruder not hot enough"
+msgstr "エクストルーダーが十分に熱くありません"
+
+msgid "FEED error:External filament not removed"
+msgstr "FEEDエラー: 外部フィラメントが取り外されていません"
+
+msgid "Filament %s not found"
+msgstr "フィラメント %s が見つかりません"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "フィラメントセンサー %s: フィラメントが検出されず、印刷をキャンセルします"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "フィラメントセンサー %s: フィラメントが検出されず、印刷を一時停止します"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "フィラメントセンサー0: フィラメントが検出されず、印刷を一時停止します"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "フィラメントセンサー1: フィラメントが検出されず、印刷を一時停止します"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "フィラメントが検出されました！マルチマテリアルボックスを有効にする前に、ホットエンドからフィラメントを取り除いてください。"
+
+msgid "Missing required recovery data"
+msgstr "必要な回復データがありません"
+
+msgid "No power loss recovery data found"
+msgstr "停電からの回復データが見つかりません"
+
+msgid "No valid params 'S'"
+msgstr "'S' パラメータが無効です"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "一時停止。エクストルーダーの押し出しエラー！"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "まずノズルからフィラメントを取り外してください"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "音声番号を正しく入力してください：0-印刷開始、1-印刷終了、2-停電検出、3-印刷キャンセル、4-印刷一時停止"
+
+msgid "Please select how you would like to proceed."
+msgstr "どのように進めるか選択してください。"
+
+msgid "Power loss recovery, resuming print."
+msgstr "停電からの回復、印刷を再開します。"
+
+msgid "Power loss, saving print states."
+msgstr "停電、印刷状態を保存します。"
+
+msgid "Press feedsys button"
+msgstr "フィードシステムボタンを押してください"
+
+msgid "Print resumed from power loss position"
+msgstr "停電時の位置から印刷を再開しました"
+
+msgid "Printer not homed"
+msgstr "プリンターがホームされていません"
+
+msgid "RESUME error:autofill no fil"
+msgstr "再開エラー: 自動充填なし"
+
+msgid "RESUME error:no fil"
+msgstr "再開エラー: フィラメントなし"
+
+msgid "RESUME error:residual fil"
+msgstr "再開エラー: 残存フィラメント"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "回復データ: Z=%s, ファイル=%s, 位置=%s"
+
+msgid "Save & Restart"
+msgstr "保存して再起動"
+
+msgid "T%s direct feed"
+msgstr "T%s 直接給餌"
+
+msgid "T0 direct feed"
+msgstr "T0 直接給餌"
+
+msgid "T0 need exit filament"
+msgstr "T0 からフィラメントを取り外す必要があります"
+
+msgid "T1 direct feed"
+msgstr "T1 直接給餌"
+
+msgid "T1 need exit filament"
+msgstr "T1 からフィラメントを取り外す必要があります"
+
+msgid "T2 direct feed"
+msgstr "T2 直接給餌"
+
+msgid "T2 need exit filament"
+msgstr "T2 からフィラメントを取り外す必要があります"
+
+msgid "T3 direct feed"
+msgstr "T3 直接給餌"
+
+msgid "T3 need exit filament"
+msgstr "T3 からフィラメントを取り外す必要があります"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "エクストルーダーの押し出しエラー！"
+
+msgid "The current toolheade is T%s"
+msgstr "現在のツールヘッドは T%s です"
+
+msgid "The current toolheade is T0"
+msgstr "現在のツールヘッドは T0 です"
+
+msgid "The current toolheade is T1"
+msgstr "現在のツールヘッドは T1 です"
+
+msgid "The current toolheade is T2"
+msgstr "現在のツールヘッドは T2 です"
+
+msgid "The current toolheade is T3"
+msgstr "現在のツールヘッドは T3 です"
+
+msgid "The filament_box_%s no filament"
+msgstr "フィラメントボックス_%s にはフィラメントがありません"
+
+msgid "The motor is wrong."
+msgstr "モーターが間違っています。"
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "残存フィラメントがあります。取り除いてから続行してください"
+
+msgid "There's a residual filament in box %s"
+msgstr "ボックス %s に残存フィラメントがあります"
+
+msgid "There's a residual filament in box 1"
+msgstr "ボックス 1 に残存フィラメントがあります"
+
+msgid "There's a residual filament in box 2"
+msgstr "ボックス 2 に残存フィラメントがあります"
+
+msgid "There's a residual filament in box 3"
+msgstr "ボックス 3 に残存フィラメントがあります"
+
+msgid "There's a residual filament in box 4"
+msgstr "ボックス 4 に残存フィラメントがあります"
+
+msgid "Unknown fan"
+msgstr "不明なファン"
+
+msgid "Unknown filament"
+msgstr "不明なフィラメント"
+
+msgid "Use external filament, please manually exit"
+msgstr "外部フィラメントを使用する場合、手動で取り外してください"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "auto shutdown error"
+msgstr "自動シャットダウンエラー"
+
+msgid "bed_mash:%s"
+msgstr "ベッドマッシュ:%s"
+
+msgid "clean pause_reason"
+msgstr "一時停止理由のクリア"
+
+msgid "cut filament"
+msgstr "フィラメントを切断"
+
+msgid "cutter press!"
+msgstr "カッタープレス！"
+
+msgid "cutter release!"
+msgstr "カッター解除！"
+
+msgid "feed busy"
+msgstr "フィード中"
+
+msgid "feed error"
+msgstr "フィードエラー"
+
+msgid "feed finish"
+msgstr "フィード完了"
+
+msgid "filament not removed"
+msgstr "フィラメントが取り外されていません"
+
+msgid "filament pause reason"
+msgstr "フィラメントの一時停止理由"
+
+msgid "filament press"
+msgstr "フィラメントプレス"
+
+msgid "filament release"
+msgstr "フィラメント解除"
+
+msgid "filament remove"
+msgstr "フィラメントを取り外す"
+
+msgid "filament runout"
+msgstr "フィラメント切れ"
+
+msgid "filament%s:%s"
+msgstr "フィラメント%s:%s"
+
+msgid "flush filament"
+msgstr "フィラメントを排出"
+
+msgid "motion sensor insert"
+msgstr "モーションセンサーアイント"
+
+msgid "motion sensor runout"
+msgstr "モーションセンサーレンアウト"
+
+msgid "motor_%s press"
+msgstr "モーター_%s プレス"
+
+msgid "motor_%s release"
+msgstr "モーター_%s 解除"
+
+msgid "motor_1 press"
+msgstr "モーター_1 プレス"
+
+msgid "motor_1 release"
+msgstr "モーター_1 解除"
+
+msgid "motor_2 press"
+msgstr "モーター_2 プレス"
+
+msgid "motor_2 release"
+msgstr "モーター_2 解除"
+
+msgid "motor_3 press"
+msgstr "モーター_3 プレス"
+
+msgid "motor_3 release"
+msgstr "モーター_3 解除"
+
+msgid "motor_4 press"
+msgstr "モーター_4 プレス"
+
+msgid "motor_4 release"
+msgstr "モーター_4 解除"
+
+msgid "no bed_mash name"
+msgstr "ベッドマッシュ名なし"
+
+msgid "no bed_mash"
+msgstr "ベッドマッシュなし"
+
+msgid "no enabled"
+msgstr "無効"
+
+msgid "press button%s"
+msgstr "ボタン%sを押してください"
+
+msgid "press button1"
+msgstr "ボタン1を押してください"
+
+msgid "press button2"
+msgstr "ボタン2を押してください"
+
+msgid "press button3"
+msgstr "ボタン3を押してください"
+
+msgid "press button4"
+msgstr "ボタン4を押してください"
+
+msgid "remove filament"
+msgstr "フィラメントを取り外す"
+
+msgid "residual filament%s"
+msgstr "残存フィラメント%s"
+
+msgid "residual filament0"
+msgstr "残存フィラメント0"
+
+msgid "residual filament1"
+msgstr "残存フィラメント1"
+
+msgid "residual filament2"
+msgstr "残存フィラメント2"
+
+msgid "residual filament3"
+msgstr "残存フィラメント3"
+
+msgid "resume:%s"
+msgstr "再開:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "再開ツール:%s 一時停止理由:%s"
+
+msgid "Copy Print"
+msgstr "コピー印刷"
+
+msgid "Mirror Print"
+msgstr "ミラー印刷"

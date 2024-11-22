@@ -493,9 +493,9 @@ msgid "PSK for"
 msgstr "PSK pour"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Le paquet sera mis à jour"
-msgstr[1] "Les paquets seront mis à jour"
+
+msgstr "Le paquet sera mis à jour"
+
 
 msgid "Part Fan"
 msgstr "Ventilateurs de refroidissement"
@@ -767,17 +767,17 @@ msgid "Z offset:"
 msgstr "Décalage Z:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "changement"
-msgstr[1] "changements"
+
+msgstr "changement"
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "heure"
-msgstr[1] "heures"
+
+msgstr "heure"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "les macros qui utilisent 'rename_existing' sont cachées"
@@ -786,9 +786,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "les macros dont le nom commence par '_' sont cachées"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minute"
-msgstr[1] "minutes"
+
+msgstr "minute"
+
 
 msgid "mm"
 msgstr "mm"
@@ -805,8 +805,8 @@ msgstr "mm³/s"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen va redémarrer"
 
-#~ msgid "Continue"
-#~ msgstr "Continuer"
+msgid "Continue"
+msgstr "Continuer"
 
 #~ msgid "Actions"
 #~ msgstr "Actions"
@@ -1211,3 +1211,388 @@ msgstr "Différence de hauteur dangereuse de la buse : "
 
 msgid "Saved successfully!"
 msgstr "Enregistré avec succès!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Filament Info"
+msgstr "Info Filament"
+
+msgid "Not found"
+msgstr "Non trouvé"
+
+msgid "Vendor"
+msgstr "Fabricant"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Color"
+msgstr "Couleur"
+
+msgid "Set Color"
+msgstr "Définir la couleur"
+
+msgid "Filament Settings"
+msgstr "Paramètres du Filament"
+
+msgid "Multi-Material Box"
+msgstr "Boîte Multi-Matériaux"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Êtes-vous sûr de vouloir redémarrer le firmware ?"
+
+msgid "Autofill filament disable"
+msgstr "Désactiver le remplissage automatique du filament"
+
+msgid "Autofill filament enabled"
+msgstr "Remplissage automatique du filament activé"
+
+msgid "Autofill filament: %s"
+msgstr "Remplissage automatique du filament : %s"
+
+msgid "Backing up configuration files."
+msgstr "Sauvegarde des fichiers de configuration."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Calibrer la position du cutter"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Impossible d'obtenir la position de calibration du cutter."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Les index de filament actuels sont :%s, outil actif :%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Les index de filament actuels sont :%s, outil actif :%s, outil_reprise :%s, raison_pause :%s"
+
+msgid "Current value is %s"
+msgstr "La valeur actuelle est %s"
+
+msgid "Cut Filament Test"
+msgstr "Test de coupe du filament"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Voulez-vous activer le boîtier multi-matériaux ?"
+
+msgid "Do you want to use external filament?"
+msgstr "Voulez-vous utiliser un filament externe ?"
+
+msgid "Error: Offset values not found"
+msgstr "Erreur : Valeurs de décalage non trouvées"
+
+msgid "Error: Z offset value not found"
+msgstr "Erreur : Valeur de décalage Z non trouvée"
+
+msgid "External Filament"
+msgstr "Filament externe"
+
+msgid "Extruder not hot enough"
+msgstr "Extrudeur pas assez chaud"
+
+msgid "FEED error:External filament not removed"
+msgstr "Erreur d'ALIMENTATION : Filament externe non retiré"
+
+msgid "Filament %s not found"
+msgstr "Filament %s non trouvé"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Capteur de filament%s : Aucun filament détecté, annulation de l'impression"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Capteur de filament%s : Aucun filament détecté, pause de l'impression"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Capteur de filament0 : Aucun filament détecté, pause de l'impression"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Capteur de filament1 : Aucun filament détecté, pause de l'impression"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filament détecté ! Veuillez retirer le filament de la tête chaude avant d'activer le boîtier multi-matériaux."
+
+msgid "Missing required recovery data"
+msgstr "Données de récupération requises manquantes"
+
+msgid "No power loss recovery data found"
+msgstr "Aucune donnée de récupération après perte de puissance trouvée"
+
+msgid "No valid params 'S'"
+msgstr "Pas de paramètres 'S' valides"
+
+msgid "No"
+msgstr "Non"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Options"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Pause. Erreur d'extrusion de l'\"extrudeur\" !"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Veuillez d'abord retirer le filament de la buse"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Veuillez saisir correctement le numéro vocal : 0-démarrer l'impression, 1-terminer l'impression, 2-panne détectée, 3-annuler l'impression, 4-mettre en pause l'impression"
+
+msgid "Please select how you would like to proceed."
+msgstr "Veuillez sélectionner comment vous souhaitez procéder."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Récupération après perte de puissance, reprise de l'impression."
+
+msgid "Power loss, saving print states."
+msgstr "Perte de puissance, sauvegarde des états d'impression."
+
+msgid "Press feedsys button"
+msgstr "Appuyez sur le bouton d'alimentation"
+
+msgid "Print resumed from power loss position"
+msgstr "Impression reprise depuis la position de perte de puissance"
+
+msgid "Printer not homed"
+msgstr "Imprimante non initialisée"
+
+msgid "RESUME error:autofill no fil"
+msgstr "Erreur de REPRISE : pas de remplissage automatique"
+
+msgid "RESUME error:no fil"
+msgstr "Erreur de REPRISE : pas de filament"
+
+msgid "RESUME error:residual fil"
+msgstr "Erreur de REPRISE : filament résiduel"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Données de récupération : Z=%s, Fichier=%s, Pos=%s"
+
+msgid "Save & Restart"
+msgstr "Sauvegarder & Redémarrer"
+
+msgid "T%s direct feed"
+msgstr "Alimentation directe T%s"
+
+msgid "T0 direct feed"
+msgstr "Alimentation directe T0"
+
+msgid "T0 need exit filament"
+msgstr "T0 nécessite de retirer le filament"
+
+msgid "T1 direct feed"
+msgstr "Alimentation directe T1"
+
+msgid "T1 need exit filament"
+msgstr "T1 nécessite de retirer le filament"
+
+msgid "T2 direct feed"
+msgstr "Alimentation directe T2"
+
+msgid "T2 need exit filament"
+msgstr "T2 nécessite de retirer le filament"
+
+msgid "T3 direct feed"
+msgstr "Alimentation directe T3"
+
+msgid "T3 need exit filament"
+msgstr "T3 nécessite de retirer le filament"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Erreur d'extrusion de l'\"extrudeur\" !"
+
+msgid "The current toolheade is T%s"
+msgstr "La tête d'outil actuelle est T%s"
+
+msgid "The current toolheade is T0"
+msgstr "La tête d'outil actuelle est T0"
+
+msgid "The current toolheade is T1"
+msgstr "La tête d'outil actuelle est T1"
+
+msgid "The current toolheade is T2"
+msgstr "La tête d'outil actuelle est T2"
+
+msgid "The current toolheade is T3"
+msgstr "La tête d'outil actuelle est T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "Le boîtier de filament_%s n'a pas de filament"
+
+msgid "The motor is wrong."
+msgstr "Le moteur est défectueux."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Il y a un filament résiduel, veuillez le retirer et continuer"
+
+msgid "There's a residual filament in box %s"
+msgstr "Il y a un filament résiduel dans le boîtier %s"
+
+msgid "There's a residual filament in box 1"
+msgstr "Il y a un filament résiduel dans le boîtier 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "Il y a un filament résiduel dans le boîtier 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "Il y a un filament résiduel dans le boîtier 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "Il y a un filament résiduel dans le boîtier 4"
+
+msgid "Unknown fan"
+msgstr "Ventilateur inconnu"
+
+msgid "Unknown filament"
+msgstr "Filament inconnu"
+
+msgid "Use external filament, please manually exit"
+msgstr "Utilisez le filament externe, veuillez sortir manuellement"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "auto shutdown error"
+msgstr "Erreur d'arrêt automatique"
+
+msgid "bed_mash:%s"
+msgstr "maillage_plateau:%s"
+
+msgid "clean pause_reason"
+msgstr "nettoyer raison_pause"
+
+msgid "cut filament"
+msgstr "couper le filament"
+
+msgid "cutter press!"
+msgstr "appuyer sur le cutter !"
+
+msgid "cutter release!"
+msgstr "relâcher le cutter !"
+
+msgid "feed busy"
+msgstr "alimentation occupée"
+
+msgid "feed error"
+msgstr "erreur d'alimentation"
+
+msgid "feed finish"
+msgstr "alimentation terminée"
+
+msgid "filament not removed"
+msgstr "filament non retiré"
+
+msgid "filament pause reason"
+msgstr "raison de pause du filament"
+
+msgid "filament press"
+msgstr "pression du filament"
+
+msgid "filament release"
+msgstr "relâchement du filament"
+
+msgid "filament remove"
+msgstr "retrait du filament"
+
+msgid "filament runout"
+msgstr "filament épuisé"
+
+msgid "filament%s:%s"
+msgstr "filament%s:%s"
+
+msgid "flush filament"
+msgstr "purger le filament"
+
+msgid "motion sensor insert"
+msgstr "insertion du capteur de mouvement"
+
+msgid "motion sensor runout"
+msgstr "capteur de mouvement épuisé"
+
+msgid "motor_%s press"
+msgstr "pression moteur_%s"
+
+msgid "motor_%s release"
+msgstr "relâchement moteur_%s"
+
+msgid "motor_1 press"
+msgstr "pression moteur_1"
+
+msgid "motor_1 release"
+msgstr "relâchement moteur_1"
+
+msgid "motor_2 press"
+msgstr "pression moteur_2"
+
+msgid "motor_2 release"
+msgstr "relâchement moteur_2"
+
+msgid "motor_3 press"
+msgstr "pression moteur_3"
+
+msgid "motor_3 release"
+msgstr "relâchement moteur_3"
+
+msgid "motor_4 press"
+msgstr "pression moteur_4"
+
+msgid "motor_4 release"
+msgstr "relâchement moteur_4"
+
+msgid "no bed_mash name"
+msgstr "pas de nom de maillage_plateau"
+
+msgid "no bed_mash"
+msgstr "pas de maillage_plateau"
+
+msgid "no enabled"
+msgstr "non activé"
+
+msgid "press button%s"
+msgstr "appuyer sur le bouton%s"
+
+msgid "press button1"
+msgstr "appuyer sur le bouton1"
+
+msgid "press button2"
+msgstr "appuyer sur le bouton2"
+
+msgid "press button3"
+msgstr "appuyer sur le bouton3"
+
+msgid "press button4"
+msgstr "appuyer sur le bouton4"
+
+msgid "remove filament"
+msgstr "retirer le filament"
+
+msgid "residual filament%s"
+msgstr "filament résiduel%s"
+
+msgid "residual filament0"
+msgstr "filament résiduel0"
+
+msgid "residual filament1"
+msgstr "filament résiduel1"
+
+msgid "residual filament2"
+msgstr "filament résiduel2"
+
+msgid "residual filament3"
+msgstr "filament résiduel3"
+
+msgid "resume:%s"
+msgstr "reprise:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "outil_reprise:%s raison_pause:%s"
+
+msgid "Copy Print"
+msgstr "Copier l'impression"
+
+msgid "Mirror Print"
+msgstr "Impression miroir"

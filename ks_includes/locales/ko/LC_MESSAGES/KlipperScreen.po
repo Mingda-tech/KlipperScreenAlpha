@@ -483,8 +483,8 @@ msgid "PSK for"
 msgstr "PSK 키 값(비밀번호)"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "패키지가 업데이트 됩니다"
+
+msgstr "패키지가 업데이트 됩니다"
 
 msgid "Part Fan"
 msgstr "파트 쿨링 팬"
@@ -755,15 +755,15 @@ msgid "Z offset:"
 msgstr "Z 오프셋:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "커밋"
+
+msgstr "커밋"
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "시간"
+
+msgstr "시간"
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "'rename_existing'을(를) 사용하는 매크로가 숨겨집니다"
@@ -772,8 +772,8 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "이름이 '_'로 시작하는 매크로는 숨겨집니다"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "분"
+
+msgstr "분"
 
 msgid "mm"
 msgstr "mm"
@@ -790,8 +790,8 @@ msgstr "mm³/s"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen가 재부팅됩니다"
 
-#~ msgid "Continue"
-#~ msgstr "계속"
+msgid "Continue"
+msgstr "계속"
 
 #~ msgid "Actions"
 #~ msgstr "툴 헤드 제어"
@@ -806,7 +806,7 @@ msgstr "mm³/s"
 #~ msgstr "XY 비활성화"
 
 #~ msgid "Slicer Time correction (%)"
-#~ msgstr "슬라이서 ���간 보정(%)"
+#~ msgstr "슬라이서 간 보정(%)"
 
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "교정됨, 설정을 저장합니다"
@@ -1083,3 +1083,388 @@ msgstr "위험한 노즐 높이 차이: "
 
 msgid "Saved successfully!"
 msgstr "성공적으로 저장되었습니다!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "편집"
+
+msgid "Filament Info"
+msgstr "필라멘트 정보"
+
+msgid "Not found"
+msgstr "찾을 수 없음"
+
+msgid "Vendor"
+msgstr "제조사"
+
+msgid "Type"
+msgstr "유형"
+
+msgid "Color"
+msgstr "색상"
+
+msgid "Set Color"
+msgstr "색상 설정"
+
+msgid "Filament Settings"
+msgstr "필라멘트 설정"
+
+msgid "Multi-Material Box"
+msgstr "멀티 재료 박스"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "펌웨어를 재시작하시겠습니까?"
+
+msgid "Autofill filament disable"
+msgstr "자동 필라멘트 채우기 비활성화"
+
+msgid "Autofill filament enabled"
+msgstr "자동 필라멘트 채우기 활성화"
+
+msgid "Autofill filament: %s"
+msgstr "자동 필라멘트 채우기: %s"
+
+msgid "Backing up configuration files."
+msgstr "설정 파일을 백업 중입니다."
+
+msgid "Calibrate Cutter Pos"
+msgstr "커터 위치 교정"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "커터 교정 위치를 얻을 수 없습니다."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "현재 필라멘트 인덱스는 %s이고, 활성 도구는 %s입니다."
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "현재 필라멘트 인덱스는 %s이고, 활성 도구는 %s, 재개 도구는 %s, 일시 정지 이유는 %s입니다."
+
+msgid "Current value is %s"
+msgstr "현재 값은 %s입니다."
+
+msgid "Cut Filament Test"
+msgstr "필라멘트 절단 테스트"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "다중 소재 상자를 활성화하시겠습니까?"
+
+msgid "Do you want to use external filament?"
+msgstr "외부 필라멘트를 사용하시겠습니까?"
+
+msgid "Error: Offset values not found"
+msgstr "오류: 오프셋 값이 없습니다."
+
+msgid "Error: Z offset value not found"
+msgstr "오류: Z 오프셋 값이 없습니다."
+
+msgid "External Filament"
+msgstr "외부 필라멘트"
+
+msgid "Extruder not hot enough"
+msgstr "엑스트루더가 충분히 뜨겁지 않습니다."
+
+msgid "FEED error:External filament not removed"
+msgstr "FEED 오류: 외부 필라멘트가 제거되지 않았습니다."
+
+msgid "Filament %s not found"
+msgstr "필라멘트 %s를 찾을 수 없습니다."
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "필라멘트 센서%s: 필라멘트를 감지하지 못했습니다, 프린트를 취소합니다."
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "필라멘트 센서%s: 필라멘트를 감지하지 못했습니다, 프린트를 일시 정지합니다."
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "필라멘트 센서0: 필라멘트를 감지하지 못했습니다, 프린트를 일시 정지합니다."
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "필라멘트 센서1: 필라멘트를 감지하지 못했습니다, 프린트를 일시 정지합니다."
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "필라멘트가 감지되었습니다! 다중 소재 상자를 활성화하기 전에 핫엔드에서 필라멘트를 제거해 주세요."
+
+msgid "Missing required recovery data"
+msgstr "필요한 복구 데이터가 없습니다."
+
+msgid "No power loss recovery data found"
+msgstr "전원 손실 복구 데이터를 찾을 수 없습니다."
+
+msgid "No valid params 'S'"
+msgstr "'S' 매개변수가 유효하지 않습니다."
+
+msgid "No"
+msgstr "아니오"
+
+msgid "OK"
+msgstr "확인"
+
+msgid "Options"
+msgstr "옵션"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "일시 정지. \"엑스트루더\" 엑스트루드 오류!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "먼저 노즐에서 필라멘트를 제거해 주세요."
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "음성 번호를 올바르게 입력해 주세요: 0-프린트 시작, 1-프린트 종료, 2-정전 감지, 3-프린트 취소, 4-프린트 일시 정지"
+
+msgid "Please select how you would like to proceed."
+msgstr "진행 방식을 선택해 주세요."
+
+msgid "Power loss recovery, resuming print."
+msgstr "전원 손실 복구, 프린트 재개."
+
+msgid "Power loss, saving print states."
+msgstr "전원 손실, 프린트 상태 저장."
+
+msgid "Press feedsys button"
+msgstr "피드 시스템 버튼을 누르세요."
+
+msgid "Print resumed from power loss position"
+msgstr "전원 손실 위치에서 프린트 재개."
+
+msgid "Printer not homed"
+msgstr "프린터가 원점으로 돌아가지 않았습니다."
+
+msgid "RESUME error:autofill no fil"
+msgstr "RESUME 오류: 자동 채우기 필라멘트 없음"
+
+msgid "RESUME error:no fil"
+msgstr "RESUME 오류: 필라멘트 없음"
+
+msgid "RESUME error:residual fil"
+msgstr "RESUME 오류: 잔여 필라멘트"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "복구 데이터: Z=%s, 파일=%s, 위치=%s"
+
+msgid "Save & Restart"
+msgstr "저장 및 재시작"
+
+msgid "T%s direct feed"
+msgstr "T%s 직접 공급"
+
+msgid "T0 direct feed"
+msgstr "T0 직접 공급"
+
+msgid "T0 need exit filament"
+msgstr "T0 필라멘트 제거 필요"
+
+msgid "T1 direct feed"
+msgstr "T1 직접 공급"
+
+msgid "T1 need exit filament"
+msgstr "T1 필라멘트 제거 필요"
+
+msgid "T2 direct feed"
+msgstr "T2 직접 공급"
+
+msgid "T2 need exit filament"
+msgstr "T2 필라멘트 제거 필요"
+
+msgid "T3 direct feed"
+msgstr "T3 직접 공급"
+
+msgid "T3 need exit filament"
+msgstr "T3 필라멘트 제거 필요"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "\"엑스트루더\" 엑스트루드 오류!"
+
+msgid "The current toolheade is T%s"
+msgstr "현재 도구 헤드는 T%s입니다."
+
+msgid "The current toolheade is T0"
+msgstr "현재 도구 헤드는 T0입니다."
+
+msgid "The current toolheade is T1"
+msgstr "현재 도구 헤드는 T1입니다."
+
+msgid "The current toolheade is T2"
+msgstr "현재 도구 헤드는 T2입니다."
+
+msgid "The current toolheade is T3"
+msgstr "현재 도구 헤드는 T3입니다."
+
+msgid "The filament_box_%s no filament"
+msgstr "필라멘트 상자_%s에 필라멘트가 없습니다."
+
+msgid "The motor is wrong."
+msgstr "모터가 잘못되었습니다."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "잔여 필라멘트가 있습니다. 제거 후 계속 진행해 주세요."
+
+msgid "There's a residual filament in box %s"
+msgstr "상자 %s에 잔여 필라멘트가 있습니다."
+
+msgid "There's a residual filament in box 1"
+msgstr "상자 1에 잔여 필라멘트가 있습니다."
+
+msgid "There's a residual filament in box 2"
+msgstr "상자 2에 잔여 필라멘트가 있습니다."
+
+msgid "There's a residual filament in box 3"
+msgstr "상자 3에 잔여 필라멘트가 있습니다."
+
+msgid "There's a residual filament in box 4"
+msgstr "상자 4에 잔여 필라멘트가 있습니다."
+
+msgid "Unknown fan"
+msgstr "알 수 없는 팬"
+
+msgid "Unknown filament"
+msgstr "알 수 없는 필라멘트"
+
+msgid "Use external filament, please manually exit"
+msgstr "외부 필라멘트를 사용하려면 수동으로 제거해 주세요."
+
+msgid "Warning"
+msgstr "경고"
+
+msgid "Yes"
+msgstr "예"
+
+msgid "auto shutdown error"
+msgstr "자동 종료 오류"
+
+msgid "bed_mash:%s"
+msgstr "베드 메쉬:%s"
+
+msgid "clean pause_reason"
+msgstr "일시 정지 이유 초기화"
+
+msgid "cut filament"
+msgstr "필라멘트 절단"
+
+msgid "cutter press!"
+msgstr "커터 압박!"
+
+msgid "cutter release!"
+msgstr "커터 해제!"
+
+msgid "feed busy"
+msgstr "피드 중"
+
+msgid "feed error"
+msgstr "피드 오류"
+
+msgid "feed finish"
+msgstr "피드 완료"
+
+msgid "filament not removed"
+msgstr "필라멘트 제거되지 않음"
+
+msgid "filament pause reason"
+msgstr "필라멘트 일시 정지 이유"
+
+msgid "filament press"
+msgstr "필라멘트 압박"
+
+msgid "filament release"
+msgstr "필라멘트 해제"
+
+msgid "filament remove"
+msgstr "필라멘트 제거"
+
+msgid "filament runout"
+msgstr "필라멘트 부족"
+
+msgid "filament%s:%s"
+msgstr "필라멘트%s:%s"
+
+msgid "flush filament"
+msgstr "필라멘트 배출"
+
+msgid "motion sensor insert"
+msgstr "모션 센서 삽입"
+
+msgid "motion sensor runout"
+msgstr "모션 센서 부족"
+
+msgid "motor_%s press"
+msgstr "모터_%s 압박"
+
+msgid "motor_%s release"
+msgstr "모터_%s 해제"
+
+msgid "motor_1 press"
+msgstr "모터_1 압박"
+
+msgid "motor_1 release"
+msgstr "모터_1 해제"
+
+msgid "motor_2 press"
+msgstr "모터_2 압박"
+
+msgid "motor_2 release"
+msgstr "모터_2 해제"
+
+msgid "motor_3 press"
+msgstr "모터_3 압박"
+
+msgid "motor_3 release"
+msgstr "모터_3 해제"
+
+msgid "motor_4 press"
+msgstr "모터_4 압박"
+
+msgid "motor_4 release"
+msgstr "모터_4 해제"
+
+msgid "no bed_mash name"
+msgstr "베드 메쉬 이름 없음"
+
+msgid "no bed_mash"
+msgstr "베드 메쉬 없음"
+
+msgid "no enabled"
+msgstr "비활성화"
+
+msgid "press button%s"
+msgstr "버튼%s 누르기"
+
+msgid "press button1"
+msgstr "버튼1 누르기"
+
+msgid "press button2"
+msgstr "버튼2 누르기"
+
+msgid "press button3"
+msgstr "버튼3 누르기"
+
+msgid "press button4"
+msgstr "버튼4 누르기"
+
+msgid "remove filament"
+msgstr "필라멘트 제거"
+
+msgid "residual filament%s"
+msgstr "잔여 필라멘트%s"
+
+msgid "residual filament0"
+msgstr "잔여 필라멘트0"
+
+msgid "residual filament1"
+msgstr "잔여 필라멘트1"
+
+msgid "residual filament2"
+msgstr "잔여 필라멘트2"
+
+msgid "residual filament3"
+msgstr "잔여 필라멘트3"
+
+msgid "resume:%s"
+msgstr "재개:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "재개 도구:%s 일시 정지 이유:%s"
+
+msgid "Copy Print"
+msgstr "복사 인쇄"
+
+msgid "Mirror Print"
+msgstr "미러 인쇄"

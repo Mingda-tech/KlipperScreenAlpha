@@ -482,9 +482,9 @@ msgid "PSK for"
 msgstr ""
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] ""
-msgstr[1] ""
+
+msgstr ""
+
 
 msgid "Part Fan"
 msgstr ""
@@ -982,4 +982,388 @@ msgid "Dangerous nozzle height difference: "
 msgstr ""
 
 msgid "Saved successfully!"
+msgstr ""
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Filament Info"
+msgstr "Filament Info"
+
+msgid "Not found"
+msgstr "Not found"
+
+msgid "Vendor"
+msgstr "Vendor"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Set Color"
+msgstr "Set Color"
+
+msgid "Filament Settings"
+msgstr "Filament Settings"
+
+msgid "Multi-Material Box"
+msgstr "Multi-Material Box"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr ""
+
+msgid "Autofill filament disable"
+msgstr ""
+
+msgid "Autofill filament enabled"
+msgstr ""
+
+msgid "Autofill filament: %s"
+msgstr ""
+
+msgid "Backing up configuration files."
+msgstr ""
+
+msgid "Calibrate Cutter Pos"
+msgstr ""
+
+msgid "Couldn't get the calibration cutter position."
+msgstr ""
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr ""
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr ""
+
+msgid "Current value is %s"
+msgstr ""
+
+msgid "Cut Filament Test"
+msgstr ""
+
+msgid "Do you want to enable multi-material box?"
+msgstr ""
+
+msgid "Do you want to use external filament?"
+msgstr ""
+
+msgid "Error: Offset values not found"
+msgstr ""
+
+msgid "Error: Z offset value not found"
+msgstr ""
+
+msgid "External Filament"
+msgstr ""
+
+msgid "Extruder not hot enough"
+msgstr ""
+
+msgid "FEED error:External filament not removed"
+msgstr ""
+
+msgid "Filament %s not found"
+msgstr ""
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr ""
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr ""
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr ""
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr ""
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr ""
+
+msgid "Missing required recovery data"
+msgstr ""
+
+msgid "No power loss recovery data found"
+msgstr ""
+
+msgid "No valid params 'S'"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr ""
+
+msgid "Please exit the filament from the nozzle first"
+msgstr ""
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr ""
+
+msgid "Please select how you would like to proceed."
+msgstr ""
+
+msgid "Power loss recovery, resuming print."
+msgstr ""
+
+msgid "Power loss, saving print states."
+msgstr ""
+
+msgid "Press feedsys button"
+msgstr ""
+
+msgid "Print resumed from power loss position"
+msgstr ""
+
+msgid "Printer not homed"
+msgstr ""
+
+msgid "RESUME error:autofill no fil"
+msgstr ""
+
+msgid "RESUME error:no fil"
+msgstr ""
+
+msgid "RESUME error:residual fil"
+msgstr ""
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr ""
+
+msgid "Save & Restart"
+msgstr ""
+
+msgid "T%s direct feed"
+msgstr ""
+
+msgid "T0 direct feed"
+msgstr ""
+
+msgid "T0 need exit filament"
+msgstr ""
+
+msgid "T1 direct feed"
+msgstr ""
+
+msgid "T1 need exit filament"
+msgstr ""
+
+msgid "T2 direct feed"
+msgstr ""
+
+msgid "T2 need exit filament"
+msgstr ""
+
+msgid "T3 direct feed"
+msgstr ""
+
+msgid "T3 need exit filament"
+msgstr ""
+
+msgid "The \"extruder\" extrude error!"
+msgstr ""
+
+msgid "The current toolheade is T%s"
+msgstr ""
+
+msgid "The current toolheade is T0"
+msgstr ""
+
+msgid "The current toolheade is T1"
+msgstr ""
+
+msgid "The current toolheade is T2"
+msgstr ""
+
+msgid "The current toolheade is T3"
+msgstr ""
+
+msgid "The filament_box_%s no filament"
+msgstr ""
+
+msgid "The motor is wrong."
+msgstr ""
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr ""
+
+msgid "There's a residual filament in box %s"
+msgstr ""
+
+msgid "There's a residual filament in box 1"
+msgstr ""
+
+msgid "There's a residual filament in box 2"
+msgstr ""
+
+msgid "There's a residual filament in box 3"
+msgstr ""
+
+msgid "There's a residual filament in box 4"
+msgstr ""
+
+msgid "Unknown fan"
+msgstr ""
+
+msgid "Unknown filament"
+msgstr ""
+
+msgid "Use external filament, please manually exit"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "auto shutdown error"
+msgstr ""
+
+msgid "bed_mash:%s"
+msgstr ""
+
+msgid "clean pause_reason"
+msgstr ""
+
+msgid "cut filament"
+msgstr ""
+
+msgid "cutter press!"
+msgstr ""
+
+msgid "cutter release!"
+msgstr ""
+
+msgid "feed busy"
+msgstr ""
+
+msgid "feed error"
+msgstr ""
+
+msgid "feed finish"
+msgstr ""
+
+msgid "filament not removed"
+msgstr ""
+
+msgid "filament pause reason"
+msgstr ""
+
+msgid "filament press"
+msgstr ""
+
+msgid "filament release"
+msgstr ""
+
+msgid "filament remove"
+msgstr ""
+
+msgid "filament runout"
+msgstr ""
+
+msgid "filament%s:%s"
+msgstr ""
+
+msgid "flush filament"
+msgstr ""
+
+msgid "motion sensor insert"
+msgstr ""
+
+msgid "motion sensor runout"
+msgstr ""
+
+msgid "motor_%s press"
+msgstr ""
+
+msgid "motor_%s release"
+msgstr ""
+
+msgid "motor_1 press"
+msgstr ""
+
+msgid "motor_1 release"
+msgstr ""
+
+msgid "motor_2 press"
+msgstr ""
+
+msgid "motor_2 release"
+msgstr ""
+
+msgid "motor_3 press"
+msgstr ""
+
+msgid "motor_3 release"
+msgstr ""
+
+msgid "motor_4 press"
+msgstr ""
+
+msgid "motor_4 release"
+msgstr ""
+
+msgid "no bed_mash name"
+msgstr ""
+
+msgid "no bed_mash"
+msgstr ""
+
+msgid "no enabled"
+msgstr ""
+
+msgid "press button%s"
+msgstr ""
+
+msgid "press button1"
+msgstr ""
+
+msgid "press button2"
+msgstr ""
+
+msgid "press button3"
+msgstr ""
+
+msgid "press button4"
+msgstr ""
+
+msgid "remove filament"
+msgstr ""
+
+msgid "residual filament%s"
+msgstr ""
+
+msgid "residual filament0"
+msgstr ""
+
+msgid "residual filament1"
+msgstr ""
+
+msgid "residual filament2"
+msgstr ""
+
+msgid "residual filament3"
+msgstr ""
+
+msgid "resume:%s"
+msgstr ""
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr ""
+
+msgid "Copy Print"
+msgstr ""
+msgid "Mirror Print"
 msgstr ""

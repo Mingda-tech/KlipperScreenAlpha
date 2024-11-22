@@ -628,9 +628,9 @@ msgid "PSK for"
 msgstr "PSK jaoks"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Pakett uuendatakse"
-msgstr[1] "Paketid uuendatakse"
+
+msgstr "Pakett uuendatakse"
+
 
 msgid "Part Fan"
 msgstr "Osaventilaator"
@@ -943,22 +943,22 @@ msgid "Z offset:"
 msgstr "Z nihe:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "toiming"
-msgstr[1] "toimingud"
+
+msgstr "toiming"
+
 
 msgid "day"
-msgid_plural "days"
-msgstr[0] "päev"
-msgstr[1] "päeva"
+
+msgstr "päev"
+
 
 msgid "g"
 msgstr "g"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "tund"
-msgstr[1] "tundi"
+
+msgstr "tund"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "Makrod, mis kasutavad 'rename_existing' on peidetud"
@@ -967,9 +967,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "Makrod, mille nimi algab '_' on peidetud"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minut"
-msgstr[1] "minutit"
+
+msgstr "minut"
+
 
 msgid "mm"
 msgstr "mm"
@@ -987,9 +987,9 @@ msgid "s"
 msgstr "s"
 
 msgid "second"
-msgid_plural "seconds"
-msgstr[0] "sekund"
-msgstr[1] "sekundit"
+
+msgstr "sekund"
+
 
 #~ msgid "Are you sure you want to stop the calibration?"
 #~ msgstr "Kas olete kindel, et soovite kalibreerimise peatada?"
@@ -1014,9 +1014,6 @@ msgstr[1] "sekundit"
 
 #~ msgid "Starting WiFi Association"
 #~ msgstr "WiFi ühenduse loomine"
-
-#~ msgid "Warning"
-#~ msgstr "Hoiatus"
 
 #~ msgid "dBm"
 #~ msgstr "dBm"
@@ -1168,3 +1165,388 @@ msgstr "Filamendikasti toide"
 
 msgid "Saved successfully!"
 msgstr "Edukalt salvestatud!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Muuda"
+
+msgid "Filament Info"
+msgstr "Filamenti teave"
+
+msgid "Not found"
+msgstr "Ei leitud"
+
+msgid "Vendor"
+msgstr "Tootja"
+
+msgid "Type"
+msgstr "Tüüp"
+
+msgid "Color"
+msgstr "Värv"
+
+msgid "Set Color"
+msgstr "Määra värv"
+
+msgid "Filament Settings"
+msgstr "Filamenti seaded"
+
+msgid "Multi-Material Box"
+msgstr "Mitme materjali kast"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Kas olete kindel, et soovite püsivara taaskäivitada?"
+
+msgid "Autofill filament disable"
+msgstr "Keela filamendi automaattäitmine"
+
+msgid "Autofill filament enabled"
+msgstr "Filamendi automaattäitmine lubatud"
+
+msgid "Autofill filament: %s"
+msgstr "Filamendi automaattäitmine: %s"
+
+msgid "Backing up configuration files."
+msgstr "Seadistusfailide varundamine."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kalibreeri lõikuri asend"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Ei saanud lõikuri kalibreerimisasendit."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Praegused filamendi indeksid on:%s, aktiivne tööriist:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Praegused filamendi indeksid on:%s, aktiivne tööriist:%s, jätkamise_tööriist:%s, pausi_põhjus:%s"
+
+msgid "Current value is %s"
+msgstr "Praegune väärtus on %s"
+
+msgid "Cut Filament Test"
+msgstr "Filamendi lõikamise test"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Kas soovite lubada mitme materjali kasti?"
+
+msgid "Do you want to use external filament?"
+msgstr "Kas soovite kasutada välist filamenti?"
+
+msgid "Error: Offset values not found"
+msgstr "Viga: Nihkeväärtusi ei leitud"
+
+msgid "Error: Z offset value not found"
+msgstr "Viga: Z-nihke väärtust ei leitud"
+
+msgid "External Filament"
+msgstr "Väline filament"
+
+msgid "Extruder not hot enough"
+msgstr "Ekstruuder pole piisavalt kuum"
+
+msgid "FEED error:External filament not removed"
+msgstr "SÖÖTMISE viga: Välist filamenti pole eemaldatud"
+
+msgid "Filament %s not found"
+msgstr "Filamenti %s ei leitud"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Filamendi andur%s: Filamenti ei tuvastatud, printimise tühistamine"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Filamendi andur%s: Filamenti ei tuvastatud, printimise peatamine"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Filamendi andur0: Filamenti ei tuvastatud, printimise peatamine"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Filamendi andur1: Filamenti ei tuvastatud, printimise peatamine"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filament tuvastatud! Palun eemaldage filament kuumutist enne mitme materjali kasti lubamist."
+
+msgid "Missing required recovery data"
+msgstr "Puuduvad vajalikud taastamisandmed"
+
+msgid "No power loss recovery data found"
+msgstr "Voolukatkestuse taastamisandmeid ei leitud"
+
+msgid "No valid params 'S'"
+msgstr "Puuduvad kehtivad parameetrid 'S'"
+
+msgid "No"
+msgstr "Ei"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Valikud"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Paus. \"Ekstruuderi\" väljutamise viga!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Palun eemaldage esmalt filament düüsist"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Palun sisestage õige häälnumber: 0-alusta printimist, 1-lõpeta printimine, 2-katkestus tuvastatud, 3-tühista printimine, 4-peata printimine"
+
+msgid "Please select how you would like to proceed."
+msgstr "Palun valige, kuidas soovite jätkata."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Voolukatkestusest taastumine, printimise jätkamine."
+
+msgid "Power loss, saving print states."
+msgstr "Voolukatkestus, printimise olekute salvestamine."
+
+msgid "Press feedsys button"
+msgstr "Vajutage söötmissüsteemi nuppu"
+
+msgid "Print resumed from power loss position"
+msgstr "Printimine jätkub voolukatkestuse asukohast"
+
+msgid "Printer not homed"
+msgstr "Printer pole lähtestatud"
+
+msgid "RESUME error:autofill no fil"
+msgstr "JÄTKAMISE viga: automaattäitmisel pole filamenti"
+
+msgid "RESUME error:no fil"
+msgstr "JÄTKAMISE viga: filament puudub"
+
+msgid "RESUME error:residual fil"
+msgstr "JÄTKAMISE viga: jääkfilament"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Taastamisandmed: Z=%s, Fail=%s, Pos=%s"
+
+msgid "Save & Restart"
+msgstr "Salvesta ja taaskäivita"
+
+msgid "T%s direct feed"
+msgstr "T%s otsesöötmine"
+
+msgid "T0 direct feed"
+msgstr "T0 otsesöötmine"
+
+msgid "T0 need exit filament"
+msgstr "T0 vajab filamendi eemaldamist"
+
+msgid "T1 direct feed"
+msgstr "T1 otsesöötmine"
+
+msgid "T1 need exit filament"
+msgstr "T1 vajab filamendi eemaldamist"
+
+msgid "T2 direct feed"
+msgstr "T2 otsesöötmine"
+
+msgid "T2 need exit filament"
+msgstr "T2 vajab filamendi eemaldamist"
+
+msgid "T3 direct feed"
+msgstr "T3 otsesöötmine"
+
+msgid "T3 need exit filament"
+msgstr "T3 vajab filamendi eemaldamist"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "\"Ekstruuderi\" väljutamise viga!"
+
+msgid "The current toolheade is T%s"
+msgstr "Praegune tööriistapea on T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Praegune tööriistapea on T0"
+
+msgid "The current toolheade is T1"
+msgstr "Praegune tööriistapea on T1"
+
+msgid "The current toolheade is T2"
+msgstr "Praegune tööriistapea on T2"
+
+msgid "The current toolheade is T3"
+msgstr "Praegune tööriistapea on T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "Filamendikastis_%s pole filamenti"
+
+msgid "The motor is wrong."
+msgstr "Mootor on vigane."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Esineb jääkfilament, palun eemaldage see ja jätkake"
+
+msgid "There's a residual filament in box %s"
+msgstr "Kastis %s on jääkfilament"
+
+msgid "There's a residual filament in box 1"
+msgstr "Kastis 1 on jääkfilament"
+
+msgid "There's a residual filament in box 2"
+msgstr "Kastis 2 on jääkfilament"
+
+msgid "There's a residual filament in box 3"
+msgstr "Kastis 3 on jääkfilament"
+
+msgid "There's a residual filament in box 4"
+msgstr "Kastis 4 on jääkfilament"
+
+msgid "Unknown fan"
+msgstr "Tundmatu ventilaator"
+
+msgid "Unknown filament"
+msgstr "Tundmatu filament"
+
+msgid "Use external filament, please manually exit"
+msgstr "Kasutage välist filamenti, palun eemaldage käsitsi"
+
+msgid "Warning"
+msgstr "Hoiatus"
+
+msgid "Yes"
+msgstr "Jah"
+
+msgid "auto shutdown error"
+msgstr "Automaatse väljalülitamise viga"
+
+msgid "bed_mash:%s"
+msgstr "aluse_võrk:%s"
+
+msgid "clean pause_reason"
+msgstr "puhasta pausi_põhjus"
+
+msgid "cut filament"
+msgstr "lõika filament"
+
+msgid "cutter press!"
+msgstr "lõikuri vajutus!"
+
+msgid "cutter release!"
+msgstr "lõikuri vabastus!"
+
+msgid "feed busy"
+msgstr "söötmine hõivatud"
+
+msgid "feed error"
+msgstr "söötmise viga"
+
+msgid "feed finish"
+msgstr "söötmine lõpetatud"
+
+msgid "filament not removed"
+msgstr "filament pole eemaldatud"
+
+msgid "filament pause reason"
+msgstr "filamendi peatamise põhjus"
+
+msgid "filament press"
+msgstr "filamendi vajutus"
+
+msgid "filament release"
+msgstr "filamendi vabastus"
+
+msgid "filament remove"
+msgstr "filamendi eemaldamine"
+
+msgid "filament runout"
+msgstr "filament otsas"
+
+msgid "filament%s:%s"
+msgstr "filament%s:%s"
+
+msgid "flush filament"
+msgstr "tühjenda filament"
+
+msgid "motion sensor insert"
+msgstr "liikumisanduri sisestamine"
+
+msgid "motion sensor runout"
+msgstr "liikumisandur otsas"
+
+msgid "motor_%s press"
+msgstr "mootor_%s vajutus"
+
+msgid "motor_%s release"
+msgstr "mootor_%s vabastus"
+
+msgid "motor_1 press"
+msgstr "mootor_1 vajutus"
+
+msgid "motor_1 release"
+msgstr "mootor_1 vabastus"
+
+msgid "motor_2 press"
+msgstr "mootor_2 vajutus"
+
+msgid "motor_2 release"
+msgstr "mootor_2 vabastus"
+
+msgid "motor_3 press"
+msgstr "mootor_3 vajutus"
+
+msgid "motor_3 release"
+msgstr "mootor_3 vabastus"
+
+msgid "motor_4 press"
+msgstr "mootor_4 vajutus"
+
+msgid "motor_4 release"
+msgstr "mootor_4 vabastus"
+
+msgid "no bed_mash name"
+msgstr "aluse_võrgu nimi puudub"
+
+msgid "no bed_mash"
+msgstr "aluse_võrk puudub"
+
+msgid "no enabled"
+msgstr "pole lubatud"
+
+msgid "press button%s"
+msgstr "vajuta nuppu%s"
+
+msgid "press button1"
+msgstr "vajuta nuppu1"
+
+msgid "press button2"
+msgstr "vajuta nuppu2"
+
+msgid "press button3"
+msgstr "vajuta nuppu3"
+
+msgid "press button4"
+msgstr "vajuta nuppu4"
+
+msgid "remove filament"
+msgstr "eemalda filament"
+
+msgid "residual filament%s"
+msgstr "jääkfilament%s"
+
+msgid "residual filament0"
+msgstr "jääkfilament0"
+
+msgid "residual filament1"
+msgstr "jääkfilament1"
+
+msgid "residual filament2"
+msgstr "jääkfilament2"
+
+msgid "residual filament3"
+msgstr "jääkfilament3"
+
+msgid "resume:%s"
+msgstr "jätka:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "jätkamise_tööriist:%s pausi_põhjus:%s"
+
+msgid "Copy Print"
+msgstr "Kopeeri printimine"
+
+msgid "Mirror Print"
+msgstr "Peegelprintimine"

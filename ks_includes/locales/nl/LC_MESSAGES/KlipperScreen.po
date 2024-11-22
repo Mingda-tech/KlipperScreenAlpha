@@ -492,9 +492,9 @@ msgid "PSK for"
 msgstr "PSK voor"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Pakket word ge-update"
-msgstr[1] "Pakketten worden ge-update"
+
+msgstr "Pakket word ge-update"
+
 
 msgid "Part Fan"
 msgstr "Part Ventilator"
@@ -765,17 +765,17 @@ msgid "Z offset:"
 msgstr "Z offset:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "commit"
-msgstr[1] "commits"
+
+msgstr "commit"
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "uur"
-msgstr[1] "uren"
+
+msgstr "uur"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "Macro's die 'rename_existing' gebruiken zijn verborgen"
@@ -784,9 +784,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "macro's die beginnen met '_' zijn verborgen"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minuut"
-msgstr[1] "minuten"
+
+msgstr "minuut"
+
 
 msgid "mm"
 msgstr "mm"
@@ -803,8 +803,8 @@ msgstr "mm³/s"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen zal herstarten"
 
-#~ msgid "Continue"
-#~ msgstr "Doorgaan"
+msgid "Continue"
+msgstr "Doorgaan"
 
 #~ msgid "Fullscreen"
 #~ msgstr "Volledig Scherm"
@@ -1018,3 +1018,391 @@ msgstr "Gevaarlijk hoogteverschil spuitmond: "
 
 msgid "Saved successfully!"
 msgstr "Zapisano pomyślnie!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Filament Info"
+msgstr "Filament Info"
+
+msgid "(°C)"
+msgstr "(°C)"
+
+msgid "Not found"
+msgstr "Niet gevonden"
+
+msgid "Vendor"
+msgstr "Fabrikant"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Color"
+msgstr "Kleur"
+
+msgid "Set Color"
+msgstr "Kleur instellen"
+
+msgid "Filament Settings"
+msgstr "Filament instellingen"
+
+msgid "Multi-Material Box"
+msgstr "Multi-materiaal box"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Weet u zeker dat u de firmware wilt herstarten?"
+
+msgid "Autofill filament disable"
+msgstr "Automatische filamentvulling uitschakelen"
+
+msgid "Autofill filament enabled"
+msgstr "Automatische filamentvulling ingeschakeld"
+
+msgid "Autofill filament: %s"
+msgstr "Automatische filamentvulling: %s"
+
+msgid "Backing up configuration files."
+msgstr "Configuratiebestanden back-uppen."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Schermpositie kalibreren"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Kon de schermpositie voor kalibratie niet ophalen."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Huidige filamentindexen zijn: %s, actief gereedschap: %s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Huidige filamentindexen zijn: %s, actief gereedschap: %s, hervatting gereedschap: %s, pauze reden: %s"
+
+msgid "Current value is %s"
+msgstr "Huidige waarde is %s"
+
+msgid "Cut Filament Test"
+msgstr "Filamentknip test"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Wilt u de meervoudig materiaalbak inschakelen?"
+
+msgid "Do you want to use external filament?"
+msgstr "Wilt u extern filament gebruiken?"
+
+msgid "Error: Offset values not found"
+msgstr "Fout: Offsetwaarden niet gevonden"
+
+msgid "Error: Z offset value not found"
+msgstr "Fout: Z-offsetwaarde niet gevonden"
+
+msgid "External Filament"
+msgstr "Extern filament"
+
+msgid "Extruder not hot enough"
+msgstr "Extruder is niet heet genoeg"
+
+msgid "FEED error:External filament not removed"
+msgstr "FEED-fout: Extern filament niet verwijderd"
+
+msgid "Filament %s not found"
+msgstr "Filament %s niet gevonden"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Filamentsensor%s: Geen filament gedetecteerd, afdruk annuleren"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Filamentsensor%s: Geen filament gedetecteerd, afdruk pauzeren"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Filamentsensor0: Geen filament gedetecteerd, afdruk pauzeren"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Filamentsensor1: Geen filament gedetecteerd, afdruk pauzeren"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filament gedetecteerd! Verwijder het filament uit de hotend voordat u de meervoudig materiaalbak inschakelt."
+
+msgid "Missing required recovery data"
+msgstr "Verplichte hersteldata ontbreken"
+
+msgid "No power loss recovery data found"
+msgstr "Geen hersteldata bij stroomonderbreking gevonden"
+
+msgid "No valid params 'S'"
+msgstr "Geen geldige parameters 'S'"
+
+msgid "No"
+msgstr "Nee"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Pauze. Extruder-extrusiefout!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Haal eerst het filament uit de nozzle"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Vul het stemnummer correct in: 0-afdruk starten, 1-afdruk beëindigen, 2-stroomonderbreking gedetecteerd, 3-afdruk annuleren, 4-afdruk pauzeren"
+
+msgid "Please select how you would like to proceed."
+msgstr "Selecteer hoe u verder wilt gaan."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Herstel na stroomonderbreking, afdruk hervatten."
+
+msgid "Power loss, saving print states."
+msgstr "Stroomonderbreking, afdrukstatus opslaan."
+
+msgid "Press feedsys button"
+msgstr "Druk op de feedsys-knop"
+
+msgid "Print resumed from power loss position"
+msgstr "Afdruk hervat vanaf stroomonderbrekingpositie"
+
+msgid "Printer not homed"
+msgstr "Printer niet thuisgebracht"
+
+msgid "RESUME error:autofill no fil"
+msgstr "RESUME-fout: automatische vulling geen filament"
+
+msgid "RESUME error:no fil"
+msgstr "RESUME-fout: geen filament"
+
+msgid "RESUME error:residual fil"
+msgstr "RESUME-fout: resterend filament"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Hersteldata: Z=%s, Bestand=%s, Positie=%s"
+
+msgid "Save & Restart"
+msgstr "Opslaan en Herstarten"
+
+msgid "T%s direct feed"
+msgstr "T%s direct voeden"
+
+msgid "T0 direct feed"
+msgstr "T0 direct voeden"
+
+msgid "T0 need exit filament"
+msgstr "T0 filament verwijderen nodig"
+
+msgid "T1 direct feed"
+msgstr "T1 direct voeden"
+
+msgid "T1 need exit filament"
+msgstr "T1 filament verwijderen nodig"
+
+msgid "T2 direct feed"
+msgstr "T2 direct voeden"
+
+msgid "T2 need exit filament"
+msgstr "T2 filament verwijderen nodig"
+
+msgid "T3 direct feed"
+msgstr "T3 direct voeden"
+
+msgid "T3 need exit filament"
+msgstr "T3 filament verwijderen nodig"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "De \"extruder\" extrusiefout!"
+
+msgid "The current toolheade is T%s"
+msgstr "Het huidige werktuigkop is T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Het huidige werktuigkop is T0"
+
+msgid "The current toolheade is T1"
+msgstr "Het huidige werktuigkop is T1"
+
+msgid "The current toolheade is T2"
+msgstr "Het huidige werktuigkop is T2"
+
+msgid "The current toolheade is T3"
+msgstr "Het huidige werktuigkop is T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "De filament_box_%s bevat geen filament"
+
+msgid "The motor is wrong."
+msgstr "De motor is fout."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Er is een resterend filament, verwijder en ga verder"
+
+msgid "There's a residual filament in box %s"
+msgstr "Er is een resterend filament in bak %s"
+
+msgid "There's a residual filament in box 1"
+msgstr "Er is een resterend filament in bak 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "Er is een resterend filament in bak 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "Er is een resterend filament in bak 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "Er is een resterend filament in bak 4"
+
+msgid "Unknown fan"
+msgstr "Onbekende ventilator"
+
+msgid "Unknown filament"
+msgstr "Onbekend filament"
+
+msgid "Use external filament, please manually exit"
+msgstr "Gebruik extern filament, verwijder handmatig"
+
+msgid "Warning"
+msgstr "Waarschuwing"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "auto shutdown error"
+msgstr "automatische afsluitfout"
+
+msgid "bed_mash:%s"
+msgstr "bed_mash:%s"
+
+msgid "clean pause_reason"
+msgstr "pauze_reden wissen"
+
+msgid "cut filament"
+msgstr "filament knippen"
+
+msgid "cutter press!"
+msgstr "knipper indrukken!"
+
+msgid "cutter release!"
+msgstr "knipper loslaten!"
+
+msgid "feed busy"
+msgstr "voeder bezig"
+
+msgid "feed error"
+msgstr "voederfout"
+
+msgid "feed finish"
+msgstr "voeder afgerond"
+
+msgid "filament not removed"
+msgstr "filament niet verwijderd"
+
+msgid "filament pause reason"
+msgstr "filament pauze reden"
+
+msgid "filament press"
+msgstr "filament indrukken"
+
+msgid "filament release"
+msgstr "filament loslaten"
+
+msgid "filament remove"
+msgstr "filament verwijderen"
+
+msgid "filament runout"
+msgstr "filament op"
+
+msgid "filament%s:%s"
+msgstr "filament%s:%s"
+
+msgid "flush filament"
+msgstr "filament doorvoeren"
+
+msgid "motion sensor insert"
+msgstr "bewegingsensor invoegen"
+
+msgid "motion sensor runout"
+msgstr "bewegingsensor leeg"
+
+msgid "motor_%s press"
+msgstr "motor_%s indrukken"
+
+msgid "motor_%s release"
+msgstr "motor_%s loslaten"
+
+msgid "motor_1 press"
+msgstr "motor_1 indrukken"
+
+msgid "motor_1 release"
+msgstr "motor_1 loslaten"
+
+msgid "motor_2 press"
+msgstr "motor_2 indrukken"
+
+msgid "motor_2 release"
+msgstr "motor_2 loslaten"
+
+msgid "motor_3 press"
+msgstr "motor_3 indrukken"
+
+msgid "motor_3 release"
+msgstr "motor_3 loslaten"
+
+msgid "motor_4 press"
+msgstr "motor_4 indrukken"
+
+msgid "motor_4 release"
+msgstr "motor_4 loslaten"
+
+msgid "no bed_mash name"
+msgstr "geen bed_mash naam"
+
+msgid "no bed_mash"
+msgstr "geen bed_mash"
+
+msgid "no enabled"
+msgstr "niet ingeschakeld"
+
+msgid "press button%s"
+msgstr "druk op knop%s"
+
+msgid "press button1"
+msgstr "druk op knop1"
+
+msgid "press button2"
+msgstr "druk op knop2"
+
+msgid "press button3"
+msgstr "druk op knop3"
+
+msgid "press button4"
+msgstr "druk op knop4"
+
+msgid "remove filament"
+msgstr "filament verwijderen"
+
+msgid "residual filament%s"
+msgstr "rest filament%s"
+
+msgid "residual filament0"
+msgstr "rest filament0"
+
+msgid "residual filament1"
+msgstr "rest filament1"
+
+msgid "residual filament2"
+msgstr "rest filament2"
+
+msgid "residual filament3"
+msgstr "rest filament3"
+
+msgid "resume:%s"
+msgstr "hervatten:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "hervatten_gereedschap:%s pauze_reden:%s"
+
+msgid "Copy Print"
+msgstr "Kopieer afdruk"
+
+msgid "Mirror Print"
+msgstr "Spiegel afdruk"

@@ -487,8 +487,8 @@ msgid "PSK for"
 msgstr "PSK"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "軟體包將被更新"
+
+msgstr "軟體包將被更新"
 
 msgid "Part Fan"
 msgstr "模型風扇"
@@ -759,15 +759,15 @@ msgid "Z offset:"
 msgstr "Z軸偏移："
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "更改"
+
+msgstr "更改"
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "小時"
+
+msgstr "小時"
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr ""
@@ -776,8 +776,8 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr ""
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "分"
+
+msgstr "分"
 
 msgid "mm"
 msgstr "秒"
@@ -794,8 +794,8 @@ msgstr "mm³/s"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen將重新啟動"
 
-#~ msgid "Continue"
-#~ msgstr "繼續"
+msgid "Continue"
+msgstr "繼續"
 
 #~ msgid "Fullscreen"
 #~ msgstr "全螢幕"
@@ -1158,3 +1158,388 @@ msgstr "危險的噴嘴高度差: "
 
 msgid "Saved successfully!"
 msgstr "儲存成功!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "編輯"
+
+msgid "Filament Info"
+msgstr "耗材資訊"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Vendor"
+msgstr "廠商"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Color"
+msgstr "顏色"
+
+msgid "Set Color"
+msgstr "設置顏色"
+
+msgid "Filament Settings"
+msgstr "耗材設置"
+
+msgid "Multi-Material Box"
+msgstr "多色耗材箱"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "您確定要重新啟動韌體嗎？"
+
+msgid "Autofill filament disable"
+msgstr "禁用自動填充材料"
+
+msgid "Autofill filament enabled"
+msgstr "啟用自動填充材料"
+
+msgid "Autofill filament: %s"
+msgstr "自動填充材料: %s"
+
+msgid "Backing up configuration files."
+msgstr "正在備份配置文件。"
+
+msgid "Calibrate Cutter Pos"
+msgstr "校準切割器位置"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "無法獲取切割器的校準位置。"
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "當前材料索引為：%s，活動工具：%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "當前材料索引為：%s，活動工具：%s，恢復工具：%s，暫停原因：%s"
+
+msgid "Current value is %s"
+msgstr "當前值為 %s"
+
+msgid "Cut Filament Test"
+msgstr "切斷材料測試"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "您想要啟用多材料盒嗎？"
+
+msgid "Do you want to use external filament?"
+msgstr "您想要使用外部材料嗎？"
+
+msgid "Error: Offset values not found"
+msgstr "錯誤：未找到偏移值"
+
+msgid "Error: Z offset value not found"
+msgstr "錯誤：未找到 Z 偏移值"
+
+msgid "External Filament"
+msgstr "外部材料"
+
+msgid "Extruder not hot enough"
+msgstr "噴頭溫度不夠高"
+
+msgid "FEED error:External filament not removed"
+msgstr "進料錯誤：外部材料未移除"
+
+msgid "Filament %s not found"
+msgstr "未找到材料 %s"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "材料傳感器%s：未檢測到材料，取消打印"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "材料傳感器%s：未檢測到材料，暫停打印"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "材料傳感器0：未檢測到材料，暫停打印"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "材料傳感器1：未檢測到材料，暫停打印"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "檢測到材料！請在啟用多材料盒之前將材料從熱端移除。"
+
+msgid "Missing required recovery data"
+msgstr "缺少必要的恢復數據"
+
+msgid "No power loss recovery data found"
+msgstr "未找到斷電恢復數據"
+
+msgid "No valid params 'S'"
+msgstr "無效的參數 'S'"
+
+msgid "No"
+msgstr "否"
+
+msgid "OK"
+msgstr "確定"
+
+msgid "Options"
+msgstr "選項"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "暫停。噴頭擠出錯誤！"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "請先將材料從噴嘴中退出"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "請正確填寫語音號碼：0-開始打印，1-結束打印，2-檢測到斷電，3-取消打印，4-暫停打印"
+
+msgid "Please select how you would like to proceed."
+msgstr "請選擇您希望如何繼續。"
+
+msgid "Power loss recovery, resuming print."
+msgstr "斷電恢復，恢復打印。"
+
+msgid "Power loss, saving print states."
+msgstr "斷電，保存打印狀態。"
+
+msgid "Press feedsys button"
+msgstr "按鈕進料系統按鈕"
+
+msgid "Print resumed from power loss position"
+msgstr "從斷電位置恢復打印"
+
+msgid "Printer not homed"
+msgstr "打印機未回原點"
+
+msgid "RESUME error:autofill no fil"
+msgstr "恢復錯誤：無自動填充材料"
+
+msgid "RESUME error:no fil"
+msgstr "恢復錯誤：無材料"
+
+msgid "RESUME error:residual fil"
+msgstr "恢復錯誤：剩餘材料"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "恢復數據：Z=%s，檔案=%s，位置=%s"
+
+msgid "Save & Restart"
+msgstr "保存並重新啟動"
+
+msgid "T%s direct feed"
+msgstr "T%s 直接進料"
+
+msgid "T0 direct feed"
+msgstr "T0 直接進料"
+
+msgid "T0 need exit filament"
+msgstr "T0 需要退出材料"
+
+msgid "T1 direct feed"
+msgstr "T1 直接進料"
+
+msgid "T1 need exit filament"
+msgstr "T1 需要退出材料"
+
+msgid "T2 direct feed"
+msgstr "T2 直接進料"
+
+msgid "T2 need exit filament"
+msgstr "T2 需要退出材料"
+
+msgid "T3 direct feed"
+msgstr "T3 直接進料"
+
+msgid "T3 need exit filament"
+msgstr "T3 需要退出材料"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "噴頭擠出錯誤！"
+
+msgid "The current toolheade is T%s"
+msgstr "當前工具頭為 T%s"
+
+msgid "The current toolheade is T0"
+msgstr "當前工具頭為 T0"
+
+msgid "The current toolheade is T1"
+msgstr "當前工具頭為 T1"
+
+msgid "The current toolheade is T2"
+msgstr "當前工具頭為 T2"
+
+msgid "The current toolheade is T3"
+msgstr "當前工具頭為 T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "材料盒_%s 無材料"
+
+msgid "The motor is wrong."
+msgstr "馬達有問題。"
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "有剩餘材料，請移除並繼續"
+
+msgid "There's a residual filament in box %s"
+msgstr "盒子 %s 中有剩餘材料"
+
+msgid "There's a residual filament in box 1"
+msgstr "盒子 1 中有剩餘材料"
+
+msgid "There's a residual filament in box 2"
+msgstr "盒子 2 中有剩餘材料"
+
+msgid "There's a residual filament in box 3"
+msgstr "盒子 3 中有剩餘材料"
+
+msgid "There's a residual filament in box 4"
+msgstr "盒子 4 中有剩餘材料"
+
+msgid "Unknown fan"
+msgstr "未知風扇"
+
+msgid "Unknown filament"
+msgstr "未知材料"
+
+msgid "Use external filament, please manually exit"
+msgstr "使用外部材料，請手動退出"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "auto shutdown error"
+msgstr "自動關機錯誤"
+
+msgid "bed_mash:%s"
+msgstr "床層網格：%s"
+
+msgid "clean pause_reason"
+msgstr "清除暫停原因"
+
+msgid "cut filament"
+msgstr "切斷材料"
+
+msgid "cutter press!"
+msgstr "切割器按下！"
+
+msgid "cutter release!"
+msgstr "切割器釋放！"
+
+msgid "feed busy"
+msgstr "正在進料"
+
+msgid "feed error"
+msgstr "進料錯誤"
+
+msgid "feed finish"
+msgstr "進料完成"
+
+msgid "filament not removed"
+msgstr "材料未移除"
+
+msgid "filament pause reason"
+msgstr "材料暫停原因"
+
+msgid "filament press"
+msgstr "材料按下"
+
+msgid "filament release"
+msgstr "材料釋放"
+
+msgid "filament remove"
+msgstr "移除材料"
+
+msgid "filament runout"
+msgstr "材料耗盡"
+
+msgid "filament%s:%s"
+msgstr "材料%s:%s"
+
+msgid "flush filament"
+msgstr "沖洗材料"
+
+msgid "motion sensor insert"
+msgstr "運動傳感器插入"
+
+msgid "motion sensor runout"
+msgstr "運動傳感器耗盡"
+
+msgid "motor_%s press"
+msgstr "馬達_%s 按下"
+
+msgid "motor_%s release"
+msgstr "馬達_%s 釋放"
+
+msgid "motor_1 press"
+msgstr "馬達_1 按下"
+
+msgid "motor_1 release"
+msgstr "馬達_1 釋放"
+
+msgid "motor_2 press"
+msgstr "馬達_2 按下"
+
+msgid "motor_2 release"
+msgstr "馬達_2 釋放"
+
+msgid "motor_3 press"
+msgstr "馬達_3 按下"
+
+msgid "motor_3 release"
+msgstr "馬達_3 釋放"
+
+msgid "motor_4 press"
+msgstr "馬達_4 按下"
+
+msgid "motor_4 release"
+msgstr "馬達_4 釋放"
+
+msgid "no bed_mash name"
+msgstr "沒有床層網格名稱"
+
+msgid "no bed_mash"
+msgstr "沒有床層網格"
+
+msgid "no enabled"
+msgstr "未啟用"
+
+msgid "press button%s"
+msgstr "按鈕%s"
+
+msgid "press button1"
+msgstr "按鈕1"
+
+msgid "press button2"
+msgstr "按鈕2"
+
+msgid "press button3"
+msgstr "按鈕3"
+
+msgid "press button4"
+msgstr "按鈕4"
+
+msgid "remove filament"
+msgstr "移除材料"
+
+msgid "residual filament%s"
+msgstr "剩餘材料%s"
+
+msgid "residual filament0"
+msgstr "剩餘材料0"
+
+msgid "residual filament1"
+msgstr "剩餘材料1"
+
+msgid "residual filament2"
+msgstr "剩餘材料2"
+
+msgid "residual filament3"
+msgstr "剩餘材料3"
+
+msgid "resume:%s"
+msgstr "恢復：%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "恢復工具：%s 暫停原因：%s"
+
+msgid "Copy Print"
+msgstr "複製列印"
+
+msgid "Mirror Print"
+msgstr "鏡像列印"

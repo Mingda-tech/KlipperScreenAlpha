@@ -634,11 +634,11 @@ msgid "PSK for"
 msgstr "PSK za"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Paket bo posodobljen"
-msgstr[1] "Paketa bosta posodobljena"
-msgstr[2] "Paketi bodo posodobljeni"
-msgstr[3] "Paketov bo posodobljenih"
+
+msgstr "Paket bo posodobljen"
+
+
+
 
 msgid "Part Fan"
 msgstr "Ventilator za dele"
@@ -951,28 +951,28 @@ msgid "Z offset:"
 msgstr "Z odmik:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+
+msgstr ""
+
+
+
 
 msgid "day"
-msgid_plural "days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+
+msgstr ""
+
+
+
 
 msgid "g"
 msgstr ""
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "Ura"
-msgstr[1] "Uri"
-msgstr[2] "Ure"
-msgstr[3] "Ur"
+
+msgstr "Ura"
+
+
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "makri, ki uporabljajo 'rename_existing' so skriti"
@@ -981,11 +981,11 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "makri z imenom, ki se začne z '_', so skriti"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minuta"
-msgstr[1] "minuti"
-msgstr[2] "minute"
-msgstr[3] "minut"
+
+msgstr "minuta"
+
+
+
 
 msgid "mm"
 msgstr "mm"
@@ -1003,11 +1003,11 @@ msgid "s"
 msgstr ""
 
 msgid "second"
-msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+
+msgstr ""
+
+
+
 
 #~ msgid "Mesh calibrate"
 #~ msgstr "Umeritev mreže"
@@ -1029,9 +1029,6 @@ msgstr[3] ""
 
 #~ msgid "Starting WiFi Association"
 #~ msgstr "Zagon povezave WiFi"
-
-#~ msgid "Warning"
-#~ msgstr "Opozorilo"
 
 #~ msgid "dBm"
 #~ msgstr "dBm"
@@ -1244,3 +1241,388 @@ msgstr "Nevarna razlika v višini šobe: "
 
 msgid "Saved successfully!"
 msgstr "Uspešno shranjeno!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Uredi"
+
+msgid "Filament Info"
+msgstr "Informacije o filamentu"
+
+msgid "Not found"
+msgstr "Ni najdeno"
+
+msgid "Vendor"
+msgstr "Proizvajalec"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Color"
+msgstr "Barva"
+
+msgid "Set Color"
+msgstr "Nastavi barvo"
+
+msgid "Filament Settings"
+msgstr "Nastavitve filamenta"
+
+msgid "Multi-Material Box"
+msgstr "Večmaterialna škatla"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Ste prepričani, da želite ponovno zagnati programsko opremo?"
+
+msgid "Autofill filament disable"
+msgstr "Onemogoči samodejno izpolnjevanje z vlaknom"
+
+msgid "Autofill filament enabled"
+msgstr "Omogoči samodejno izpolnjevanje z vlaknom"
+
+msgid "Autofill filament: %s"
+msgstr "Samodejno izpolnjevanje z vlaknom: %s"
+
+msgid "Backing up configuration files."
+msgstr "Ustvarjanje varnostne kopije konfiguracijskih datotek."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kalibracija položaja sekače"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Ni bilo mogoče pridobiti položaja sekače za kalibracijo."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Trenutni indeksi vlakna so: %s, aktivna orodja: %s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Trenutni indeksi vlakna so: %s, aktivna orodja: %s, orodje za nadaljevanje: %s, razlog zaustavitve: %s"
+
+msgid "Current value is %s"
+msgstr "Trenutna vrednost je %s"
+
+msgid "Cut Filament Test"
+msgstr "Test sekanja vlakna"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Želite omogočiti polje za več materialov?"
+
+msgid "Do you want to use external filament?"
+msgstr "Želite uporabljati zunanje vlakno?"
+
+msgid "Error: Offset values not found"
+msgstr "Napaka: Vrednosti odmika niso najdene"
+
+msgid "Error: Z offset value not found"
+msgstr "Napaka: Vrednost odmika Z ni najdena"
+
+msgid "External Filament"
+msgstr "Zunanje vlakno"
+
+msgid "Extruder not hot enough"
+msgstr "Ekstruder ni dovolj topel"
+
+msgid "FEED error:External filament not removed"
+msgstr "Napaka VRSTICE: zunanje vlakno ni odstranjeno"
+
+msgid "Filament %s not found"
+msgstr "Vlakno %s ni najdeno"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Čutilnik vlakna %s: Vlakna ni zaznano, prekinjam tiskanje"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Čutilnik vlakna %s: Vlakna ni zaznano, premor tiskanja"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Čutilnik vlakna 0: Vlakna ni zaznano, premor tiskanja"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Čutilnik vlakna 1: Vlakna ni zaznano, premor tiskanja"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Vlakno zaznano! Prosimo, odstranite vlakno iz spruta pred omogočitvijo polja za več materialov."
+
+msgid "Missing required recovery data"
+msgstr "Manjkajo potrebni podatki za obnovitev"
+
+msgid "No power loss recovery data found"
+msgstr "Podatkov za obnovitev po izgubi struje ni najdenih"
+
+msgid "No valid params 'S'"
+msgstr "Ni veljavnih parametrov 'S'"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "OK"
+msgstr "V redu"
+
+msgid "Options"
+msgstr "Možnosti"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Premor. Napaka ekstrudiranja \"ekstruder\"!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Prosimo, najprej odstranite vlakno iz spruta"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Prosimo, pravilno vnesite številko glasovnega ukaza: 0-začetek tiskanja, 1-končanje tiskanja, 2-izkazana izguba struje, 3-preklic tiskanja, 4-premor tiskanja"
+
+msgid "Please select how you would like to proceed."
+msgstr "Prosimo, izberite način nadaljevanja."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Obnova po izgubi struje, nadaljevanje tiskanja."
+
+msgid "Power loss, saving print states."
+msgstr "Izguba struje, shranjevanje stanja tiskanja."
+
+msgid "Press feedsys button"
+msgstr "Pritisnite gumb sistemu hrane"
+
+msgid "Print resumed from power loss position"
+msgstr "Tiskanje nadaljevano iz pozicije po izgubi struje"
+
+msgid "Printer not homed"
+msgstr "Tiskalnik ni inicializiran"
+
+msgid "RESUME error:autofill no fil"
+msgstr "Napaka NADALJEVANJA: ni vlakna za samodejno izpolnjevanje"
+
+msgid "RESUME error:no fil"
+msgstr "Napaka NADALJEVANJA: ni vlakna"
+
+msgid "RESUME error:residual fil"
+msgstr "Napaka NADALJEVANJA: ostanek vlakna"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Podatki obnovitve: Z=%s, Datoteka=%s, Pozicija=%s"
+
+msgid "Save & Restart"
+msgstr "Shrani in ponovno zagoni"
+
+msgid "T%s direct feed"
+msgstr "Direktna hrana T%s"
+
+msgid "T0 direct feed"
+msgstr "Direktna hrana T0"
+
+msgid "T0 need exit filament"
+msgstr "T0 zahteva odstranitev vlakna"
+
+msgid "T1 direct feed"
+msgstr "Direktna hrana T1"
+
+msgid "T1 need exit filament"
+msgstr "T1 zahteva odstranitev vlakna"
+
+msgid "T2 direct feed"
+msgstr "Direktna hrana T2"
+
+msgid "T2 need exit filament"
+msgstr "T2 zahteva odstranitev vlakna"
+
+msgid "T3 direct feed"
+msgstr "Direktna hrana T3"
+
+msgid "T3 need exit filament"
+msgstr "T3 zahteva odstranitev vlakna"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Napaka ekstrudiranja \"ekstruder\"!"
+
+msgid "The current toolheade is T%s"
+msgstr "Trenutna glava orodja je T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Trenutna glava orodja je T0"
+
+msgid "The current toolheade is T1"
+msgstr "Trenutna glava orodja je T1"
+
+msgid "The current toolheade is T2"
+msgstr "Trenutna glava orodja je T2"
+
+msgid "The current toolheade is T3"
+msgstr "Trenutna glava orodja je T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "V polju vlakna_%s ni vlakna"
+
+msgid "The motor is wrong."
+msgstr "Motor je napačen."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Obstaja ostanek vlakna, prosimo, odstranite in nadaljujte"
+
+msgid "There's a residual filament in box %s"
+msgstr "Obstaja ostanek vlakna v polju %s"
+
+msgid "There's a residual filament in box 1"
+msgstr "Obstaja ostanek vlakna v polju 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "Obstaja ostanek vlakna v polju 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "Obstaja ostanek vlakna v polju 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "Obstaja ostanek vlakna v polju 4"
+
+msgid "Unknown fan"
+msgstr "Neznana ventilacija"
+
+msgid "Unknown filament"
+msgstr "Neznano vlakno"
+
+msgid "Use external filament, please manually exit"
+msgstr "Uporabite zunanje vlakno, prosimo, odstranite ročno"
+
+msgid "Warning"
+msgstr "Opozorilo"
+
+msgid "Yes"
+msgstr "Da"
+
+msgid "auto shutdown error"
+msgstr "napaka samodejnega izklopa"
+
+msgid "bed_mash:%s"
+msgstr "podložka_mreža:%s"
+
+msgid "clean pause_reason"
+msgstr "počisti razlog_premora"
+
+msgid "cut filament"
+msgstr "seči vlakno"
+
+msgid "cutter press!"
+msgstr "sekača pritisnjen!"
+
+msgid "cutter release!"
+msgstr "sekača sproščena!"
+
+msgid "feed busy"
+msgstr "hrana zasedena"
+
+msgid "feed error"
+msgstr "napaka hrane"
+
+msgid "feed finish"
+msgstr "hrana končana"
+
+msgid "filament not removed"
+msgstr "vlakno ni odstranjeno"
+
+msgid "filament pause reason"
+msgstr "razlog premora vlakna"
+
+msgid "filament press"
+msgstr "pritisnjenost vlakna"
+
+msgid "filament release"
+msgstr "sproščenost vlakna"
+
+msgid "filament remove"
+msgstr "odstranitev vlakna"
+
+msgid "filament runout"
+msgstr "zmanjkanje vlakna"
+
+msgid "filament%s:%s"
+msgstr "vlakno%s:%s"
+
+msgid "flush filament"
+msgstr "izprazni vlakno"
+
+msgid "motion sensor insert"
+msgstr "vstavite čutilnik gibanja"
+
+msgid "motion sensor runout"
+msgstr "zmanjkanje čutilnika gibanja"
+
+msgid "motor_%s press"
+msgstr "motor_%s pritisnjen"
+
+msgid "motor_%s release"
+msgstr "motor_%s sproščen"
+
+msgid "motor_1 press"
+msgstr "motor_1 pritisnjen"
+
+msgid "motor_1 release"
+msgstr "motor_1 sproščen"
+
+msgid "motor_2 press"
+msgstr "motor_2 pritisnjen"
+
+msgid "motor_2 release"
+msgstr "motor_2 sproščen"
+
+msgid "motor_3 press"
+msgstr "motor_3 pritisnjen"
+
+msgid "motor_3 release"
+msgstr "motor_3 sproščen"
+
+msgid "motor_4 press"
+msgstr "motor_4 pritisnjen"
+
+msgid "motor_4 release"
+msgstr "motor_4 sproščen"
+
+msgid "no bed_mash name"
+msgstr "brez imena podložke_mreže"
+
+msgid "no bed_mash"
+msgstr "brez podložke_mreže"
+
+msgid "no enabled"
+msgstr "ni omogočen"
+
+msgid "press button%s"
+msgstr "pritisnite gumb%s"
+
+msgid "press button1"
+msgstr "pritisnite gumb1"
+
+msgid "press button2"
+msgstr "pritisnite gumb2"
+
+msgid "press button3"
+msgstr "pritisnite gumb3"
+
+msgid "press button4"
+msgstr "pritisnite gumb4"
+
+msgid "remove filament"
+msgstr "odstranite vlakno"
+
+msgid "residual filament%s"
+msgstr "ostanek vlakna%s"
+
+msgid "residual filament0"
+msgstr "ostanek vlakna0"
+
+msgid "residual filament1"
+msgstr "ostanek vlakna1"
+
+msgid "residual filament2"
+msgstr "ostanek vlakna2"
+
+msgid "residual filament3"
+msgstr "ostanek vlakna3"
+
+msgid "resume:%s"
+msgstr "nadali:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "nadali_orodje:%s razlog_premora:%s"
+
+msgid "Copy Print"
+msgstr "Kopiraj tisk"
+
+msgid "Mirror Print"
+msgstr "Zrcalni tisk"

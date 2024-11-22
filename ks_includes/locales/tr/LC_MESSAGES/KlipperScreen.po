@@ -489,9 +489,9 @@ msgid "PSK for"
 msgstr "PSK için"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Paket yükseltilecek"
-msgstr[1] "Paketler yükseltilecek"
+
+msgstr "Paket yükseltilecek"
+
 
 msgid "Part Fan"
 msgstr "Parça Fan"
@@ -762,17 +762,17 @@ msgid "Z offset:"
 msgstr "Z ofset:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "commit"
-msgstr[1] "commits"
+
+msgstr "commit"
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "saat"
-msgstr[1] "saatler"
+
+msgstr "saat"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "'rename_existing'i kullanan makrolar gizlendi"
@@ -781,9 +781,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "adı '_' ile başlayan makrolar gizlendi"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "dakika"
-msgstr[1] "dakikalar"
+
+msgstr "dakika"
+
 
 msgid "mm"
 msgstr "mm"
@@ -800,8 +800,8 @@ msgstr "mm³/s"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen yeniden başlayacak"
 
-#~ msgid "Continue"
-#~ msgstr "Devam et"
+msgid "Continue"
+msgstr "Devam et"
 
 #~ msgid "Fullscreen"
 #~ msgstr "Tam Ekran"
@@ -1099,3 +1099,388 @@ msgstr "Tehlikeli nozul yükseklik farkı: "
 
 msgid "Saved successfully!"
 msgstr "Başarıyla kaydedildi!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Filament Info"
+msgstr "Filament Bilgisi"
+
+msgid "Not found"
+msgstr "Bulunamadı"
+
+msgid "Vendor"
+msgstr "Üretici"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "Color"
+msgstr "Renk"
+
+msgid "Set Color"
+msgstr "Renk Ayarla"
+
+msgid "Filament Settings"
+msgstr "Filament Ayarları"
+
+msgid "Multi-Material Box"
+msgstr "Çoklu Malzeme Kutusu"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Yazılımı yeniden başlatmak istediğinize emin misiniz?"
+
+msgid "Autofill filament disable"
+msgstr "Otomatik dolgu filamanı devre dışı bırak"
+
+msgid "Autofill filament enabled"
+msgstr "Otomatik dolgu filamanı etkinleştirildi"
+
+msgid "Autofill filament: %s"
+msgstr "Otomatik dolgu filamanı: %s"
+
+msgid "Backing up configuration files."
+msgstr "Yapılandırma dosyaları yedekleniyor."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kesici Konumunu Kalibre Et"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Kesici konumu alınamadı."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Mevcut filaman indeksleri:%s, aktif araç:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Mevcut filaman indeksleri:%s, aktif araç:%s, devam_araç:%s, durdurma_nedeni:%s"
+
+msgid "Current value is %s"
+msgstr "Mevcut değer %s"
+
+msgid "Cut Filament Test"
+msgstr "Filaman Kesme Testi"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Çoklu malzeme kutusunu etkinleştirmek istiyor musunuz?"
+
+msgid "Do you want to use external filament?"
+msgstr "Dış filaman kullanmak istiyor musunuz?"
+
+msgid "Error: Offset values not found"
+msgstr "Hata: Kaydırma değerleri bulunamadı"
+
+msgid "Error: Z offset value not found"
+msgstr "Hata: Z kaydırma değeri bulunamadı"
+
+msgid "External Filament"
+msgstr "Dış Filaman"
+
+msgid "Extruder not hot enough"
+msgstr "Ekstruder yeterince sıcak değil"
+
+msgid "FEED error:External filament not removed"
+msgstr "FEED hatası: Dış filaman çıkarılmadı"
+
+msgid "Filament %s not found"
+msgstr "Filaman %s bulunamadı"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Filaman Sensörü%s: Filaman algılanmadı, yazdırma iptal ediliyor"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Filaman Sensörü%s: Filaman algılanmadı, yazdırma duraklatılıyor"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Filaman Sensörü0: Filaman algılanmadı, yazdırma duraklatılıyor"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Filaman Sensörü1: Filaman algılanmadı, yazdırma duraklatılıyor"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filaman algılandı! Çoklu malzeme kutusunu etkinleştirmeden önce, nozdan filamanı çıkarın."
+
+msgid "Missing required recovery data"
+msgstr "Gerekli kurtarma verisi eksik"
+
+msgid "No power loss recovery data found"
+msgstr "Enerji kaybı kurtarma verisi bulunamadı"
+
+msgid "No valid params 'S'"
+msgstr "Geçerli parametreler 'S' yok"
+
+msgid "No"
+msgstr "Hayır"
+
+msgid "OK"
+msgstr "Tamam"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Duraklat. \"Ekstruder\" ekstrüzyon hatası!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Lütfen önce filamanı nozdan çıkarın"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Lütfen ses numarasını doğru girin: 0-yazdırmayı başlat, 1-yazdırmayı sonlandır, 2-kesinti tespit edildi, 3-yazdırmayı iptal et, 4-yazdırmayı duraklat"
+
+msgid "Please select how you would like to proceed."
+msgstr "Devam etmek istediğiniz şekli seçin."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Enerji kaybı kurtarma, yazdırmayı devam ettiriyor."
+
+msgid "Power loss, saving print states."
+msgstr "Enerji kaybı, yazdırma durumlarını kaydediyor."
+
+msgid "Press feedsys button"
+msgstr "Feedsys düğmesini basın"
+
+msgid "Print resumed from power loss position"
+msgstr "Enerji kaybı pozisyonundan yazdırma devam ediyor"
+
+msgid "Printer not homed"
+msgstr "Yazıcı ev konumunda değil"
+
+msgid "RESUME error:autofill no fil"
+msgstr "DEVAM ET hata: otomatik dolgu filamanı yok"
+
+msgid "RESUME error:no fil"
+msgstr "DEVAM ET hata: filaman yok"
+
+msgid "RESUME error:residual fil"
+msgstr "DEVAM ET hata: kalan filaman"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Kurtarma verisi: Z=%s, Dosya=%s, Pozisyon=%s"
+
+msgid "Save & Restart"
+msgstr "Kaydet ve Yeniden Başlat"
+
+msgid "T%s direct feed"
+msgstr "T%s doğrudan besleme"
+
+msgid "T0 direct feed"
+msgstr "T0 doğrudan besleme"
+
+msgid "T0 need exit filament"
+msgstr "T0 filamanı çıkarmaya ihtiyaç var"
+
+msgid "T1 direct feed"
+msgstr "T1 doğrudan besleme"
+
+msgid "T1 need exit filament"
+msgstr "T1 filamanı çıkarmaya ihtiyaç var"
+
+msgid "T2 direct feed"
+msgstr "T2 doğrudan besleme"
+
+msgid "T2 need exit filament"
+msgstr "T2 filamanı çıkarmaya ihtiyaç var"
+
+msgid "T3 direct feed"
+msgstr "T3 doğrudan besleme"
+
+msgid "T3 need exit filament"
+msgstr "T3 filamanı çıkarmaya ihtiyaç var"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "\"Ekstruder\" ekstrüzyon hatası!"
+
+msgid "The current toolheade is T%s"
+msgstr "Mevcut araç başı T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Mevcut araç başı T0"
+
+msgid "The current toolheade is T1"
+msgstr "Mevcut araç başı T1"
+
+msgid "The current toolheade is T2"
+msgstr "Mevcut araç başı T2"
+
+msgid "The current toolheade is T3"
+msgstr "Mevcut araç başı T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "Filaman kutusu_%s'da filaman yok"
+
+msgid "The motor is wrong."
+msgstr "Motor yanlış."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Kalan bir filaman var, lütfen çıkarın ve devam edin"
+
+msgid "There's a residual filament in box %s"
+msgstr "Kutuda %s kalan bir filaman var"
+
+msgid "There's a residual filament in box 1"
+msgstr "Kutuda 1 kalan bir filaman var"
+
+msgid "There's a residual filament in box 2"
+msgstr "Kutuda 2 kalan bir filaman var"
+
+msgid "There's a residual filament in box 3"
+msgstr "Kutuda 3 kalan bir filaman var"
+
+msgid "There's a residual filament in box 4"
+msgstr "Kutuda 4 kalan bir filaman var"
+
+msgid "Unknown fan"
+msgstr "Bilinmeyen fan"
+
+msgid "Unknown filament"
+msgstr "Bilinmeyen filaman"
+
+msgid "Use external filament, please manually exit"
+msgstr "Dış filamanı kullanın, lütfen manuel olarak çıkarın"
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "Yes"
+msgstr "Evet"
+
+msgid "auto shutdown error"
+msgstr "otomatik kapanış hatası"
+
+msgid "bed_mash:%s"
+msgstr "yatak_mash:%s"
+
+msgid "clean pause_reason"
+msgstr "durdurma_nedenini temizle"
+
+msgid "cut filament"
+msgstr "filamanı kes"
+
+msgid "cutter press!"
+msgstr "kesici basıldı!"
+
+msgid "cutter release!"
+msgstr "kesici serbest bırakıldı!"
+
+msgid "feed busy"
+msgstr "besleme meşgul"
+
+msgid "feed error"
+msgstr "besleme hatası"
+
+msgid "feed finish"
+msgstr "besleme tamamlandı"
+
+msgid "filament not removed"
+msgstr "filaman çıkarılmadı"
+
+msgid "filament pause reason"
+msgstr "filaman durdurma nedeni"
+
+msgid "filament press"
+msgstr "filaman basıldı"
+
+msgid "filament release"
+msgstr "filaman serbest bırakıldı"
+
+msgid "filament remove"
+msgstr "filaman çıkar"
+
+msgid "filament runout"
+msgstr "filaman bitti"
+
+msgid "filament%s:%s"
+msgstr "filaman%s:%s"
+
+msgid "flush filament"
+msgstr "filamanı temizle"
+
+msgid "motion sensor insert"
+msgstr "hareket sensörünü ekle"
+
+msgid "motion sensor runout"
+msgstr "hareket sensörü bitti"
+
+msgid "motor_%s press"
+msgstr "motor_%s basıldı"
+
+msgid "motor_%s release"
+msgstr "motor_%s serbest bırakıldı"
+
+msgid "motor_1 press"
+msgstr "motor_1 basıldı"
+
+msgid "motor_1 release"
+msgstr "motor_1 serbest bırakıldı"
+
+msgid "motor_2 press"
+msgstr "motor_2 basıldı"
+
+msgid "motor_2 release"
+msgstr "motor_2 serbest bırakıldı"
+
+msgid "motor_3 press"
+msgstr "motor_3 basıldı"
+
+msgid "motor_3 release"
+msgstr "motor_3 serbest bırakıldı"
+
+msgid "motor_4 press"
+msgstr "motor_4 basıldı"
+
+msgid "motor_4 release"
+msgstr "motor_4 serbest bırakıldı"
+
+msgid "no bed_mash name"
+msgstr "yatak_mash adı yok"
+
+msgid "no bed_mash"
+msgstr "yatak_mash yok"
+
+msgid "no enabled"
+msgstr "etkinleştirilmemiş"
+
+msgid "press button%s"
+msgstr "düğmeye basın%s"
+
+msgid "press button1"
+msgstr "düğmeye basın1"
+
+msgid "press button2"
+msgstr "düğmeye basın2"
+
+msgid "press button3"
+msgstr "düğmeye basın3"
+
+msgid "press button4"
+msgstr "düğmeye basın4"
+
+msgid "remove filament"
+msgstr "filamanı çıkar"
+
+msgid "residual filament%s"
+msgstr "kalan filaman%s"
+
+msgid "residual filament0"
+msgstr "kalan filaman0"
+
+msgid "residual filament1"
+msgstr "kalan filaman1"
+
+msgid "residual filament2"
+msgstr "kalan filaman2"
+
+msgid "residual filament3"
+msgstr "kalan filaman3"
+
+msgid "resume:%s"
+msgstr "devam:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "devam_araç:%s durdurma_nedeni:%s"
+
+msgid "Copy Print"
+msgstr "Kopyalama Baskı"
+
+msgid "Mirror Print"
+msgstr "Ayna Baskı"

@@ -494,10 +494,10 @@ msgid "PSK for"
 msgstr "PSK для"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Пакет буде оновлено"
-msgstr[1] "Пакети будуть оновлені"
-msgstr[2] "Пакети будуть оновлені"
+
+msgstr "Пакет буде оновлено"
+
+
 
 msgid "Part Fan"
 msgstr "Охолодження моделі"
@@ -748,7 +748,7 @@ msgid "Up To Date"
 msgstr "Актуально"
 
 msgid "Update"
-msgstr "Оновлення"
+msgstr "О��овлення"
 
 msgid "Updating"
 msgstr "Оновлення"
@@ -778,19 +778,19 @@ msgid "Z offset:"
 msgstr "Зміщення по Z:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "коментар"
-msgstr[1] "коментарі"
-msgstr[2] "коментарі"
+
+msgstr "коментар"
+
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "година"
-msgstr[1] "годин"
-msgstr[2] "години"
+
+msgstr "година"
+
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "макроси, які використовують 'rename_existing', приховані"
@@ -799,10 +799,10 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "макроси з назвою, що починається на '_', приховані"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "хвилина"
-msgstr[1] "хвилин"
-msgstr[2] "хвилини"
+
+msgstr "хвилина"
+
+
 
 msgid "mm"
 msgstr "мм"
@@ -819,8 +819,8 @@ msgstr "мм/с³"
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen перезавантажиться"
 
-#~ msgid "Continue"
-#~ msgstr "Продовжити"
+msgid "Continue"
+msgstr "Продовжити"
 
 #~ msgid "Fullscreen"
 #~ msgstr "Повноекранний режим"
@@ -1085,7 +1085,7 @@ msgid "New nozzle height difference is: "
 msgstr "Нова різниця висоти сопла: "
 
 msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
-msgstr "Попередження: Поточне значення негативне. Це небезпечно і може пошкодити машину. Будь ласка, виконайте повторне калібрування."
+msgstr "Попередження: Поточне значення н��гативне. Це небезпечно і може пошкодити машину. Будь ласка, виконайте повторне калібрування."
 
 msgid "Z Height Diff"
 msgstr "Різниця висоти Z"
@@ -1107,3 +1107,388 @@ msgstr "Небезпечна різниця висоти сопла: "
 
 msgid "Saved successfully!"
 msgstr "Успішно збережено!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Редагувати"
+
+msgid "Filament Info"
+msgstr "Інформація про філамент"
+
+msgid "Not found"
+msgstr "Не знайдено"
+
+msgid "Vendor"
+msgstr "Виробник"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Color"
+msgstr "Колір"
+
+msgid "Set Color"
+msgstr "Встановити колір"
+
+msgid "Filament Settings"
+msgstr "Налаштування філаменту"
+
+msgid "Multi-Material Box"
+msgstr "Мультиматеріальний бокс"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Ви впевнені, що хочете перезапустити прошивку?"
+
+msgid "Autofill filament disable"
+msgstr "Вимкнути автозаповнення філаменту"
+
+msgid "Autofill filament enabled"
+msgstr "Автозаповнення філаменту увімкнено"
+
+msgid "Autofill filament: %s"
+msgstr "Автозаповнення філаменту: %s"
+
+msgid "Backing up configuration files."
+msgstr "Створення резервної копії файлів конфігурації."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Калібрування позиції різака"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Не вдалося отримати позицію калібрування різака."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Поточні індекси філаменту:%s, активний інструмент:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Поточні індекси філаменту:%s, активний інструмент:%s, інструмент_відновлення:%s, причина_паузи:%s"
+
+msgid "Current value is %s"
+msgstr "Поточне значення: %s"
+
+msgid "Cut Filament Test"
+msgstr "Тест різання філаменту"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Бажаєте увімкнути мультиматеріальний бокс?"
+
+msgid "Do you want to use external filament?"
+msgstr "Бажаєте використовувати зовнішній філамент?"
+
+msgid "Error: Offset values not found"
+msgstr "Помилка: Значення зміщення не знайдено"
+
+msgid "Error: Z offset value not found"
+msgstr "Помилка: Значення Z-зміщення не знайдено"
+
+msgid "External Filament"
+msgstr "Зовнішній філамент"
+
+msgid "Extruder not hot enough"
+msgstr "Екструдер недостатньо гарячий"
+
+msgid "FEED error:External filament not removed"
+msgstr "Помилка ПОДАЧІ: Зовнішній філамент не видалено"
+
+msgid "Filament %s not found"
+msgstr "Філамент %s не знайдено"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Датчик філаменту%s: Філамент не виявлено, скасування друку"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Датчик філаменту%s: Філамент не виявлено, призупинення друку"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Датчик філаменту0: Філамент не виявлено, призупинення друку"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Датчик філаменту1: Філамент не виявлено, призупинення друку"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Виявлено філамент! Будь ласка, видаліть філамент з хотенду перед увімкненням мультиматеріального боксу."
+
+msgid "Missing required recovery data"
+msgstr "Відсутні необхідні дані відновлення"
+
+msgid "No power loss recovery data found"
+msgstr "Не знайдено даних відновлення після втрати живлення"
+
+msgid "No valid params 'S'"
+msgstr "Немає дійсних параметрів 'S'"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Опції"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Пауза. Помилка екструзії \"екструдера\"!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Спочатку видаліть філамент з сопла"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Будь ласка, правильно введіть номер голосу: 0-початок друку, 1-кінець друку, 2-виявлено збій, 3-скасування друку, 4-пауза друку"
+
+msgid "Please select how you would like to proceed."
+msgstr "Будь ласка, виберіть, як ви хочете продовжити."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Відновлення після втрати живлення, відновлення друку."
+
+msgid "Power loss, saving print states."
+msgstr "Втрата живлення, збереження стану друку."
+
+msgid "Press feedsys button"
+msgstr "Натисніть кнопку подачі"
+
+msgid "Print resumed from power loss position"
+msgstr "Друк відновлено з позиції втрати живлення"
+
+msgid "Printer not homed"
+msgstr "Принтер не відкалібровано"
+
+msgid "RESUME error:autofill no fil"
+msgstr "Помилка ВІДНОВЛЕННЯ: немає автозаповнення філаменту"
+
+msgid "RESUME error:no fil"
+msgstr "Помилка ВІДНОВЛЕННЯ: немає філаменту"
+
+msgid "RESUME error:residual fil"
+msgstr "Помилка ВІДНОВЛЕННЯ: залишковий філамент"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Дані відновлення: Z=%s, Файл=%s, Поз=%s"
+
+msgid "Save & Restart"
+msgstr "Зберегти і перезапустити"
+
+msgid "T%s direct feed"
+msgstr "T%s пряма подача"
+
+msgid "T0 direct feed"
+msgstr "T0 пряма подача"
+
+msgid "T0 need exit filament"
+msgstr "T0 потрібно видалити філамент"
+
+msgid "T1 direct feed"
+msgstr "T1 пряма подача"
+
+msgid "T1 need exit filament"
+msgstr "T1 потрібно видалити філамент"
+
+msgid "T2 direct feed"
+msgstr "T2 пряма подача"
+
+msgid "T2 need exit filament"
+msgstr "T2 потрібно видалити філамент"
+
+msgid "T3 direct feed"
+msgstr "T3 пряма подача"
+
+msgid "T3 need exit filament"
+msgstr "T3 потрібно видалити філамент"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Помилка екструзії \"екструдера\"!"
+
+msgid "The current toolheade is T%s"
+msgstr "Поточна головка інструменту T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Поточна головка інструменту T0"
+
+msgid "The current toolheade is T1"
+msgstr "Поточна головка інструменту T1"
+
+msgid "The current toolheade is T2"
+msgstr "Поточна головка інструменту T2"
+
+msgid "The current toolheade is T3"
+msgstr "Поточна головка інструменту T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "У філамент_боксі_%s немає філаменту"
+
+msgid "The motor is wrong."
+msgstr "Двигун несправний."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Є залишковий філамент, будь ласка, видаліть його і продовжіть"
+
+msgid "There's a residual filament in box %s"
+msgstr "У боксі %s є залишковий філамент"
+
+msgid "There's a residual filament in box 1"
+msgstr "У боксі 1 є залишковий філамент"
+
+msgid "There's a residual filament in box 2"
+msgstr "У боксі 2 є залишковий філамент"
+
+msgid "There's a residual filament in box 3"
+msgstr "У боксі 3 є залишковий філамент"
+
+msgid "There's a residual filament in box 4"
+msgstr "У боксі 4 є залишковий філамент"
+
+msgid "Unknown fan"
+msgstr "Невідомий вентилятор"
+
+msgid "Unknown filament"
+msgstr "Невідомий філамент"
+
+msgid "Use external filament, please manually exit"
+msgstr "Використовуйте зовнішній філамент, будь ласка, вийдіть вручну"
+
+msgid "Warning"
+msgstr "Попередження"
+
+msgid "Yes"
+msgstr "Так"
+
+msgid "auto shutdown error"
+msgstr "помилка автоматичного вимкнення"
+
+msgid "bed_mash:%s"
+msgstr "сітка_столу:%s"
+
+msgid "clean pause_reason"
+msgstr "очистити причину_паузи"
+
+msgid "cut filament"
+msgstr "різати філамент"
+
+msgid "cutter press!"
+msgstr "натиск різака!"
+
+msgid "cutter release!"
+msgstr "відпуск різака!"
+
+msgid "feed busy"
+msgstr "подача зайнята"
+
+msgid "feed error"
+msgstr "помилка подачі"
+
+msgid "feed finish"
+msgstr "подачу завершено"
+
+msgid "filament not removed"
+msgstr "філамент не видалено"
+
+msgid "filament pause reason"
+msgstr "причина паузи філаменту"
+
+msgid "filament press"
+msgstr "натиск філаменту"
+
+msgid "filament release"
+msgstr "відпуск філаменту"
+
+msgid "filament remove"
+msgstr "видалення філаменту"
+
+msgid "filament runout"
+msgstr "закінчення філаменту"
+
+msgid "filament%s:%s"
+msgstr "філамент%s:%s"
+
+msgid "flush filament"
+msgstr "промивка філаменту"
+
+msgid "motion sensor insert"
+msgstr "вставка датчика руху"
+
+msgid "motion sensor runout"
+msgstr "спрацювання датчика руху"
+
+msgid "motor_%s press"
+msgstr "натиск двигуна_%s"
+
+msgid "motor_%s release"
+msgstr "відпуск двигуна_%s"
+
+msgid "motor_1 press"
+msgstr "натиск двигуна_1"
+
+msgid "motor_1 release"
+msgstr "відпуск двигуна_1"
+
+msgid "motor_2 press"
+msgstr "натиск двигуна_2"
+
+msgid "motor_2 release"
+msgstr "відпуск двигуна_2"
+
+msgid "motor_3 press"
+msgstr "натиск двигуна_3"
+
+msgid "motor_3 release"
+msgstr "відпуск двигуна_3"
+
+msgid "motor_4 press"
+msgstr "натиск двигуна_4"
+
+msgid "motor_4 release"
+msgstr "відпуск двигуна_4"
+
+msgid "no bed_mash name"
+msgstr "немає назви сітки_столу"
+
+msgid "no bed_mash"
+msgstr "немає сітки_столу"
+
+msgid "no enabled"
+msgstr "не увімкнено"
+
+msgid "press button%s"
+msgstr "натисніть кнопку%s"
+
+msgid "press button1"
+msgstr "натисніть кнопку1"
+
+msgid "press button2"
+msgstr "натисніть кнопку2"
+
+msgid "press button3"
+msgstr "натисніть кнопку3"
+
+msgid "press button4"
+msgstr "натисніть кнопку4"
+
+msgid "remove filament"
+msgstr "видалити філамент"
+
+msgid "residual filament%s"
+msgstr "залишковий філамент%s"
+
+msgid "residual filament0"
+msgstr "залишковий філамент0"
+
+msgid "residual filament1"
+msgstr "залишковий філамент1"
+
+msgid "residual filament2"
+msgstr "залишковий філамент2"
+
+msgid "residual filament3"
+msgstr "залишковий філамент3"
+
+msgid "resume:%s"
+msgstr "відновлення:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "інструмент_відновлення:%s причина_паузи:%s"
+
+msgid "Copy Print"
+msgstr "Копіювати друк"
+
+msgid "Mirror Print"
+msgstr "Дзеркальний друк"

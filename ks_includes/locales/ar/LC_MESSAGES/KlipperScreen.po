@@ -634,13 +634,7 @@ msgid "Outdated by %d"
 msgstr "عفا عليها الزمن بنسبة %d"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "لايوجد تحديث"
-msgstr[1] "سيتم تحديث الحزمة"
-msgstr[2] "تحديث حزمتين"
-msgstr[3] "تحديث الحزم"
-msgstr[4] "تحديث الحزم"
-msgstr[5] "تحديث الحزم"
+msgstr "لايوجد تحديث"
 
 msgid "Part Fan"
 msgstr "مروحة تبريد المطبوعات"
@@ -967,34 +961,16 @@ msgid "Z offset:"
 msgstr "حدود Z:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "لا التزام"
-msgstr[1] "التزام"
-msgstr[2] "التزامات"
-msgstr[3] "التزامات"
-msgstr[4] "التزامات"
-msgstr[5] "التزامات"
+msgstr "لا التزام"
 
 msgid "day"
-msgid_plural "days"
-msgstr[0] "صفر يوم"
-msgstr[1] "يوم"
-msgstr[2] "يومان"
-msgstr[3] "أيام"
-msgstr[4] "أيام"
-msgstr[5] "أيام"
+msgstr "صفر يوم"
 
 msgid "g"
 msgstr "g"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "ساعة"
-msgstr[1] "ساعة"
-msgstr[2] "ساعتين"
-msgstr[3] "ساعات"
-msgstr[4] "ساعات"
-msgstr[5] "ساعات"
+msgstr "ساعة"
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "وحدات الماكرو التي تستخدم \"إعادة تسمية_موجودة\" مخفية"
@@ -1003,13 +979,7 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "وحدات الماكرو التي يبدأ اسمها ب \"_\" مخفية"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "دقيقة"
-msgstr[1] "دقيقة"
-msgstr[2] "دقيقتين"
-msgstr[3] "دقيقة"
-msgstr[4] "دقيقة"
-msgstr[5] "دقيقة"
+msgstr "دقيقة"
 
 msgid "mm"
 msgstr "مم"
@@ -1027,14 +997,7 @@ msgid "s"
 msgstr "ث"
 
 msgid "second"
-msgid_plural "seconds"
-msgstr[0] "ثانية"
-msgstr[1] "ثانية"
-msgstr[2] "ثانيتين"
-msgstr[3] "ثواني"
-msgstr[4] "ثواني"
-msgstr[5] "الثانية"
-
+msgstr "ثانية"
 #~ msgid "Hide temp."
 #~ msgstr "إخفاء درجة الحرارة."
 
@@ -1183,7 +1146,7 @@ msgid "Voice Notify"
 msgstr "إشعار صوتي"
 
 msgid "Filament Box Power"
-msgstr "طاق�� صندوق ال��يوط"
+msgstr "طاق صندوق اليوط"
 
 msgid "If your calibration device is under the PEI, please lift the PEI after homing."
 msgstr "إذا كان جهاز المعايرة الخاص بك تحت PEI، يرجى رفع PEI بعد العودة إلى الصفر."
@@ -1226,3 +1189,243 @@ msgstr "فرق ارتفاع الفوهة الخطير: "
 
 msgid "Saved successfully!"
 msgstr "تم الحفظ بنجاح!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Filament Info"
+msgstr "معلومات الخيط"
+
+msgid "Not found"
+msgstr "غير موجود"
+
+msgid "Vendor"
+msgstr "المورد"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Color"
+msgstr "اللون"
+
+msgid "Set Color"
+msgstr "تعيين اللون"
+
+msgid "Filament Settings"
+msgstr "إعدادات الخيط"
+
+msgid "Multi-Material Box"
+msgstr "صندوق متعدد المواد"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "هل أنت متأكد أنك تريد إعادة تشغيل البرنامج الثابت؟"
+
+msgid "Autofill filament disable"
+msgstr "تعطيل التعبئة التلقائية للخيط"
+
+msgid "Autofill filament enabled"
+msgstr "تم تمكين التعبئة التلقائية للخيط"
+
+msgid "Autofill filament: %s"
+msgstr "التعبئة التلقائية للخيط: %s"
+
+msgid "Backing up configuration files."
+msgstr "نسخ ملفات التكوين احتياطياً"
+
+msgid "Calibrate Cutter Pos"
+msgstr "معايرة موضع القاطع"
+
+msgid "Current value is %s"
+msgstr "القيمة الحالية هي %s"
+
+msgid "Cut Filament Test"
+msgstr "اختبار قطع الخيط"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "هل تريد تمكين صندوق المواد المتعددة؟"
+
+msgid "External Filament"
+msgstr "خيط خارجي"
+
+msgid "Filament %s not found"
+msgstr "لم يتم العثور على الخيط %s"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "مستشعر الخيط %s: لم يتم اكتشاف خيط، إلغاء الطباعة"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "مستشعر الخيط %s: لم يتم اكتشاف خيط، إيقاف الطباعة مؤقتاً"
+
+msgid "Missing required recovery data"
+msgstr "بيانات الاستعادة المطلوبة مفقودة"
+
+msgid "No power loss recovery data found"
+msgstr "لم يتم العثور على بيانات استعادة انقطاع الطاقة"
+
+msgid "No valid params 'S'"
+msgstr "لا توجد معلمات صالحة 'S'"
+
+msgid "No"
+msgstr "لا"
+
+msgid "OK"
+msgstr "موافق"
+
+msgid "Options"
+msgstr "خيارات"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "توقف مؤقت. خطأ في البثق \"الباثق\"!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "يرجى إخراج الخيط من الفوهة أولاً"
+
+msgid "Power loss recovery, resuming print."
+msgstr "استعادة انقطاع الطاقة، استئناف الطباعة"
+
+msgid "Power loss, saving print states."
+msgstr "انقطاع الطاقة، حفظ حالات الطباعة"
+
+msgid "Press feedsys button"
+msgstr "اضغط زر نظام التغذية"
+
+msgid "Print resumed from power loss position"
+msgstr "تم استئناف الطباعة من موضع انقطاع الطاقة"
+
+msgid "Printer not homed"
+msgstr "الطابعة لم تعد إلى نقطة الأصل"
+
+msgid "RESUME error:autofill no fil"
+msgstr "خطأ استئناف: لا يوجد خيط للتعبئة التلقائية"
+
+msgid "RESUME error:no fil"
+msgstr "خطأ استئناف: لا يوجد خيط"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "بيانات الاستعادة: Z=%s، الملف=%s، الموضع=%s"
+
+msgid "Save & Restart"
+msgstr "حفظ وإعادة تشغيل"
+
+msgid "T%s direct feed"
+msgstr "تغذية مباشرة T%s"
+
+msgid "T%s need exit filament"
+msgstr "T%s يحتاج إلى إخراج الخيط"
+
+msgid "The current toolheade is T%s"
+msgstr "رأس الأداة الحالي هو T%s"
+
+msgid "The filament_box_%s no filament"
+msgstr "صندوق الخيط_%s لا يوجد به خيط"
+
+msgid "The motor is wrong."
+msgstr "المحرك خاطئ"
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "هناك خيط متبقي، يرجى إزالته والمتابعة"
+
+msgid "Unknown fan"
+msgstr "مروحة غير معروفة"
+
+msgid "Unknown filament"
+msgstr "خيط غير معروف"
+
+msgid "Warning"
+msgstr "تحذير"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "auto shutdown error"
+msgstr "خطأ في الإيقاف التلقائي"
+
+msgid "bed_mash:%s"
+msgstr "تسوية السطح:%s"
+
+msgid "clean pause_reason"
+msgstr "مسح سبب التوقف المؤقت"
+
+msgid "cut filament"
+msgstr "قطع الخيط"
+
+msgid "cutter press!"
+msgstr "ضغط القاطع!"
+
+msgid "cutter release!"
+msgstr "تحرير القاطع!"
+
+msgid "feed busy"
+msgstr "التغذية مشغولة"
+
+msgid "feed error"
+msgstr "خطأ في التغذية"
+
+msgid "feed finish"
+msgstr "اكتملت التغذية"
+
+msgid "filament not removed"
+msgstr "لم يتم إزالة الخيط"
+
+msgid "filament pause reason"
+msgstr "سبب توقف الخيط المؤقت"
+
+msgid "filament press"
+msgstr "ضغط الخيط"
+
+msgid "filament release"
+msgstr "تحرير الخيط"
+
+msgid "filament remove"
+msgstr "إزالة الخيط"
+
+msgid "filament runout"
+msgstr "نفاد الخيط"
+
+msgid "filament%s:%s"
+msgstr "خيط%s:%s"
+
+msgid "flush filament"
+msgstr "تنظيف الخيط"
+
+msgid "motion sensor insert"
+msgstr "إدخال مستشعر الحركة"
+
+msgid "motion sensor runout"
+msgstr "نفاد مستشعر الحركة"
+
+msgid "motor_%s press"
+msgstr "ضغط المحرك_%s"
+
+msgid "motor_%s release"
+msgstr "تحرير المحرك_%s"
+
+msgid "no bed_mash name"
+msgstr "لا يوجد اسم لتسوية السطح"
+
+msgid "no bed_mash"
+msgstr "لا توجد تسوية للسطح"
+
+msgid "no enabled"
+msgstr "غير مُمكّن"
+
+msgid "press button%s"
+msgstr "اضغط الزر%s"
+
+msgid "remove filament"
+msgstr "إزالة الخيط"
+
+msgid "residual filament%s"
+msgstr "الخيط المتبقي%s"
+
+msgid "resume:%s"
+msgstr "استئناف:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "استئناف_الأداة:%s سبب_التوقف:%s"
+
+msgid "Copy Print"
+msgstr "نسخ الطباعة"
+msgid "Mirror Print"
+msgstr "طباعة معكوسة"

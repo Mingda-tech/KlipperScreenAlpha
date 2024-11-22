@@ -491,9 +491,9 @@ msgid "PSK for"
 msgstr "PSK för"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Paketet kommer att uppdateras"
-msgstr[1] "Paketen kommer att uppdateras"
+
+msgstr "Paketet kommer att uppdateras"
+
 
 msgid "Part Fan"
 msgstr "Del Fläkt"
@@ -764,17 +764,17 @@ msgid "Z offset:"
 msgstr "Z-offset:"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "commit"
-msgstr[1] "commits"
+
+msgstr "commit"
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "timme"
-msgstr[1] "timmar"
+
+msgstr "timme"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr "makron som använder 'rename_existing' är dolda"
@@ -783,9 +783,9 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr "makron med ett namn som börjar med '_' är dolda"
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minut"
-msgstr[1] "minuter"
+
+msgstr "minut"
+
 
 msgid "mm"
 msgstr "mm"
@@ -799,8 +799,8 @@ msgstr "mm/s²"
 msgid "mm³/s"
 msgstr "mm³/s"
 
-#~ msgid "Continue"
-#~ msgstr "Fortsätt"
+msgid "Continue"
+msgstr "Fortsätt"
 
 #~ msgid "Actions"
 #~ msgstr "Åtgärder"
@@ -1070,3 +1070,388 @@ msgstr "Farlig munstyckshöjdskillnad: "
 
 msgid "Saved successfully!"
 msgstr "Sparades framgångsrikt!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Filament Info"
+msgstr "Filamentinformation"
+
+msgid "Not found"
+msgstr "Hittades inte"
+
+msgid "Vendor"
+msgstr "Tillverkare"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Color"
+msgstr "Färg"
+
+msgid "Set Color"
+msgstr "Ställ in färg"
+
+msgid "Filament Settings"
+msgstr "Filamentinställningar"
+
+msgid "Multi-Material Box"
+msgstr "Multimaterialbox"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Är du säker på att du vill starta om programvara?"
+
+msgid "Autofill filament disable"
+msgstr "Inaktivera automatisk fyllning av tråd"
+
+msgid "Autofill filament enabled"
+msgstr "Aktivera automatisk fyllning av tråd"
+
+msgid "Autofill filament: %s"
+msgstr "Automatisk fyllning av tråd: %s"
+
+msgid "Backing up configuration files."
+msgstr "Säkerhetskopierar konfigurationsfiler."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kalibrera skärarens position"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Kunde inte hämta skärarens kalibreringsposition."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Nuvarande trådindex är:%s, aktivt verktyg:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Nuvarande trådindex är:%s, aktivt verktyg:%s, återuppta_verktyg:%s, pausorsak:%s"
+
+msgid "Current value is %s"
+msgstr "Nuvarande värde är %s"
+
+msgid "Cut Filament Test"
+msgstr "Testa skärning av tråd"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Vill du aktivera flermaterialboxen?"
+
+msgid "Do you want to use external filament?"
+msgstr "Vill du använda extern tråd?"
+
+msgid "Error: Offset values not found"
+msgstr "Fel: Kunde inte hitta offset-värden"
+
+msgid "Error: Z offset value not found"
+msgstr "Fel: Kunde inte hitta Z-offset-värde"
+
+msgid "External Filament"
+msgstr "Extern tråd"
+
+msgid "Extruder not hot enough"
+msgstr "Extruder är inte tillräckligt het"
+
+msgid "FEED error:External filament not removed"
+msgstr "FEED-fel: Extern tråd ej borttagen"
+
+msgid "Filament %s not found"
+msgstr "Tråd %s ej funnen"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Trådsensor%s: Inga trådar upptäckta, avbryter utskrift"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Trådsensor%s: Inga trådar upptäckta, pauserar utskrift"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Trådsensor0: Inga trådar upptäckta, pauserar utskrift"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Trådsensor1: Inga trådar upptäckta, pauserar utskrift"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Tråd upptäckt! Ta bort tråden från spruten innan du aktiverar flermaterialboxen."
+
+msgid "Missing required recovery data"
+msgstr "Krävda återställningsdata saknas"
+
+msgid "No power loss recovery data found"
+msgstr "Inga återställningsdata för strömavbrott funna"
+
+msgid "No valid params 'S'"
+msgstr "Inga giltiga parametrar 'S'"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Alternativ"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Paus. Extruderfel!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Ta bort tråden från sprutan först"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Fyll i rätt ljudnummer: 0-börja skriva ut, 1-sluta skriva ut, 2-strömavbrott upptäckt, 3-avbryt utskrift, 4-pausa utskrift"
+
+msgid "Please select how you would like to proceed."
+msgstr "Välj hur du vill fortsätta."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Återställning efter strömavbrott, fortsätter utskrift."
+
+msgid "Power loss, saving print states."
+msgstr "Strömavbrott, sparar utskriftstillstånd."
+
+msgid "Press feedsys button"
+msgstr "Tryck på feedsys-knappen"
+
+msgid "Print resumed from power loss position"
+msgstr "Utskrift fortsatt från strömavbrottsposition"
+
+msgid "Printer not homed"
+msgstr "Skrivaren är inte hemmatad"
+
+msgid "RESUME error:autofill no fil"
+msgstr "ÅTERUPPTAGNINGSFEL: ingen tråd för automatisk fyllning"
+
+msgid "RESUME error:no fil"
+msgstr "ÅTERUPPTAGNINGSFEL: ingen tråd"
+
+msgid "RESUME error:residual fil"
+msgstr "ÅTERUPPTAGNINGSFEL: kvarvarande tråd"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Återställningsdata: Z=%s, Fil=%s, Pos=%s"
+
+msgid "Save & Restart"
+msgstr "Spara & Starta om"
+
+msgid "T%s direct feed"
+msgstr "Direktförsörjning T%s"
+
+msgid "T0 direct feed"
+msgstr "Direktförsörjning T0"
+
+msgid "T0 need exit filament"
+msgstr "T0 behöver ta bort tråd"
+
+msgid "T1 direct feed"
+msgstr "Direktförsörjning T1"
+
+msgid "T1 need exit filament"
+msgstr "T1 behöver ta bort tråd"
+
+msgid "T2 direct feed"
+msgstr "Direktförsörjning T2"
+
+msgid "T2 need exit filament"
+msgstr "T2 behöver ta bort tråd"
+
+msgid "T3 direct feed"
+msgstr "Direktförsörjning T3"
+
+msgid "T3 need exit filament"
+msgstr "T3 behöver ta bort tråd"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Extruderfel!"
+
+msgid "The current toolheade is T%s"
+msgstr "Nuvarande verktygsnacka är T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Nuvarande verktygsnacka är T0"
+
+msgid "The current toolheade is T1"
+msgstr "Nuvarande verktygsnacka är T1"
+
+msgid "The current toolheade is T2"
+msgstr "Nuvarande verktygsnacka är T2"
+
+msgid "The current toolheade is T3"
+msgstr "Nuvarande verktygsnacka är T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "Trådlådan_%s har ingen tråd"
+
+msgid "The motor is wrong."
+msgstr "Motorn är fel."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Det finns en kvarvarande tråd, ta bort och fortsätt"
+
+msgid "There's a residual filament in box %s"
+msgstr "Det finns en kvarvarande tråd i lådan %s"
+
+msgid "There's a residual filament in box 1"
+msgstr "Det finns en kvarvarande tråd i lådan 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "Det finns en kvarvarande tråd i lådan 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "Det finns en kvarvarande tråd i lådan 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "Det finns en kvarvarande tråd i lådan 4"
+
+msgid "Unknown fan"
+msgstr "Okänd ventilator"
+
+msgid "Unknown filament"
+msgstr "Okänd tråd"
+
+msgid "Use external filament, please manually exit"
+msgstr "Använd extern tråd, ta bort manuellt"
+
+msgid "Warning"
+msgstr "Varning"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "auto shutdown error"
+msgstr "automatiskt avstängningsfel"
+
+msgid "bed_mash:%s"
+msgstr "säng_mesh:%s"
+
+msgid "clean pause_reason"
+msgstr "rensa pausorsak"
+
+msgid "cut filament"
+msgstr "klipp tråd"
+
+msgid "cutter press!"
+msgstr "klipparknapp tryckt!"
+
+msgid "cutter release!"
+msgstr "klipparknapp släppt!"
+
+msgid "feed busy"
+msgstr "försörjning upptagen"
+
+msgid "feed error"
+msgstr "försörjningsfel"
+
+msgid "feed finish"
+msgstr "försörjning slutförd"
+
+msgid "filament not removed"
+msgstr "tråd ej borttagen"
+
+msgid "filament pause reason"
+msgstr "trådpausorsak"
+
+msgid "filament press"
+msgstr "trådknapp tryckt"
+
+msgid "filament release"
+msgstr "trådknapp släppt"
+
+msgid "filament remove"
+msgstr "ta bort tråd"
+
+msgid "filament runout"
+msgstr "trådet är slut"
+
+msgid "filament%s:%s"
+msgstr "tråd%s:%s"
+
+msgid "flush filament"
+msgstr "spola tråd"
+
+msgid "motion sensor insert"
+msgstr "infoga rörelsesensor"
+
+msgid "motion sensor runout"
+msgstr "rörelsesensor slut"
+
+msgid "motor_%s press"
+msgstr "motor_%s tryckt"
+
+msgid "motor_%s release"
+msgstr "motor_%s släppt"
+
+msgid "motor_1 press"
+msgstr "motor_1 tryckt"
+
+msgid "motor_1 release"
+msgstr "motor_1 släppt"
+
+msgid "motor_2 press"
+msgstr "motor_2 tryckt"
+
+msgid "motor_2 release"
+msgstr "motor_2 släppt"
+
+msgid "motor_3 press"
+msgstr "motor_3 tryckt"
+
+msgid "motor_3 release"
+msgstr "motor_3 släppt"
+
+msgid "motor_4 press"
+msgstr "motor_4 tryckt"
+
+msgid "motor_4 release"
+msgstr "motor_4 släppt"
+
+msgid "no bed_mash name"
+msgstr "ingen säng_mesh-namn"
+
+msgid "no bed_mash"
+msgstr "ingen säng_mesh"
+
+msgid "no enabled"
+msgstr "inte aktiverat"
+
+msgid "press button%s"
+msgstr "tryck på knapp%s"
+
+msgid "press button1"
+msgstr "tryck på knapp1"
+
+msgid "press button2"
+msgstr "tryck på knapp2"
+
+msgid "press button3"
+msgstr "tryck på knapp3"
+
+msgid "press button4"
+msgstr "tryck på knapp4"
+
+msgid "remove filament"
+msgstr "ta bort tråd"
+
+msgid "residual filament%s"
+msgstr "kvarvarande tråd%s"
+
+msgid "residual filament0"
+msgstr "kvarvarande tråd0"
+
+msgid "residual filament1"
+msgstr "kvarvarande tråd1"
+
+msgid "residual filament2"
+msgstr "kvarvarande tråd2"
+
+msgid "residual filament3"
+msgstr "kvarvarande tråd3"
+
+msgid "resume:%s"
+msgstr "fortsätt:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "fortsätt_verktyg:%s pausorsak:%s"
+
+msgid "Copy Print"
+msgstr "Kopiera utskrift"
+
+msgid "Mirror Print"
+msgstr "Spegelvänd utskrift"

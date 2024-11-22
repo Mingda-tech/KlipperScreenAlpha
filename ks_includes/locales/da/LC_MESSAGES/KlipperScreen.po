@@ -482,9 +482,9 @@ msgid "PSK for"
 msgstr "PSK for"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "Pakken vil blive opdateret"
-msgstr[1] "Pakker vil blive opdateret"
+
+msgstr "Pakken vil blive opdateret"
+
 
 msgid "Part Fan"
 msgstr ""
@@ -755,17 +755,17 @@ msgid "Z offset:"
 msgstr ""
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "ændring"
-msgstr[1] "ændringer"
+
+msgstr "ændring"
+
 
 msgid "dBm"
 msgstr "dBm"
 
 msgid "hour"
-msgid_plural "hours"
-msgstr[0] "time"
-msgstr[1] "timer"
+
+msgstr "time"
+
 
 msgid "macros that use 'rename_existing' are hidden"
 msgstr ""
@@ -774,9 +774,8 @@ msgid "macros with a name starting with '_' are hidden"
 msgstr ""
 
 msgid "minute"
-msgid_plural "minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "minut"
+
 
 msgid "mm"
 msgstr "mm"
@@ -793,8 +792,8 @@ msgstr ""
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen vil genstarte"
 
-#~ msgid "Continue"
-#~ msgstr "Fortsæt"
+msgid "Continue"
+msgstr "Fortsæt"
 
 #~ msgid "Actions"
 #~ msgstr "Muligheder"
@@ -1127,3 +1126,285 @@ msgstr "Farlig dysehøjdeforskel: "
 
 msgid "Saved successfully!"
 msgstr "Gemt med succes!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Rediger"
+
+msgid "Filament Info"
+msgstr "Filament information"
+
+msgid "Not found"
+msgstr "Ikke fundet"
+
+msgid "Vendor"
+msgstr "Producent"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Color"
+msgstr "Farve"
+
+msgid "Set Color"
+msgstr "Indstil farve"
+
+msgid "Filament Settings"
+msgstr "Filament indstillinger"
+
+msgid "Multi-Material Box"
+msgstr "Multi-materiale boks"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Er du sikker på, at du vil genstarte firmwaren?"
+
+msgid "Autofill filament disable"
+msgstr "Deaktiver automatisk filamentfyldning"
+
+msgid "Autofill filament enabled"
+msgstr "Automatisk filamentfyldning aktiveret"
+
+msgid "Autofill filament: %s"
+msgstr "Automatisk filamentfyldning: %s"
+
+msgid "Backing up configuration files."
+msgstr "Sikkerhedskopierer konfigurationsfiler."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kalibrer skæreposition"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Kunne ikke få skærerens kalibreringsposition."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Aktuelle filamentindekser er:%s, aktivt værktøj:%s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Aktuelle filamentindekser er:%s, aktivt værktøj:%s, genoptag_værktøj:%s, pause_årsag:%s"
+
+msgid "Current value is %s"
+msgstr "Aktuel værdi er %s"
+
+msgid "Cut Filament Test"
+msgstr "Test af filamentskæring"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Vil du aktivere multimaterialeboks?"
+
+msgid "Do you want to use external filament?"
+msgstr "Vil du bruge eksternt filament?"
+
+msgid "Error: Offset values not found"
+msgstr "Fejl: Offset-værdier ikke fundet"
+
+msgid "Error: Z offset value not found"
+msgstr "Fejl: Z-offset værdi ikke fundet"
+
+msgid "External Filament"
+msgstr "Eksternt filament"
+
+msgid "Extruder not hot enough"
+msgstr "Ekstruderen er ikke varm nok"
+
+msgid "FEED error:External filament not removed"
+msgstr "FØDNINGSFEJL: Eksternt filament ikke fjernet"
+
+msgid "Filament %s not found"
+msgstr "Filament %s ikke fundet"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Filamentsensor%s: Intet filament registreret, annullerer udskrift"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Filamentsensor%s: Intet filament registreret, sætter udskrift på pause"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filament registreret! Fjern venligst filament fra hotenden før aktivering af multimaterialeboks."
+
+msgid "Missing required recovery data"
+msgstr "Mangler nødvendige gendannelsesdata"
+
+msgid "No power loss recovery data found"
+msgstr "Ingen strømsvigts-gendannelsesdata fundet"
+
+msgid "No valid params 'S'"
+msgstr "Ingen gyldige parametre 'S'"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Options"
+msgstr "Indstillinger"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Pause. \"Ekstruder\" ekstruderingsfejl!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Fjern venligst først filamentet fra dysen"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Udfyld venligst stemmenummeret korrekt: 0-start udskrivning, 1-afslut udskrivning, 2-strømsvigt registreret, 3-annuller udskrivning, 4-pause udskrivning"
+
+msgid "Please select how you would like to proceed."
+msgstr "Vælg venligst hvordan du vil fortsætte."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Gendannelse efter strømsvigt, genoptager udskrift."
+
+msgid "Power loss, saving print states."
+msgstr "Strømsvigt, gemmer udskriftstilstande."
+
+msgid "Press feedsys button"
+msgstr "Tryk på fødningssystemknappen"
+
+msgid "Print resumed from power loss position"
+msgstr "Udskrift genoptaget fra strømsvigtsposition"
+
+msgid "Printer not homed"
+msgstr "Printer ikke hjemme"
+
+msgid "RESUME error:autofill no fil"
+msgstr "GENOPTAG fejl: autofyld intet filament"
+
+msgid "RESUME error:no fil"
+msgstr "GENOPTAG fejl: intet filament"
+
+msgid "RESUME error:residual fil"
+msgstr "GENOPTAG fejl: resterende filament"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Gendannelsesdata: Z=%s, Fil=%s, Pos=%s"
+
+msgid "Save & Restart"
+msgstr "Gem & Genstart"
+
+msgid "T%s direct feed"
+msgstr "T%s direkte fødning"
+
+msgid "T%s need exit filament"
+msgstr "T%s skal have fjernet filament"
+
+msgid "The current toolheade is T%s"
+msgstr "Det aktuelle værktøjshoved er T%s"
+
+msgid "The filament_box_%s no filament"
+msgstr "Filamentboks_%s intet filament"
+
+msgid "The motor is wrong."
+msgstr "Motoren er forkert."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Der er resterende filament, fjern det venligst og fortsæt"
+
+msgid "There's a residual filament in box %s"
+msgstr "Der er resterende filament i boks %s"
+
+msgid "Unknown fan"
+msgstr "Ukendt blæser"
+
+msgid "Unknown filament"
+msgstr "Ukendt filament"
+
+msgid "Use external filament, please manually exit"
+msgstr "Brug eksternt filament, fjern det venligst manuelt"
+
+msgid "Warning"
+msgstr "Advarsel"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "auto shutdown error"
+msgstr "Automatisk nedlukningsfejl"
+
+msgid "bed_mash:%s"
+msgstr "bed_mash:%s"
+
+msgid "clean pause_reason"
+msgstr "Ryd pause_årsag"
+
+msgid "cut filament"
+msgstr "Skær filament"
+
+msgid "cutter press!"
+msgstr "Skærer tryk!"
+
+msgid "cutter release!"
+msgstr "Skærer frigiv!"
+
+msgid "feed busy"
+msgstr "Fødning optaget"
+
+msgid "feed error"
+msgstr "Fødningsfejl"
+
+msgid "feed finish"
+msgstr "Fødning afsluttet"
+
+msgid "filament not removed"
+msgstr "Filament ikke fjernet"
+
+msgid "filament pause reason"
+msgstr "Filament pause årsag"
+
+msgid "filament press"
+msgstr "Filament tryk"
+
+msgid "filament release"
+msgstr "Filament frigiv"
+
+msgid "filament remove"
+msgstr "Fjern filament"
+
+msgid "filament runout"
+msgstr "Filament opbrugt"
+
+msgid "filament%s:%s"
+msgstr "Filament%s:%s"
+
+msgid "flush filament"
+msgstr "Skyl filament"
+
+msgid "motion sensor insert"
+msgstr "Bevægelsessensor indsæt"
+
+msgid "motion sensor runout"
+msgstr "Bevægelsessensor opbrugt"
+
+msgid "motor_%s press"
+msgstr "Motor_%s tryk"
+
+msgid "motor_%s release"
+msgstr "Motor_%s frigiv"
+
+msgid "no bed_mash name"
+msgstr "Intet bed_mash navn"
+
+msgid "no bed_mash"
+msgstr "Ingen bed_mash"
+
+msgid "no enabled"
+msgstr "Ikke aktiveret"
+
+msgid "press button%s"
+msgstr "Tryk knap%s"
+
+msgid "remove filament"
+msgstr "Fjern filament"
+
+msgid "residual filament%s"
+msgstr "Resterende filament%s"
+
+msgid "resume:%s"
+msgstr "Genoptag:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "Genoptag_værktøj:%s pause_årsag:%s"
+
+msgid "Copy Print"
+msgstr "Kopier print"
+msgid "Mirror Print"
+msgstr "Spejlvendt print"

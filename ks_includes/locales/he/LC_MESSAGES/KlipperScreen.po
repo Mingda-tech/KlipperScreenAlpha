@@ -489,11 +489,7 @@ msgid "PSK for"
 msgstr "PSK עבור"
 
 msgid "Package will be updated"
-msgid_plural "Packages will be updated"
-msgstr[0] "חבילה אחת תעודכן"
-msgstr[1] "חבילות יעודכנו"
-msgstr[2] "חבילות יעודכנו"
-msgstr[3] "חבילות יעודכנו"
+msgstr "Packages will be updated"
 
 msgid "Part Fan"
 msgstr "מאוורר חומר"
@@ -764,11 +760,7 @@ msgid "Z offset:"
 msgstr "Z אוף-סט"
 
 msgid "commit"
-msgid_plural "commits"
-msgstr[0] "שינוי"
-msgstr[1] "שינו��ים"
-msgstr[2] "שינויים"
-msgstr[3] "שינויים"
+msgstr "commits"
 
 msgid "dBm"
 msgstr "dBm"
@@ -808,8 +800,8 @@ msgstr ""
 #~ msgid "KlipperScreen will reboot"
 #~ msgstr "KlipperScreen יאתחל מחדש"
 
-#~ msgid "Continue"
-#~ msgstr "המשך"
+msgid "Continue"
+msgstr "המשך"
 
 #~ msgid "Actions"
 #~ msgstr "פעולות"
@@ -1220,3 +1212,388 @@ msgstr "הפרש גובה נחיר מסוכן: "
 
 msgid "Saved successfully!"
 msgstr "נשמר בהצלחה!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "Filament Info"
+msgstr "מידע על הנימה"
+
+msgid "Not found"
+msgstr "לא נמצא"
+
+msgid "Vendor"
+msgstr "יצרן"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Color"
+msgstr "צבע"
+
+msgid "Set Color"
+msgstr "הגדר צבע"
+
+msgid "Filament Settings"
+msgstr "הגדרות נימה"
+
+msgid "Multi-Material Box"
+msgstr "תיבת חומרים מרובים"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "?האם אתה בטוח שברצונך להפעיל מחדש את הקושחה"
+
+msgid "Autofill filament disable"
+msgstr "השבתת מילוי אוטומטי של נימה"
+
+msgid "Autofill filament enabled"
+msgstr "מילוי אוטומטי של נימה מופעל"
+
+msgid "Autofill filament: %s"
+msgstr "%s :מילוי אוטומטי של נימה"
+
+msgid "Backing up configuration files."
+msgstr "גיבוי קבצי תצורה"
+
+msgid "Calibrate Cutter Pos"
+msgstr "כיול מיקום החותך"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "לא ניתן לקבל את מיקום כיול החותך"
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "%s :כלי פעיל ,%s :אינדקסי הנימה הנוכחיים הם"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "%s :סיבת השהייה ,%s :כלי המשך ,%s :כלי פעיל ,%s :אינדקסי הנימה הנוכחיים הם"
+
+msgid "Current value is %s"
+msgstr "%s הערך הנוכחי הוא"
+
+msgid "Cut Filament Test"
+msgstr "בדיקת חיתוך נימה"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "?האם ברצונך להפעיל את תיבת הרב-חומרים"
+
+msgid "Do you want to use external filament?"
+msgstr "?האם ברצונך להשתמש בנימה חיצונית"
+
+msgid "Error: Offset values not found"
+msgstr "שגיאה: ערכי היסט לא נמצאו"
+
+msgid "Error: Z offset value not found"
+msgstr "Z שגיאה: לא נמצא ערך היסט"
+
+msgid "External Filament"
+msgstr "נימה חיצונית"
+
+msgid "Extruder not hot enough"
+msgstr "האקסטרודר לא חם מספיק"
+
+msgid "FEED error:External filament not removed"
+msgstr "שגיאת הזנה: נימה חיצונית לא הוסרה"
+
+msgid "Filament %s not found"
+msgstr "לא נמצאה %s נימה"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "חיישן נימה %s: לא זוהתה נימה, מבטל הדפסה"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "חיישן נימה %s: לא זוהתה נימה, משהה הדפסה"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "חיישן נימה 0: לא זוהתה נימה, משהה הדפסה"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "חיישן נימה 1: לא זוהתה נימה, משהה הדפסה"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "זוהתה נימה! אנא הסר את הנימה מראש ההדפסה החם לפני הפעלת תיבת הרב-חומרים"
+
+msgid "Missing required recovery data"
+msgstr "חסרים נתוני שחזור נדרשים"
+
+msgid "No power loss recovery data found"
+msgstr "לא נמצאו נתוני שחזור מהפסקת חשמל"
+
+msgid "No valid params 'S'"
+msgstr "'S' אין פרמטרים תקפים"
+
+msgid "No"
+msgstr "לא"
+
+msgid "OK"
+msgstr "אישור"
+
+msgid "Options"
+msgstr "אפשרויות"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "השהיה. שגיאת שיחול באקסטרודר!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "אנא הוצא תחילה את הנימה מהנחיר"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "אנא הזן את מספר הקול הנכון: 0-התחל הדפסה, 1-סיים הדפסה, 2-זוהתה הפסקת חשמל, 3-בטל הדפסה, 4-השהה הדפסה"
+
+msgid "Please select how you would like to proceed."
+msgstr "אנא בחר כיצד ברצונך להמשיך"
+
+msgid "Power loss recovery, resuming print."
+msgstr "שחזור מהפסקת חשמל, ממשיך הדפסה"
+
+msgid "Power loss, saving print states."
+msgstr "הפסקת חשמל, שומר מצבי הדפסה"
+
+msgid "Press feedsys button"
+msgstr "לחץ על כפתור מערכת ההזנה"
+
+msgid "Print resumed from power loss position"
+msgstr "ההדפסה התחדשה מנקודת הפסקת החשמל"
+
+msgid "Printer not homed"
+msgstr "המדפסת לא עברה איפוס"
+
+msgid "RESUME error:autofill no fil"
+msgstr "שגיאת המשך: אין מילוי אוטומטי של נימה"
+
+msgid "RESUME error:no fil"
+msgstr "שגיאת המשך: אין נימה"
+
+msgid "RESUME error:residual fil"
+msgstr "שגיאת המשך: נימה שיורית"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "%s=מיקום ,%s=קובץ ,%s=Z :נתוני שחזור"
+
+msgid "Save & Restart"
+msgstr "שמור והפעל מחדש"
+
+msgid "T%s direct feed"
+msgstr "T%s הזנה ישירה"
+
+msgid "T0 direct feed"
+msgstr "T0 הזנה ישירה"
+
+msgid "T0 need exit filament"
+msgstr "T0 יש צורך להוציא נימה"
+
+msgid "T1 direct feed"
+msgstr "T1 הזנה ישירה"
+
+msgid "T1 need exit filament"
+msgstr "T1 יש צורך להוציא נימה"
+
+msgid "T2 direct feed"
+msgstr "T2 הזנה ישירה"
+
+msgid "T2 need exit filament"
+msgstr "T2 יש צורך להוציא נימה"
+
+msgid "T3 direct feed"
+msgstr "T3 הזנה ישירה"
+
+msgid "T3 need exit filament"
+msgstr "T3 יש צורך להוציא נימה"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "שגיאת שיחול באקסטרודר!"
+
+msgid "The current toolheade is T%s"
+msgstr "T%s ראש הכלי הנוכחי הוא"
+
+msgid "The current toolheade is T0"
+msgstr "T0 ראש הכלי הנוכחי הוא"
+
+msgid "The current toolheade is T1"
+msgstr "T1 ראש הכלי הנוכחי הוא"
+
+msgid "The current toolheade is T2"
+msgstr "T2 ראש הכלי הנוכחי הוא"
+
+msgid "The current toolheade is T3"
+msgstr "T3 ראש הכלי הנוכחי הוא"
+
+msgid "The filament_box_%s no filament"
+msgstr "אין נימה %s_בתיבת הנימה"
+
+msgid "The motor is wrong."
+msgstr "המנוע לא תקין"
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "ישנה נימה שיורית, אנא הסר והמשך"
+
+msgid "There's a residual filament in box %s"
+msgstr "%s ישנה נימה שיורית בתיבה"
+
+msgid "There's a residual filament in box 1"
+msgstr "ישנה נימה שיורית בתיבה 1"
+
+msgid "There's a residual filament in box 2"
+msgstr "ישנה נימה שיורית בתיבה 2"
+
+msgid "There's a residual filament in box 3"
+msgstr "ישנה נימה שיורית בתיבה 3"
+
+msgid "There's a residual filament in box 4"
+msgstr "ישנה נימה שיורית בתיבה 4"
+
+msgid "Unknown fan"
+msgstr "מאוורר לא מוכר"
+
+msgid "Unknown filament"
+msgstr "נימה לא מוכרת"
+
+msgid "Use external filament, please manually exit"
+msgstr "השתמש בנימה חיצונית, אנא צא ידנית"
+
+msgid "Warning"
+msgstr "אזהרה"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "auto shutdown error"
+msgstr "שגיאת כיבוי אוטומטי"
+
+msgid "bed_mash:%s"
+msgstr "%s:רשת_מיטה"
+
+msgid "clean pause_reason"
+msgstr "נקה סיבת_השהיה"
+
+msgid "cut filament"
+msgstr "חתוך נימה"
+
+msgid "cutter press!"
+msgstr "לחץ על החותך!"
+
+msgid "cutter release!"
+msgstr "שחרר את החותך!"
+
+msgid "feed busy"
+msgstr "הזנה עסוקה"
+
+msgid "feed error"
+msgstr "שגיאת הזנה"
+
+msgid "feed finish"
+msgstr "הזנה הסתיימה"
+
+msgid "filament not removed"
+msgstr "הנימה לא הוסרה"
+
+msgid "filament pause reason"
+msgstr "סיבת השהיית נימה"
+
+msgid "filament press"
+msgstr "לחץ נימה"
+
+msgid "filament release"
+msgstr "שחרור נימה"
+
+msgid "filament remove"
+msgstr "הסרת נימה"
+
+msgid "filament runout"
+msgstr "נימה אזלה"
+
+msgid "filament%s:%s"
+msgstr "%s:%s נימה"
+
+msgid "flush filament"
+msgstr "שטוף נימה"
+
+msgid "motion sensor insert"
+msgstr "הכנס חיישן תנועה"
+
+msgid "motion sensor runout"
+msgstr "חיישן תנועה אזל"
+
+msgid "motor_%s press"
+msgstr "לחץ %s_מנוע"
+
+msgid "motor_%s release"
+msgstr "שחרור %s_מנוע"
+
+msgid "motor_1 press"
+msgstr "לחץ מנוע_1"
+
+msgid "motor_1 release"
+msgstr "שחרור מנוע_1"
+
+msgid "motor_2 press"
+msgstr "לחץ מנוע_2"
+
+msgid "motor_2 release"
+msgstr "שחרור מנוע_2"
+
+msgid "motor_3 press"
+msgstr "לחץ מנוע_3"
+
+msgid "motor_3 release"
+msgstr "שחרור מנוע_3"
+
+msgid "motor_4 press"
+msgstr "לחץ מנוע_4"
+
+msgid "motor_4 release"
+msgstr "שחרור מנוע_4"
+
+msgid "no bed_mash name"
+msgstr "אין שם רשת_מיטה"
+
+msgid "no bed_mash"
+msgstr "אין רשת_מיטה"
+
+msgid "no enabled"
+msgstr "לא מופעל"
+
+msgid "press button%s"
+msgstr "%s לחץ כפתור"
+
+msgid "press button1"
+msgstr "לחץ כפתור 1"
+
+msgid "press button2"
+msgstr "לחץ כפתור 2"
+
+msgid "press button3"
+msgstr "לחץ כפתור 3"
+
+msgid "press button4"
+msgstr "לחץ כפתור 4"
+
+msgid "remove filament"
+msgstr "הסר נימה"
+
+msgid "residual filament%s"
+msgstr "%s נימה שיורית"
+
+msgid "residual filament0"
+msgstr "נימה שיורית 0"
+
+msgid "residual filament1"
+msgstr "נימה שיורית 1"
+
+msgid "residual filament2"
+msgstr "נימה שיורית 2"
+
+msgid "residual filament3"
+msgstr "נימה שיורית 3"
+
+msgid "resume:%s"
+msgstr "%s:המשך"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "%s:סיבת_השהיה %s:כלי_המשך"
+
+msgid "Copy Print"
+msgstr "הדפסת העתק"
+
+msgid "Mirror Print"
+msgstr "הדפסת מראה"

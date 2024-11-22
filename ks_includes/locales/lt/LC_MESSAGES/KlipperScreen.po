@@ -998,3 +998,388 @@ msgstr "Pavojingas purkštuko aukščio skirtumas: "
 
 msgid "Saved successfully!"
 msgstr "Succesvol opgeslagen!"
+
+# Feed Filament Box
+msgid "Edit"
+msgstr "Redaguoti"
+
+msgid "Filament Info"
+msgstr "Gijos informacija"
+
+msgid "Not found"
+msgstr "Nerasta"
+
+msgid "Vendor"
+msgstr "Gamintojas"
+
+msgid "Type"
+msgstr "Tipas"
+
+msgid "Color"
+msgstr "Spalva"
+
+msgid "Set Color"
+msgstr "Nustatyti spalvą"
+
+msgid "Filament Settings"
+msgstr "Gijos nustatymai"
+
+msgid "Multi-Material Box"
+msgstr "Kelių medžiagų dėžė"
+
+msgid "Are you sure you wish to restart the firmware?"
+msgstr "Ar tikrai norite paleisti firmware iš naujo?"
+
+msgid "Autofill filament disable"
+msgstr "Išjungti automatinį filamento užpildymą"
+
+msgid "Autofill filament enabled"
+msgstr "Automatinis filamento užpildymas įjungtas"
+
+msgid "Autofill filament: %s"
+msgstr "Automatinis filamento užpildymas: %s"
+
+msgid "Backing up configuration files."
+msgstr "Kopijuojami konfigūracijos failai."
+
+msgid "Calibrate Cutter Pos"
+msgstr "Kalibruoti kertiklio poziciją"
+
+msgid "Couldn't get the calibration cutter position."
+msgstr "Nepavyko gauti kertiklio kalibravimo pozicijos."
+
+msgid "Current filament indexes are:%s, active tool:%s"
+msgstr "Esamos filamento indeksai yra: %s, aktyvus įrankis: %s"
+
+msgid "Current filament indexes are:%s, active tool:%s, resume_tool:%s, pause_reason:%s"
+msgstr "Esamos filamento indeksai yra: %s, aktyvus įrankis: %s, tęstamas įrankis: %s, pauzės priežastis: %s"
+
+msgid "Current value is %s"
+msgstr "Esama reikšmė yra %s"
+
+msgid "Cut Filament Test"
+msgstr "Filamento kirtimo testas"
+
+msgid "Do you want to enable multi-material box?"
+msgstr "Ar norite įjungti daugiamačio medžiagos dėklą?"
+
+msgid "Do you want to use external filament?"
+msgstr "Ar norite naudoti išorinį filamantą?"
+
+msgid "Error: Offset values not found"
+msgstr "Klaida: nėra rastos nuokrypio reikšmės"
+
+msgid "Error: Z offset value not found"
+msgstr "Klaida: nėra rastos Z nuokrypio reikšmės"
+
+msgid "External Filament"
+msgstr "Išorinis filamantas"
+
+msgid "Extruder not hot enough"
+msgstr "Ekstruderis nepakankamai karštas"
+
+msgid "FEED error:External filament not removed"
+msgstr "DUODAS klaida: išorinis filamantas nebuvo pašalintas"
+
+msgid "Filament %s not found"
+msgstr "Filamanto %s nėra rasta"
+
+msgid "Filament Sensor%s: No filament detected, canceling print"
+msgstr "Filamento jutiklis %s: filamanto nėra aptiktas, spausdinimas nutraukiamas"
+
+msgid "Filament Sensor%s: No filament detected, pausing print"
+msgstr "Filamento jutiklis %s: filamanto nėra aptiktas, spausdinimas pristabdomas"
+
+msgid "Filament Sensor0: No filament detected, pausing print"
+msgstr "Filamento jutiklis 0: filamanto nėra aptiktas, spausdinimas pristabdomas"
+
+msgid "Filament Sensor1: No filament detected, pausing print"
+msgstr "Filamento jutiklis 1: filamanto nėra aptiktas, spausdinimas pristabdomas"
+
+msgid "Filament detected! Please remove filament from the hotend before enabling multi-material box."
+msgstr "Filamantas aptiktas! Prieš įjungdamas daugiamačio medžiagos dėklą, prašome pašalinti filamantą iš karšto galio."
+
+msgid "Missing required recovery data"
+msgstr "Trūksta būtimo atkurti duomenų"
+
+msgid "No power loss recovery data found"
+msgstr "Nerasta jėgos nutraukimo atkurimo duomenų"
+
+msgid "No valid params 'S'"
+msgstr "Neteisingi parametrai 'S'"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "OK"
+msgstr "Gerai"
+
+msgid "Options"
+msgstr "Parinktys"
+
+msgid "Pause. The \"extruder\" extrude error!"
+msgstr "Pristabdymas. Ekstruderio išleidimo klaida!"
+
+msgid "Please exit the filament from the nozzle first"
+msgstr "Pirmiausia, prašome pašalinti filamantą iš trupmenos"
+
+msgid "Please fill in the voice number correctly: 0-start printing, 1-end printing, 2-outage detected, 3-cancel printing, 4-pause printing"
+msgstr "Prašome teisingai įvesti balsinį numerį: 0-pradėti spausdinimą, 1-užbaigti spausdinimą, 2-aptikta jėgos nutrauka, 3-atšaukti spausdinimą, 4-pristabdyti spausdinimą"
+
+msgid "Please select how you would like to proceed."
+msgstr "Prašome pasirinkti, kaip norite tęsti."
+
+msgid "Power loss recovery, resuming print."
+msgstr "Jėgos nutraukimo atkūrimas, tęsiama spausdinimas."
+
+msgid "Power loss, saving print states."
+msgstr "Jėgos nutraukimas, išsaugomi spausdinimo būsenos."
+
+msgid "Press feedsys button"
+msgstr "Paspauskite duomenų sistemos mygtuką"
+
+msgid "Print resumed from power loss position"
+msgstr "Spausdinimas tęsiamas iš jėgos nutraukimo pozicijos"
+
+msgid "Printer not homed"
+msgstr "Spausdintuvas nebuvo sugrąžintas į pradinę poziciją"
+
+msgid "RESUME error:autofill no fil"
+msgstr "TĘSTI klaida: automatinis užpildymas be filamanto"
+
+msgid "RESUME error:no fil"
+msgstr "TĘSTI klaida: be filamanto"
+
+msgid "RESUME error:residual fil"
+msgstr "TĘSTI klaida: likęs filamantas"
+
+msgid "Recovery data: Z=%s, File=%s, Pos=%s"
+msgstr "Atkūrimo duomenys: Z=%s, Failas=%s, Pozicija=%s"
+
+msgid "Save & Restart"
+msgstr "Išsaugoti ir paleisti iš naujo"
+
+msgid "T%s direct feed"
+msgstr "T%s tiesioginis duodas"
+
+msgid "T0 direct feed"
+msgstr "T0 tiesioginis duodas"
+
+msgid "T0 need exit filament"
+msgstr "T0 reikia pašalinti filamantą"
+
+msgid "T1 direct feed"
+msgstr "T1 tiesioginis duodas"
+
+msgid "T1 need exit filament"
+msgstr "T1 reikia pašalinti filamantą"
+
+msgid "T2 direct feed"
+msgstr "T2 tiesioginis duodas"
+
+msgid "T2 need exit filament"
+msgstr "T2 reikia pašalinti filamantą"
+
+msgid "T3 direct feed"
+msgstr "T3 tiesioginis duodas"
+
+msgid "T3 need exit filament"
+msgstr "T3 reikia pašalinti filamantą"
+
+msgid "The \"extruder\" extrude error!"
+msgstr "Ekstruderio išleidimo klaida!"
+
+msgid "The current toolheade is T%s"
+msgstr "Esamas įrankio galas yra T%s"
+
+msgid "The current toolheade is T0"
+msgstr "Esamas įrankio galas yra T0"
+
+msgid "The current toolheade is T1"
+msgstr "Esamas įrankio galas yra T1"
+
+msgid "The current toolheade is T2"
+msgstr "Esamas įrankio galas yra T2"
+
+msgid "The current toolheade is T3"
+msgstr "Esamas įrankio galas yra T3"
+
+msgid "The filament_box_%s no filament"
+msgstr "Filamanto dėklas %s neturi filamanto"
+
+msgid "The motor is wrong."
+msgstr "Variklis neteisingas."
+
+msgid "There is a residual filament, Please remove and continue"
+msgstr "Yra likęs filamantas, prašome pašalinti ir tęsti"
+
+msgid "There's a residual filament in box %s"
+msgstr "Dėkle %s yra likęs filamantas"
+
+msgid "There's a residual filament in box 1"
+msgstr "Dėkle 1 yra likęs filamantas"
+
+msgid "There's a residual filament in box 2"
+msgstr "Dėkle 2 yra likęs filamantas"
+
+msgid "There's a residual filament in box 3"
+msgstr "Dėkle 3 yra likęs filamantas"
+
+msgid "There's a residual filament in box 4"
+msgstr "Dėkle 4 yra likęs filamantas"
+
+msgid "Unknown fan"
+msgstr "Nežinomas ventilatorius"
+
+msgid "Unknown filament"
+msgstr "Nežinomas filamantas"
+
+msgid "Use external filament, please manually exit"
+msgstr "Naudojant išorinį filamantą, prašome rankiniu būdu pašalinti"
+
+msgid "Warning"
+msgstr "Įspėjimas"
+
+msgid "Yes"
+msgstr "Taip"
+
+msgid "auto shutdown error"
+msgstr "automatinio išjungimo klaida"
+
+msgid "bed_mash:%s"
+msgstr "ložto mazgas:%s"
+
+msgid "clean pause_reason"
+msgstr "valyti pauzės priežastį"
+
+msgid "cut filament"
+msgstr "kirpti filamantą"
+
+msgid "cutter press!"
+msgstr "kirpyklė spaudžia!"
+
+msgid "cutter release!"
+msgstr "kirpyklė išleidžia!"
+
+msgid "feed busy"
+msgstr "duodas užimtas"
+
+msgid "feed error"
+msgstr "duodas klaida"
+
+msgid "feed finish"
+msgstr "duodas baigtas"
+
+msgid "filament not removed"
+msgstr "filamantas nebuvo pašalintas"
+
+msgid "filament pause reason"
+msgstr "filamanto pauzės priežastis"
+
+msgid "filament press"
+msgstr "filamanto spaudimas"
+
+msgid "filament release"
+msgstr "filamanto išleidimas"
+
+msgid "filament remove"
+msgstr "filamanto pašalinimas"
+
+msgid "filament runout"
+msgstr "filamanto trūkumas"
+
+msgid "filament%s:%s"
+msgstr "filamantas%s:%s"
+
+msgid "flush filament"
+msgstr "išvalyti filamantą"
+
+msgid "motion sensor insert"
+msgstr "judesio jutiklio įterpimas"
+
+msgid "motion sensor runout"
+msgstr "judesio jutiklio trūkumas"
+
+msgid "motor_%s press"
+msgstr "variklis_%s spaudžia"
+
+msgid "motor_%s release"
+msgstr "variklis_%s išleidžia"
+
+msgid "motor_1 press"
+msgstr "variklis_1 spaudžia"
+
+msgid "motor_1 release"
+msgstr "variklis_1 išleidžia"
+
+msgid "motor_2 press"
+msgstr "variklis_2 spaudžia"
+
+msgid "motor_2 release"
+msgstr "variklis_2 išleidžia"
+
+msgid "motor_3 press"
+msgstr "variklis_3 spaudžia"
+
+msgid "motor_3 release"
+msgstr "variklis_3 išleidžia"
+
+msgid "motor_4 press"
+msgstr "variklis_4 spaudžia"
+
+msgid "motor_4 release"
+msgstr "variklis_4 išleidžia"
+
+msgid "no bed_mash name"
+msgstr "nėra ložto mazgo pavadinimo"
+
+msgid "no bed_mash"
+msgstr "nėra ložto mazgo"
+
+msgid "no enabled"
+msgstr "neįjungta"
+
+msgid "press button%s"
+msgstr "paspauskite mygtuką%s"
+
+msgid "press button1"
+msgstr "paspauskite mygtuką1"
+
+msgid "press button2"
+msgstr "paspauskite mygtuką2"
+
+msgid "press button3"
+msgstr "paspauskite mygtuką3"
+
+msgid "press button4"
+msgstr "paspauskite mygtuką4"
+
+msgid "remove filament"
+msgstr "pašalinti filamantą"
+
+msgid "residual filament%s"
+msgstr "likęs filamantas%s"
+
+msgid "residual filament0"
+msgstr "likęs filamantas0"
+
+msgid "residual filament1"
+msgstr "likęs filamantas1"
+
+msgid "residual filament2"
+msgstr "likęs filamantas2"
+
+msgid "residual filament3"
+msgstr "likęs filamantas3"
+
+msgid "resume:%s"
+msgstr "tęsti:%s"
+
+msgid "resume_tool:%s pause_reason:%s"
+msgstr "tęsti įrankį:%s pauzės priežastis:%s"
+
+msgid "Copy Print"
+msgstr "Kopijuoti spausdinimą"
+
+msgid "Mirror Print"
+msgstr "Veidrodinis spausdinimas"
