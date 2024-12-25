@@ -1029,7 +1029,7 @@ msgid "Please wait for the camera initialization to complete."
 msgstr "请等待摄像头初始化完成。"
 
 msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
-msgstr "请等待摄像头的补光灯点亮5秒，然后点击“开始”。"
+msgstr "请等待摄像头的补光灯点亮5秒，然后点击"开始"。"
 
 msgid "Couldn't get the calibration camera position."
 msgstr "无法获取校准摄像头位置。"
@@ -1563,3 +1563,15 @@ msgstr "复制打印"
 
 msgid "Mirror Print"
 msgstr "镜像打印"
+
+msgid "Manual Calibration"
+msgstr "手动校准"
+
+msgid "Auto Calibration" 
+msgstr "自动校准"
+
+msgid "Calibration successful!"
+msgstr "校准成功!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "自动校准失败。请清理喷嘴后重试。"

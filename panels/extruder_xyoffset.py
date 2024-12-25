@@ -5,11 +5,195 @@ import subprocess
 import mpv
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
+import cv2
+import io
+import requests
+import numpy as np
+import time
+from decimal import Decimal
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.screen_panel import ScreenPanel
 
+
+class MdAutoCalibrator():
+    def __init__(self, ip):
+        # 假设最佳中心点
+        self.perfect_center = (131, 141)
+        self.perfect_lt = (131-60, 141-60)
+        self.perfect_rb = (131+60, 141+60)
+        # 摄像头url的单帧图片
+        self.camera_url = f"http://{ip}/webcam2/?action=snapshot"
+        # 对比模板图片路径
+        self.template_left_path = "./template_left.png"
+        self.template_right_path = "./template_right.png"
+        self.extruder_left_path = "./extruder_left.png"
+        self.extruder_right_path = "./extruder_right.png"
+        self.allow_match = False
+
+    # 获取图片
+    def getImage(self, url):
+        if url.startswith('http'):
+            response = requests.get(url)
+            image = Image.open(io.BytesIO(response.content))
+            img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+            image = cv2.imdecode(img_array, cv2.COLOR_BGR2GRAY)
+            # 将图像翻转，使图片方向与实际看到的方向一致
+            image = cv2.flip(image, 0)
+            # 将图片旋转90度
+            image = cv2.rotate(image, -cv2.ROTATE_90_CLOCKWISE)
+        else:
+            image = cv2.imread(url, cv2.COLOR_BGR2GRAY)
+        return image
+
+    # 保存图片
+    def saveImage(self, image, path):
+        cv2.imwrite(path, image)
+
+    # 缩放图片
+    def resizeImage(self, image, scale):
+        height, width = image.shape[:2]
+        new_height = int(height * scale)
+        new_width = int(width * scale)
+        scaled_template = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
+        return scaled_template
+
+    # 旋转图片
+    def rotateImage(self, image, angle):
+        height, width = image.shape[:2]
+        center = (width / 2, height / 2)
+        rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
+        rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+        return rotated_image
+
+    # 匹配图片
+    def matchImage(self, image, template):
+        result = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED, mask=None)
+        min_val,max_val,min_loc,max_loc = cv2.minMaxLoc(result)
+        top_left = max_loc
+        h,w = template.shape[:2]
+        bottem_right = (top_left[0] + w, top_left[1] + h)
+        return image, max_val, top_left, bottem_right
+
+    # 裁剪图片
+    def clipImage(self, image, top_left, bottem_right):
+        cropped_image = image[top_left[1]:bottem_right[1], top_left[0]:bottem_right[0]]
+        return cropped_image
+
+    # 归一化直方图对比
+    def compare_images(self, img1, img2):
+        hist1 = cv2.calcHist([img1], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
+        hist2 = cv2.calcHist([img2], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
+        cv2.normalize(hist1, hist1, alpha = 0, beta = 1, norm_type = cv2.NORM_MINMAX)
+        cv2.normalize(hist2, hist2, alpha = 0, beta = 1, norm_type = cv2.NORM_MINMAX)
+        similarity = cv2.compareHist(hist1, hist2, cv2.HISTCMP_BHATTACHARYYA)
+        return 1-similarity
+
+    # 基于特征匹配的相似度
+    def compare_images_sift(self, img1, img2):
+        sift = cv2.SIFT_create()
+        keypoints1, descriptors1 = sift.detectAndCompute(img1, None)
+        keypoints2, descriptors2 = sift.detectAndCompute(img2, None)
+        bf = cv2.BFMatcher()
+        matches = bf.knnMatch(descriptors1, descriptors2, k = 2)
+        good_matches = []
+        for m, n in matches:
+            if m.distance < 0.75 * n.distance:
+                good_matches.append(m)
+        similarity = len(good_matches) / max(len(keypoints1), len(keypoints2))
+        return similarity
+
+    # 计算中心点
+    def getCenter(self, top_left, bottem_right):
+        center_x = (top_left[0] + bottem_right[0]) / 2
+        center_y = (top_left[1] + bottem_right[1]) / 2
+        return (center_x, center_y)
+    
+    # 获取左 extruder 的模板
+    def saveTemplateLeft(self) :
+        image = self.getImage(self.camera_url)
+        temp = self.clipImage(image, self.perfect_lt, self.perfect_rb)
+        self.saveImage(temp, self.template_left_path)
+        self.saveImage(image, self.extruder_left_path)
+
+    # 获取右 extruder 的模板
+    def saveTemplateRight(self) :
+        image = self.getImage(self.camera_url)
+        temp = self.clipImage(image, self.perfect_lt, self.perfect_rb)
+        self.saveImage(temp, self.template_right_path)
+        self.saveImage(image, self.extruder_right_path)
+
+    # 开始匹配
+    def startMatch(self):
+        image = self.getImage(self.camera_url)
+
+        # 匹配左侧喷头
+        template_left = self.getImage(self.template_left_path)
+        image, max_val, top_left, bottem_right = self.matchImage(image, template_left)
+        left_clip_image = self.clipImage(image, top_left, bottem_right)
+        left_clip_center = self.getCenter(top_left, bottem_right)
+
+        # 对比相似度，判断是否为左侧喷头
+        similarity_left_1 = self.compare_images(left_clip_image, template_left)
+        similarity_left_2 = self.compare_images_sift(left_clip_image, template_left)
+
+        logging.info(f"Left extruder match: {similarity_left_1}, {similarity_left_2}")
+        if similarity_left_1 > 0.7 or similarity_left_2 > 0.4:
+            # 对比中心点与目标中心点
+            offset_x = left_clip_center[0] - self.perfect_center[0]
+            offset_y = left_clip_center[1] - self.perfect_center[1]
+            offset = (offset_x, offset_y) 
+            if offset == (0, 0):
+                # 更新匹配模板
+                logging.info(f"Perfect! Saving image... max_val: {max_val}, offset: {offset}")
+                self.saveImage(left_clip_image, self.template_left_path)
+                self.saveImage(image, self.extruder_left_path)
+            return True, image, offset, top_left, bottem_right 
+        
+        # 匹配右侧喷头
+        template_right = self.getImage(self.template_right_path)
+        image, max_val, top_left, bottem_right = self.matchImage(image, template_right)
+        clip_image_right = self.clipImage(image, top_left, bottem_right)
+        clip_center_right = self.getCenter(top_left, bottem_right)
+
+        # 对比相似度，判断是否为右侧喷头
+        similarity_right_1 = self.compare_images(clip_image_right, template_right)
+        similarity_right_2 = self.compare_images_sift(clip_image_right, template_right)
+
+        logging.info(f"Right extruder match: {similarity_right_1}, {similarity_right_2}")
+        if similarity_right_1 > 0.7 or similarity_right_2 > 0.4:
+            # 对比中心点与目标中心点
+            offset_x = clip_center_right[0] - self.perfect_center[0]
+            offset_y = clip_center_right[1] - self.perfect_center[1]
+            offset = (offset_x, offset_y)
+            if offset == (0, 0):
+                # 更新匹配模板
+                logging.info(f"Perfect! Saving image... max_val: {max_val}")
+                self.saveImage(clip_image_right, self.template_right_path)
+                self.saveImage(image, self.extruder_right_path)
+            return True, image, offset, top_left, bottem_right
+        
+        # 未匹配到模板区域，请清理喷头异物
+        return False, image, self.perfect_center, (0,0), (0,0)
+
+    # 开始校准
+    def startCalibration(self):
+        if os.path.exists(self.template_left_path) == False:
+            logging.warning("Left extruder template does not exist, please calibrate manually and save template")
+            return False, (0,0)
+        elif os.path.exists(self.template_right_path) == False:
+            logging.warning("Right extruder template does not exist, please calibrate manually and save template")
+            return False, (0,0)
+        else:
+            logging.info("Starting auto calibration...")
+            result, image, offset, top_left, bottem_right = self.startMatch()
+            if result == True:
+                logging.info(f"Offset distance: {offset}")
+                return True, offset
+            else:
+                logging.error("Auto calibration failed, no template area matched. Please clean the nozzle")
+                return False, offset
 
 class Panel(ScreenPanel):
     distances = ['0.02', '.1', '1', '10']
@@ -90,15 +274,21 @@ class Panel(ScreenPanel):
         for p in ('pos_x', 'pos_y', 'pos_z'):
             self.labels[p] = Gtk.Label()
 
-        offsetgrid = self._gtk.HomogeneousGrid()
         offsetgrid = Gtk.Grid()
+        self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color3") 
+        self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color3")
         self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
-        self.labels['save'] = self._gtk.Button(None, "Save", "color1")
+        self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
 
+        self.labels['manual'].connect("clicked", self.start_manual_calibration)
+        self.labels['auto'].connect("clicked", self.start_auto_calibration)
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
         self.labels['save'].connect("clicked", self.save_offset)
-        offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)           
-        offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)   
+
+        offsetgrid.attach(self.labels['manual'], 0, 0, 1, 1)
+        offsetgrid.attach(self.labels['auto'], 1, 0, 1, 1)
+        offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
+        offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -127,6 +317,10 @@ class Panel(ScreenPanel):
 
         self.content.add(self.labels['main_menu'])
         self.reset_pos()
+
+        # 初始化自动校准器
+        ip = self._screen.apiclient.endpoint.split(':')[0]
+        self.calibrator = MdAutoCalibrator(ip)
 
     def process_update(self, action, data):
         if action != "notify_status_update":
@@ -423,6 +617,51 @@ class Panel(ScreenPanel):
         create_symbolic_link(source_file, symbolic_link)
         # os.system('sudo systemctl restart crowsnest.service')
         subprocess.Popen(["sudo", "systemctl", "restart", "crowsnest.service"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    def start_manual_calibration(self, widget):
+        """开始手动校准"""
+        self.reset_pos()
+        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
+            self._screen._ws.klippy.gcode_script("G28")
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        if current_extruder != "extruder":
+            self.change_extruder(widget=None, extruder="extruder")
+        self._calculate_position()
+
+    def start_auto_calibration(self, widget):
+        """开始自动校准"""
+        self.reset_pos()
+        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
+            self._screen._ws.klippy.gcode_script("G28")
+        
+        # 先移动到左喷头位置
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        if current_extruder != "extruder":
+            self.change_extruder(widget=None, extruder="extruder")
+        self._calculate_position()
+
+        # 开始自动校准
+        result, offset = self.calibrator.startCalibration()
+        if result:
+            if offset == (0,0):
+                self._screen.show_popup_message(_("Calibration successful!"), level=1)
+            else:
+                # 计算需要移动的距离并发送移动指令
+                x_offset = -offset[0] * 0.0125 # 像素转mm的系数
+                y_offset = -offset[1] * 0.0125
+                
+                script = [
+                    "G91",  # 相对坐标
+                    f"G1 X{x_offset:.3f} Y{y_offset:.3f} F6000",
+                    "G90"   # 绝对坐标
+                ]
+                self._screen._send_action(None, "printer.gcode.script", 
+                                        {"script": "\n".join(script)})
+        else:
+            self._screen.show_popup_message(
+                _("Auto calibration failed. Please clean the nozzle and try again."), 
+                level=2
+            )
 
 
 def create_symbolic_link(source_path, link_path):
