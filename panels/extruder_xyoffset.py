@@ -280,25 +280,32 @@ class Panel(ScreenPanel):
             self.labels[p] = Gtk.Label()
 
         offsetgrid = Gtk.Grid()
-        self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color3")
         if CALIBRATION_SUPPORTED:
+            # 有依赖时显示手动和自动两个按钮
+            self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color3")
             self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color3")
+            self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
+            self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
+
+            self.labels['manual'].connect("clicked", self.start_manual_calibration)
             self.labels['auto'].connect("clicked", self.start_auto_calibration)
-        self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
-        self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
+            self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
+            self.labels['save'].connect("clicked", self.save_offset)
 
-        self.labels['manual'].connect("clicked", self.start_manual_calibration)
-        self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
-        self.labels['save'].connect("clicked", self.save_offset)
-
-        offsetgrid.attach(self.labels['manual'], 0, 0, 1, 1)
-        if CALIBRATION_SUPPORTED:
+            offsetgrid.attach(self.labels['manual'], 0, 0, 1, 1)
             offsetgrid.attach(self.labels['auto'], 1, 0, 1, 1)
             offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
             offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
         else:
-            offsetgrid.attach(self.labels['confirm'], 1, 0, 1, 1)
-            offsetgrid.attach(self.labels['save'], 2, 0, 1, 1)
+            # 没有依赖时保持原来的按钮布局
+            self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
+            self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
+            
+            self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
+            self.labels['save'].connect("clicked", self.save_offset)
+            
+            offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)
+            offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -641,13 +648,6 @@ class Panel(ScreenPanel):
 
     def start_auto_calibration(self, widget):
         """开始自动校准"""
-        if not CALIBRATION_SUPPORTED:
-            self._screen.show_popup_message(
-                _("Auto calibration is not available. Please install required dependencies."),
-                level=2
-            )
-            return
-            
         self.reset_pos()
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script("G28")
