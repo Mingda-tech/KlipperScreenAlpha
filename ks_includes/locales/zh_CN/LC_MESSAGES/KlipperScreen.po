@@ -1575,3 +1575,6 @@ msgstr "校准成功!"
 
 msgid "Auto calibration failed. Please clean the nozzle and try again."
 msgstr "自动校准失败。请清理喷嘴后重试。"
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "自动校准功能不可用。请安装所需依赖。"

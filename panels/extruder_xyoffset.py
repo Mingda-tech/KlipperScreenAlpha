@@ -5,12 +5,17 @@ import subprocess
 import mpv
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
-import cv2
-import io
-import requests
-import numpy as np
-import time
-from decimal import Decimal
+
+# 尝试导入可选依赖
+try:
+    import cv2
+    import numpy as np
+    import requests
+    CALIBRATION_SUPPORTED = True
+except ImportError:
+    CALIBRATION_SUPPORTED = False
+    logging.warning("Auto calibration dependencies not found. Please install: python3-opencv python3-numpy python3-requests")
+
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
 from ks_includes.KlippyGcodes import KlippyGcodes
@@ -275,20 +280,25 @@ class Panel(ScreenPanel):
             self.labels[p] = Gtk.Label()
 
         offsetgrid = Gtk.Grid()
-        self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color3") 
-        self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color3")
+        self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color3")
+        if CALIBRATION_SUPPORTED:
+            self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color3")
+            self.labels['auto'].connect("clicked", self.start_auto_calibration)
         self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
         self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
 
         self.labels['manual'].connect("clicked", self.start_manual_calibration)
-        self.labels['auto'].connect("clicked", self.start_auto_calibration)
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
         self.labels['save'].connect("clicked", self.save_offset)
 
         offsetgrid.attach(self.labels['manual'], 0, 0, 1, 1)
-        offsetgrid.attach(self.labels['auto'], 1, 0, 1, 1)
-        offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
-        offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
+        if CALIBRATION_SUPPORTED:
+            offsetgrid.attach(self.labels['auto'], 1, 0, 1, 1)
+            offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
+            offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
+        else:
+            offsetgrid.attach(self.labels['confirm'], 1, 0, 1, 1)
+            offsetgrid.attach(self.labels['save'], 2, 0, 1, 1)
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -318,9 +328,10 @@ class Panel(ScreenPanel):
         self.content.add(self.labels['main_menu'])
         self.reset_pos()
 
-        # 初始化自动校准器
-        ip = self._screen.apiclient.endpoint.split(':')[0]
-        self.calibrator = MdAutoCalibrator(ip)
+        # 只在支持自动校准时初始化校准器
+        if CALIBRATION_SUPPORTED:
+            ip = self._screen.apiclient.endpoint.split(':')[0]
+            self.calibrator = MdAutoCalibrator(ip)
 
     def process_update(self, action, data):
         if action != "notify_status_update":
@@ -630,6 +641,13 @@ class Panel(ScreenPanel):
 
     def start_auto_calibration(self, widget):
         """开始自动校准"""
+        if not CALIBRATION_SUPPORTED:
+            self._screen.show_popup_message(
+                _("Auto calibration is not available. Please install required dependencies."),
+                level=2
+            )
+            return
+            
         self.reset_pos()
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script("G28")
