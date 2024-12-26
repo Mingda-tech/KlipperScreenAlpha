@@ -217,6 +217,7 @@ class Panel(ScreenPanel):
         # 添加校准模式标志
         self.calibration_mode = 'manual'  # 'manual' 或 'auto'
         self.current_calibrating = "left"
+        self.left_offset = None
 
         if self._screen.klippy_config is not None:
             try:
@@ -484,7 +485,7 @@ class Panel(ScreenPanel):
                 if current_extruder == "extruder":
                     # 左喷头模板
                     if image is not None:   
-                        self.calibrator.saveImage(image, self.calibrator.template_left_path)
+                        self.calibrator.saveTemplateLeft()
                         logging.info("Left extruder template saved")
                         #self._screen.show_popup_message(_("Left extruder template saved"), level=1)
                         
@@ -499,7 +500,7 @@ class Panel(ScreenPanel):
                 else:
                     # 右喷头模板
                     if image is not None:
-                        self.calibrator.saveImage(image, self.calibrator.template_right_path)
+                        self.calibrator.saveTemplateRight()
                         logging.info("Right extruder template saved")
                         #self._screen.show_popup_message(_("Right extruder template saved"), level=1)
                     if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
@@ -523,6 +524,8 @@ class Panel(ScreenPanel):
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
         else:
+            # 记录原始值用于调试
+            logging.info(f"Raw offset values - ox: {self.pos['ox']}, oy: {self.pos['oy']}")
             self.pos['e1_xoffset'] += self.pos['ox']
             self.pos['e1_yoffset'] += self.pos['oy']
             try:
@@ -642,7 +645,7 @@ class Panel(ScreenPanel):
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
         script = [
             f"G0 Z{z_position} F600",
-            f"G0 X{x_position} Y{y_position} F6000",
+            f"G0 X{x_position} Y{y_position} F3000",
             "M400",  # 等待所有移动完成
             "RESPOND TYPE=command MSG=auto_calibration_move_complete"  # 发送移动完成消息
         ]
@@ -681,8 +684,20 @@ class Panel(ScreenPanel):
     def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
         logging.info("Starting auto calibration")
+        
+        # 检查是否存在模板图像
+        if not os.path.exists(self.calibrator.template_left_path) or not os.path.exists(self.calibrator.template_right_path):
+            logging.error("No template images found")
+            self._screen.show_popup_message(
+                _("No template images found. Please perform manual calibration first."), 
+                level=2
+            )
+            return
+        
+        # 开始自动校准
         self.calibration_mode = 'auto'
         self.current_calibrating = "left"
+        self.left_offset = None
         self.play(widget, cam)
     def _start_left_calibration(self):
         """开始左喷头校准"""
@@ -705,10 +720,9 @@ class Panel(ScreenPanel):
         logging.info("Starting right calibration")
         result, offset = self.calibrator.startCalibration()
         if result:
-            self.right_offset = offset
             if self.left_offset is not None:
-                self.pos['ox'] = self.right_offset[0] - self.left_offset[0]
-                self.pos['oy'] = self.right_offset[1] - self.left_offset[1]
+                self.pos['ox'] = offset[0] - self.left_offset[0]
+                self.pos['oy'] = offset[1] - self.left_offset[1]
                 self.save_offset(None)
         else:
             self._screen.show_popup_message(
