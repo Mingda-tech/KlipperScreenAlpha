@@ -8,6 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 # 尝试导入可选依赖
 try:
+    import io
     import cv2
     import numpy as np
     import requests
@@ -216,6 +217,10 @@ class Panel(ScreenPanel):
         # 添加校准模式标志
         self.calibration_mode = 'manual'  # 'manual' 或 'auto'
         self.waiting_for_position = False
+        self.current_calibrating = "left"
+        self.target_x = None
+        self.target_y = None
+        self.target_z = None
 
         if self._screen.klippy_config is not None:
             try:
@@ -359,6 +364,55 @@ class Panel(ScreenPanel):
                 self.pos['y'] = data['gcode_move']['gcode_position'][1]
                 self.pos['z'] = data['gcode_move']['gcode_position'][2]  
                 # text = f"x: {data['gcode_move']['gcode_position'][0]:.2f}, y: {data['gcode_move']['gcode_position'][1]:.2f}, z: {data['gcode_move']['gcode_position'][2]:.2f}"          
+               
+                logging.info(f"### Position: {self.pos['x']:.2f}, {self.pos['y']:.2f}, {self.pos['z']:.2f}")
+                # 监听位置更新
+                if self.waiting_for_position:
+                    logging.info(f"### Waiting for position: {self.current_calibrating}")
+                    pos = data['gcode_move']['gcode_position']
+                    # 检查是否到达目标位置(允许0.01mm的误差)
+                    if (abs(pos[0] - self.target_x) < 0.01 and 
+                        abs(pos[1] - self.target_y) < 0.01 and
+                        abs(pos[2] - self.target_z) < 0.01):
+                        logging.info(f"### Position reached: {self.current_calibrating}")
+                        self.waiting_for_position = False
+                        
+                        if self.current_calibrating == "left":
+                            logging.info(f"### Starting left calibration")
+                            # 左喷头校准
+                            result, offset = self.calibrator.startCalibration()
+                            if result:
+                                self.left_offset = offset
+                                
+                                # 切换到右喷头继续校准
+                                self.current_calibrating = "right"
+                                self.change_extruder(None, "extruder1")
+                                self.waiting_for_position = True
+                                self._calculate_position()
+                            else:
+                                self._screen.show_popup_message(
+                                    _("Left extruder calibration failed. Please clean the nozzle and try again."),
+                                    level=2
+                                )
+                                
+                        elif self.current_calibrating == "right":
+                            logging.info(f"### Starting right calibration")
+                            # 右喷头校准
+                            result, offset = self.calibrator.startCalibration()
+                            if result:
+                                self.right_offset = offset
+                                
+                                # 校准完成,保存结果
+                                if self.left_offset is not None:
+                                    logging.info(f"Calibration complete - Left offset: {self.left_offset}, Right offset: {offset}")
+                                    self.pos['ox'] = self.right_offset[0] - self.left_offset[0]
+                                    self.pos['oy'] = self.right_offset[1] - self.left_offset[1]
+                                    self.save_offset(None)
+                            else:
+                                self._screen.show_popup_message(
+                                    _("Right extruder calibration failed. Please clean the nozzle and try again."),
+                                    level=2
+                                )
         else:
             if "x" in homed_axes:
                 if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
@@ -382,50 +436,6 @@ class Panel(ScreenPanel):
                 # self.labels['pos_z'].set_text("Z: ?")
                 self.pos['z'] = None
 
-        # 监听位置更新
-        if self.waiting_for_position and "toolhead" in data and "position" in data["toolhead"]:
-            pos = data["toolhead"]["position"]
-            # 检查是否到达目标位置(允许0.1mm的误差)
-            if (abs(pos[0] - self.target_x) < 0.01 and 
-                abs(pos[1] - self.target_y) < 0.01 and
-                abs(pos[2] - self.target_z) < 0.01):
-                
-                self.waiting_for_position = False
-                
-                if self.current_calibrating == "left":
-                    # 左喷头校准
-                    result, offset = self.calibrator.startCalibration()
-                    if result:
-                        self.left_offset = offset
-                        
-                        # 切换到右喷头继续校准
-                        self.current_calibrating = "right"
-                        self.change_extruder(None, "extruder1")
-                        self.waiting_for_position = True
-                        self._calculate_position()
-                    else:
-                        self._screen.show_popup_message(
-                            _("Left extruder calibration failed. Please clean the nozzle and try again."),
-                            level=2
-                        )
-                        
-                elif self.current_calibrating == "right":
-                    # 右喷头校准
-                    result, offset = self.calibrator.startCalibration()
-                    if result:
-                        self.right_offset = offset
-                        
-                        # 校准完成,保存结果
-                        if self.left_offset is not None:
-                            logging.info(f"Calibration complete - Left offset: {self.left_offset}, Right offset: {offset}")
-                            self.pos['ox'] = self.left_offset[0] + self.right_offset[0]
-                            self.pos['oy'] = self.left_offset[1] + self.right_offset[1]
-                            self.save_offset(None)
-                    else:
-                        self._screen.show_popup_message(
-                            _("Right extruder calibration failed. Please clean the nozzle and try again."),
-                            level=2
-                        )
 
     def change_distance(self, widget, distance):
         logging.info(f"### Distance {distance}")
@@ -577,9 +587,18 @@ class Panel(ScreenPanel):
             return
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
+            return
         else:
-            self.pos['e1_xoffset'] += self.pos['ox']
-            self.pos['e1_yoffset'] += self.pos['oy']
+            # 确保偏移值存在且为数字
+            if isinstance(self.pos['ox'], (tuple, list)):
+                x_offset = float(self.pos['ox'][0])
+                y_offset = float(self.pos['ox'][1])
+            else:
+                x_offset = float(self.pos['ox'])
+                y_offset = float(self.pos['oy'])
+            
+            self.pos['e1_xoffset'] += x_offset
+            self.pos['e1_yoffset'] += y_offset
             try:
                 self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
                 self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
@@ -596,9 +615,9 @@ class Panel(ScreenPanel):
             except Exception as e:
                 logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
                 self._screen.show_popup_message(_("Error writing configuration"))
-                self.pos['e1_xoffset'] -= self.pos['ox']
-                self.pos['e1_yoffset'] -= self.pos['oy']
-            
+                self.pos['e1_xoffset'] -= x_offset
+                self.pos['e1_yoffset'] -= y_offset
+
     def play(self, widget, cam):
         url = cam['stream_url']
         if url.startswith('/'):
@@ -689,7 +708,10 @@ class Panel(ScreenPanel):
         try:
             x_position = self._screen.klippy_config.getfloat("Variables", "cam_xpos")
             y_position = self._screen.klippy_config.getfloat("Variables", "cam_ypos")
-            z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")            
+            z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")     
+            self.target_x = x_position
+            self.target_y = y_position
+            self.target_z = z_position
         except:
             logging.error("Couldn't get the calibration camera position.")
             return
@@ -729,20 +751,11 @@ class Panel(ScreenPanel):
     def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
         self.calibration_mode = 'auto'
+        self.current_calibrating = "left"
         self.play(widget, cam)
         
         # 记录目标位置并移动
-        try:
-            self.target_x = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
-            self.target_y = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
-            self.target_z = self._screen.klippy_config.getfloat("Variables", "switch_zpos")
-            self.waiting_for_position = True
-            self._calculate_position()
-        except Exception as e:
-            logging.error(f"Error getting target position: {e}")
-            self._screen.show_popup_message(_("Could not get target position"), level=2)
-            return
-
+        self.waiting_for_position = True
 
 def create_symbolic_link(source_path, link_path):
     if os.path.exists(link_path):
