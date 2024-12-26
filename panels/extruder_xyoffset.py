@@ -351,93 +351,30 @@ class Panel(ScreenPanel):
             self.calibrator = MdAutoCalibrator(ip)
 
     def process_update(self, action, data):
+        if action == "notify_gcode_response" and self.waiting_for_position:
+            self.waiting_for_position = False
+            # 监听 gcode 响应消息
+            if "move to the target position" in data:
+                logging.info("Received move complete message, starting calibration")
+                if self.current_calibrating == "left":
+                    self._start_left_calibration()
+                    self.waiting_for_position = True
+                elif self.current_calibrating == "right":
+                    self._start_right_calibration()
+                return
+        
         if action != "notify_status_update":
             return
         
+        # 其他状态更新处理...
         homed_axes = self._printer.get_stat("toolhead", "homed_axes")
         if homed_axes == "xyz":
-            # 更新当前位置显示
             if "motion_report" in data:
                 if "live_position" in data["motion_report"]:
                     self.pos['x'] = data['motion_report']['live_position'][0]
                     self.pos['y'] = data['motion_report']['live_position'][1]
                     self.pos['z'] = data['motion_report']['live_position'][2]
                     logging.info(f"### Live Position: {self.pos['x']:.2f}, {self.pos['y']:.2f}, {self.pos['z']:.2f}")
-                    
-                    # 监听位置更新和速度
-                    if self.waiting_for_position:
-                        pos = data['motion_report']['live_position']
-                        velocity = data['motion_report']['live_velocity']
-                        logging.info(f"### Waiting for position: {self.current_calibrating}, velocity: {velocity:.3f}")
-                        
-                        # 检查是否到达目标位置(允许0.01mm的误差)且打印头静止(速度接近0)
-                        if (abs(pos[0] - self.target_x) < 0.01 and 
-                            abs(pos[1] - self.target_y) < 0.01 and
-                            abs(pos[2] - self.target_z) < 0.01 and
-                            abs(velocity) < 0.1):  # 速度小于0.1mm/s认为是静止
-                            
-                            logging.info(f"### Position reached: {self.current_calibrating}")
-                            self.waiting_for_position = False
-                            
-                            if self.current_calibrating == "left":
-                                logging.info(f"### Starting left calibration")
-                                # 左喷头校准
-                                result, offset = self.calibrator.startCalibration()
-                                if result:
-                                    self.left_offset = offset
-                                    
-                                    # 切换到右喷头继续校准
-                                    self.current_calibrating = "right"
-                                    self.change_extruder(None, "extruder1")
-                                    self.waiting_for_position = True
-                                    self._calculate_position()
-                                else:
-                                    self._screen.show_popup_message(
-                                        _("Left extruder calibration failed. Please clean the nozzle and try again."),
-                                        level=2
-                                    )
-                                    
-                            elif self.current_calibrating == "right":
-                                logging.info(f"### Starting right calibration")
-                                # 右喷头校准
-                                result, offset = self.calibrator.startCalibration()
-                                if result:
-                                    self.right_offset = offset
-                                    
-                                    # 校准完成,保存结果
-                                    if self.left_offset is not None:
-                                        logging.info(f"Calibration complete - Left offset: {self.left_offset}, Right offset: {offset}")
-                                        self.pos['ox'] = self.right_offset[0] - self.left_offset[0]
-                                        self.pos['oy'] = self.right_offset[1] - self.left_offset[1]
-                                        self.save_offset(None)
-                                else:
-                                    self._screen.show_popup_message(
-                                        _("Right extruder calibration failed. Please clean the nozzle and try again."),
-                                        level=2
-                                    )
-        else:
-            if "x" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    # self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
-                    self.pos['x'] = data['gcode_move']['gcode_position'][0]
-            else:
-                # self.labels['pos_x'].set_text("X: ?")
-                self.pos['x'] = None
-            if "y" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    # self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
-                    self.pos['y'] = data['gcode_move']['gcode_position'][1]
-            else:
-                # self.labels['pos_y'].set_text("Y: ?")
-                self.pos['y'] = None
-            if "z" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
-                    self.pos['z'] = data['gcode_move']['gcode_position'][2]
-            else:
-                # self.labels['pos_z'].set_text("Z: ?")
-                self.pos['z'] = None
-
 
     def change_distance(self, widget, distance):
         logging.info(f"### Distance {distance}")
@@ -707,6 +644,7 @@ class Panel(ScreenPanel):
         self.labels['save'].set_sensitive(False)
 
     def _calculate_position(self):
+        """移动到目标位置"""
         try:
             x_position = self._screen.klippy_config.getfloat("Variables", "cam_xpos")
             y_position = self._screen.klippy_config.getfloat("Variables", "cam_ypos")
@@ -717,11 +655,16 @@ class Panel(ScreenPanel):
         except:
             logging.error("Couldn't get the calibration camera position.")
             return
-
+        
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
-        self._screen._ws.klippy.gcode_script(f'G0 Z{z_position} F3000')
-        self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
-        self.pos['z'] = z_position    
+        script = [
+            f"G0 Z{z_position} F3000",
+            f"G0 X{x_position} Y{y_position} F3000",
+            "M400",  # 等待所有移动完成
+            "M118 move to the target position"  # 发送移动完成消息
+        ]
+        self._screen._send_action(None, "printer.gcode.script", 
+                                {"script": "\n".join(script)})
         
     def save_config(self):
         script = {"script": "SAVE_CONFIG"}
@@ -756,9 +699,38 @@ class Panel(ScreenPanel):
         self.calibration_mode = 'auto'
         self.current_calibrating = "left"
         self.play(widget, cam)
-        
-        # 记录目标位置并移动
         self.waiting_for_position = True
+    def _start_left_calibration(self):
+        """开始左喷头校准"""
+        logging.info("Starting left calibration")
+        result, offset = self.calibrator.startCalibration()
+        if result:
+            self.left_offset = offset
+            # 切换到右喷头继续校准
+            self.current_calibrating = "right"
+            self.change_extruder(None, "extruder1")
+            self._calculate_position()
+        else:
+            self._screen.show_popup_message(
+                _("Left extruder calibration failed. Please clean the nozzle and try again."),
+                level=2
+            )
+
+    def _start_right_calibration(self):
+        """开始右喷头校准"""
+        logging.info("Starting right calibration")
+        result, offset = self.calibrator.startCalibration()
+        if result:
+            self.right_offset = offset
+            if self.left_offset is not None:
+                self.pos['ox'] = self.right_offset[0] - self.left_offset[0]
+                self.pos['oy'] = self.right_offset[1] - self.left_offset[1]
+                self.save_offset(None)
+        else:
+            self._screen.show_popup_message(
+                _("Right extruder calibration failed. Please clean the nozzle and try again."),
+                level=2
+            )
 
 def create_symbolic_link(source_path, link_path):
     if os.path.exists(link_path):
