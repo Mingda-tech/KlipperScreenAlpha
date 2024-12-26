@@ -351,14 +351,12 @@ class Panel(ScreenPanel):
             self.calibrator = MdAutoCalibrator(ip)
 
     def process_update(self, action, data):
-        if action == "notify_gcode_response" and self.waiting_for_position:
-            self.waiting_for_position = False
+        if action == "notify_gcode_response" and self.calibration_mode == 'auto':
             # 监听 gcode 响应消息
             if "move to the target position" in data:
                 logging.info("Received move complete message, starting calibration")
                 if self.current_calibrating == "left":
                     self._start_left_calibration()
-                    self.waiting_for_position = True
                 elif self.current_calibrating == "right":
                     self._start_right_calibration()
                 return
@@ -521,41 +519,43 @@ class Panel(ScreenPanel):
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
         
-    def save_offset(self, widget):      
+    def save_offset(self, widget):
+        """保存偏移值到配置文件"""
         if self.pos['e1_xoffset'] is None or self.pos['e1_yoffset'] is None:
             return
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
             return
-        else:
-            # 确保偏移值存在且为数字
-            if isinstance(self.pos['ox'], (tuple, list)):
-                x_offset = float(self.pos['ox'][0])
-                y_offset = float(self.pos['ox'][1])
-            else:
-                x_offset = float(self.pos['ox'])
-                y_offset = float(self.pos['oy'])
+        try:            
+            # 确保偏移值是有效的数字
+            x_offset = float(self.pos['ox'])
+            y_offset = float(self.pos['oy'])
             
-            self.pos['e1_xoffset'] += x_offset
-            self.pos['e1_yoffset'] += y_offset
-            try:
-                self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
-                self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
-                self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
-                self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
-                logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
-                with open(self._screen.klippy_config_path, 'w') as file:
-                    self._screen.klippy_config.write(file)
-                    if self.mpv:
-                        self.mpv.terminate()
-                        self.mpv = None
-                    self.save_config()                    
-                    self._screen._menu_go_back()
-            except Exception as e:
-                logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
-                self._screen.show_popup_message(_("Error writing configuration"))
-                self.pos['e1_xoffset'] -= x_offset
-                self.pos['e1_yoffset'] -= y_offset
+            # 检查配置对象是否可用
+            if self._screen.klippy_config is None:
+                logging.error("No klippy config available")
+                self._screen.show_popup_message(_("Failed to save offset: No config available"), level=2)
+                return
+            
+            # 更新配置
+            logging.info(f"Saving offsets - X:{x_offset:.3f} Y:{y_offset:.3f}")
+            self._screen.klippy_config.set('Variables', 'e1_xoffset', f"{x_offset:.3f}")
+            self._screen.klippy_config.set('Variables', 'e1_yoffset', f"{y_offset:.3f}")
+            
+            # 写入配置文件
+            with open(self._screen.klippy_config_path, 'w') as file:
+                self._screen.klippy_config.write(file)
+            
+            self.save_config()
+            self._screen.show_popup_message(_("Offset saved"), level=1)
+            self._screen._menu_go_back()
+            
+        except (ValueError, TypeError) as e:
+            logging.error(f"Error saving offset (invalid values): {e}")
+            self._screen.show_popup_message(_("Failed to save offset: Invalid values"), level=2)
+        except Exception as e:
+            logging.error(f"Error writing configuration file: {e}")
+            self._screen.show_popup_message(_("Failed to save configuration"), level=2)
 
     def play(self, widget, cam):
         url = cam['stream_url']
