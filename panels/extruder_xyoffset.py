@@ -216,11 +216,7 @@ class Panel(ScreenPanel):
         self.pos['e1_yoffset'] = None
         # 添加校准模式标志
         self.calibration_mode = 'manual'  # 'manual' 或 'auto'
-        self.waiting_for_position = False
         self.current_calibrating = "left"
-        self.target_x = None
-        self.target_y = None
-        self.target_z = None
 
         if self._screen.klippy_config is not None:
             try:
@@ -288,6 +284,7 @@ class Panel(ScreenPanel):
         for p in ('pos_x', 'pos_y', 'pos_z'):
             self.labels[p] = Gtk.Label()
 
+        offsetgrid = self._gtk.HomogeneousGrid()
         offsetgrid = Gtk.Grid()
         if CALIBRATION_SUPPORTED:
             # 创建手动和自动校准按钮
@@ -299,30 +296,23 @@ class Panel(ScreenPanel):
         self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
         self.labels['save'].connect("clicked", self.save_offset)
-        offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
-        offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
+        offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)           
+        offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)   
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        label_text = _("Start")
-        if CALIBRATION_SUPPORTED:
-            label_text = _("Manual Calibrate")
         for i, cam in enumerate(self._printer.cameras):
             if not cam["enabled"] or cam["name"] != 'calicam':
                 continue
             logging.info(cam)
             cam[cam["name"]] = self._gtk.Button(
-                image_name="camera", label=label_text, style=f"color{i % 4 + 1}",
+                image_name="camera", label=_("Start"), style=f"color{i % 4 + 1}",
                 scale=self.bts, position=Gtk.PositionType.LEFT, lines=1
             )
             cam[cam["name"]].set_hexpand(True)
             cam[cam["name"]].set_vexpand(True)
             cam[cam["name"]].connect("clicked", self.play, cam)
         if CALIBRATION_SUPPORTED:
-            self.labels['manual'].set_hexpand(True)
-            self.labels['manual'].set_vexpand(True)
-            self.labels['auto'].set_hexpand(True)
-            self.labels['auto'].set_vexpand(True)
             self.labels['manual'].connect("clicked", self.start_manual_calibration, cam)
             self.labels['auto'].connect("clicked",self.start_auto_calibration, cam)
             box.add(self.labels['manual'])
@@ -346,14 +336,13 @@ class Panel(ScreenPanel):
 
         # 只在支持自动校准时初始化校准器
         if CALIBRATION_SUPPORTED:
-            # ip = self._screen.apiclient.endpoint.split(':')[0]
             ip = "127.0.0.1"
             self.calibrator = MdAutoCalibrator(ip)
 
     def process_update(self, action, data):
         if action == "notify_gcode_response" and self.calibration_mode == 'auto':
             # 监听 gcode 响应消息
-            if "move to the target position" in data:
+            if "auto_calibration_move_complete" in data:
                 logging.info("Received move complete message, starting calibration")
                 if self.current_calibrating == "left":
                     self._start_left_calibration()
@@ -363,16 +352,40 @@ class Panel(ScreenPanel):
         
         if action != "notify_status_update":
             return
-        
-        # 其他状态更新处理...
         homed_axes = self._printer.get_stat("toolhead", "homed_axes")
         if homed_axes == "xyz":
-            if "motion_report" in data:
-                if "live_position" in data["motion_report"]:
-                    self.pos['x'] = data['motion_report']['live_position'][0]
-                    self.pos['y'] = data['motion_report']['live_position'][1]
-                    self.pos['z'] = data['motion_report']['live_position'][2]
-                    logging.info(f"### Live Position: {self.pos['x']:.2f}, {self.pos['y']:.2f}, {self.pos['z']:.2f}")
+            if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
+                # self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
+                # self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
+                # self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
+
+                self.pos['x'] = data['gcode_move']['gcode_position'][0]
+                self.pos['y'] = data['gcode_move']['gcode_position'][1]
+                self.pos['z'] = data['gcode_move']['gcode_position'][2]  
+                # text = f"x: {data['gcode_move']['gcode_position'][0]:.2f}, y: {data['gcode_move']['gcode_position'][1]:.2f}, z: {data['gcode_move']['gcode_position'][2]:.2f}"          
+        else:
+            if "x" in homed_axes:
+                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
+                    # self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
+                    self.pos['x'] = data['gcode_move']['gcode_position'][0]
+            else:
+                # self.labels['pos_x'].set_text("X: ?")
+                self.pos['x'] = None
+            if "y" in homed_axes:
+                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
+                    # self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
+                    self.pos['y'] = data['gcode_move']['gcode_position'][1]
+            else:
+                # self.labels['pos_y'].set_text("Y: ?")
+                self.pos['y'] = None
+            if "z" in homed_axes:
+                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
+                    self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
+                    self.pos['z'] = data['gcode_move']['gcode_position'][2]
+            else:
+                # self.labels['pos_z'].set_text("Z: ?")
+                self.pos['z'] = None
+
 
     def change_distance(self, widget, distance):
         logging.info(f"### Distance {distance}")
@@ -456,7 +469,6 @@ class Panel(ScreenPanel):
         return False   
 
     def confirm_extrude_position(self, widget):
-        """确认喷头位置并保存模板"""
         if self._printer.extrudercount < 2:
             self._screen.show_popup_message(_("Only one extruder does not require calibration."), level = 2)
             return        
@@ -474,16 +486,13 @@ class Panel(ScreenPanel):
                     if image is not None:   
                         self.calibrator.saveImage(image, self.calibrator.template_left_path)
                         logging.info("Left extruder template saved")
-                        self._screen.show_popup_message(_("Left extruder template saved"), level=1)
+                        #self._screen.show_popup_message(_("Left extruder template saved"), level=1)
                         
                     # 记录左喷头位置并切换到右喷头
-                    pos = self._printer.get_stat("toolhead", "position")
-                    self.pos['l_x'] = pos[0]
-                    self.pos['l_y'] = pos[1]
-                    self.pos['l_z'] = pos[2]
-                    logging.info(f"Left position saved: X:{self.pos['l_x']:.2f} Y:{self.pos['l_y']:.2f} Z:{self.pos['l_z']:.2f}")
-                    
-                    # 切换到右喷头
+                    self.pos['lx'] = self.pos['x']
+                    self.pos['ly'] = self.pos['y']
+                    self.pos['lz'] = self.pos['z'] 
+                    self._screen.show_popup_message(f"left extruder pos: ({self.pos['lx']:.2f}, {self.pos['ly']:.2f}, {self.pos['lz']:.2f})", level = 1)
                     self.change_extruder(widget, "extruder1")
                     self._calculate_position()
                     
@@ -492,71 +501,49 @@ class Panel(ScreenPanel):
                     if image is not None:
                         self.calibrator.saveImage(image, self.calibrator.template_right_path)
                         logging.info("Right extruder template saved")
-                        self._screen.show_popup_message(_("Right extruder template saved"), level=1)
-                        
-                    # 记录右喷头位置并计算偏移
-                    pos = self._printer.get_stat("toolhead", "position")
-                    self.pos['r_x'] = pos[0]
-                    self.pos['r_y'] = pos[1]
-                    self.pos['r_z'] = pos[2]
-                    logging.info(f"Right position saved: X:{self.pos['r_x']:.2f} Y:{self.pos['r_y']:.2f} Z:{self.pos['r_z']:.2f}")
-                    
-                    # 计算偏移值
-                    if self.pos['l_x'] is not None and self.pos['l_y'] is not None:
-                        self.pos['ox'] = self.pos['r_x'] - self.pos['l_x']
-                        self.pos['oy'] = self.pos['r_y'] - self.pos['l_y']
-                        self.pos['oz'] = self.pos['r_z'] - self.pos['l_z']
-                        logging.info(f"Offset calculated: X:{self.pos['ox']:.2f} Y:{self.pos['oy']:.2f} Z:{self.pos['oz']:.2f}")
-                        self.labels['save'].set_sensitive(True)
+                        #self._screen.show_popup_message(_("Right extruder template saved"), level=1)
+                    if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
+                        self._screen.show_popup_message(f"Please confirm left extruder position.", level = 2)
                     else:
-                        self._screen.show_popup_message(_("Please confirm left extruder position first."), level=2)
-                    
+                        self.pos['ox'] = self.pos['x'] - self.pos['lx']
+                        self.pos['oy'] = self.pos['y'] - self.pos['ly']
+                        self.pos['oz'] = self.pos['z']  - self.pos['lz']
+                        self._screen.show_popup_message(f"Right extruder offset is ({self.pos['ox']:.2f}, {self.pos['oy']:.2f}, {self.pos['oz']:.2f})", level = 1)
+                    self.labels['save'].set_sensitive(True)                      
             except Exception as e:
                 logging.error(f"Error saving template: {e}")
-                self._screen.show_popup_message(_("Failed to save template"), level=2)
                 return
     def change_extruder(self, widget, extruder):
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
         
-    def save_offset(self, widget):
-        """保存偏移值到配置文件"""
+    def save_offset(self, widget):      
         if self.pos['e1_xoffset'] is None or self.pos['e1_yoffset'] is None:
             return
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
-            return
-        try:            
-            # 确保偏移值是有效的数字
-            x_offset = float(self.pos['ox'])
-            y_offset = float(self.pos['oy'])
+        else:
+            self.pos['e1_xoffset'] += self.pos['ox']
+            self.pos['e1_yoffset'] += self.pos['oy']
+            try:
+                self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
+                self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
+                self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
+                self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
+                logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
+                with open(self._screen.klippy_config_path, 'w') as file:
+                    self._screen.klippy_config.write(file)
+                    if self.mpv:
+                        self.mpv.terminate()
+                        self.mpv = None
+                    self.save_config()                    
+                    self._screen._menu_go_back()
+            except Exception as e:
+                logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
+                self._screen.show_popup_message(_("Error writing configuration"))
+                self.pos['e1_xoffset'] -= self.pos['ox']
+                self.pos['e1_yoffset'] -= self.pos['oy']
             
-            # 检查配置对象是否可用
-            if self._screen.klippy_config is None:
-                logging.error("No klippy config available")
-                self._screen.show_popup_message(_("Failed to save offset: No config available"), level=2)
-                return
-            
-            # 更新配置
-            logging.info(f"Saving offsets - X:{x_offset:.3f} Y:{y_offset:.3f}")
-            self._screen.klippy_config.set('Variables', 'e1_xoffset', f"{x_offset:.3f}")
-            self._screen.klippy_config.set('Variables', 'e1_yoffset', f"{y_offset:.3f}")
-            
-            # 写入配置文件
-            with open(self._screen.klippy_config_path, 'w') as file:
-                self._screen.klippy_config.write(file)
-            
-            self.save_config()
-            self._screen.show_popup_message(_("Offset saved"), level=1)
-            self._screen._menu_go_back()
-            
-        except (ValueError, TypeError) as e:
-            logging.error(f"Error saving offset (invalid values): {e}")
-            self._screen.show_popup_message(_("Failed to save offset: Invalid values"), level=2)
-        except Exception as e:
-            logging.error(f"Error writing configuration file: {e}")
-            self._screen.show_popup_message(_("Failed to save configuration"), level=2)
-
     def play(self, widget, cam):
         url = cam['stream_url']
         if url.startswith('/'):
@@ -644,27 +631,24 @@ class Panel(ScreenPanel):
         self.labels['save'].set_sensitive(False)
 
     def _calculate_position(self):
-        """移动到目标位置"""
         try:
             x_position = self._screen.klippy_config.getfloat("Variables", "cam_xpos")
             y_position = self._screen.klippy_config.getfloat("Variables", "cam_ypos")
-            z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")     
-            self.target_x = x_position
-            self.target_y = y_position
-            self.target_z = z_position
+            z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")            
         except:
             logging.error("Couldn't get the calibration camera position.")
             return
         
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
         script = [
-            f"G0 Z{z_position} F3000",
-            f"G0 X{x_position} Y{y_position} F3000",
+            f"G0 Z{z_position} F600",
+            f"G0 X{x_position} Y{y_position} F6000",
             "M400",  # 等待所有移动完成
-            "M118 move to the target position"  # 发送移动完成消息
+            "RESPOND TYPE=command MSG=auto_calibration_move_complete"  # 发送移动完成消息
         ]
         self._screen._send_action(None, "printer.gcode.script", 
                                 {"script": "\n".join(script)})
+        self.pos['z'] = z_position 
         
     def save_config(self):
         script = {"script": "SAVE_CONFIG"}
@@ -691,6 +675,7 @@ class Panel(ScreenPanel):
 
     def start_manual_calibration(self, widget, cam):
         """开始手动校准"""
+        logging.info("Starting manual calibration")
         self.calibration_mode = 'manual'
         self.play(widget, cam)
     def start_auto_calibration(self, widget, cam):
@@ -699,7 +684,6 @@ class Panel(ScreenPanel):
         self.calibration_mode = 'auto'
         self.current_calibrating = "left"
         self.play(widget, cam)
-        self.waiting_for_position = True
     def _start_left_calibration(self):
         """开始左喷头校准"""
         logging.info("Starting left calibration")
