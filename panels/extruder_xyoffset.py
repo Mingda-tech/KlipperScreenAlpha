@@ -281,46 +281,46 @@ class Panel(ScreenPanel):
 
         offsetgrid = Gtk.Grid()
         if CALIBRATION_SUPPORTED:
-            # 有依赖时显示手动和自动两个按钮
-            self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color3")
-            self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color3")
-            self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
-            self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
+            # 创建手动和自动校准按钮
+            self.labels['manual'] = self._gtk.Button(None, _("Manual Calibrate"), "color1")
+            self.labels['auto'] = self._gtk.Button(None, _("Auto Calibrate"), "color2")
 
-            self.labels['manual'].connect("clicked", self.start_manual_calibration)
-            self.labels['auto'].connect("clicked", self.start_auto_calibration)
-            self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
-            self.labels['save'].connect("clicked", self.save_offset)
-
-            offsetgrid.attach(self.labels['manual'], 0, 0, 1, 1)
-            offsetgrid.attach(self.labels['auto'], 1, 0, 1, 1)
-            offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
-            offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
-        else:
-            # 没有依赖时保持原来的按钮布局
-            self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
-            self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
-            
-            self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
-            self.labels['save'].connect("clicked", self.save_offset)
-            
-            offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)
-            offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)
+        # 添加其他按钮
+        self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
+        self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
+        self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
+        self.labels['save'].connect("clicked", self.save_offset)
+        offsetgrid.attach(self.labels['confirm'], 2, 0, 1, 1)
+        offsetgrid.attach(self.labels['save'], 3, 0, 1, 1)
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        label_text = _("Start")
+        if CALIBRATION_SUPPORTED:
+            label_text = _("Manual Calibrate")
         for i, cam in enumerate(self._printer.cameras):
             if not cam["enabled"] or cam["name"] != 'calicam':
                 continue
             logging.info(cam)
             cam[cam["name"]] = self._gtk.Button(
-                image_name="camera", label=_("Start"), style=f"color{i % 4 + 1}",
+                image_name="camera", label=label_text, style=f"color{i % 4 + 1}",
                 scale=self.bts, position=Gtk.PositionType.LEFT, lines=1
             )
             cam[cam["name"]].set_hexpand(True)
             cam[cam["name"]].set_vexpand(True)
             cam[cam["name"]].connect("clicked", self.play, cam)
-            box.add(cam[cam["name"]])
+        if CALIBRATION_SUPPORTED:
+            self.labels['manual'].set_hexpand(True)
+            self.labels['manual'].set_vexpand(True)
+            self.labels['auto'].set_hexpand(True)
+            self.labels['auto'].set_vexpand(True)
+            self.labels['manual'].connect("clicked", self.play, cam)
+            self.labels['auto'].connect("clicked",self.start_auto_calibration, cam)
+            box.add(self.labels['manual'])
+            box.add(self.labels['auto'])
+        else:
+                box.add(cam[cam["name"]])
+        
 
         self.scroll = self._gtk.ScrolledWindow()
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -337,7 +337,8 @@ class Panel(ScreenPanel):
 
         # 只在支持自动校准时初始化校准器
         if CALIBRATION_SUPPORTED:
-            ip = self._screen.apiclient.endpoint.split(':')[0]
+            # ip = self._screen.apiclient.endpoint.split(':')[0]
+            ip = "127.0.0.1"
             self.calibrator = MdAutoCalibrator(ip)
 
     def process_update(self, action, data):
@@ -646,17 +647,9 @@ class Panel(ScreenPanel):
             self.change_extruder(widget=None, extruder="extruder")
         self._calculate_position()
 
-    def start_auto_calibration(self, widget):
+    def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
-        self.reset_pos()
-        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
-            self._screen._ws.klippy.gcode_script("G28")
-        
-        # 先移动到左喷头位置
-        current_extruder = self._printer.get_stat("toolhead", "extruder")
-        if current_extruder != "extruder":
-            self.change_extruder(widget=None, extruder="extruder")
-        self._calculate_position()
+        self.play(widget, cam)
 
         # 开始自动校准
         result, offset = self.calibrator.startCalibration()
