@@ -31,10 +31,10 @@ class MdAutoCalibrator():
         # 摄像头url的单帧图片
         self.camera_url = f"http://{ip}/webcam2/?action=snapshot"
         # 对比模板图片路径
-        self.template_left_path = "./template_left.png"
-        self.template_right_path = "./template_right.png"
-        self.extruder_left_path = "./extruder_left.png"
-        self.extruder_right_path = "./extruder_right.png"
+        self.template_left_path = "/home/mingda/printer_data/resources/template_left.png"
+        self.template_right_path = "/home/mingda/printer_data/resources/template_right.png"
+        self.extruder_left_path = "/home/mingda/printer_data/resources/extruder_left.png"
+        self.extruder_right_path = "/home/mingda/printer_data/resources/extruder_right.png"
         self.allow_match = False
 
     # 获取图片
@@ -378,6 +378,50 @@ class Panel(ScreenPanel):
                 # self.labels['pos_z'].set_text("Z: ?")
                 self.pos['z'] = None
 
+        # 监听位置更新
+        if self.waiting_for_position and "toolhead" in data and "position" in data["toolhead"]:
+            pos = data["toolhead"]["position"]
+            # 检查是否到达目标位置(允许0.1mm的误差)
+            if (abs(pos[0] - self.target_x) < 0.01 and 
+                abs(pos[1] - self.target_y) < 0.01 and
+                abs(pos[2] - self.target_z) < 0.01):
+                
+                self.waiting_for_position = False
+                
+                if self.current_calibrating == "left":
+                    # 左喷头校准
+                    result, offset = self.calibrator.startCalibration()
+                    if result:
+                        self.left_offset = offset
+                        
+                        # 切换到右喷头继续校准
+                        self.current_calibrating = "right"
+                        self.change_extruder(None, "extruder1")
+                        self.waiting_for_position = True
+                        self._calculate_position()
+                    else:
+                        self._screen.show_popup_message(
+                            _("Left extruder calibration failed. Please clean the nozzle and try again."),
+                            level=2
+                        )
+                        
+                elif self.current_calibrating == "right":
+                    # 右喷头校准
+                    result, offset = self.calibrator.startCalibration()
+                    if result:
+                        self.right_offset = offset
+                        
+                        # 校准完成,保存结果
+                        if self.left_offset is not None:
+                            logging.info(f"Calibration complete - Left offset: {self.left_offset}, Right offset: {offset}")
+                            self.pos['ox'] = self.left_offset[0] + self.right_offset[0]
+                            self.pos['oy'] = self.left_offset[1] + self.right_offset[1]
+                            self.save_offset(None)
+                    else:
+                        self._screen.show_popup_message(
+                            _("Right extruder calibration failed. Please clean the nozzle and try again."),
+                            level=2
+                        )
 
     def change_distance(self, widget, distance):
         logging.info(f"### Distance {distance}")
@@ -650,29 +694,18 @@ class Panel(ScreenPanel):
     def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
         self.play(widget, cam)
-
-        # 开始自动校准
-        result, offset = self.calibrator.startCalibration()
-        if result:
-            if offset == (0,0):
-                self._screen.show_popup_message(_("Calibration successful!"), level=1)
-            else:
-                # 计算需要移动的距离并发送移动指令
-                x_offset = -offset[0] * 0.0125 # 像素转mm的系数
-                y_offset = -offset[1] * 0.0125
-                
-                script = [
-                    "G91",  # 相对坐标
-                    f"G1 X{x_offset:.3f} Y{y_offset:.3f} F6000",
-                    "G90"   # 绝对坐标
-                ]
-                self._screen._send_action(None, "printer.gcode.script", 
-                                        {"script": "\n".join(script)})
-        else:
-            self._screen.show_popup_message(
-                _("Auto calibration failed. Please clean the nozzle and try again."), 
-                level=2
-            )
+        
+        # 记录目标位置并移动
+        try:
+            self.target_x = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
+            self.target_y = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
+            self.target_z = self._screen.klippy_config.getfloat("Variables", "switch_zpos")
+            self.waiting_for_position = True
+            self._calculate_position()
+        except Exception as e:
+            logging.error(f"Error getting target position: {e}")
+            self._screen.show_popup_message(_("Could not get target position"), level=2)
+            return
 
 
 def create_symbolic_link(source_path, link_path):
