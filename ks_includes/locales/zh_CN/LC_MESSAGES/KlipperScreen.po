@@ -1526,7 +1526,7 @@ msgid "RESUME error:no fil"
 msgstr "恢复错误：无耗材"
 
 msgid "RESUME error:autofill no fil"
-msgstr "恢复错误：自动进料无耗材"
+msgstr "恢复错误：自动进料���耗材"
 
 msgid "Printer not homed"
 msgstr "打印机未回零"
@@ -1559,7 +1559,7 @@ msgid "T3 direct feed"
 msgstr "T3直接进料"
 
 msgid "Copy Print"
-msgstr "复制打印"
+msgstr "复制打���"
 
 msgid "Mirror Print"
 msgstr "镜像打印"
@@ -1578,3 +1578,12 @@ msgstr "自动校准失败。请清理喷嘴后重试。"
 
 msgid "Auto calibration is not available. Please install required dependencies."
 msgstr "自动校准功能不可用。请安装所需依赖。"
+
+msgid "Left extruder template saved"
+msgstr "左喷头模板已保存"
+
+msgid "Right extruder template saved"
+msgstr "右喷头模板已保存"
+
+msgid "Failed to save template"
+msgstr "保存模板失败"

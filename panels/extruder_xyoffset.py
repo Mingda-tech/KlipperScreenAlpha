@@ -213,6 +213,10 @@ class Panel(ScreenPanel):
         self.menu = ['main_menu']
         self.pos['e1_xoffset'] = None
         self.pos['e1_yoffset'] = None
+        # 添加校准模式标志
+        self.calibration_mode = 'manual'  # 'manual' 或 'auto'
+        self.waiting_for_position = False
+
         if self._screen.klippy_config is not None:
             try:
                 self.pos['e1_xoffset'] = self._screen.klippy_config.getfloat("Variables", "e1_xoffset")
@@ -314,7 +318,7 @@ class Panel(ScreenPanel):
             self.labels['manual'].set_vexpand(True)
             self.labels['auto'].set_hexpand(True)
             self.labels['auto'].set_vexpand(True)
-            self.labels['manual'].connect("clicked", self.play, cam)
+            self.labels['manual'].connect("clicked", self.start_manual_calibration, cam)
             self.labels['auto'].connect("clicked",self.start_auto_calibration, cam)
             box.add(self.labels['manual'])
             box.add(self.labels['auto'])
@@ -505,28 +509,65 @@ class Panel(ScreenPanel):
         return False   
 
     def confirm_extrude_position(self, widget):
+        """确认喷头位置并保存模板"""
         if self._printer.extrudercount < 2:
             self._screen.show_popup_message(_("Only one extruder does not require calibration."), level = 2)
-            return
-        self.current_extruder = self._printer.get_stat("toolhead", "extruder")
-
-        if self._printer.get_tool_number(self.current_extruder) == 0:
-            self.pos['lx'] = self.pos['x']
-            self.pos['ly'] = self.pos['y']
-            self.pos['lz'] = self.pos['z'] 
-            self._screen.show_popup_message(f"left extruder pos: ({self.pos['lx']:.2f}, {self.pos['ly']:.2f}, {self.pos['lz']:.2f})", level = 1)
-            self.change_extruder(widget, "extruder1")
-            self._calculate_position()
-        elif self._printer.get_tool_number(self.current_extruder) == 1:
-            if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
-                self._screen.show_popup_message(f"Please confirm left extruder position.", level = 2)
-            else:
-                self.pos['ox'] = self.pos['x'] - self.pos['lx']
-                self.pos['oy'] = self.pos['y'] - self.pos['ly']
-                self.pos['oz'] = self.pos['z']  - self.pos['lz']
-                self._screen.show_popup_message(f"Right extruder offset is ({self.pos['ox']:.2f}, {self.pos['oy']:.2f}, {self.pos['oz']:.2f})", level = 1)
-                self.labels['save'].set_sensitive(True)                      
-
+            return        
+        current_extruder = self._printer.get_stat("toolhead", "extruder")
+        
+        # 只在手动校准模式下保存模板
+        if self.calibration_mode == 'manual':
+            try:
+                # 获取摄像头图像并保存为模板
+                image = None
+                if CALIBRATION_SUPPORTED:
+                    image = self.calibrator.getImage(self.calibrator.camera_url)
+                if current_extruder == "extruder":
+                    # 左喷头模板
+                    if image is not None:   
+                        self.calibrator.saveImage(image, self.calibrator.template_left_path)
+                        logging.info("Left extruder template saved")
+                        self._screen.show_popup_message(_("Left extruder template saved"), level=1)
+                        
+                    # 记录左喷头位置并切换到右喷头
+                    pos = self._printer.get_stat("toolhead", "position")
+                    self.pos['l_x'] = pos[0]
+                    self.pos['l_y'] = pos[1]
+                    self.pos['l_z'] = pos[2]
+                    logging.info(f"Left position saved: X:{self.pos['l_x']:.2f} Y:{self.pos['l_y']:.2f} Z:{self.pos['l_z']:.2f}")
+                    
+                    # 切换到右喷头
+                    self.change_extruder(widget, "extruder1")
+                    self._calculate_position()
+                    
+                else:
+                    # 右喷头模板
+                    if image is not None:
+                        self.calibrator.saveImage(image, self.calibrator.template_right_path)
+                        logging.info("Right extruder template saved")
+                        self._screen.show_popup_message(_("Right extruder template saved"), level=1)
+                        
+                    # 记录右喷头位置并计算偏移
+                    pos = self._printer.get_stat("toolhead", "position")
+                    self.pos['r_x'] = pos[0]
+                    self.pos['r_y'] = pos[1]
+                    self.pos['r_z'] = pos[2]
+                    logging.info(f"Right position saved: X:{self.pos['r_x']:.2f} Y:{self.pos['r_y']:.2f} Z:{self.pos['r_z']:.2f}")
+                    
+                    # 计算偏移值
+                    if self.pos['l_x'] is not None and self.pos['l_y'] is not None:
+                        self.pos['ox'] = self.pos['r_x'] - self.pos['l_x']
+                        self.pos['oy'] = self.pos['r_y'] - self.pos['l_y']
+                        self.pos['oz'] = self.pos['r_z'] - self.pos['l_z']
+                        logging.info(f"Offset calculated: X:{self.pos['ox']:.2f} Y:{self.pos['oy']:.2f} Z:{self.pos['oz']:.2f}")
+                        self.labels['save'].set_sensitive(True)
+                    else:
+                        self._screen.show_popup_message(_("Please confirm left extruder position first."), level=2)
+                    
+            except Exception as e:
+                logging.error(f"Error saving template: {e}")
+                self._screen.show_popup_message(_("Failed to save template"), level=2)
+                return
     def change_extruder(self, widget, extruder):
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
@@ -681,18 +722,13 @@ class Panel(ScreenPanel):
         # os.system('sudo systemctl restart crowsnest.service')
         subprocess.Popen(["sudo", "systemctl", "restart", "crowsnest.service"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    def start_manual_calibration(self, widget):
+    def start_manual_calibration(self, widget, cam):
         """开始手动校准"""
-        self.reset_pos()
-        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
-            self._screen._ws.klippy.gcode_script("G28")
-        current_extruder = self._printer.get_stat("toolhead", "extruder")
-        if current_extruder != "extruder":
-            self.change_extruder(widget=None, extruder="extruder")
-        self._calculate_position()
-
+        self.calibration_mode = 'manual'
+        self.play(widget, cam)
     def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
+        self.calibration_mode = 'auto'
         self.play(widget, cam)
         
         # 记录目标位置并移动
