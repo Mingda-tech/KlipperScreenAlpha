@@ -290,8 +290,8 @@ class Panel(ScreenPanel):
         offsetgrid = Gtk.Grid()
         if CALIBRATION_SUPPORTED:
             # 创建手动和自动校准按钮
-            self.labels['manual'] = self._gtk.Button(None, _("Manual Calibrate"), "color1")
-            self.labels['auto'] = self._gtk.Button(None, _("Auto Calibrate"), "color2")
+            self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color1")
+            self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color2")
 
         # 添加其他按钮
         self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
@@ -670,7 +670,10 @@ class Panel(ScreenPanel):
         source_file = "/home/mingda/printer_data/config/crowsnest2.conf"
         create_symbolic_link(source_file, symbolic_link)
         os.system('sudo systemctl restart crowsnest.service')
-        self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
+        if CALIBRATION_SUPPORTED:
+            self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"), level=2)
+        else:
+            self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
 
     def deactivate(self):
         symbolic_link = "/home/mingda/printer_data/config/crowsnest.conf"
