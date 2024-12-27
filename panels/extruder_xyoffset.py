@@ -25,11 +25,11 @@ from ks_includes.screen_panel import ScreenPanel
 
 
 class MdAutoCalibrator():
-    def __init__(self, ip):
+    def __init__(self, ip, perfect_center):
         # 假设最佳中心点
-        self.perfect_center = (131, 141)
-        self.perfect_lt = (131-60, 141-60)
-        self.perfect_rb = (131+60, 141+60)
+        self.perfect_center = perfect_center
+        self.perfect_lt = (perfect_center[0]-60, perfect_center[1]-60)
+        self.perfect_rb = (perfect_center[0]+60, perfect_center[1]+60)
         # 摄像头url的单帧图片
         self.camera_url = f"http://{ip}/webcam2/?action=snapshot"
         # 对比模板图片路径
@@ -339,7 +339,13 @@ class Panel(ScreenPanel):
         # 只在支持自动校准时初始化校准器
         if CALIBRATION_SUPPORTED:
             ip = "127.0.0.1"
-            self.calibrator = MdAutoCalibrator(ip)
+            # 根据打印机型号设置完美中心点
+            perfect_center = (131, 141)
+            if 'MD_400D' in self._printer.get_gcode_macros():
+                perfect_center = (156, 210)
+            elif 'MD_600D' in self._printer.get_gcode_macros():
+                perfect_center = (131, 141)
+            self.calibrator = MdAutoCalibrator(ip, perfect_center)
 
     def process_update(self, action, data):
         if action == "notify_gcode_response" and self.calibration_mode == 'auto':
