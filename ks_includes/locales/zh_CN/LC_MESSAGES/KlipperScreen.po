@@ -1526,7 +1526,7 @@ msgid "RESUME error:no fil"
 msgstr "恢复错误：无耗材"
 
 msgid "RESUME error:autofill no fil"
-msgstr "恢复错误：自动���料耗材"
+msgstr "恢复错误：自动进料耗材"
 
 msgid "Printer not homed"
 msgstr "打印机未回零"
@@ -1591,17 +1591,21 @@ msgstr "保存模板失败"
 msgid "No template images found. Please perform manual calibration first."
 msgstr "未找到模板图像。请先进行手动校准。"
 
-msgid "Please complete calibration first"
-msgstr "请先完成校准"
+msgid "Left extruder calibration started"
+msgstr "左喷头校准开始"
 
-msgid "Offset saved"
-msgstr "偏移值已保存"
+msgid "Right extruder calibration started" 
+msgstr "右喷头校准开始"
 
-msgid "Failed to save offset: No config available"
-msgstr "保存偏移值失败：无可用配置"
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "左喷头校准失败。请清理喷嘴后重试。"
 
-msgid "Failed to save offset: Invalid values"
-msgstr "保存偏移值失败：无效的值"
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "右喷头校准失败。请清理喷嘴后重试。"
 
-msgid "Failed to save configuration"
-msgstr "保存配置失败"
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "左喷头位置: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "右喷头偏移: (%.3f, %.3f, %.3f)"
+

@@ -495,7 +495,7 @@ class Panel(ScreenPanel):
                     self.pos['lx'] = self.pos['x']
                     self.pos['ly'] = self.pos['y']
                     self.pos['lz'] = self.pos['z'] 
-                    self._screen.show_popup_message(f"left extruder pos: ({self.pos['lx']:.2f}, {self.pos['ly']:.2f}, {self.pos['lz']:.2f})", level = 1)
+                    self._screen.show_popup_message(_("left extruder pos: (%.3f, %.3f, %.3f)") % (self.pos['lx'], self.pos['ly'], self.pos['lz']), level = 1)
                     self.change_extruder(widget, "extruder1")
                     self._calculate_position()
                     
@@ -506,12 +506,12 @@ class Panel(ScreenPanel):
                         logging.info("Right extruder template saved")
                         #self._screen.show_popup_message(_("Right extruder template saved"), level=1)
                     if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
-                        self._screen.show_popup_message(f"Please confirm left extruder position.", level = 2)
+                        self._screen.show_popup_message(_("Please confirm left extruder position."), level = 2)
                     else:
                         self.pos['ox'] = self.pos['x'] - self.pos['lx']
                         self.pos['oy'] = self.pos['y'] - self.pos['ly']
                         self.pos['oz'] = self.pos['z']  - self.pos['lz']
-                        self._screen.show_popup_message(f"Right extruder offset is ({self.pos['ox']:.2f}, {self.pos['oy']:.2f}, {self.pos['oz']:.2f})", level = 1)
+                        self._screen.show_popup_message(_("Right extruder offset is (%.3f, %.3f, %.3f)") % (self.pos['ox'], self.pos['oy'], self.pos['oz']), level = 1)
                     self.labels['save'].set_sensitive(True)                      
             except Exception as e:
                 logging.error(f"Error saving template: {e}")
@@ -715,7 +715,6 @@ class Panel(ScreenPanel):
     def _start_left_calibration(self):
         """开始左喷头校准"""
         logging.info("Starting left calibration")
-        # self._screen.show_popup_message(_("Left extruder calibration started"), level=1)
         result, offset = self.calibrator.startCalibration()
         if result:
             self.left_offset = offset
@@ -732,7 +731,6 @@ class Panel(ScreenPanel):
     def _start_right_calibration(self):
         """开始右喷头校准"""
         logging.info("Starting right calibration")
-        # self._screen.show_popup_message(_("Right extruder calibration started"), level=1)
         result, offset = self.calibrator.startCalibration()
         if result:
             if self.left_offset is not None:
