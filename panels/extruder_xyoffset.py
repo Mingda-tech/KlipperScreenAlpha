@@ -683,6 +683,11 @@ class Panel(ScreenPanel):
         """开始手动校准"""
         logging.info("Starting manual calibration")
         self.calibration_mode = 'manual'
+        self.labels['confirm'].set_sensitive(True)
+        self.buttons['x+'].set_sensitive(True)
+        self.buttons['x-'].set_sensitive(True)
+        self.buttons['y+'].set_sensitive(True)
+        self.buttons['y-'].set_sensitive(True)        
         self.play(widget, cam)
     def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
@@ -701,6 +706,11 @@ class Panel(ScreenPanel):
         self.calibration_mode = 'auto'
         self.current_calibrating = "left"
         self.left_offset = None
+        self.labels['confirm'].set_sensitive(False)
+        self.buttons['x+'].set_sensitive(False)
+        self.buttons['x-'].set_sensitive(False)
+        self.buttons['y+'].set_sensitive(False)
+        self.buttons['y-'].set_sensitive(False)
         self.play(widget, cam)
     def _start_left_calibration(self):
         """开始左喷头校准"""
