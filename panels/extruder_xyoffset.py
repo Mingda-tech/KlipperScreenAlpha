@@ -5,6 +5,7 @@ import subprocess
 import mpv
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
+from gi.repository import GLib
 
 # 尝试导入可选依赖
 try:
@@ -343,13 +344,14 @@ class Panel(ScreenPanel):
     def process_update(self, action, data):
         if action == "notify_gcode_response" and self.calibration_mode == 'auto':
             # 监听 gcode 响应消息
-            if "auto_calibration_move_complete" in data:
-                logging.info("Received move complete message, starting calibration")
+             if "auto_calibration_move_complete" in data:
+                logging.info("Received move complete message, waiting 3 seconds before calibration")
+                # 使用 GLib.timeout_add 来实现3秒延时
+                GLib.timeout_add(3000, self._delayed_calibration)
                 if self.current_calibrating == "left":
-                    self._start_left_calibration()
-                elif self.current_calibrating == "right":
-                    self._start_right_calibration()
-                return
+                    self._screen.show_popup_message(_("Left extruder calibration started"), level=1)
+                elif self.current_calibrating == "right":                
+                    self._screen.show_popup_message(_("Right extruder calibration started"), level=1)
         
         if action != "notify_status_update":
             return
@@ -531,8 +533,9 @@ class Panel(ScreenPanel):
             try:
                 self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
                 self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
-                self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
-                self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
+                if self.calibration_mode == 'manual':
+                    self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
+                    self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
                 logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
@@ -702,6 +705,7 @@ class Panel(ScreenPanel):
     def _start_left_calibration(self):
         """开始左喷头校准"""
         logging.info("Starting left calibration")
+        # self._screen.show_popup_message(_("Left extruder calibration started"), level=1)
         result, offset = self.calibrator.startCalibration()
         if result:
             self.left_offset = offset
@@ -718,6 +722,7 @@ class Panel(ScreenPanel):
     def _start_right_calibration(self):
         """开始右喷头校准"""
         logging.info("Starting right calibration")
+        # self._screen.show_popup_message(_("Right extruder calibration started"), level=1)
         result, offset = self.calibrator.startCalibration()
         if result:
             if self.left_offset is not None:
@@ -729,6 +734,16 @@ class Panel(ScreenPanel):
                 _("Right extruder calibration failed. Please clean the nozzle and try again."),
                 level=2
             )
+
+    def _delayed_calibration(self):
+        """延时3秒后执行校准"""
+        logging.info("Starting delayed calibration")
+        if self.current_calibrating == "left":
+            self._start_left_calibration()
+        elif self.current_calibrating == "right":
+            self._start_right_calibration()
+        # 返回 False 以防止重复执行
+        return False
 
 def create_symbolic_link(source_path, link_path):
     if os.path.exists(link_path):
