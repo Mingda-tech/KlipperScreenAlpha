@@ -68,12 +68,9 @@ class Panel(ScreenPanel):
             else:
                 grid.attach(self.buttons['x+'], 0, 1, 1, 1)
                 grid.attach(self.buttons['x-'], 2, 1, 1, 1)
-                if "MD_400D" in self._printer.get_gcode_macros():
-                    grid.attach(self.buttons['z-'], 0, 2, 1, 1)
-                    grid.attach(self.buttons['z+'], 2, 2, 1, 1)
-                else:
-                    grid.attach(self.buttons['z+'], 0, 2, 1, 1)
-                    grid.attach(self.buttons['z-'], 2, 2, 1, 1)
+
+                grid.attach(self.buttons['z+'], 0, 2, 1, 1)
+                grid.attach(self.buttons['z-'], 2, 2, 1, 1)
             # grid.attach(adjust, 1, 2, 1, 1)
             grid.attach(self.buttons['y+'], 1, 0, 1, 1)
             grid.attach(self.buttons['y-'], 1, 1, 1, 1)
@@ -87,8 +84,12 @@ class Panel(ScreenPanel):
                 grid.attach(self.buttons['x-'], 2, 1, 1, 1)
             grid.attach(self.buttons['y+'], 1, 0, 1, 1)
             grid.attach(self.buttons['y-'], 1, 1, 1, 1)
-            grid.attach(self.buttons['z+'], 3, 0, 1, 1)
-            grid.attach(self.buttons['z-'], 3, 1, 1, 1)
+            if "MD_400D" in self._printer.get_gcode_macros():
+                grid.attach(self.buttons['z-'], 3, 0, 1, 1)
+                grid.attach(self.buttons['z+'], 3, 1, 1, 1)
+            else:
+                grid.attach(self.buttons['z+'], 3, 0, 1, 1)
+                grid.attach(self.buttons['z-'], 3, 1, 1, 1)
 
         grid.attach(self.buttons['home'], 0, 0, 1, 1)
         grid.attach(self.buttons['motors_off'], 2, 0, 1, 1)
