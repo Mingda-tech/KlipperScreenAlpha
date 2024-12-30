@@ -149,7 +149,7 @@ class Panel(ScreenPanel):
     def change_language(self, widget, lang_name, lang_code):
         message = _("Current language: ") + lang_name
         self.labels['tip'].set_markup(message)
-        self._screen.change_language_without_reload(widget, lang_code)
+        self._screen.change_language(widget, lang_code, force_reload=False)
         # self.labels['next'].set_sensitive(True)
     
     def on_skip_click(self, widget):

@@ -267,7 +267,8 @@ class Panel(ScreenPanel):
             y_position = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
             z_position = self._screen.klippy_config.getfloat("Variables", "switch_zpos")
         except:
-            logging.error("Couldn't get the calibration camera position.")
+            self._screen.show_popup_message(_("Couldn't get the calibration switch position."))
+            logging.error("Couldn't get the calibration switch position.")
             return
     
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
@@ -287,7 +288,7 @@ class Panel(ScreenPanel):
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
                     self.save_config()                    
-                    self._screen._menu_go_back()
+                    
             except Exception as e:
                 logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
                 self._screen.show_popup_message(_("Error writing configuration"))  

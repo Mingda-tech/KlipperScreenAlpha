@@ -776,27 +776,60 @@ class KlipperScreen(Gtk.Window):
             )
         self.base_panel.show_shortcut(show)
 
-    def change_language(self, widget, lang):
+    def change_language(self, widget, lang, force_reload=True):
         self._config.install_language(lang)
         self.lang_ltr = set_text_direction(lang)
         self.env.install_gettext_translations(self._config.get_lang())
         self._config._create_configurable_options(self)
         self._config.set('main', 'language', lang)
+        
+        # 根据语言设置对应的时区
+        timezone_map = {
+            'ar': 'Asia/Riyadh',      # 阿拉伯语
+            'bg': 'Europe/Sofia',      # 保加利亚语
+            'cs': 'Europe/Prague',     # 捷克语
+            'da': 'Europe/Copenhagen', # 丹麦语
+            'de': 'Europe/Berlin',     # 德语
+            'de_formal': 'Europe/Berlin', # 德语(正式)
+            'en': 'America/New_York',  # 英语
+            'es': 'Europe/Madrid',     # 西班牙语
+            'et': 'Europe/Tallinn',    # 爱沙尼亚语
+            'fr': 'Europe/Paris',      # 法语
+            'he': 'Asia/Jerusalem',    # 希伯来语
+            'hu': 'Europe/Budapest',   # 匈牙利语
+            'it': 'Europe/Rome',       # 意大利语
+            'jp': 'Asia/Tokyo',        # 日语
+            'ko': 'Asia/Seoul',        # 韩语
+            'lt': 'Europe/Vilnius',    # 立陶宛语
+            'nl': 'Europe/Amsterdam',  # 荷兰语
+            'pl': 'Europe/Warsaw',     # 波兰语
+            'pt': 'Europe/Lisbon',     # 葡萄牙语
+            'pt_BR': 'America/Sao_Paulo', # 巴西葡萄牙语
+            'ru': 'Europe/Moscow',     # 俄语
+            'sl': 'Europe/Ljubljana',  # 斯洛文尼亚语
+            'sv': 'Europe/Stockholm',  # 瑞典语
+            'tr': 'Europe/Istanbul',   # 土耳其语
+            'uk': 'Europe/Kiev',       # 乌克兰语
+            'vi': 'Asia/Ho_Chi_Minh',  # 越南语
+            'zh_CN': 'Asia/Shanghai',  # 简体中文
+            'zh_TW': 'Asia/Taipei'     # 繁体中文
+        }
+        
+        # 如果存在对应的时区映射则设置
+        if lang in timezone_map:
+            try:
+                logging.info(f"Setting timezone to {timezone_map[lang]} for language {lang}")
+                os.system(f'sudo timedatectl set-timezone {timezone_map[lang]}')
+            except Exception as e:
+                logging.error(f"Error setting timezone: {e}")
+        
         self._config.save_user_config_options()
         
         # 调用 set_language 更新手册语言
         self.set_language(lang)
         
-        self.reload_panels()
-
-    def change_language_without_reload(self, widget, lang):
-        self._config.install_language(lang)
-        self.lang_ltr = set_text_direction(lang)
-        self.env.install_gettext_translations(self._config.get_lang())
-        self._config._create_configurable_options(self)
-        self._config.set('main', 'language', lang)
-        self._config.save_user_config_options()
-
+        if force_reload:
+            self.reload_panels()
     def reload_panels(self, *args):
         if "printer_select" in self._cur_panels:
             self.show_printer_select()

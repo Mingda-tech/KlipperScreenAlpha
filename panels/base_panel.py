@@ -378,3 +378,11 @@ class BasePanel(ScreenPanel):
             self._screen.dialogs.remove(self.update_dialog)
         self.update_dialog = None
         self._screen._menu_go_back(home=True)
+
+    def menu_item_clicked(self, widget, item):
+        # 如果当前已经在shutdown面板,不再重复打开
+        if item["panel"] == "shutdown" and self._screen._cur_panels and self._screen._cur_panels[-1] == "shutdown":
+            return
+        
+        if item["panel"] is not None:
+            self._screen.show_panel(item["panel"], item["name"], remove_all=item.get("remove_all", False))

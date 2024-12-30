@@ -229,6 +229,14 @@ class Printer:
             macros.append(macro)
         return macros
 
+    def get_hidden_gcode_macros(self):
+        macros = []
+        for macro in self.get_config_section_list("gcode_macro "):
+            macro = macro[12:].strip()
+            if macro.startswith("_"):
+                macros.append(macro)
+        return macros
+
     def get_heaters(self):
         heaters = []
         if "heater_bed" in self.devices:
@@ -259,6 +267,7 @@ class Printer:
                 "fans": {"count": self.fancount},
                 "output_pins": {"count": self.output_pin_count},
                 "gcode_macros": {"count": len(self.get_gcode_macros()), "list": self.get_gcode_macros()},
+                "hidden_gcode_macros": {"count": len(self.get_hidden_gcode_macros()), "list": self.get_hidden_gcode_macros()},
                 "idle_timeout": self.get_stat("idle_timeout").copy(),
                 "pause_resume": {"is_paused": self.state == "paused"},
                 "power_devices": {"count": len(self.get_power_devices())},
