@@ -374,9 +374,9 @@ class Panel(ScreenPanel):
                 logging.info("Received move complete message, waiting 3 seconds before calibration")
                 # 使用 GLib.timeout_add 来实现3秒延时
                 if self.current_calibrating == "left":
-                    self._screen.show_popup_message(_("Getting image of left extruder"), level=2)
+                    self._screen.show_popup_message(_("Getting image of left extruder"), level=1)
                 elif self.current_calibrating == "right":
-                    self._screen.show_popup_message(_("Getting image of right extruder"), level=2)
+                    self._screen.show_popup_message(_("Getting image of right extruder"), level=1)
                 GLib.timeout_add(3000, self._start_calibration)
                 
         if action != "notify_status_update":
