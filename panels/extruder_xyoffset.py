@@ -662,9 +662,9 @@ class Panel(ScreenPanel):
     def _calculate_position(self):
         """移动到校准位置"""
         try:
-            x_position = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
-            y_position = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
-            z_position = self._screen.klippy_config.getfloat("Variables", "switch_zpos")            
+            x_position = self._screen.klippy_config.getfloat("Variables", "cam_xpos")
+            y_position = self._screen.klippy_config.getfloat("Variables", "cam_ypos")
+            z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")            
         except:
             logging.error("Couldn't get the calibration camera position.")
             self._screen.show_popup_message(_("Couldn't get the calibration camera position."), level=2)
