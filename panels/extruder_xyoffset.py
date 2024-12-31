@@ -556,10 +556,23 @@ class Panel(ScreenPanel):
             logging.info(f"Raw offset values - ox: {self.pos['ox']}, oy: {self.pos['oy']}")
             self.pos['e1_xoffset'] += self.pos['ox']
             self.pos['e1_yoffset'] += self.pos['oy']
+            if self.calibration_mode == 'auto':
+                try:    
+                    origin_x = self._screen.klippy_config.getfloat("Variables", "origin_offset_x")
+                    origin_y = self._screen.klippy_config.getfloat("Variables", "origin_offset_y")
+                    self.pos['ox'] = self.pos['ox'] + origin_x
+                    self.pos['oy'] = self.pos['oy'] + origin_y
+                except Exception as e:
+                    self._screen.show_popup_message(_("Error getting origin offset values: %s") % e, level=2)
+                    logging.error(f"Error getting origin offset values: {e}")
+                    return
             try:
                 self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
                 self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
                 if self.calibration_mode == 'manual':
+                    # 手动校准时保存原始偏移值
+                    self._screen.klippy_config.set("Variables", "origin_offset_x", f"{self.pos['e1_xoffset']:.2f}")
+                    self._screen.klippy_config.set("Variables", "origin_offset_y", f"{self.pos['e1_yoffset']:.2f}")
                     self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
                     self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
                 logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
