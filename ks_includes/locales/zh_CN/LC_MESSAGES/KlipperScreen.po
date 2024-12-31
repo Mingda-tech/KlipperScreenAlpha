@@ -1029,7 +1029,7 @@ msgid "Please wait for the camera initialization to complete."
 msgstr "请等待摄像头初始化完成。"
 
 msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
-msgstr "请等待摄像头的补光灯点亮5秒，然后点击“开始”。"
+msgstr "请等待摄像头的补光灯点亮5秒，然后点击'开始'"
 
 msgid "Couldn't get the calibration camera position."
 msgstr "无法获取校准摄像头位置。"
@@ -1526,7 +1526,7 @@ msgid "RESUME error:no fil"
 msgstr "恢复错误：无耗材"
 
 msgid "RESUME error:autofill no fil"
-msgstr "恢复错误：自动进料无耗材"
+msgstr "恢复错误：自动进料耗材"
 
 msgid "Printer not homed"
 msgstr "打印机未回零"
@@ -1563,3 +1563,60 @@ msgstr "复制打印"
 
 msgid "Mirror Print"
 msgstr "镜像打印"
+
+msgid "Manual Calibration"
+msgstr "手动校准"
+
+msgid "Auto Calibration" 
+msgstr "自动校准"
+
+msgid "Calibration successful!"
+msgstr "校准成功!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "自动校准失败。请清理喷嘴后重试。"
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "自动校准功能不可用。请安装所需依赖。"
+
+msgid "Left extruder template saved"
+msgstr "左喷头模板已保存"
+
+msgid "Right extruder template saved"
+msgstr "右喷头模板已保存"
+
+msgid "Failed to save template"
+msgstr "保存模板失败"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "未找到模板图像。请先进行手动校准。"
+
+msgid "Getting image of left extruder"
+msgstr "正在获取左喷头图像"
+
+msgid "Getting image of right extruder"
+msgstr "正在获取右喷头图像"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "左喷头校准失败。请清理喷嘴后重试。"
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "右喷头校准失败。请清理喷嘴后重试。"
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "左喷头位置: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "右喷头偏移: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "请等待摄像头的补光灯点亮5秒，然后点击'手动校准'或'自动校准'"
+
+msgid "The door is open."
+msgstr "门已打开"
+
+msgid "The door is closed."
+msgstr "门已关闭"
+
+msgid "Error getting origin offset values: %s"
+msgstr "获取原始偏移值错误: %s"
