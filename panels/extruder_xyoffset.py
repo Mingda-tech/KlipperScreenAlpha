@@ -6,6 +6,8 @@ import mpv
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
 from gi.repository import GLib
+import math
+import time
 
 # 尝试导入可选依赖
 try:
@@ -347,13 +349,31 @@ class Panel(ScreenPanel):
                 perfect_center = (131, 141)
             self.calibrator = MdAutoCalibrator(ip, perfect_center)
 
+        # 添加校准相关变量
+        self.calibration_data = {
+            'left': {
+                'first_offset': None,
+                'moved_distance': None,
+                'retry_count': 0
+            },
+            'right': {
+                'first_offset': None,
+                'moved_distance': None,
+                'retry_count': 0
+            }
+        }
+        self.min_move_ratio = 0.1
+        self.max_move_ratio = 0.3
+        self.min_offset_threshold = 1
+        self.max_offset_threshold = 50
+
     def process_update(self, action, data):
         if action == "notify_gcode_response" and self.calibration_mode == 'auto':
             # 监听 gcode 响应消息
-             if "auto_calibration_move_complete" in data:
+            if "auto_calibration_move_complete" in data:
                 logging.info("Received move complete message, waiting 3 seconds before calibration")
                 # 使用 GLib.timeout_add 来实现3秒延时
-                GLib.timeout_add(3000, self._delayed_calibration)
+                GLib.timeout_add(3000, self._calculate_position)
                 if self.current_calibrating == "left":
                     self._screen.show_popup_message(_("Left extruder calibration started"), level=1)
                 elif self.current_calibrating == "right":                
@@ -726,11 +746,41 @@ class Panel(ScreenPanel):
         logging.info("Starting left calibration")
         result, offset = self.calibrator.startCalibration()
         if result:
-            self.left_offset = offset
-            # 切换到右喷头继续校准
-            self.current_calibrating = "right"
-            self.change_extruder(None, "extruder1")
-            self._calculate_position()
+            cal_data = self.calibration_data['left']
+            
+            if cal_data['retry_count'] == 0:
+                # 第一次测量
+                cal_data['first_offset'] = offset
+                if abs(offset[0]) > self.min_offset_threshold or abs(offset[1]) > self.min_offset_threshold:
+                    move_ratio = self.calculate_move_ratio(offset)
+                    adjust_x = -offset[0] * move_ratio
+                    adjust_y = -offset[1] * move_ratio
+                    cal_data['moved_distance'] = (adjust_x, adjust_y)
+                    cal_data['retry_count'] = 1
+                    
+                    script = [
+                        f"{KlippyGcodes.MOVE_RELATIVE}",
+                        f"G1 X{adjust_x} Y{adjust_y} F3000",
+                        "M400",
+                        "RESPOND TYPE=command MSG=auto_calibration_move_complete"
+                    ]
+                    self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
+                else:
+                    self.left_offset = offset
+                    self.current_calibrating = "right"
+                    self.change_extruder(None, "extruder1")
+                    self._calculate_position()
+            else:
+                # 第二次测量，计算实际偏移
+                real_offset = self.calculate_real_offset(
+                    cal_data['first_offset'],
+                    offset,
+                    cal_data['moved_distance']
+                )
+                self.left_offset = real_offset
+                self.current_calibrating = "right"
+                self.change_extruder(None, "extruder1")
+                self._calculate_position()
         else:
             self._screen.show_popup_message(
                 _("Left extruder calibration failed. Please clean the nozzle and try again."),
@@ -742,25 +792,90 @@ class Panel(ScreenPanel):
         logging.info("Starting right calibration")
         result, offset = self.calibrator.startCalibration()
         if result:
-            if self.left_offset is not None:
-                self.pos['ox'] = offset[0] - self.left_offset[0]
-                self.pos['oy'] = offset[1] - self.left_offset[1]
-                self.save_offset(None)
+            cal_data = self.calibration_data['right']
+            
+            if cal_data['retry_count'] == 0:
+                # 第一次测量
+                cal_data['first_offset'] = offset
+                if abs(offset[0]) > self.min_offset_threshold or abs(offset[1]) > self.min_offset_threshold:
+                    move_ratio = self.calculate_move_ratio(offset)
+                    adjust_x = -offset[0] * move_ratio
+                    adjust_y = -offset[1] * move_ratio
+                    cal_data['moved_distance'] = (adjust_x, adjust_y)
+                    cal_data['retry_count'] = 1
+                    
+                    script = [
+                        f"{KlippyGcodes.MOVE_RELATIVE}",
+                        f"G1 X{adjust_x} Y{adjust_y} F3000",
+                        "M400",
+                        "RESPOND TYPE=command MSG=auto_calibration_move_complete"
+                    ]
+                    self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
+                else:
+                    if self.left_offset is not None:
+                        self.pos['ox'] = offset[0] - self.left_offset[0]
+                        self.pos['oy'] = offset[1] - self.left_offset[1]
+                        self.save_offset(None)
+            else:
+                # 第二次测量，计算实际偏移
+                real_offset = self.calculate_real_offset(
+                    cal_data['first_offset'],
+                    offset,
+                    cal_data['moved_distance']
+                )
+                if self.left_offset is not None:
+                    self.pos['ox'] = real_offset[0] - self.left_offset[0]
+                    self.pos['oy'] = real_offset[1] - self.left_offset[1]
+                    self.save_offset(None)
         else:
             self._screen.show_popup_message(
                 _("Right extruder calibration failed. Please clean the nozzle and try again."),
                 level=2
             )
 
-    def _delayed_calibration(self):
-        """延时3秒后执行校准"""
-        logging.info("Starting delayed calibration")
-        if self.current_calibrating == "left":
-            self._start_left_calibration()
-        elif self.current_calibrating == "right":
-            self._start_right_calibration()
-        # 返回 False 以防止重复执行
-        return False
+    def _wait_for_motion(self):
+        """等待运动完成"""
+        while self._printer.get_stat("toolhead", "status") == "moving":
+            time.sleep(0.1)
+
+    def calculate_move_ratio(self, offset):
+        """根据偏移值大小计算移动比例"""
+        magnitude = math.sqrt(offset[0]**2 + offset[1]**2)
+        if magnitude <= self.min_offset_threshold:
+            return self.min_move_ratio
+        elif magnitude >= self.max_offset_threshold:
+            return self.max_move_ratio
+        else:
+            return self.min_move_ratio + (self.max_move_ratio - self.min_move_ratio) * \
+                   (magnitude - self.min_offset_threshold) / (self.max_offset_threshold - self.min_offset_threshold)
+
+    def calculate_real_offset(self, first_offset, second_offset, moved_distance):
+        """
+        计算实际偏移值
+        first_offset: 第一次测量的像素偏移值
+        second_offset: 第二次测量的像素偏移值
+        moved_distance: 实际移动的距离(mm)
+        """
+        # 计算两次测量的像素差值
+        pixel_diff_x = first_offset[0] - second_offset[0]
+        pixel_diff_y = first_offset[1] - second_offset[1]
+        
+        # 计算像素/毫米比例
+        # 由于我们知道moved_distance是实际移动的距离,可以直接计算比例
+        scale_x = abs(pixel_diff_x / moved_distance[0]) if moved_distance[0] != 0 else 0
+        scale_y = abs(pixel_diff_y / moved_distance[1]) if moved_distance[1] != 0 else 0
+        
+        # 使用第一次测量的像素偏移值计算实际偏移
+        real_offset_x = first_offset[0] / scale_x if scale_x != 0 else 0
+        real_offset_y = first_offset[1] / scale_y if scale_y != 0 else 0
+        
+        logging.info(f"Pixel difference: ({pixel_diff_x:.3f}, {pixel_diff_y:.3f})px")
+        logging.info(f"Moved distance: ({moved_distance[0]:.3f}, {moved_distance[1]:.3f})mm")
+        logging.info(f"Scale: ({scale_x:.3f}, {scale_y:.3f})px/mm")
+        logging.info(f"First offset(pixels): ({first_offset[0]:.3f}, {first_offset[1]:.3f})")
+        logging.info(f"Real offset(mm): ({real_offset_x:.3f}, {real_offset_y:.3f})")
+        
+        return real_offset_x, real_offset_y
 
 def create_symbolic_link(source_path, link_path):
     if os.path.exists(link_path):
