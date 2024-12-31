@@ -1484,3 +1484,60 @@ msgstr "Kopyalama Baskı"
 
 msgid "Mirror Print"
 msgstr "Ayna Baskı"
+
+msgid "Manual Calibration"
+msgstr "Manuel Kalibrasyon"
+
+msgid "Auto Calibration"
+msgstr "Otomatik Kalibrasyon"
+
+msgid "Calibration successful!"
+msgstr "Kalibrasyon başarılı!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Otomatik kalibrasyon başarısız oldu. Lütfen nozülü temizleyin ve tekrar deneyin."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Otomatik kalibrasyon kullanılamıyor. Lütfen gerekli bağımlılıkları yükleyin."
+
+msgid "Left extruder template saved"
+msgstr "Sol ekstruder şablonu kaydedildi"
+
+msgid "Right extruder template saved"
+msgstr "Sağ ekstruder şablonu kaydedildi"
+
+msgid "Failed to save template"
+msgstr "Şablon kaydedilemedi"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Şablon görüntüsü bulunamadı. Lütfen önce manuel kalibrasyon yapın."
+
+msgid "Getting image of left extruder"
+msgstr "Sol ekstruder görüntüsü alınıyor"
+
+msgid "Getting image of right extruder"
+msgstr "Sağ ekstruder görüntüsü alınıyor"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Sol ekstruder kalibrasyonu başarısız oldu. Lütfen nozülü temizleyin ve tekrar deneyin."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Sağ ekstruder kalibrasyonu başarısız oldu. Lütfen nozülü temizleyin ve tekrar deneyin."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "sol ekstruder konumu: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Sağ ekstruder ofseti: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "'Manuel Kalibrasyon' veya 'Otomatik Kalibrasyon'a tıklamadan önce kameranın dolgu ışığının 5 saniye boyunca yanmasını bekleyin"
+
+msgid "The door is open."
+msgstr "Kapı açık."
+
+msgid "The door is closed."
+msgstr "Kapı kapalı."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Orijin ofset değerleri alınırken hata oluştu: %s"

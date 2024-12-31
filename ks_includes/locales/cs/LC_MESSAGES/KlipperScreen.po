@@ -1305,3 +1305,60 @@ msgid "Copy Print"
 msgstr "Kopírovat tisk"
 msgid "Mirror Print"
 msgstr "Zrcadlový tisk"
+
+msgid "Manual Calibration"
+msgstr "Ruční kalibrace"
+
+msgid "Auto Calibration"
+msgstr "Automatická kalibrace"
+
+msgid "Calibration successful!"
+msgstr "Kalibrace úspěšná!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Automatická kalibrace selhala. Vyčistěte trysku a zkuste to znovu."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Automatická kalibrace není k dispozici. Nainstalujte prosím požadované závislosti."
+
+msgid "Left extruder template saved"
+msgstr "Šablona levého extruderu uložena"
+
+msgid "Right extruder template saved"
+msgstr "Šablona pravého extruderu uložena"
+
+msgid "Failed to save template"
+msgstr "Nepodařilo se uložit šablonu"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Nebyly nalezeny žádné šablony. Nejprve proveďte ruční kalibraci."
+
+msgid "Getting image of left extruder"
+msgstr "Získávání snímku levého extruderu"
+
+msgid "Getting image of right extruder"
+msgstr "Získávání snímku pravého extruderu"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibrace levého extruderu selhala. Vyčistěte trysku a zkuste to znovu."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibrace pravého extruderu selhala. Vyčistěte trysku a zkuste to znovu."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "pozice levého extruderu: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "offset pravého extruderu: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Počkejte prosím 5 sekund na rozsvícení přisvětlovacího světla kamery před kliknutím na 'Ruční kalibrace' nebo 'Automatická kalibrace'"
+
+msgid "The door is open."
+msgstr "Dvířka jsou otevřená."
+
+msgid "The door is closed."
+msgstr "Dvířka jsou zavřená."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Chyba při získávání hodnot původního offsetu: %s"

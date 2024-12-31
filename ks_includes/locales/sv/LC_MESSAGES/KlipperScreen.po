@@ -1455,3 +1455,60 @@ msgstr "Kopiera utskrift"
 
 msgid "Mirror Print"
 msgstr "Spegelvänd utskrift"
+
+msgid "Manual Calibration"
+msgstr "Manuell kalibrering"
+
+msgid "Auto Calibration"
+msgstr "Automatisk kalibrering"
+
+msgid "Calibration successful!"
+msgstr "Kalibrering lyckades!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Automatisk kalibrering misslyckades. Rengör munstycket och försök igen."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Automatisk kalibrering är inte tillgänglig. Installera nödvändiga beroenden."
+
+msgid "Left extruder template saved"
+msgstr "Mall för vänster extruder sparad"
+
+msgid "Right extruder template saved"
+msgstr "Mall för höger extruder sparad"
+
+msgid "Failed to save template"
+msgstr "Kunde inte spara mallen"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Inga mallbilder hittades. Utför manuell kalibrering först."
+
+msgid "Getting image of left extruder"
+msgstr "Hämtar bild av vänster extruder"
+
+msgid "Getting image of right extruder"
+msgstr "Hämtar bild av höger extruder"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibrering av vänster extruder misslyckades. Rengör munstycket och försök igen."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibrering av höger extruder misslyckades. Rengör munstycket och försök igen."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "vänster extruder position: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Höger extruder offset är (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Vänta 5 sekunder tills kamerans fyllnadsljus tänds innan du klickar på 'Manuell kalibrering' eller 'Automatisk kalibrering'"
+
+msgid "The door is open."
+msgstr "Dörren är öppen."
+
+msgid "The door is closed."
+msgstr "Dörren är stängd."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Fel vid hämtning av ursprungliga offsetvärden: %s"

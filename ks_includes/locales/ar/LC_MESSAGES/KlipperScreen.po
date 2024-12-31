@@ -1429,3 +1429,60 @@ msgid "Copy Print"
 msgstr "نسخ الطباعة"
 msgid "Mirror Print"
 msgstr "طباعة معكوسة"
+
+msgid "Manual Calibration"
+msgstr "المعايرة اليدوية"
+
+msgid "Auto Calibration"
+msgstr "المعايرة التلقائية"
+
+msgid "Calibration successful!"
+msgstr "تمت المعايرة بنجاح!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "فشلت المعايرة التلقائية. يرجى تنظيف الفوهة والمحاولة مرة أخرى."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "المعايرة التلقائية غير متوفرة. يرجى تثبيت التبعيات المطلوبة."
+
+msgid "Left extruder template saved"
+msgstr "تم حفظ قالب الباثق الأيسر"
+
+msgid "Right extruder template saved"
+msgstr "تم حفظ قالب الباثق الأيمن"
+
+msgid "Failed to save template"
+msgstr "فشل حفظ القالب"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "لم يتم العثور على صور القالب. يرجى إجراء المعايرة اليدوية أولاً."
+
+msgid "Getting image of left extruder"
+msgstr "جاري التقاط صورة الباثق الأيسر"
+
+msgid "Getting image of right extruder"
+msgstr "جاري التقاط صورة الباثق الأيمن"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "فشلت معايرة الباثق الأيسر. يرجى تنظيف الفوهة والمحاولة مرة أخرى."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "فشلت معايرة الباثق الأيمن. يرجى تنظيف الفوهة والمحاولة مرة أخرى."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "موضع الباثق الأيسر: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "إزاحة الباثق الأيمن: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "يرجى الانتظار حتى يضيء ضوء الكاميرا لمدة 5 ثوانٍ قبل النقر على 'المعايرة اليدوية' أو 'المعايرة التلقائية'"
+
+msgid "The door is open."
+msgstr "الباب مفتوح."
+
+msgid "The door is closed."
+msgstr "الباب مغلق."
+
+msgid "Error getting origin offset values: %s"
+msgstr "خطأ في الحصول على قيم الإزاحة الأصلية: %s"

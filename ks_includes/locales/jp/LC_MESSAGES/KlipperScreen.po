@@ -1402,3 +1402,60 @@ msgstr "コピー印刷"
 
 msgid "Mirror Print"
 msgstr "ミラー印刷"
+
+msgid "Manual Calibration"
+msgstr "手動キャリブレーション"
+
+msgid "Auto Calibration"
+msgstr "自動キャリブレーション"
+
+msgid "Calibration successful!"
+msgstr "キャリブレーション成功！"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "自動キャリブレーションに失敗しました。ノズルを清掃して再試行してください。"
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "自動キャリブレーションは利用できません。必要な依存関係をインストールしてください。"
+
+msgid "Left extruder template saved"
+msgstr "左エクストルーダーのテンプレートを保存しました"
+
+msgid "Right extruder template saved"
+msgstr "右エクストルーダーのテンプレートを保存しました"
+
+msgid "Failed to save template"
+msgstr "テンプレートの保存に失敗しました"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "テンプレート画像が見つかりません。まず手動キャリブレーションを実行してください。"
+
+msgid "Getting image of left extruder"
+msgstr "左エクストルーダーの画像を取得中"
+
+msgid "Getting image of right extruder"
+msgstr "右エクストルーダーの画像を取得中"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "左エクストルーダーのキャリブレーションに失敗しました。ノズルを清掃して再試行してください。"
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "右エクストルーダーのキャリブレーションに失敗しました。ノズルを清掃して再試行してください。"
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "左エクストルーダー位置: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "右エクストルーダーのオフセット: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "カメラのフィルライトが5秒間点灯するまで待ってから、'手動キャリブレーション'または'自動キャリブレーション'をクリックしてください"
+
+msgid "The door is open."
+msgstr "ドアが開いています。"
+
+msgid "The door is closed."
+msgstr "ドアが閉じています。"
+
+msgid "Error getting origin offset values: %s"
+msgstr "原点オフセット値の取得エラー: %s"

@@ -1537,3 +1537,60 @@ msgstr "Stampa copia"
 
 msgid "Mirror Print"
 msgstr "Stampa speculare"
+
+msgid "Manual Calibration"
+msgstr "Calibrazione Manuale"
+
+msgid "Auto Calibration"
+msgstr "Calibrazione Automatica"
+
+msgid "Calibration successful!"
+msgstr "Calibrazione riuscita!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Calibrazione automatica fallita. Pulire l'ugello e riprovare."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "La calibrazione automatica non è disponibile. Installare le dipendenze richieste."
+
+msgid "Left extruder template saved"
+msgstr "Template dell'estrusore sinistro salvato"
+
+msgid "Right extruder template saved"
+msgstr "Template dell'estrusore destro salvato"
+
+msgid "Failed to save template"
+msgstr "Impossibile salvare il template"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Nessuna immagine template trovata. Eseguire prima la calibrazione manuale."
+
+msgid "Getting image of left extruder"
+msgstr "Acquisizione immagine dell'estrusore sinistro"
+
+msgid "Getting image of right extruder"
+msgstr "Acquisizione immagine dell'estrusore destro"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Calibrazione dell'estrusore sinistro fallita. Pulire l'ugello e riprovare."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Calibrazione dell'estrusore destro fallita. Pulire l'ugello e riprovare."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "posizione estrusore sinistro: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Offset estrusore destro: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Attendere 5 secondi che la luce di riempimento della fotocamera si accenda prima di cliccare su 'Calibrazione Manuale' o 'Calibrazione Automatica'"
+
+msgid "The door is open."
+msgstr "Lo sportello è aperto."
+
+msgid "The door is closed."
+msgstr "Lo sportello è chiuso."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Errore nel recupero dei valori di offset di origine: %s"

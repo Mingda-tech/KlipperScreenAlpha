@@ -902,12 +902,6 @@ msgstr "Продовжити"
 #~ msgid "Sort by: "
 #~ msgstr "Сортувати за: "
 
-#~ msgid "Auto Calibration"
-#~ msgstr "Автоматичне калібрування"
-
-#~ msgid "Manual Calibration"
-#~ msgstr "Ручне калібрування"
-
 #~ msgid "NOTE: Edit your printer.cfg to save manual calibration changes."
 #~ msgstr ""
 #~ "ПРИМІТКА. Відредагуйте файл printer.cfg, щоб зберегти зміни калібрування "
@@ -1492,3 +1486,60 @@ msgstr "Копіювати друк"
 
 msgid "Mirror Print"
 msgstr "Дзеркальний друк"
+
+msgid "Manual Calibration"
+msgstr "Ручне калібрування"
+
+msgid "Auto Calibration"
+msgstr "Автоматичне калібрування"
+
+msgid "Calibration successful!"
+msgstr "Калібрування успішне!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Автоматичне калібрування не вдалося. Будь ласка, очистіть сопло та спробуйте знову."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Автоматичне калібрування недоступне. Будь ласка, встановіть необхідні залежності."
+
+msgid "Left extruder template saved"
+msgstr "Шаблон лівого екструдера збережено"
+
+msgid "Right extruder template saved"
+msgstr "Шаблон правого екструдера збережено"
+
+msgid "Failed to save template"
+msgstr "Не вдалося зберегти шаблон"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Зображення шаблонів не знайдено. Спочатку виконайте ручне калібрування."
+
+msgid "Getting image of left extruder"
+msgstr "Отримання зображення лівого екструдера"
+
+msgid "Getting image of right extruder"
+msgstr "Отримання зображення правого екструдера"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Калібрування лівого екструдера не вдалося. Будь ласка, очистіть сопло та спробуйте знову."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Калібрування правого екструдера не вдалося. Будь ласка, очистіть сопло та спробуйте знову."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "позиція лівого екструдера: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Зміщення правого екструдера: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Будь ласка, зачекайте 5 секунд, поки засвітиться заповнююче світло камери, перш ніж натиснути 'Ручне калібрування' або 'Автоматичне калібрування'"
+
+msgid "The door is open."
+msgstr "Дверцята відкриті."
+
+msgid "The door is closed."
+msgstr "Дверцята закриті."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Помилка отримання значень зміщення початку координат: %s"

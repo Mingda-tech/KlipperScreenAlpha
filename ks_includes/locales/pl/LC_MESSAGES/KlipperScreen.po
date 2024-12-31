@@ -1404,3 +1404,60 @@ msgstr "Drukuj kopię"
 
 msgid "Mirror Print"
 msgstr "Druk lustrzany"
+
+msgid "Manual Calibration"
+msgstr "Kalibracja Ręczna"
+
+msgid "Auto Calibration"
+msgstr "Kalibracja Automatyczna"
+
+msgid "Calibration successful!"
+msgstr "Kalibracja zakończona pomyślnie!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibracja automatyczna nie powiodła się. Wyczyść dyszę i spróbuj ponownie."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Kalibracja automatyczna jest niedostępna. Zainstaluj wymagane zależności."
+
+msgid "Left extruder template saved"
+msgstr "Szablon lewego ekstrudera zapisany"
+
+msgid "Right extruder template saved"
+msgstr "Szablon prawego ekstrudera zapisany"
+
+msgid "Failed to save template"
+msgstr "Nie udało się zapisać szablonu"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Nie znaleziono obrazów szablonu. Najpierw wykonaj kalibrację ręczną."
+
+msgid "Getting image of left extruder"
+msgstr "Pobieranie obrazu lewego ekstrudera"
+
+msgid "Getting image of right extruder"
+msgstr "Pobieranie obrazu prawego ekstrudera"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibracja lewego ekstrudera nie powiodła się. Wyczyść dyszę i spróbuj ponownie."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibracja prawego ekstrudera nie powiodła się. Wyczyść dyszę i spróbuj ponownie."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "pozycja lewego ekstrudera: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Przesunięcie prawego ekstrudera: (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Poczekaj 5 sekund na zaświecenie się światła wypełniającego kamery przed kliknięciem 'Kalibracja Ręczna' lub 'Kalibracja Automatyczna'"
+
+msgid "The door is open."
+msgstr "Drzwi są otwarte."
+
+msgid "The door is closed."
+msgstr "Drzwi są zamknięte."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Błąd podczas pobierania wartości przesunięcia początkowego: %s"

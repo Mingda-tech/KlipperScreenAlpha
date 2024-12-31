@@ -1550,3 +1550,60 @@ msgstr "Kopeeri printimine"
 
 msgid "Mirror Print"
 msgstr "Peegelprintimine"
+
+msgid "Manual Calibration"
+msgstr "Käsitsi kalibreerimine"
+
+msgid "Auto Calibration"
+msgstr "Automaatne kalibreerimine"
+
+msgid "Calibration successful!"
+msgstr "Kalibreerimine õnnestus!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Automaatne kalibreerimine ebaõnnestus. Palun puhastage düüs ja proovige uuesti."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Automaatne kalibreerimine pole saadaval. Palun installige vajalikud sõltuvused."
+
+msgid "Left extruder template saved"
+msgstr "Vasaku ekstruderi mall salvestatud"
+
+msgid "Right extruder template saved"
+msgstr "Parema ekstruderi mall salvestatud"
+
+msgid "Failed to save template"
+msgstr "Malli salvestamine ebaõnnestus"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Malli pilte ei leitud. Palun teostage esmalt käsitsi kalibreerimine."
+
+msgid "Getting image of left extruder"
+msgstr "Vasaku ekstruderi pildi hankimine"
+
+msgid "Getting image of right extruder"
+msgstr "Parema ekstruderi pildi hankimine"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Vasaku ekstruderi kalibreerimine ebaõnnestus. Palun puhastage düüs ja proovige uuesti."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Parema ekstruderi kalibreerimine ebaõnnestus. Palun puhastage düüs ja proovige uuesti."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "vasaku ekstruderi pos: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Parema ekstruderi nihe on (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Palun oodake 5 sekundit, kuni kaamera täitevalgus süttib, enne kui klõpsate 'Käsitsi kalibreerimine' või 'Automaatne kalibreerimine'"
+
+msgid "The door is open."
+msgstr "Uks on avatud."
+
+msgid "The door is closed."
+msgstr "Uks on suletud."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Viga algse nihke väärtuste hankimisel: %s"

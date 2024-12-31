@@ -1576,3 +1576,60 @@ msgid "Copy Print"
 msgstr "Imprimir copia"
 msgid "Mirror Print"
 msgstr "Impresión espejo"
+
+msgid "Manual Calibration"
+msgstr "Calibración Manual"
+
+msgid "Auto Calibration"
+msgstr "Calibración Automática"
+
+msgid "Calibration successful!"
+msgstr "¡Calibración exitosa!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "La calibración automática falló. Por favor, limpie la boquilla e inténtelo de nuevo."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "La calibración automática no está disponible. Por favor, instale las dependencias requeridas."
+
+msgid "Left extruder template saved"
+msgstr "Plantilla del extrusor izquierdo guardada"
+
+msgid "Right extruder template saved"
+msgstr "Plantilla del extrusor derecho guardada"
+
+msgid "Failed to save template"
+msgstr "Error al guardar la plantilla"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "No se encontraron imágenes de plantilla. Por favor, realice primero la calibración manual."
+
+msgid "Getting image of left extruder"
+msgstr "Obteniendo imagen del extrusor izquierdo"
+
+msgid "Getting image of right extruder"
+msgstr "Obteniendo imagen del extrusor derecho"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "La calibración del extrusor izquierdo falló. Por favor, limpie la boquilla e inténtelo de nuevo."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "La calibración del extrusor derecho falló. Por favor, limpie la boquilla e inténtelo de nuevo."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "posición del extrusor izquierdo: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "El desplazamiento del extrusor derecho es (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Por favor, espere 5 segundos a que se encienda la luz de relleno de la cámara antes de hacer clic en 'Calibración Manual' o 'Calibración Automática'"
+
+msgid "The door is open."
+msgstr "La puerta está abierta."
+
+msgid "The door is closed."
+msgstr "La puerta está cerrada."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Error al obtener los valores de desplazamiento de origen: %s"

@@ -1367,3 +1367,60 @@ msgid "Copy Print"
 msgstr ""
 msgid "Mirror Print"
 msgstr ""
+
+msgid "Manual Calibration"
+msgstr ""
+
+msgid "Auto Calibration"
+msgstr ""
+
+msgid "Calibration successful!"
+msgstr ""
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr ""
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr ""
+
+msgid "Left extruder template saved"
+msgstr ""
+
+msgid "Right extruder template saved"
+msgstr ""
+
+msgid "Failed to save template"
+msgstr ""
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr ""
+
+msgid "Getting image of left extruder"
+msgstr ""
+
+msgid "Getting image of right extruder"
+msgstr ""
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr ""
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr ""
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr ""
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr ""
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr ""
+
+msgid "The door is open."
+msgstr ""
+
+msgid "The door is closed."
+msgstr ""
+
+msgid "Error getting origin offset values: %s"
+msgstr ""

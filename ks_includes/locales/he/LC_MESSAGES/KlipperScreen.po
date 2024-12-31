@@ -877,12 +877,6 @@ msgstr "המשך"
 #~ msgid "Machine"
 #~ msgstr "מכונה"
 
-#~ msgid "Manual Calibration"
-#~ msgstr "כיול ידני"
-
-#~ msgid "Auto Calibration"
-#~ msgstr "כיול אוטומטי"
-
 #~ msgid "Sort by: "
 #~ msgstr "מיין לפי: "
 
@@ -1597,3 +1591,60 @@ msgstr "הדפסת העתק"
 
 msgid "Mirror Print"
 msgstr "הדפסת מראה"
+
+msgid "Manual Calibration"
+msgstr "כיול ידני"
+
+msgid "Auto Calibration"
+msgstr "כיול אוטומטי"
+
+msgid "Calibration successful!"
+msgstr "הכיול הצליח!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "הכיול האוטומטי נכשל. אנא נקה את הנחיר ונסה שוב."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "כיול אוטומטי אינו זמין. אנא התקן את התלויות הנדרשות."
+
+msgid "Left extruder template saved"
+msgstr "תבנית האקסטרודר השמאלי נשמרה"
+
+msgid "Right extruder template saved"
+msgstr "תבנית האקסטרודר הימני נשמרה"
+
+msgid "Failed to save template"
+msgstr "שמירת התבנית נכשלה"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "לא נמצאו תמונות תבנית. אנא בצע כיול ידני תחילה."
+
+msgid "Getting image of left extruder"
+msgstr "מקבל תמונה של האקסטרודר השמאלי"
+
+msgid "Getting image of right extruder"
+msgstr "מקבל תמונה של האקסטרודר הימני"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "כיול האקסטרודר השמאלי נכשל. אנא נקה את הנחיר ונסה שוב."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "כיול האקסטרודר הימני נכשל. אנא נקה את הנחיר ונסה שוב."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "מיקום אקסטרודר שמאלי: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "היסט האקסטרודר הימני הוא (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "אנא המתן 5 שניות עד שאור המילוי של המצלמה יידלק לפני לחיצה על 'כיול ידני' או 'כיול אוטומטי'"
+
+msgid "The door is open."
+msgstr "הדלת פתוחה."
+
+msgid "The door is closed."
+msgstr "הדלת סגורה."
+
+msgid "Error getting origin offset values: %s"
+msgstr "שגיאה בקבלת ערכי היסט המקור: %s"

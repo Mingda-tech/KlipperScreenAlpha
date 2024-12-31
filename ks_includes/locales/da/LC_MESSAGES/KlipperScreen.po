@@ -1408,3 +1408,60 @@ msgid "Copy Print"
 msgstr "Kopier print"
 msgid "Mirror Print"
 msgstr "Spejlvendt print"
+
+msgid "Manual Calibration"
+msgstr "Manuel Kalibrering"
+
+msgid "Auto Calibration"
+msgstr "Automatisk Kalibrering"
+
+msgid "Calibration successful!"
+msgstr "Kalibrering lykkedes!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Automatisk kalibrering mislykkedes. Rengør dysen og prøv igen."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Automatisk kalibrering er ikke tilgængelig. Installer venligst de nødvendige afhængigheder."
+
+msgid "Left extruder template saved"
+msgstr "Venstre ekstruder skabelon gemt"
+
+msgid "Right extruder template saved"
+msgstr "Højre ekstruder skabelon gemt"
+
+msgid "Failed to save template"
+msgstr "Kunne ikke gemme skabelon"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Ingen skabelonbilleder fundet. Udfør venligst manuel kalibrering først."
+
+msgid "Getting image of left extruder"
+msgstr "Henter billede af venstre ekstruder"
+
+msgid "Getting image of right extruder"
+msgstr "Henter billede af højre ekstruder"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibrering af venstre ekstruder mislykkedes. Rengør dysen og prøv igen."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibrering af højre ekstruder mislykkedes. Rengør dysen og prøv igen."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "venstre ekstruder position: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Højre ekstruder offset er (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Vent venligst på at kameraets udfyldningslys lyser i 5 sekunder før du klikker på 'Manuel Kalibrering' eller 'Automatisk Kalibrering'"
+
+msgid "The door is open."
+msgstr "Døren er åben."
+
+msgid "The door is closed."
+msgstr "Døren er lukket."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Fejl ved hentning af oprindelige offset-værdier: %s"

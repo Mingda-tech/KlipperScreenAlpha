@@ -1543,3 +1543,60 @@ msgstr "複製列印"
 
 msgid "Mirror Print"
 msgstr "鏡像列印"
+
+msgid "Manual Calibration"
+msgstr "手動校準"
+
+msgid "Auto Calibration"
+msgstr "自動校準"
+
+msgid "Calibration successful!"
+msgstr "校準成功！"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "自動校準失敗。請清潔噴嘴後重試。"
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "自動校準功能不可用。請安裝所需的相依套件。"
+
+msgid "Left extruder template saved"
+msgstr "已儲存左噴頭範本"
+
+msgid "Right extruder template saved"
+msgstr "已儲存右噴頭範本"
+
+msgid "Failed to save template"
+msgstr "儲存範本失敗"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "找不到範本影像。請先執行手動校準。"
+
+msgid "Getting image of left extruder"
+msgstr "正在取得左噴頭影像"
+
+msgid "Getting image of right extruder"
+msgstr "正在取得右噴頭影像"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "左噴頭校準失敗。請清潔噴嘴後重試。"
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "右噴頭校準失敗。請清潔噴嘴後重試。"
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "左噴頭位置：(%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "右噴頭偏移：(%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "請等待相機補光燈亮起5秒後，再點擊「手動校準」或「自動校準」"
+
+msgid "The door is open."
+msgstr "機門已開啟"
+
+msgid "The door is closed."
+msgstr "機門已關閉"
+
+msgid "Error getting origin offset values: %s"
+msgstr "取得原點偏移值時發生錯誤：%s"

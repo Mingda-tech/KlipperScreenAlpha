@@ -1626,3 +1626,60 @@ msgstr "Kopiraj tisk"
 
 msgid "Mirror Print"
 msgstr "Zrcalni tisk"
+
+msgid "Manual Calibration"
+msgstr "Ročna kalibracija"
+
+msgid "Auto Calibration"
+msgstr "Samodejna kalibracija"
+
+msgid "Calibration successful!"
+msgstr "Kalibracija uspešna!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Samodejna kalibracija ni uspela. Očistite šobo in poskusite znova."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Samodejna kalibracija ni na voljo. Namestite potrebne odvisnosti."
+
+msgid "Left extruder template saved"
+msgstr "Predloga levega ekstruderja shranjena"
+
+msgid "Right extruder template saved"
+msgstr "Predloga desnega ekstruderja shranjena"
+
+msgid "Failed to save template"
+msgstr "Shranjevanje predloge ni uspelo"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Ni najdenih slik predlog. Najprej izvedite ročno kalibracijo."
+
+msgid "Getting image of left extruder"
+msgstr "Pridobivanje slike levega ekstruderja"
+
+msgid "Getting image of right extruder"
+msgstr "Pridobivanje slike desnega ekstruderja"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibracija levega ekstruderja ni uspela. Očistite šobo in poskusite znova."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Kalibracija desnega ekstruderja ni uspela. Očistite šobo in poskusite znova."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "položaj levega ekstruderja: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Odmik desnega ekstruderja je (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Počakajte 5 sekund, da se prižge polnilna luč kamere, preden kliknete 'Ročna kalibracija' ali 'Samodejna kalibracija'"
+
+msgid "The door is open."
+msgstr "Vrata so odprta."
+
+msgid "The door is closed."
+msgstr "Vrata so zaprta."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Napaka pri pridobivanju vrednosti odmika izhodišča: %s"

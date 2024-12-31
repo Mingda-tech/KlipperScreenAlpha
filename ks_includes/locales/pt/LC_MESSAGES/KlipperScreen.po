@@ -1425,3 +1425,60 @@ msgstr "Imprimir cópia"
 
 msgid "Mirror Print"
 msgstr "Impressão espelho"
+
+msgid "Manual Calibration"
+msgstr "Calibração Manual"
+
+msgid "Auto Calibration"
+msgstr "Calibração Automática"
+
+msgid "Calibration successful!"
+msgstr "Calibração bem-sucedida!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Calibração automática falhou. Por favor, limpe o bico e tente novamente."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "A calibração automática não está disponível. Por favor, instale as dependências necessárias."
+
+msgid "Left extruder template saved"
+msgstr "Modelo do extrusor esquerdo salvo"
+
+msgid "Right extruder template saved"
+msgstr "Modelo do extrusor direito salvo"
+
+msgid "Failed to save template"
+msgstr "Falha ao salvar o modelo"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Nenhuma imagem de modelo encontrada. Por favor, realize a calibração manual primeiro."
+
+msgid "Getting image of left extruder"
+msgstr "Obtendo imagem do extrusor esquerdo"
+
+msgid "Getting image of right extruder"
+msgstr "Obtendo imagem do extrusor direito"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Calibração do extrusor esquerdo falhou. Por favor, limpe o bico e tente novamente."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Calibração do extrusor direito falhou. Por favor, limpe o bico e tente novamente."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "posição do extrusor esquerdo: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Deslocamento do extrusor direito é (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Por favor, aguarde 5 segundos para a luz de preenchimento da câmera acender antes de clicar em 'Calibração Manual' ou 'Calibração Automática'"
+
+msgid "The door is open."
+msgstr "A porta está aberta."
+
+msgid "The door is closed."
+msgstr "A porta está fechada."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Erro ao obter valores de deslocamento de origem: %s"

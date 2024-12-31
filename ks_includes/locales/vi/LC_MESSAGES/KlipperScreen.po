@@ -1610,3 +1610,60 @@ msgstr "In bản sao"
 
 msgid "Mirror Print"
 msgstr "In gương"
+
+msgid "Manual Calibration"
+msgstr "Hiệu chuẩn thủ công"
+
+msgid "Auto Calibration"
+msgstr "Hiệu chuẩn tự động"
+
+msgid "Calibration successful!"
+msgstr "Hiệu chuẩn thành công!"
+
+msgid "Auto calibration failed. Please clean the nozzle and try again."
+msgstr "Hiệu chuẩn tự động thất bại. Vui lòng làm sạch đầu phun và thử lại."
+
+msgid "Auto calibration is not available. Please install required dependencies."
+msgstr "Hiệu chuẩn tự động không khả dụng. Vui lòng cài đặt các phụ thuộc cần thiết."
+
+msgid "Left extruder template saved"
+msgstr "Đã lưu mẫu đầu phun trái"
+
+msgid "Right extruder template saved"
+msgstr "Đã lưu mẫu đầu phun phải"
+
+msgid "Failed to save template"
+msgstr "Không thể lưu mẫu"
+
+msgid "No template images found. Please perform manual calibration first."
+msgstr "Không tìm thấy hình ảnh mẫu. Vui lòng thực hiện hiệu chuẩn thủ công trước."
+
+msgid "Getting image of left extruder"
+msgstr "Đang lấy hình ảnh đầu phun trái"
+
+msgid "Getting image of right extruder"
+msgstr "Đang lấy hình ảnh đầu phun phải"
+
+msgid "Left extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Hiệu chuẩn đầu phun trái thất bại. Vui lòng làm sạch đầu phun và thử lại."
+
+msgid "Right extruder calibration failed. Please clean the nozzle and try again."
+msgstr "Hiệu chuẩn đầu phun phải thất bại. Vui lòng làm sạch đầu phun và thử lại."
+
+msgid "left extruder pos: (%.3f, %.3f, %.3f)"
+msgstr "vị trí đầu phun trái: (%.3f, %.3f, %.3f)"
+
+msgid "Right extruder offset is (%.3f, %.3f, %.3f)"
+msgstr "Độ lệch đầu phun phải là (%.3f, %.3f, %.3f)"
+
+msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"
+msgstr "Vui lòng đợi 5 giây cho đèn fill của camera sáng lên trước khi nhấp vào 'Hiệu chuẩn thủ công' hoặc 'Hiệu chuẩn tự động'"
+
+msgid "The door is open."
+msgstr "Cửa đang mở."
+
+msgid "The door is closed."
+msgstr "Cửa đã đóng."
+
+msgid "Error getting origin offset values: %s"
+msgstr "Lỗi khi lấy giá trị độ lệch gốc: %s"
