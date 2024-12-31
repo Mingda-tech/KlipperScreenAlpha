@@ -1591,11 +1591,11 @@ msgstr "保存模板失败"
 msgid "No template images found. Please perform manual calibration first."
 msgstr "未找到模板图像。请先进行手动校准。"
 
-msgid "Left extruder calibration started"
-msgstr "左喷头校准开始"
+msgid "Getting image of left extruder"
+msgstr "正在获取左喷头图像"
 
-msgid "Right extruder calibration started" 
-msgstr "右喷头校准开始"
+msgid "Getting image of right extruder"
+msgstr "正在获取右喷头图像"
 
 msgid "Left extruder calibration failed. Please clean the nozzle and try again."
 msgstr "左喷头校准失败。请清理喷嘴后重试。"
@@ -1617,3 +1617,6 @@ msgstr "门已打开"
 
 msgid "The door is closed."
 msgstr "门已关闭"
+
+msgid "Error getting origin offset values: %s"
+msgstr "获取原始偏移值错误: %s"
