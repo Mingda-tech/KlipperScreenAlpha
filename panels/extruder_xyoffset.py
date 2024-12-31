@@ -373,12 +373,9 @@ class Panel(ScreenPanel):
             if "auto_calibration_move_complete" in data:
                 logging.info("Received move complete message, waiting 3 seconds before calibration")
                 # 使用 GLib.timeout_add 来实现3秒延时
-                GLib.timeout_add(3000, self._calculate_position)
-                if self.current_calibrating == "left":
-                    self._screen.show_popup_message(_("Left extruder calibration started"), level=1)
-                elif self.current_calibrating == "right":                
-                    self._screen.show_popup_message(_("Right extruder calibration started"), level=1)
-        
+                GLib.timeout_add(3000, self._start_calibration)
+                # 移除显示消息，因为在_start_calibration中会显示
+                
         if action != "notify_status_update":
             return
         homed_axes = self._printer.get_stat("toolhead", "homed_axes")
@@ -663,23 +660,24 @@ class Panel(ScreenPanel):
         self.labels['save'].set_sensitive(False)
 
     def _calculate_position(self):
+        """移动到校准位置"""
         try:
-            x_position = self._screen.klippy_config.getfloat("Variables", "cam_xpos")
-            y_position = self._screen.klippy_config.getfloat("Variables", "cam_ypos")
-            z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")            
+            x_position = self._screen.klippy_config.getfloat("Variables", "switch_xpos")
+            y_position = self._screen.klippy_config.getfloat("Variables", "switch_ypos")
+            z_position = self._screen.klippy_config.getfloat("Variables", "switch_zpos")            
         except:
             logging.error("Couldn't get the calibration camera position.")
+            self._screen.show_popup_message(_("Couldn't get the calibration camera position."), level=2)
             return
-        
+
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
         script = [
             f"G0 Z{z_position} F600",
             f"G0 X{x_position} Y{y_position} F3000",
-            "M400",  # 等待所有移动完成
-            "RESPOND TYPE=command MSG=auto_calibration_move_complete"  # 发送移动完成消息
+            "M400",
+            "RESPOND TYPE=command MSG=auto_calibration_move_complete"
         ]
-        self._screen._send_action(None, "printer.gcode.script", 
-                                {"script": "\n".join(script)})
+        self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
         self.pos['z'] = z_position 
         
     def save_config(self):
@@ -876,6 +874,15 @@ class Panel(ScreenPanel):
         logging.info(f"Real offset(mm): ({real_offset_x:.3f}, {real_offset_y:.3f})")
         
         return real_offset_x, real_offset_y
+
+    def _start_calibration(self):
+        """开始校准"""
+        if self.current_calibrating == "left":
+            self._start_left_calibration()
+        elif self.current_calibrating == "right":
+            self._start_right_calibration()
+        # 返回 False 以防止重复执行
+        return False
 
 def create_symbolic_link(source_path, link_path):
     if os.path.exists(link_path):
