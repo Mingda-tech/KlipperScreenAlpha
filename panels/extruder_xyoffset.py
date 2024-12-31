@@ -672,6 +672,7 @@ class Panel(ScreenPanel):
 
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
         script = [
+            f"{KlippyGcodes.MOVE_ABSOLUTE}",
             f"G0 Z{z_position} F600",
             f"G0 X{x_position} Y{y_position} F3000",
             "M400",
