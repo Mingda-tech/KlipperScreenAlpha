@@ -351,16 +351,8 @@ class Panel(ScreenPanel):
 
         # 添加校准相关变量
         self.calibration_data = {
-            'left': {
-                'first_offset': None,
-                'moved_distance': None,
-                'retry_count': 0
-            },
-            'right': {
-                'first_offset': None,
-                'moved_distance': None,
-                'retry_count': 0
-            }
+            'left': {'retry_count': 0, 'moved_distance': (0, 0)},
+            'right': {'retry_count': 0, 'moved_distance': (0, 0)}
         }
         self.min_move_ratio = 0.1
         self.max_move_ratio = 0.3
@@ -763,39 +755,42 @@ class Panel(ScreenPanel):
         if result:
             cal_data = self.calibration_data['left']
             
-            if cal_data['retry_count'] == 0:
-                # 第一次测量
-                cal_data['first_offset'] = offset
-                if abs(offset[0]) > self.min_offset_threshold or abs(offset[1]) > self.min_offset_threshold:
-                    move_ratio = self.calculate_move_ratio(offset)
-                    adjust_x = -offset[0] * move_ratio
-                    adjust_y = -offset[1] * move_ratio
-                    cal_data['moved_distance'] = (adjust_x, adjust_y)
-                    cal_data['retry_count'] = 1
-                    
-                    script = [
-                        f"{KlippyGcodes.MOVE_RELATIVE}",
-                        f"G1 X{adjust_x} Y{adjust_y} F3000",
-                        "M400",
-                        "RESPOND TYPE=command MSG=auto_calibration_move_complete"
-                    ]
-                    self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
-                else:
-                    self.left_offset = offset
-                    self.current_calibrating = "right"
-                    self.change_extruder(None, "extruder1")
-                    self._calculate_position()
-            else:
-                # 第二次测量，计算实际偏移
-                real_offset = self.calculate_real_offset(
-                    cal_data['first_offset'],
-                    offset,
-                    cal_data['moved_distance']
+            # 检查是否已经达到最大重试次数
+            if cal_data['retry_count'] >= 10:
+                self._screen.show_popup_message(
+                    _("Left extruder calibration failed. Please clean the nozzle and try again."),
+                    level=2
                 )
-                self.left_offset = real_offset
+                return
+            
+            # 检查偏移值是否为(0,0)
+            if abs(offset[0]) < 0.001 and abs(offset[1]) < 0.001:
+                # 记录当前左喷头位置
+                self.pos['lx'] = self._printer.get_stat("gcode_move", "gcode_position")[0]
+                self.pos['ly'] = self._printer.get_stat("gcode_move", "gcode_position")[1]
+                logging.info(f"Left extruder position recorded: ({self.pos['lx']}, {self.pos['ly']})")
+                # 切换到右喷头校准
                 self.current_calibrating = "right"
                 self.change_extruder(None, "extruder1")
                 self._calculate_position()
+                return
+            
+            # 计算需要移动的距离
+            # move_ratio = self.calculate_move_ratio(offset)
+            move_ratio = 0.05
+            adjust_x = offset[0] * move_ratio
+            adjust_y = -offset[1] * move_ratio
+            cal_data['moved_distance'] = (adjust_x, adjust_y)
+            cal_data['retry_count'] += 1
+            
+            # 执行移动
+            script = [
+                f"{KlippyGcodes.MOVE_RELATIVE}",
+                f"G1 X{adjust_x} Y{adjust_y} F3000",
+                "M400",
+                "RESPOND TYPE=command MSG=auto_calibration_move_complete"
+            ]
+            self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
         else:
             self._screen.show_popup_message(
                 _("Left extruder calibration failed. Please clean the nozzle and try again."),
@@ -809,39 +804,45 @@ class Panel(ScreenPanel):
         if result:
             cal_data = self.calibration_data['right']
             
-            if cal_data['retry_count'] == 0:
-                # 第一次测量
-                cal_data['first_offset'] = offset
-                if abs(offset[0]) > self.min_offset_threshold or abs(offset[1]) > self.min_offset_threshold:
-                    move_ratio = self.calculate_move_ratio(offset)
-                    adjust_x = -offset[0] * move_ratio
-                    adjust_y = -offset[1] * move_ratio
-                    cal_data['moved_distance'] = (adjust_x, adjust_y)
-                    cal_data['retry_count'] = 1
-                    
-                    script = [
-                        f"{KlippyGcodes.MOVE_RELATIVE}",
-                        f"G1 X{adjust_x} Y{adjust_y} F3000",
-                        "M400",
-                        "RESPOND TYPE=command MSG=auto_calibration_move_complete"
-                    ]
-                    self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
-                else:
-                    if self.left_offset is not None:
-                        self.pos['ox'] = offset[0] - self.left_offset[0]
-                        self.pos['oy'] = offset[1] - self.left_offset[1]
-                        self.save_offset(None)
-            else:
-                # 第二次测量，计算实际偏移
-                real_offset = self.calculate_real_offset(
-                    cal_data['first_offset'],
-                    offset,
-                    cal_data['moved_distance']
+            # 检查是否已经达到最大重试次数
+            if cal_data['retry_count'] >= 10:
+                self._screen.show_popup_message(
+                    _("Right extruder calibration failed. Please clean the nozzle and try again."),
+                    level=2
                 )
-                if self.left_offset is not None:
-                    self.pos['ox'] = real_offset[0] - self.left_offset[0]
-                    self.pos['oy'] = real_offset[1] - self.left_offset[1]
+                return
+            
+            # 检查偏移值是否为(0,0)
+            if abs(offset[0]) < 0.001 and abs(offset[1]) < 0.001:
+                # 记录当前右喷头位置
+                rx = self._printer.get_stat("gcode_move", "gcode_position")[0]
+                ry = self._printer.get_stat("gcode_move", "gcode_position")[1]
+                logging.info(f"Right extruder position recorded: ({rx}, {ry})")
+                
+                # 计算新的偏移值
+                if 'lx' in self.pos and 'ly' in self.pos:
+                    self.pos['ox'] = rx - self.pos['lx']
+                    self.pos['oy'] = ry - self.pos['ly']
+                    logging.info(f"New offset calculated: ({self.pos['ox']}, {self.pos['oy']})")
                     self.save_offset(None)
+                return
+            
+            # 计算需要移动的距离
+            # move_ratio = self.calculate_move_ratio(offset)
+            move_ratio = 0.05
+            adjust_x = offset[0] * move_ratio
+            adjust_y = -offset[1] * move_ratio
+            cal_data['moved_distance'] = (adjust_x, adjust_y)
+            cal_data['retry_count'] += 1
+            
+            # 执行移动
+            script = [
+                f"{KlippyGcodes.MOVE_RELATIVE}",
+                f"G1 X{adjust_x} Y{adjust_y} F3000",
+                "M400",
+                "RESPOND TYPE=command MSG=auto_calibration_move_complete"
+            ]
+            self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
         else:
             self._screen.show_popup_message(
                 _("Right extruder calibration failed. Please clean the nozzle and try again."),

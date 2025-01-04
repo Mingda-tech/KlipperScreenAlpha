@@ -227,6 +227,7 @@ class BasePanel(ScreenPanel):
                     ctx.add_class(error)
                 self._screen.log_notification(f"{self._screen.connecting_to_printer}: {msg}", 2)
                 self.titlelbl.set_label(msg)
+                logging.warning(msg)
             elif ctx.has_class(error):
                 if (datetime.now() - self.last_usage_report).seconds < 5:
                     self.titlelbl.set_label(msg)
