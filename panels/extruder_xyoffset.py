@@ -708,11 +708,18 @@ class Panel(ScreenPanel):
         else:
             self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
 
+        self.labels['confirm'].set_sensitive(False)
+        self.buttons['x+'].set_sensitive(False)
+        self.buttons['x-'].set_sensitive(False)
+        self.buttons['y+'].set_sensitive(False)
+        self.buttons['y-'].set_sensitive(False)
+        for j, i in enumerate(self.distances):
+            self.labels[i].set_sensitive(False)
+
     def deactivate(self):
         symbolic_link = "/home/mingda/printer_data/config/crowsnest.conf"
         source_file = "/home/mingda/printer_data/config/crowsnest1.conf"
         create_symbolic_link(source_file, symbolic_link)
-        # os.system('sudo systemctl restart crowsnest.service')
         subprocess.Popen(["sudo", "systemctl", "restart", "crowsnest.service"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def start_manual_calibration(self, widget, cam):
@@ -724,7 +731,10 @@ class Panel(ScreenPanel):
         self.buttons['x-'].set_sensitive(True)
         self.buttons['y+'].set_sensitive(True)
         self.buttons['y-'].set_sensitive(True)        
+        for i in self.distances:
+            self.labels[i].set_sensitive(True)        
         self.play(widget, cam)
+
     def start_auto_calibration(self, widget, cam):
         """开始自动校准"""
         logging.info("Starting auto calibration")
@@ -742,12 +752,8 @@ class Panel(ScreenPanel):
         self.calibration_mode = 'auto'
         self.current_calibrating = "left"
         self.left_offset = None
-        self.labels['confirm'].set_sensitive(False)
-        self.buttons['x+'].set_sensitive(False)
-        self.buttons['x-'].set_sensitive(False)
-        self.buttons['y+'].set_sensitive(False)
-        self.buttons['y-'].set_sensitive(False)
         self.play(widget, cam)
+
     def _start_left_calibration(self):
         """开始左喷头校准"""
         logging.info("Starting left calibration")
@@ -778,8 +784,12 @@ class Panel(ScreenPanel):
             # 计算需要移动的距离
             # move_ratio = self.calculate_move_ratio(offset)
             move_ratio = 0.05
-            adjust_x = offset[0] * move_ratio
-            adjust_y = -offset[1] * move_ratio
+            adjust_x = -offset[0] * move_ratio
+            adjust_y = offset[1] * move_ratio
+            if 'MD_400D' in self._printer.get_gcode_macros():
+                adjust_x = offset[0] * move_ratio
+                adjust_y = -offset[1] * move_ratio
+
             cal_data['moved_distance'] = (adjust_x, adjust_y)
             cal_data['retry_count'] += 1
             
@@ -830,8 +840,11 @@ class Panel(ScreenPanel):
             # 计算需要移动的距离
             # move_ratio = self.calculate_move_ratio(offset)
             move_ratio = 0.05
-            adjust_x = offset[0] * move_ratio
-            adjust_y = -offset[1] * move_ratio
+            adjust_x = -offset[0] * move_ratio
+            adjust_y = offset[1] * move_ratio
+            if 'MD_400D' in self._printer.get_gcode_macros():
+                adjust_x = offset[0] * move_ratio
+                adjust_y = -offset[1] * move_ratio
             cal_data['moved_distance'] = (adjust_x, adjust_y)
             cal_data['retry_count'] += 1
             

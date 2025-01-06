@@ -284,6 +284,8 @@ class Panel(ScreenPanel):
         self.buttons['complete'].get_style_context().add_class('color3')
         self.buttons['cancel'].set_sensitive(True)
         self.buttons['cancel'].get_style_context().add_class('color2')
+        for i in self.distances:
+            self.widgets[i].set_sensitive(True)
 
     def buttons_not_calibrating(self):
         self.buttons['start'].get_style_context().add_class('color3')
@@ -297,3 +299,5 @@ class Panel(ScreenPanel):
         self.buttons['complete'].get_style_context().remove_class('color3')
         self.buttons['cancel'].set_sensitive(False)
         self.buttons['cancel'].get_style_context().remove_class('color2')
+        for i in self.distances:
+            self.widgets[i].set_sensitive(False)
