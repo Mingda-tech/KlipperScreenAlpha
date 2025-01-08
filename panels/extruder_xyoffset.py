@@ -606,7 +606,15 @@ class Panel(ScreenPanel):
             self.change_extruder(widget=None, extruder="extruder")
         self._calculate_position()
 
-
+        if (self.calibration_mode == 'manual'):
+            self.labels['confirm'].set_sensitive(True)
+            self.buttons['x+'].set_sensitive(True)
+            self.buttons['x-'].set_sensitive(True)
+            self.buttons['y+'].set_sensitive(True)
+            self.buttons['y-'].set_sensitive(True)        
+            for i in self.distances:
+                self.labels[i].set_sensitive(True)    
+                
         if self.mpv:
             self.mpv.terminate()
         # self.mpv = mpv.MPV(fullscreen=False, log_handler=self.log, vo='gpu,wlshm,xv,x11', geometry = '400x240')
@@ -725,14 +733,7 @@ class Panel(ScreenPanel):
     def start_manual_calibration(self, widget, cam):
         """开始手动校准"""
         logging.info("Starting manual calibration")
-        self.calibration_mode = 'manual'
-        self.labels['confirm'].set_sensitive(True)
-        self.buttons['x+'].set_sensitive(True)
-        self.buttons['x-'].set_sensitive(True)
-        self.buttons['y+'].set_sensitive(True)
-        self.buttons['y-'].set_sensitive(True)        
-        for i in self.distances:
-            self.labels[i].set_sensitive(True)        
+        self.calibration_mode = 'manual'    
         self.play(widget, cam)
 
     def start_auto_calibration(self, widget, cam):
