@@ -173,6 +173,25 @@ class KlippyWebsocket(threading.Thread):
         error = args[1] if len(args) == 2 else args[0]
         logging.debug(f"Websocket error: {error}")
 
+    def process_gcode_response(self, response):
+        # if self.callback is not None:
+        #     self.callback("notify_gcode_response", response)
+        # return
+
+        # response = response.lower()
+        # if "// action:" in response:
+        #     self.callback("notify_gcode_response", response[response.index("// action:"):].strip())
+        # return
+
+        if "// action:" in response:
+            action = response[response.index("// action:"):].strip()
+            if "action:ai_result" in action or "action:ai_feedback" in action:
+                # 处理AI相关的消息
+                self._screen.handle_ai_result(action)
+            else:
+                self.callback("notify_gcode_response", action)
+        return
+
 
 class MoonrakerApi:
     def __init__(self, ws):

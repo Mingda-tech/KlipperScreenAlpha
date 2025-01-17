@@ -97,6 +97,7 @@ class KlipperScreen(Gtk.Window):
     windowed = False
     notification_log = []
     auto_check = True
+    ai_check_timeout = None  # AI检测定时器
     def __init__(self, args):
         try:
             super().__init__(title="KlipperScreen")
@@ -708,6 +709,7 @@ class KlipperScreen(Gtk.Window):
         self.printer_initializing(msg + "\n" + state, remove=True)
 
     def state_paused(self):
+        self.stop_ai_check()  # Stop AI check when paused
         self.state_printing()
         if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
             self.show_panel("extrude", _("Extrude"))
@@ -717,6 +719,8 @@ class KlipperScreen(Gtk.Window):
         for dialog in self.dialogs:
             self.gtk.remove_dialog(dialog)
         self.show_panel("job_status", _("Printing"), remove_all=True)
+        self.stop_ai_check()  # Ensure any existing AI check is stopped
+        self.start_ai_check()  # Start AI detection when printing begins
 
     def state_ready(self, wait=True):
         # Do not return to main menu if completing a job, timeouts/user input will return
@@ -755,6 +759,7 @@ class KlipperScreen(Gtk.Window):
         if self.on_filament_box_power and (self.printer is not None) and ('SET_FILAMENT_BOX_POWER' in self.printer.get_gcode_macros()):
             script  = 'SET_FILAMENT_BOX_POWER S=1'
             self._ws.klippy.gcode_script(script)        
+
 
 
     def state_startup(self):
@@ -997,6 +1002,15 @@ class KlipperScreen(Gtk.Window):
         return False
 
     def init_printer(self):
+        self.state = "disconnected"
+        self.state_timeout = 0
+        self.busy_timeout = 0
+        self.printer = Printer(self)
+        self.printer_initializing = True
+        self.init_printer_timeout = GLib.timeout_add_seconds(5, self.reinit_printer)
+        self.init_printer_timeout = None
+        self.stop_ai_check()  # 停止AI检测
+        
         if self.initializing:
             return False
         self.initializing = True
@@ -1215,6 +1229,70 @@ class KlipperScreen(Gtk.Window):
         # 更新手册语言
         if hasattr(self, "panels") and "manual" in self.panels:
             self.panels["manual"].update_language(lang)
+
+    def start_ai_check(self):
+        """启动AI检测定时器"""
+        if self.ai_check_timeout is not None:
+            return
+        
+        # 检查AI服务是否开启
+        if not self._config.get_config().getboolean('main', 'ai_service', fallback=False):
+            return
+            
+        # 每3分钟执行一次AI检测
+        self.ai_check_timeout = GLib.timeout_add_seconds(180, self.do_ai_check)
+        logging.info("AI检测定时器已启动")
+
+    def stop_ai_check(self):
+        """停止AI检测定时器"""
+        if self.ai_check_timeout is not None:
+            GLib.source_remove(self.ai_check_timeout)
+            self.ai_check_timeout = None
+            logging.info("AI检测定时器已停止")
+
+    def do_ai_check(self):
+        """Execute AI detection"""
+        if not self._config.get_config().getboolean('main', 'ai_service', fallback=False):
+            self.stop_ai_check()
+            return False
+            
+        if self.state != "printing":
+            self.stop_ai_check()
+            return False
+            
+        # Trigger camera snapshot and upload
+        self._ws.klippy.gcode_script("AI_SNAPSHOT")
+        logging.info("AI detection triggered")
+        return True  # Continue timer
+
+    def handle_ai_result(self, data):
+        """Handle AI analysis results"""
+        try:
+            # Parse AI result data
+            result_str = data.split("action:ai_result ", 1)[1]
+            result = json.loads(result_str)
+            
+            # Get AI settings
+            confidence_threshold = self._config.get_config().getfloat('main', 'ai_confidence_threshold', fallback=80) / 100
+            auto_pause = self._config.get_config().getboolean('main', 'ai_auto_pause', fallback=False)
+            
+            if result.get("has_defect", False) and result.get("confidence", 0) >= confidence_threshold:
+                # Display AI detection results
+                message = f"AI detected print defect:\nType: {result.get('defect_type', 'Unknown')}\nConfidence: {result.get('confidence', 0)*100:.1f}%"
+                
+                if auto_pause:
+                    # Auto pause printing
+                    self._ws.klippy.print_pause()
+                    # Show AI pause page
+                    self.show_panel("ai_pause", "AI Warning", message, result)
+                else:
+                    # Only show warning message
+                    self.show_popup_message(message)
+                    
+            logging.info(f"AI detection result: {result}")
+            
+        except Exception as e:
+            logging.exception(f"Error processing AI result: {str(e)}")
 
 def main():
     minimum = (3, 7)
