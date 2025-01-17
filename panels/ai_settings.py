@@ -11,6 +11,7 @@ class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.menu = ['ai_settings_menu']
+        self.settings = {}
         
         # 获取AI相关的配置选项
         options = []
@@ -50,8 +51,54 @@ class Panel(ScreenPanel):
 
         self.content.add(main)
 
+    def add_option(self, boxname, opt_array, opt_name, option):
+        name = Gtk.Label()
+        name.set_markup(f"<big><b>{option['name']}</b></big>")
+        name.set_hexpand(True)
+        name.set_vexpand(True)
+        name.set_halign(Gtk.Align.START)
+        name.set_valign(Gtk.Align.CENTER)
+        name.set_line_wrap(True)
+        name.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+
+        labels = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        labels.add(name)
+
+        dev = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        dev.get_style_context().add_class("frame-item")
+        dev.set_hexpand(True)
+        dev.set_vexpand(False)
+        dev.set_valign(Gtk.Align.CENTER)
+
+        dev.add(labels)
+        if option['type'] == "binary":
+            switch = Gtk.Switch()
+            switch.set_active(self._config.get_config().getboolean(option['section'], opt_name))
+            switch.connect("notify::active", self.switch_config_option, option['section'], opt_name,
+                           option['callback'] if "callback" in option else None)
+            dev.add(switch)
+        elif option['type'] == "scale":
+            dev.set_orientation(Gtk.Orientation.VERTICAL)
+            scale = Gtk.Scale.new_with_range(orientation=Gtk.Orientation.HORIZONTAL,
+                                             min=option['range'][0], max=option['range'][1], step=option['step'])
+            scale.set_hexpand(True)
+            scale.set_value(int(self._config.get_config().get(option['section'], opt_name, fallback=option['value'])))
+            scale.set_digits(0)
+            scale.connect("button-release-event", self.scale_moved, option['section'], opt_name)
+            dev.add(scale)
+
+        opt_array[opt_name] = {
+            "name": option['name'],
+            "row": dev
+        }
+
+        opts = sorted(list(opt_array), key=lambda x: opt_array[x]['name'])
+        pos = opts.index(opt_name)
+
+        self.labels[boxname].insert_row(pos)
+        self.labels[boxname].attach(opt_array[opt_name]['row'], 0, pos, 1, 1)
+        self.labels[boxname].show_all()
+
     def process_update(self, action, data):
         if action != "notify_status_update":
-            return
-        
-        # 如果有任何状态更新需要处理，在这里添加代码 
+            return 
