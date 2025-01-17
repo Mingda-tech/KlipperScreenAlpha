@@ -1,0 +1,65 @@
+# AI打印质量监控系统 Cursor Rules
+
+# KlipperScreen UI Development
+- Implement settings pages for AI service configurations.
+- Ensure real-time monitoring displays accurate camera previews and printing status.
+- Parse and act upon AI analysis results from Moonraker.
+
+# Moonraker Middleware
+- Design API gateway for handling requests from KlipperScreen.
+- Develop task scheduler for image capture and upload.
+- Implement JWT-based authentication for API security.
+- Ensure state synchronization with Klipper for real-time updates.
+
+# AI Analysis Cloud Service
+- Create endpoints for receiving and processing image data.
+- Return analysis results through defined callback interfaces.
+- Secure data transmission and service access through JWT.
+
+# General Best Practices
+- Modularize code using Flask Blueprints.
+- Use SQLAlchemy for ORM operations and database interactions.
+- Adhere to RESTful principles for API development.
+- Implement Flask-JWT-Extended for secure route protection and authentication.
+
+# Performance and Testing
+- Use Flask-Caching for frequent queries.
+- Conduct unit and integration testing with pytest.
+- Document APIs with Swagger/OpenAPI using Flask-RESTX.
+
+1. 项目背景与目标
+我正在开发一个基于KlipperScreen的3D打印质量监控系统。
+系统需要集成AI服务来分析打印过程中的图片，并根据结果采取相应动作（如暂停打印）。
+目标是创建一个用户友好的界面，允许用户配置AI设置、查看实时状态和历史记录。
+2. 主要功能模块
+设置页面：允许用户开启/关闭AI服务，配置置信度阈值等。
+实时监控：显示摄像头预览、打印状态信息，并提供触发AI检测的功能。
+结果展示：接收并解析来自Moonraker的AI分析结果，根据设定规则决定是否弹出警告或暂停打印。
+历史记录：管理所有已完成任务的历史记录及对应的分析结果。
+3. API接口调用
+使用POST /api/v1/camera/snapshot接口从摄像头获取图片并上传至云服务进行AI分析。
+使用GET /api/v1/ai/analysis/latest接口获取最近一次AI分析的结果。
+使用POST /api/v1/printer/control接口发送控制命令给打印机（如暂停、恢复打印）。
+使用GET /api/v1/printer/status接口实时获取打印机的工作状态。
+所有API请求都包含JWT认证头以确保安全性。
+4. UI设计要求
+界面应简洁直观，易于操作。
+提供清晰的状态指示和反馈信息（例如进度条、成功/失败提示）。
+支持响应式设计，适配不同尺寸的屏幕。
+5. 用户体验优化
+实现即时反馈机制，让用户在执行关键操作时获得确认提示。
+提供详细的错误信息和引导，帮助用户快速解决问题。
+保证界面更新及时准确，确保用户始终了解当前的打印状况。
+6. 编码规范
+遵循Python/GTK的最佳实践，保持代码整洁易读。
+使用适当的注释解释复杂逻辑，便于后续维护。
+考虑到系统的可扩展性，采用模块化设计，分离不同的功能组件。
+7. 依赖库与工具
+使用requests库处理HTTP请求。
+使用json库解析JSON格式的数据。
+使用gi库集成GTK框架，构建图形用户界面。
+如果适用，考虑使用asyncio库实现异步操作，提高性能。
+8. 测试与调试
+编写单元测试验证各个功能模块的正确性。
+在实际设备上进行集成测试，确保整个系统稳定运行。
+记录并修复发现的所有问题，持续改进用户体验。

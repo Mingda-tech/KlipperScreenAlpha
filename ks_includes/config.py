@@ -238,10 +238,6 @@ class KlipperScreenConfig:
                 "section": "main", "name": _("Language"), "type": None, "value": "system_lang",
                 "callback": screen.change_language, "options": [
                     {"name": _("System") + " " + _("(default)"), "value": "system_lang"}]}},
-            # {"theme": {
-            #     "section": "main", "name": _("Icon Theme"), "type": "dropdown",
-            #     "value": "z-bolt", "callback": screen.restart_ks, "options": [
-            #         {"name": "Z-bolt" + " " + _("(default)"), "value": "z-bolt"}]}},
             {"print_estimate_method": {
                 "section": "main", "name": _("Estimated Time Method"), "type": "dropdown",
                 "value": "auto", "options": [
@@ -254,37 +250,27 @@ class KlipperScreenConfig:
                 "value": "3600", "callback": screen.set_screenblanking_timeout, "options": [
                     {"name": _("Never"), "value": "off"}]
             }},
-            # {"24htime": {"section": "main", "name": _("24 Hour Time"), "type": "binary", "value": "True"}},
-            # {"side_macro_shortcut": {
-            #     "section": "main", "name": _("Macro shortcut on sidebar"), "type": "binary",
-            #     "value": "True", "callback": screen.toggle_shortcut}},
-            # {"font_size": {
-            #     "section": "main", "name": _("Font Size"), "type": "dropdown",
-            #     "value": "medium", "callback": screen.restart_ks, "options": [
-            #         {"name": _("Small"), "value": "small"},
-            #         {"name": _("Medium") + " " + _("(default)"), "value": "medium"},
-            #         {"name": _("Large"), "value": "large"},
-            #         {"name": _("Extra Large"), "value": "extralarge"},
-            #         {"name": _("Maximum"), "value": "max"}]}},
             {"confirm_estop": {"section": "main", "name": _("Confirm Emergency Stop"), "type": "binary",
                                "value": "False"}},
-            # {"only_heaters": {"section": "main", "name": _("Hide sensors in Temp."), "type": "binary",
-            #                   "value": "False", "callback": screen.reload_panels}},
             {"use_dpms": {"section": "main", "name": _("Screen DPMS"), "type": "binary",
                           "value": "True", "callback": screen.set_dpms}},
             {"autoclose_popups": {"section": "main", "name": _("Auto-close notifications"), "type": "binary",
                                   "value": "True"}},
-            # {"show_heater_power": {"section": "main", "name": _("Show Heater Power"), "type": "binary",
-            #                        "value": "False", "callback": screen.reload_panels}},
-            # {"show_scroll_steppers": {"section": "main", "name": _("Show Scrollbars Buttons"), "type": "binary",
-            #                           "value": "False", "callback": screen.reload_panels}},
-            # {"auto_open_extrude": {"section": "main", "name": _("Auto-open Extrude On Pause"), "type": "binary",
-            #                        "value": "True", "callback": screen.reload_panels}},
             {"voice_notify": {"section": "main", "name": _("Voice Notify"), "type": "binary", "value": "False"}},
             {"shutdown_print_end": {"section": "main", "name": _("Shut down after printing completes"), "type": "binary", "value": "False"}},                                                                                  
             {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
-                                    "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
-            # {"": {"section": "main", "name": _(""), "type": ""}}
+                                    "value": "False", "callback": screen.set_filament_box_power}},
+            {"ai_service": {"section": "main", "name": _("AI Service"), "type": "binary", "value": "False"}},
+            {"ai_confidence_threshold": {
+                "section": "main", 
+                "name": _("AI Confidence Threshold"), 
+                "type": "scale", 
+                "value": "80",
+                "range": [0, 100],
+                "step": 1
+            }},
+            {"ai_auto_pause": {"section": "main", "name": _("Auto Pause on AI Detection"), "type": "binary", "value": "False"}},
+            {"ai_cloud_service": {"section": "main", "name": _("Use AI Cloud Service"), "type": "binary", "value": "True"}},
         ]
 
         # Options that are in panels and shouldn't be added to the main settings
