@@ -98,6 +98,7 @@ class KlipperScreen(Gtk.Window):
     notification_log = []
     auto_check = True
     ai_check_timeout = None  # AI检测定时器
+
     def __init__(self, args):
         try:
             super().__init__(title="KlipperScreen")
@@ -1002,14 +1003,8 @@ class KlipperScreen(Gtk.Window):
         return False
 
     def init_printer(self):
-        self.state = "disconnected"
-        self.state_timeout = 0
-        self.busy_timeout = 0
-        self.printer = Printer(self)
-        self.printer_initializing = True
-        self.init_printer_timeout = GLib.timeout_add_seconds(5, self.reinit_printer)
-        self.init_printer_timeout = None
-        self.stop_ai_check()  # 停止AI检测
+
+        self.stop_ai_check()  # Stop AI check
         
         if self.initializing:
             return False
