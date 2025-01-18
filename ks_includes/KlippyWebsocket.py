@@ -115,9 +115,13 @@ class KlippyWebsocket(threading.Thread):
             self.callback_table.pop(response['id'])
             return
 
-        if "method" in response and "on_message" in self._callback:
-            args = response['method'], response['params'][0] if "params" in response else {}
-            GLib.idle_add(self._callback['on_message'], *args)
+        if "method" in response:
+            if response['method'] == "notify_gcode_response":
+                # 处理gcode响应
+                self.process_gcode_response(response['params'][0])
+            elif "on_message" in self._callback:
+                args = response['method'], response['params'][0] if "params" in response else {}
+                GLib.idle_add(self._callback['on_message'], *args)
         return
 
     def send_method(self, method, params=None, callback=None, *args):
@@ -176,12 +180,32 @@ class KlippyWebsocket(threading.Thread):
     def process_gcode_response(self, response):
         try:
             # 尝试解析响应是否为JSON格式
+            logging.debug(f"收到gcode响应: {response}")
+            
+            # 移除注释符号并清理字符串
+            if response.startswith("//"):
+                # 移除每行开头的注释符
+                cleaned_response = "\n".join(line.strip("/ ") for line in response.split("\n"))
+                logging.debug(f"清理后的响应: {cleaned_response}")
+                try:
+                    result = json.loads(cleaned_response)
+                    if isinstance(result, dict) and "code" in result and "data" in result:
+                        # 这是AI预测脚本的输出
+                        logging.info(f"检测到AI预测结果: {result}")
+                        self._screen.handle_ai_result(result)
+                        return
+                except json.JSONDecodeError:
+                    pass
+            
+            # 尝试直接解析原始响应
             result = json.loads(response)
             if isinstance(result, dict) and "code" in result and "data" in result:
                 # 这是AI预测脚本的输出
+                logging.info(f"检测到AI预测结果: {result}")
                 self._screen.handle_ai_result(result)
                 return
         except json.JSONDecodeError:
+            logging.debug(f"非JSON格式响应: {response}")
             pass
         
         # 处理其他gcode响应

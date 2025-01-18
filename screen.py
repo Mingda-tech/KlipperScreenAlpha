@@ -712,7 +712,7 @@ class KlipperScreen(Gtk.Window):
     def state_paused(self):
         self.stop_ai_check()  # Stop AI check when paused
         self.state_printing()
-        if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
+        if self._config.get_main_config().getboolean("auto_open_extrude", fallback=False):
             self.show_panel("extrude", _("Extrude"))
 
     def state_printing(self):            
@@ -1235,7 +1235,7 @@ class KlipperScreen(Gtk.Window):
             return
             
         # 每3分钟执行一次AI检测
-        self.ai_check_timeout = GLib.timeout_add_seconds(180, self.do_ai_check)
+        self.ai_check_timeout = GLib.timeout_add_seconds(60, self.do_ai_check)
         logging.info("AI检测定时器已启动")
 
     def stop_ai_check(self):
@@ -1251,9 +1251,9 @@ class KlipperScreen(Gtk.Window):
             self.stop_ai_check()
             return False
             
-        if self.state != "printing":
-            self.stop_ai_check()
-            return False
+        # if self.printer.get_stat("print_stats", "state") != "printing":
+        #     self.stop_ai_check()
+        #     return False
             
         # 执行AI预测脚本
         script = "~/printer_data/script/ai_prediction.sh"
@@ -1264,36 +1264,38 @@ class KlipperScreen(Gtk.Window):
     def handle_ai_result(self, data):
         """Handle AI analysis results"""
         try:
-            logging.debug(f"Received AI result: {data}")
+            logging.debug(f"开始处理AI结果: {data}")
             
             if "data" not in data or not data["data"]:
-                logging.warning("No data in AI result")
+                logging.warning("AI结果中没有data字段")
                 return
                 
             result = data["data"][0]
             status = result.get("Status")
             
-            logging.info(f"Processing AI result - Status: {status}, TaskID: {result.get('TaskID')}")
+            logging.info(f"正在处理AI结果 - Status: {status}, TaskID: {result.get('TaskID')}")
             
             # 只处理Status为2的结果
             if status != 2:
-                logging.debug(f"Skipping result with status {status}")
+                logging.debug(f"跳过状态为 {status} 的结果")
                 return
                 
             # 获取AI设置
             confidence_threshold = self._config.get_config().getfloat('main', 'ai_confidence_threshold', fallback=80) / 100
             auto_pause = self._config.get_config().getboolean('main', 'ai_auto_pause', fallback=False)
             
+            logging.info(f"当前AI设置 - 置信度阈值: {confidence_threshold}, 自动暂停: {auto_pause}")
+            
             confidence = result.get("Confidence", 0)
             has_defect = result.get("HasDefect", False)
             
-            logging.info(f"AI result analysis - HasDefect: {has_defect}, Confidence: {confidence}")
+            logging.info(f"AI分析结果 - 是否有缺陷: {has_defect}, 置信度: {confidence}")
             
             if has_defect and confidence >= confidence_threshold:
-                message = f"AI detected print defect:\nType: {result.get('DefectType', 'Unknown')}\nConfidence: {confidence*100:.1f}%"
+                message = f"AI检测到打印缺陷:\n类型: {result.get('DefectType', 'Unknown')}\n置信度: {confidence*100:.1f}%"
                 
                 if auto_pause:
-                    logging.info("Auto-pausing print due to AI detection")
+                    logging.info("由于AI检测触发自动暂停")
                     self._ws.klippy.print_pause()
                     result_data = {
                         "task_id": result.get("TaskID"),
@@ -1301,13 +1303,16 @@ class KlipperScreen(Gtk.Window):
                         "confidence": confidence,
                         "image_url": result.get("ImageURL")
                     }
-                    self.show_panel("ai_pause", "AI Warning", message, result_data)
+                    logging.info(f"显示AI暂停面板，数据: {result_data}")
+                    self.show_panel("ai_pause", _("AI Warning"), remove_all=False)
                 else:
-                    logging.info("Showing AI detection warning")
+                    logging.info("显示AI检测警告弹窗")
                     self.show_popup_message(message)
+            else:
+                logging.info(f"未触发操作 - 是否有缺陷: {has_defect}, 置信度: {confidence} < 阈值: {confidence_threshold}")
                     
         except Exception as e:
-            logging.exception(f"Error processing AI result: {str(e)}")
+            logging.exception(f"处理AI结果时出错: {str(e)}")
 
 def main():
     minimum = (3, 7)
