@@ -174,20 +174,20 @@ class KlippyWebsocket(threading.Thread):
         logging.debug(f"Websocket error: {error}")
 
     def process_gcode_response(self, response):
+        try:
+            # 尝试解析响应是否为JSON格式
+            result = json.loads(response)
+            if isinstance(result, dict) and "code" in result and "data" in result:
+                # 这是AI预测脚本的输出
+                self._screen.handle_ai_result(result)
+                return
+        except json.JSONDecodeError:
+            pass
+        
+        # 处理其他gcode响应
         if "// action:" in response:
             action = response[response.index("// action:"):].strip()
-            
-            # 处理AI预测脚本的输出
-            if "action:ai_script_output" in action:
-                try:
-                    # 提取JSON数据
-                    json_str = action.split("action:ai_script_output", 1)[1].strip()
-                    result = json.loads(json_str)
-                    self._screen.handle_ai_result(result)
-                except Exception as e:
-                    logging.error(f"Error parsing AI script output: {e}")
-            else:
-                self.callback("notify_gcode_response", action)
+            self.callback("notify_gcode_response", action)
         return
 
 class MoonrakerApi:

@@ -1264,15 +1264,20 @@ class KlipperScreen(Gtk.Window):
     def handle_ai_result(self, data):
         """Handle AI analysis results"""
         try:
-            # 解析脚本输出的JSON结果
-            if "data" not in data:
+            logging.debug(f"Received AI result: {data}")
+            
+            if "data" not in data or not data["data"]:
+                logging.warning("No data in AI result")
                 return
                 
             result = data["data"][0]
             status = result.get("Status")
             
+            logging.info(f"Processing AI result - Status: {status}, TaskID: {result.get('TaskID')}")
+            
             # 只处理Status为2的结果
             if status != 2:
+                logging.debug(f"Skipping result with status {status}")
                 return
                 
             # 获取AI设置
@@ -1282,14 +1287,14 @@ class KlipperScreen(Gtk.Window):
             confidence = result.get("Confidence", 0)
             has_defect = result.get("HasDefect", False)
             
+            logging.info(f"AI result analysis - HasDefect: {has_defect}, Confidence: {confidence}")
+            
             if has_defect and confidence >= confidence_threshold:
-                # 构建消息
                 message = f"AI detected print defect:\nType: {result.get('DefectType', 'Unknown')}\nConfidence: {confidence*100:.1f}%"
                 
                 if auto_pause:
-                    # 自动暂停打印
+                    logging.info("Auto-pausing print due to AI detection")
                     self._ws.klippy.print_pause()
-                    # 显示AI暂停页面
                     result_data = {
                         "task_id": result.get("TaskID"),
                         "defect_type": result.get("DefectType"),
@@ -1298,11 +1303,9 @@ class KlipperScreen(Gtk.Window):
                     }
                     self.show_panel("ai_pause", "AI Warning", message, result_data)
                 else:
-                    # 只显示警告消息
+                    logging.info("Showing AI detection warning")
                     self.show_popup_message(message)
                     
-            logging.info(f"AI detection result processed: {result}")
-            
         except Exception as e:
             logging.exception(f"Error processing AI result: {str(e)}")
 
