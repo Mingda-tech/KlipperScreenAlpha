@@ -712,8 +712,9 @@ class KlipperScreen(Gtk.Window):
     def state_paused(self):
         self.stop_ai_check()  # Stop AI check when paused
         self.state_printing()
-        if self._config.get_main_config().getboolean("auto_open_extrude", fallback=False):
-            self.show_panel("extrude", _("Extrude"))
+        if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
+            # self.show_panel("extrude", _("Extrude"))
+            self.show_panel("ai_pause", _("AI Warning"))
 
     def state_printing(self):            
         self.close_screensaver()
@@ -1297,14 +1298,8 @@ class KlipperScreen(Gtk.Window):
                 if auto_pause:
                     logging.info("由于AI检测触发自动暂停")
                     self._ws.klippy.print_pause()
-                    result_data = {
-                        "task_id": result.get("TaskID"),
-                        "defect_type": result.get("DefectType"),
-                        "confidence": confidence,
-                        "image_url": result.get("ImageURL")
-                    }
-                    logging.info(f"显示AI暂停面板，数据: {result_data}")
-                    self.show_panel("ai_pause", _("AI Warning"), remove_all=False)
+                    logging.info("显示AI暂停面板")
+                    # self.show_panel("ai_pause", _("AI Warning"))
                 else:
                     logging.info("显示AI检测警告弹窗")
                     self.show_popup_message(message)
