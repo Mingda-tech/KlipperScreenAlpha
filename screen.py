@@ -1255,36 +1255,53 @@ class KlipperScreen(Gtk.Window):
             self.stop_ai_check()
             return False
             
-        # Trigger camera snapshot and upload
-        self._ws.klippy.gcode_script("AI_SNAPSHOT")
-        logging.info("AI detection triggered")
+        # 执行AI预测脚本
+        script = "~/printer_data/script/ai_prediction.sh"
+        self._ws.klippy.gcode_script(f"RUN_SHELL_COMMAND CMD=ai_prediction PARAMS={script}")
+        logging.info("AI detection script triggered")
         return True  # Continue timer
 
     def handle_ai_result(self, data):
         """Handle AI analysis results"""
         try:
-            # Parse AI result data
-            result_str = data.split("action:ai_result ", 1)[1]
-            result = json.loads(result_str)
+            # 解析脚本输出的JSON结果
+            if "data" not in data:
+                return
+                
+            result = data["data"][0]
+            status = result.get("Status")
             
-            # Get AI settings
+            # 只处理Status为2的结果
+            if status != 2:
+                return
+                
+            # 获取AI设置
             confidence_threshold = self._config.get_config().getfloat('main', 'ai_confidence_threshold', fallback=80) / 100
             auto_pause = self._config.get_config().getboolean('main', 'ai_auto_pause', fallback=False)
             
-            if result.get("has_defect", False) and result.get("confidence", 0) >= confidence_threshold:
-                # Display AI detection results
-                message = f"AI detected print defect:\nType: {result.get('defect_type', 'Unknown')}\nConfidence: {result.get('confidence', 0)*100:.1f}%"
+            confidence = result.get("Confidence", 0)
+            has_defect = result.get("HasDefect", False)
+            
+            if has_defect and confidence >= confidence_threshold:
+                # 构建消息
+                message = f"AI detected print defect:\nType: {result.get('DefectType', 'Unknown')}\nConfidence: {confidence*100:.1f}%"
                 
                 if auto_pause:
-                    # Auto pause printing
+                    # 自动暂停打印
                     self._ws.klippy.print_pause()
-                    # Show AI pause page
-                    self.show_panel("ai_pause", "AI Warning", message, result)
+                    # 显示AI暂停页面
+                    result_data = {
+                        "task_id": result.get("TaskID"),
+                        "defect_type": result.get("DefectType"),
+                        "confidence": confidence,
+                        "image_url": result.get("ImageURL")
+                    }
+                    self.show_panel("ai_pause", "AI Warning", message, result_data)
                 else:
-                    # Only show warning message
+                    # 只显示警告消息
                     self.show_popup_message(message)
                     
-            logging.info(f"AI detection result: {result}")
+            logging.info(f"AI detection result processed: {result}")
             
         except Exception as e:
             logging.exception(f"Error processing AI result: {str(e)}")

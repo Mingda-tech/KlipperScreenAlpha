@@ -174,24 +174,21 @@ class KlippyWebsocket(threading.Thread):
         logging.debug(f"Websocket error: {error}")
 
     def process_gcode_response(self, response):
-        # if self.callback is not None:
-        #     self.callback("notify_gcode_response", response)
-        # return
-
-        # response = response.lower()
-        # if "// action:" in response:
-        #     self.callback("notify_gcode_response", response[response.index("// action:"):].strip())
-        # return
-
         if "// action:" in response:
             action = response[response.index("// action:"):].strip()
-            if "action:ai_result" in action or "action:ai_feedback" in action:
-                # 处理AI相关的消息
-                self._screen.handle_ai_result(action)
+            
+            # 处理AI预测脚本的输出
+            if "action:ai_script_output" in action:
+                try:
+                    # 提取JSON数据
+                    json_str = action.split("action:ai_script_output", 1)[1].strip()
+                    result = json.loads(json_str)
+                    self._screen.handle_ai_result(result)
+                except Exception as e:
+                    logging.error(f"Error parsing AI script output: {e}")
             else:
                 self.callback("notify_gcode_response", action)
         return
-
 
 class MoonrakerApi:
     def __init__(self, ws):
