@@ -112,6 +112,7 @@ class KlipperScreen(Gtk.Window):
         self.confirm = None
         self.panels_reinit = []
         self.manual_settings = {}
+        self.show_ai_pause = False
 
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
@@ -710,11 +711,14 @@ class KlipperScreen(Gtk.Window):
         self.printer_initializing(msg + "\n" + state, remove=True)
 
     def state_paused(self):
-        self.stop_ai_check()  # Stop AI check when paused
         self.state_printing()
         if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
-            # self.show_panel("extrude", _("Extrude"))
-            self.show_panel("ai_pause", _("AI Warning"))
+            if self.show_ai_pause:
+                self.show_panel("ai_pause", _("AI Warning"))
+                self.show_ai_pause = False
+            else:
+                self.show_panel("extrude", _("Extrude"))
+        self.stop_ai_check()  # Stop AI check when paused
 
     def state_printing(self):            
         self.close_screensaver()
@@ -1252,9 +1256,9 @@ class KlipperScreen(Gtk.Window):
             self.stop_ai_check()
             return False
             
-        # if self.printer.get_stat("print_stats", "state") != "printing":
-        #     self.stop_ai_check()
-        #     return False
+        if self.printer.state != "printing":
+            self.stop_ai_check()
+            return False
             
         # 执行AI预测脚本
         script = "~/printer_data/script/ai_prediction.sh"
@@ -1299,6 +1303,7 @@ class KlipperScreen(Gtk.Window):
                     logging.info("由于AI检测触发自动暂停")
                     self._ws.klippy.print_pause()
                     logging.info("显示AI暂停面板")
+                    self.show_ai_pause = True
                     # self.show_panel("ai_pause", _("AI Warning"))
                 else:
                     logging.info("显示AI检测警告弹窗")
