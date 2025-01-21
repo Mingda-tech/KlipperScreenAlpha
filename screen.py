@@ -1240,7 +1240,7 @@ class KlipperScreen(Gtk.Window):
             return
             
         # 每3分钟执行一次AI检测
-        self.ai_check_timeout = GLib.timeout_add_seconds(60, self.do_ai_check)
+        self.ai_check_timeout = GLib.timeout_add_seconds(10, self.do_ai_check)
         logging.info("AI检测定时器已启动")
 
     def stop_ai_check(self):
