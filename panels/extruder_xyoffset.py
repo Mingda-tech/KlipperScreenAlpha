@@ -5,204 +5,11 @@ import subprocess
 import mpv
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
-from gi.repository import GLib
-import math
-import time
-
-# 尝试导入可选依赖
-try:
-    import io
-    import cv2
-    import numpy as np
-    import requests
-    CALIBRATION_SUPPORTED = True
-except ImportError:
-    CALIBRATION_SUPPORTED = False
-    logging.warning("Auto calibration dependencies not found. Please install: python3-opencv python3-numpy python3-requests")
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.screen_panel import ScreenPanel
 
-
-class MdAutoCalibrator():
-    def __init__(self, ip, perfect_center):
-        # 假设最佳中心点
-        self.perfect_center = perfect_center
-        self.perfect_lt = (perfect_center[0]-60, perfect_center[1]-60)
-        self.perfect_rb = (perfect_center[0]+60, perfect_center[1]+60)
-        # 摄像头url的单帧图片
-        self.camera_url = f"http://{ip}/webcam2/?action=snapshot"
-        # 对比模板图片路径
-        self.template_left_path = "/home/mingda/printer_data/resources/template_left.png"
-        self.template_right_path = "/home/mingda/printer_data/resources/template_right.png"
-        self.extruder_left_path = "/home/mingda/printer_data/resources/extruder_left.png"
-        self.extruder_right_path = "/home/mingda/printer_data/resources/extruder_right.png"
-        self.allow_match = False
-
-    # 获取图片
-    def getImage(self, url):
-        if url.startswith('http'):
-            response = requests.get(url)
-            image = Image.open(io.BytesIO(response.content))
-            img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
-            image = cv2.imdecode(img_array, cv2.COLOR_BGR2GRAY)
-            # 将图像翻转，使图片方向与实际看到的方向一致
-            image = cv2.flip(image, 0)
-            # 将图片旋转90度
-            image = cv2.rotate(image, -cv2.ROTATE_90_CLOCKWISE)
-        else:
-            image = cv2.imread(url, cv2.COLOR_BGR2GRAY)
-        return image
-
-    # 保存图片
-    def saveImage(self, image, path):
-        cv2.imwrite(path, image)
-
-    # 缩放图片
-    def resizeImage(self, image, scale):
-        height, width = image.shape[:2]
-        new_height = int(height * scale)
-        new_width = int(width * scale)
-        scaled_template = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
-        return scaled_template
-
-    # 旋转图片
-    def rotateImage(self, image, angle):
-        height, width = image.shape[:2]
-        center = (width / 2, height / 2)
-        rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
-        rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
-        return rotated_image
-
-    # 匹配图片
-    def matchImage(self, image, template):
-        result = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED, mask=None)
-        min_val,max_val,min_loc,max_loc = cv2.minMaxLoc(result)
-        top_left = max_loc
-        h,w = template.shape[:2]
-        bottem_right = (top_left[0] + w, top_left[1] + h)
-        return image, max_val, top_left, bottem_right
-
-    # 裁剪图片
-    def clipImage(self, image, top_left, bottem_right):
-        cropped_image = image[top_left[1]:bottem_right[1], top_left[0]:bottem_right[0]]
-        return cropped_image
-
-    # 归一化直方图对比
-    def compare_images(self, img1, img2):
-        hist1 = cv2.calcHist([img1], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
-        hist2 = cv2.calcHist([img2], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
-        cv2.normalize(hist1, hist1, alpha = 0, beta = 1, norm_type = cv2.NORM_MINMAX)
-        cv2.normalize(hist2, hist2, alpha = 0, beta = 1, norm_type = cv2.NORM_MINMAX)
-        similarity = cv2.compareHist(hist1, hist2, cv2.HISTCMP_BHATTACHARYYA)
-        return 1-similarity
-
-    # 基于特征匹配的相似度
-    def compare_images_sift(self, img1, img2):
-        sift = cv2.SIFT_create()
-        keypoints1, descriptors1 = sift.detectAndCompute(img1, None)
-        keypoints2, descriptors2 = sift.detectAndCompute(img2, None)
-        bf = cv2.BFMatcher()
-        matches = bf.knnMatch(descriptors1, descriptors2, k = 2)
-        good_matches = []
-        for m, n in matches:
-            if m.distance < 0.75 * n.distance:
-                good_matches.append(m)
-        similarity = len(good_matches) / max(len(keypoints1), len(keypoints2))
-        return similarity
-
-    # 计算中心点
-    def getCenter(self, top_left, bottem_right):
-        center_x = (top_left[0] + bottem_right[0]) / 2
-        center_y = (top_left[1] + bottem_right[1]) / 2
-        return (center_x, center_y)
-    
-    # 获取左 extruder 的模板
-    def saveTemplateLeft(self) :
-        image = self.getImage(self.camera_url)
-        temp = self.clipImage(image, self.perfect_lt, self.perfect_rb)
-        self.saveImage(temp, self.template_left_path)
-        self.saveImage(image, self.extruder_left_path)
-
-    # 获取右 extruder 的模板
-    def saveTemplateRight(self) :
-        image = self.getImage(self.camera_url)
-        temp = self.clipImage(image, self.perfect_lt, self.perfect_rb)
-        self.saveImage(temp, self.template_right_path)
-        self.saveImage(image, self.extruder_right_path)
-
-    # 开始匹配
-    def startMatch(self):
-        image = self.getImage(self.camera_url)
-
-        # 匹配左侧喷头
-        template_left = self.getImage(self.template_left_path)
-        image, max_val, top_left, bottem_right = self.matchImage(image, template_left)
-        left_clip_image = self.clipImage(image, top_left, bottem_right)
-        left_clip_center = self.getCenter(top_left, bottem_right)
-
-        # 对比相似度，判断是否为左侧喷头
-        similarity_left_1 = self.compare_images(left_clip_image, template_left)
-        similarity_left_2 = self.compare_images_sift(left_clip_image, template_left)
-
-        logging.info(f"Left extruder match: {similarity_left_1}, {similarity_left_2}")
-        if similarity_left_1 > 0.7 or similarity_left_2 > 0.4:
-            # 对比中心点与目标中心点
-            offset_x = left_clip_center[0] - self.perfect_center[0]
-            offset_y = left_clip_center[1] - self.perfect_center[1]
-            offset = (offset_x, offset_y) 
-            if offset == (0, 0):
-                # 更新匹配模板
-                logging.info(f"Perfect! Saving image... max_val: {max_val}, offset: {offset}")
-                self.saveImage(left_clip_image, self.template_left_path)
-                self.saveImage(image, self.extruder_left_path)
-            return True, image, offset, top_left, bottem_right 
-        
-        # 匹配右侧喷头
-        template_right = self.getImage(self.template_right_path)
-        image, max_val, top_left, bottem_right = self.matchImage(image, template_right)
-        clip_image_right = self.clipImage(image, top_left, bottem_right)
-        clip_center_right = self.getCenter(top_left, bottem_right)
-
-        # 对比相似度，判断是否为右侧喷头
-        similarity_right_1 = self.compare_images(clip_image_right, template_right)
-        similarity_right_2 = self.compare_images_sift(clip_image_right, template_right)
-
-        logging.info(f"Right extruder match: {similarity_right_1}, {similarity_right_2}")
-        if similarity_right_1 > 0.7 or similarity_right_2 > 0.4:
-            # 对比中心点与目标中心点
-            offset_x = clip_center_right[0] - self.perfect_center[0]
-            offset_y = clip_center_right[1] - self.perfect_center[1]
-            offset = (offset_x, offset_y)
-            if offset == (0, 0):
-                # 更新匹配模板
-                logging.info(f"Perfect! Saving image... max_val: {max_val}")
-                self.saveImage(clip_image_right, self.template_right_path)
-                self.saveImage(image, self.extruder_right_path)
-            return True, image, offset, top_left, bottem_right
-        
-        # 未匹配到模板区域，请清理喷头异物
-        return False, image, self.perfect_center, (0,0), (0,0)
-
-    # 开始校准
-    def startCalibration(self):
-        if os.path.exists(self.template_left_path) == False:
-            logging.warning("Left extruder template does not exist, please calibrate manually and save template")
-            return False, (0,0)
-        elif os.path.exists(self.template_right_path) == False:
-            logging.warning("Right extruder template does not exist, please calibrate manually and save template")
-            return False, (0,0)
-        else:
-            logging.info("Starting auto calibration...")
-            result, image, offset, top_left, bottem_right = self.startMatch()
-            if result == True:
-                logging.info(f"Offset distance: {offset}")
-                return True, offset
-            else:
-                logging.error("Auto calibration failed, no template area matched. Please clean the nozzle")
-                return False, offset
 
 class Panel(ScreenPanel):
     distances = ['0.02', '.1', '1', '10']
@@ -217,11 +24,6 @@ class Panel(ScreenPanel):
         self.menu = ['main_menu']
         self.pos['e1_xoffset'] = None
         self.pos['e1_yoffset'] = None
-        # 添加校准模式标志
-        self.calibration_mode = 'manual'  # 'manual' 或 'auto'
-        self.current_calibrating = "left"
-        self.left_offset = None
-
         if self._screen.klippy_config is not None:
             try:
                 self.pos['e1_xoffset'] = self._screen.klippy_config.getfloat("Variables", "e1_xoffset")
@@ -290,14 +92,9 @@ class Panel(ScreenPanel):
 
         offsetgrid = self._gtk.HomogeneousGrid()
         offsetgrid = Gtk.Grid()
-        if CALIBRATION_SUPPORTED:
-            # 创建手动和自动校准按钮
-            self.labels['manual'] = self._gtk.Button(None, _("Manual Calibration"), "color1")
-            self.labels['auto'] = self._gtk.Button(None, _("Auto Calibration"), "color2")
-
-        # 添加其他按钮
         self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
-        self.labels['save'] = self._gtk.Button(None, _("Save"), "color1")
+        self.labels['save'] = self._gtk.Button(None, "Save", "color1")
+
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
         self.labels['save'].connect("clicked", self.save_offset)
         offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)           
@@ -316,14 +113,7 @@ class Panel(ScreenPanel):
             cam[cam["name"]].set_hexpand(True)
             cam[cam["name"]].set_vexpand(True)
             cam[cam["name"]].connect("clicked", self.play, cam)
-        if CALIBRATION_SUPPORTED:
-            self.labels['manual'].connect("clicked", self.start_manual_calibration, cam)
-            self.labels['auto'].connect("clicked",self.start_auto_calibration, cam)
-            box.add(self.labels['manual'])
-            box.add(self.labels['auto'])
-        else:
-                box.add(cam[cam["name"]])
-        
+            box.add(cam[cam["name"]])
 
         self.scroll = self._gtk.ScrolledWindow()
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -338,39 +128,7 @@ class Panel(ScreenPanel):
         self.content.add(self.labels['main_menu'])
         self.reset_pos()
 
-        # 只在支持自动校准时初始化校准器
-        if CALIBRATION_SUPPORTED:
-            ip = "127.0.0.1"
-            # 根据打印机型号设置完美中心点
-            perfect_center = (131, 141)
-            if 'MD_400D' in self._printer.get_gcode_macros():
-                perfect_center = (156, 210)
-            elif 'MD_600D' in self._printer.get_gcode_macros():
-                perfect_center = (131, 141)
-            self.calibrator = MdAutoCalibrator(ip, perfect_center)
-
-        # 添加校准相关变量
-        self.calibration_data = {
-            'left': {'retry_count': 0, 'moved_distance': (0, 0)},
-            'right': {'retry_count': 0, 'moved_distance': (0, 0)}
-        }
-        self.min_move_ratio = 0.1
-        self.max_move_ratio = 0.3
-        self.min_offset_threshold = 1
-        self.max_offset_threshold = 50
-
     def process_update(self, action, data):
-        if action == "notify_gcode_response" and self.calibration_mode == 'auto':
-            # 监听 gcode 响应消息
-            if "auto_calibration_move_complete" in data:
-                logging.info("Received move complete message, waiting 3 seconds before calibration")
-                # 使用 GLib.timeout_add 来实现3秒延时
-                if self.current_calibrating == "left":
-                    self._screen.show_popup_message(_("Getting image of left extruder"), level=1)
-                elif self.current_calibrating == "right":
-                    self._screen.show_popup_message(_("Getting image of right extruder"), level=1)
-                GLib.timeout_add(3000, self._start_calibration)
-                
         if action != "notify_status_update":
             return
         homed_axes = self._printer.get_stat("toolhead", "homed_axes")
@@ -492,48 +250,26 @@ class Panel(ScreenPanel):
     def confirm_extrude_position(self, widget):
         if self._printer.extrudercount < 2:
             self._screen.show_popup_message(_("Only one extruder does not require calibration."), level = 2)
-            return        
-        current_extruder = self._printer.get_stat("toolhead", "extruder")
-        
-        # 只在手动校准模式下保存模板
-        if self.calibration_mode == 'manual':
-            try:
-                # 获取摄像头图像并保存为模板
-                image = None
-                if CALIBRATION_SUPPORTED:
-                    image = self.calibrator.getImage(self.calibrator.camera_url)
-                if current_extruder == "extruder":
-                    # 左喷头模板
-                    if image is not None:   
-                        self.calibrator.saveTemplateLeft()
-                        logging.info("Left extruder template saved")
-                        #self._screen.show_popup_message(_("Left extruder template saved"), level=1)
-                        
-                    # 记录左喷头位置并切换到右喷头
-                    self.pos['lx'] = self.pos['x']
-                    self.pos['ly'] = self.pos['y']
-                    self.pos['lz'] = self.pos['z'] 
-                    self._screen.show_popup_message(_("left extruder pos: (%.3f, %.3f, %.3f)") % (self.pos['lx'], self.pos['ly'], self.pos['lz']), level = 1)
-                    self.change_extruder(widget, "extruder1")
-                    self._calculate_position()
-                    
-                else:
-                    # 右喷头模板
-                    if image is not None:
-                        self.calibrator.saveTemplateRight()
-                        logging.info("Right extruder template saved")
-                        #self._screen.show_popup_message(_("Right extruder template saved"), level=1)
-                    if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
-                        self._screen.show_popup_message(_("Please confirm left extruder position."), level = 2)
-                    else:
-                        self.pos['ox'] = self.pos['x'] - self.pos['lx']
-                        self.pos['oy'] = self.pos['y'] - self.pos['ly']
-                        self.pos['oz'] = self.pos['z']  - self.pos['lz']
-                        self._screen.show_popup_message(_("Right extruder offset is (%.3f, %.3f, %.3f)") % (self.pos['ox'], self.pos['oy'], self.pos['oz']), level = 1)
-                    self.labels['save'].set_sensitive(True)                      
-            except Exception as e:
-                logging.error(f"Error saving template: {e}")
-                return
+            return
+        self.current_extruder = self._printer.get_stat("toolhead", "extruder")
+
+        if self._printer.get_tool_number(self.current_extruder) == 0:
+            self.pos['lx'] = self.pos['x']
+            self.pos['ly'] = self.pos['y']
+            self.pos['lz'] = self.pos['z'] 
+            self._screen.show_popup_message(f"left extruder pos: ({self.pos['lx']:.2f}, {self.pos['ly']:.2f}, {self.pos['lz']:.2f})", level = 1)
+            self.change_extruder(widget, "extruder1")
+            self._calculate_position()
+        elif self._printer.get_tool_number(self.current_extruder) == 1:
+            if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
+                self._screen.show_popup_message(f"Please confirm left extruder position.", level = 2)
+            else:
+                self.pos['ox'] = self.pos['x'] - self.pos['lx']
+                self.pos['oy'] = self.pos['y'] - self.pos['ly']
+                self.pos['oz'] = self.pos['z']  - self.pos['lz']
+                self._screen.show_popup_message(f"Right extruder offset is ({self.pos['ox']:.2f}, {self.pos['oy']:.2f}, {self.pos['oz']:.2f})", level = 1)
+                self.labels['save'].set_sensitive(True)                      
+
     def change_extruder(self, widget, extruder):
         self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
@@ -544,29 +280,13 @@ class Panel(ScreenPanel):
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
         else:
-            # 记录原始值用于调试
-            logging.info(f"Raw offset values - ox: {self.pos['ox']}, oy: {self.pos['oy']}")
             self.pos['e1_xoffset'] += self.pos['ox']
             self.pos['e1_yoffset'] += self.pos['oy']
-            if self.calibration_mode == 'auto':
-                try:    
-                    origin_x = self._screen.klippy_config.getfloat("Variables", "origin_offset_x")
-                    origin_y = self._screen.klippy_config.getfloat("Variables", "origin_offset_y")
-                    self.pos['ox'] = self.pos['ox'] + origin_x
-                    self.pos['oy'] = self.pos['oy'] + origin_y
-                except Exception as e:
-                    self._screen.show_popup_message(_("Error getting origin offset values: %s") % e, level=2)
-                    logging.error(f"Error getting origin offset values: {e}")
-                    return
             try:
                 self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
                 self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
-                if self.calibration_mode == 'manual':
-                    # 手动校准时保存原始偏移值
-                    self._screen.klippy_config.set("Variables", "origin_offset_x", f"{self.pos['e1_xoffset']:.2f}")
-                    self._screen.klippy_config.set("Variables", "origin_offset_y", f"{self.pos['e1_yoffset']:.2f}")
-                    self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
-                    self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
+                self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
+                self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
                 logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
@@ -606,15 +326,7 @@ class Panel(ScreenPanel):
             self.change_extruder(widget=None, extruder="extruder")
         self._calculate_position()
 
-        if (self.calibration_mode == 'manual'):
-            self.labels['confirm'].set_sensitive(True)
-            self.buttons['x+'].set_sensitive(True)
-            self.buttons['x-'].set_sensitive(True)
-            self.buttons['y+'].set_sensitive(True)
-            self.buttons['y-'].set_sensitive(True)        
-            for i in self.distances:
-                self.labels[i].set_sensitive(True)    
-                
+
         if self.mpv:
             self.mpv.terminate()
         # self.mpv = mpv.MPV(fullscreen=False, log_handler=self.log, vo='gpu,wlshm,xv,x11', geometry = '400x240')
@@ -676,26 +388,18 @@ class Panel(ScreenPanel):
         self.labels['save'].set_sensitive(False)
 
     def _calculate_position(self):
-        """移动到校准位置"""
         try:
             x_position = self._screen.klippy_config.getfloat("Variables", "cam_xpos")
             y_position = self._screen.klippy_config.getfloat("Variables", "cam_ypos")
             z_position = self._screen.klippy_config.getfloat("Variables", "cam_zpos")            
         except:
             logging.error("Couldn't get the calibration camera position.")
-            self._screen.show_popup_message(_("Couldn't get the calibration camera position."), level=2)
             return
 
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
-        script = [
-            f"{KlippyGcodes.MOVE_ABSOLUTE}",
-            f"G0 Z{z_position} F600",
-            f"G0 X{x_position} Y{y_position} F3000",
-            "M400",
-            "RESPOND TYPE=command MSG=auto_calibration_move_complete"
-        ]
-        self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
-        self.pos['z'] = z_position 
+        self._screen._ws.klippy.gcode_script(f'G0 Z{z_position} F3000')
+        self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
+        self.pos['z'] = z_position    
         
     def save_config(self):
         script = {"script": "SAVE_CONFIG"}
@@ -711,218 +415,16 @@ class Panel(ScreenPanel):
         source_file = "/home/mingda/printer_data/config/crowsnest2.conf"
         create_symbolic_link(source_file, symbolic_link)
         os.system('sudo systemctl restart crowsnest.service')
-        if CALIBRATION_SUPPORTED:
-            self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Manual Calibration' or 'Auto Calibration'"), level=2)
-        else:
-            self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
-
-        self.labels['confirm'].set_sensitive(False)
-        self.buttons['x+'].set_sensitive(False)
-        self.buttons['x-'].set_sensitive(False)
-        self.buttons['y+'].set_sensitive(False)
-        self.buttons['y-'].set_sensitive(False)
-        for j, i in enumerate(self.distances):
-            self.labels[i].set_sensitive(False)
+        self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
 
     def deactivate(self):
         symbolic_link = "/home/mingda/printer_data/config/crowsnest.conf"
         source_file = "/home/mingda/printer_data/config/crowsnest1.conf"
         create_symbolic_link(source_file, symbolic_link)
+        # os.system('sudo systemctl restart crowsnest.service')
         subprocess.Popen(["sudo", "systemctl", "restart", "crowsnest.service"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    def start_manual_calibration(self, widget, cam):
-        """开始手动校准"""
-        logging.info("Starting manual calibration")
-        self.calibration_mode = 'manual'    
-        self.play(widget, cam)
 
-    def start_auto_calibration(self, widget, cam):
-        """开始自动校准"""
-        logging.info("Starting auto calibration")
-        
-        # 检查是否存在模板图像
-        if not os.path.exists(self.calibrator.template_left_path) or not os.path.exists(self.calibrator.template_right_path):
-            logging.error("No template images found")
-            self._screen.show_popup_message(
-                _("No template images found. Please perform manual calibration first."), 
-                level=2
-            )
-            return
-        
-        # 开始自动校准
-        self.calibration_mode = 'auto'
-        self.current_calibrating = "left"
-        self.left_offset = None
-        self.play(widget, cam)
-
-    def _start_left_calibration(self):
-        """开始左喷头校准"""
-        logging.info("Starting left calibration")
-        result, offset = self.calibrator.startCalibration()
-        if result:
-            cal_data = self.calibration_data['left']
-            
-            # 检查是否已经达到最大重试次数
-            if cal_data['retry_count'] >= 10:
-                self._screen.show_popup_message(
-                    _("Left extruder calibration failed. Please clean the nozzle and try again."),
-                    level=2
-                )
-                return
-            
-            # 检查偏移值是否为(0,0)
-            if abs(offset[0]) < 0.001 and abs(offset[1]) < 0.001:
-                # 记录当前左喷头位置
-                self.pos['lx'] = self._printer.get_stat("gcode_move", "gcode_position")[0]
-                self.pos['ly'] = self._printer.get_stat("gcode_move", "gcode_position")[1]
-                logging.info(f"Left extruder position recorded: ({self.pos['lx']}, {self.pos['ly']})")
-                # 切换到右喷头校准
-                self.current_calibrating = "right"
-                self.change_extruder(None, "extruder1")
-                self._calculate_position()
-                return
-            
-            # 计算需要移动的距离
-            # move_ratio = self.calculate_move_ratio(offset)
-            move_ratio = 0.05
-            adjust_x = -offset[0] * move_ratio
-            adjust_y = offset[1] * move_ratio
-            if 'MD_400D' in self._printer.get_gcode_macros():
-                adjust_x = offset[0] * move_ratio
-                adjust_y = -offset[1] * move_ratio
-
-            cal_data['moved_distance'] = (adjust_x, adjust_y)
-            cal_data['retry_count'] += 1
-            
-            # 执行移动
-            script = [
-                f"{KlippyGcodes.MOVE_RELATIVE}",
-                f"G1 X{adjust_x} Y{adjust_y} F3000",
-                "M400",
-                "RESPOND TYPE=command MSG=auto_calibration_move_complete"
-            ]
-            self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
-        else:
-            self._screen.show_popup_message(
-                _("Left extruder calibration failed. Please clean the nozzle and try again."),
-                level=2
-            )
-
-    def _start_right_calibration(self):
-        """开始右喷头校准"""
-        logging.info("Starting right calibration")
-        result, offset = self.calibrator.startCalibration()
-        if result:
-            cal_data = self.calibration_data['right']
-            
-            # 检查是否已经达到最大重试次数
-            if cal_data['retry_count'] >= 10:
-                self._screen.show_popup_message(
-                    _("Right extruder calibration failed. Please clean the nozzle and try again."),
-                    level=2
-                )
-                return
-            
-            # 检查偏移值是否为(0,0)
-            if abs(offset[0]) < 0.001 and abs(offset[1]) < 0.001:
-                # 记录当前右喷头位置
-                rx = self._printer.get_stat("gcode_move", "gcode_position")[0]
-                ry = self._printer.get_stat("gcode_move", "gcode_position")[1]
-                logging.info(f"Right extruder position recorded: ({rx}, {ry})")
-                
-                # 计算新的偏移值
-                if 'lx' in self.pos and 'ly' in self.pos:
-                    self.pos['ox'] = rx - self.pos['lx']
-                    self.pos['oy'] = ry - self.pos['ly']
-                    logging.info(f"New offset calculated: ({self.pos['ox']}, {self.pos['oy']})")
-                    self.save_offset(None)
-                return
-            
-            # 计算需要移动的距离
-            # move_ratio = self.calculate_move_ratio(offset)
-            move_ratio = 0.05
-            adjust_x = -offset[0] * move_ratio
-            adjust_y = offset[1] * move_ratio
-            if 'MD_400D' in self._printer.get_gcode_macros():
-                adjust_x = offset[0] * move_ratio
-                adjust_y = -offset[1] * move_ratio
-            cal_data['moved_distance'] = (adjust_x, adjust_y)
-            cal_data['retry_count'] += 1
-            
-            # 执行移动
-            script = [
-                f"{KlippyGcodes.MOVE_RELATIVE}",
-                f"G1 X{adjust_x} Y{adjust_y} F3000",
-                "M400",
-                "RESPOND TYPE=command MSG=auto_calibration_move_complete"
-            ]
-            self._screen._send_action(None, "printer.gcode.script", {"script": "\n".join(script)})
-        else:
-            self._screen.show_popup_message(
-                _("Right extruder calibration failed. Please clean the nozzle and try again."),
-                level=2
-            )
-
-    def _wait_for_motion(self):
-        """等待运动完成"""
-        while self._printer.get_stat("toolhead", "status") == "moving":
-            time.sleep(0.1)
-
-    def calculate_move_ratio(self, offset):
-        """根据偏移值大小计算移动比例"""
-        magnitude = math.sqrt(offset[0]**2 + offset[1]**2)
-        if magnitude <= self.min_offset_threshold:
-            return self.min_move_ratio
-        elif magnitude >= self.max_offset_threshold:
-            return self.max_move_ratio
-        else:
-            return self.min_move_ratio + (self.max_move_ratio - self.min_move_ratio) * \
-                   (magnitude - self.min_offset_threshold) / (self.max_offset_threshold - self.min_offset_threshold)
-
-    def calculate_real_offset(self, first_offset, second_offset, moved_distance):
-        """
-        计算实际偏移值
-        first_offset: 第一次测量的像素偏移值
-        second_offset: 第二次测量的像素偏移值
-        moved_distance: 实际移动的距离(mm)
-        """
-        # 计算两次测量的像素差值
-        pixel_diff_x = first_offset[0] - second_offset[0]
-        pixel_diff_y = first_offset[1] - second_offset[1]
-        
-        # 计算像素/毫米比例
-        # 由于我们知道moved_distance是实际移动的距离,可以直接计算比例
-        scale_x = abs(pixel_diff_x / moved_distance[0]) if moved_distance[0] != 0 else 0
-        scale_y = abs(pixel_diff_y / moved_distance[1]) if moved_distance[1] != 0 else 0
-        
-        # 使用第一次测量的像素偏移值计算实际偏移
-        real_offset_x = first_offset[0] / scale_x if scale_x != 0 else 0
-        real_offset_y = first_offset[1] / scale_y if scale_y != 0 else 0
-        
-        logging.info(f"Pixel difference: ({pixel_diff_x:.3f}, {pixel_diff_y:.3f})px")
-        logging.info(f"Moved distance: ({moved_distance[0]:.3f}, {moved_distance[1]:.3f})mm")
-        logging.info(f"Scale: ({scale_x:.3f}, {scale_y:.3f})px/mm")
-        logging.info(f"First offset(pixels): ({first_offset[0]:.3f}, {first_offset[1]:.3f})")
-        logging.info(f"Real offset(mm): ({real_offset_x:.3f}, {real_offset_y:.3f})")
-        
-        return real_offset_x, real_offset_y
-
-    def _start_calibration(self):
-        """开始校准"""
-        if self.current_calibrating == "left":
-            self._start_left_calibration()
-        elif self.current_calibrating == "right":
-            self._start_right_calibration()
-        # 返回 False 以防止重复执行
-        return False
-    def back(self):
-        if self.mpv:
-            self.mpv.terminate()
-            self.mpv = None                    
-        if len(self.menu) > 1:
-            self.unload_menu()
-            return True
-        return False
 def create_symbolic_link(source_path, link_path):
     if os.path.exists(link_path):
         os.remove(link_path)
