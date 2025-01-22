@@ -756,6 +756,10 @@ class KlipperScreen(Gtk.Window):
             script  = 'SET_FILAMENT_BOX_POWER S=1'
             self._ws.klippy.gcode_script(script)        
 
+        self.on_auto_extruder_switch = self._config.get_main_config().getboolean("auto_extruder_switch", fallback=False)
+        if self.on_auto_extruder_switch:
+            script = 'ENABLE_AUTO_EXTRUDER_SWITCH'
+            self._ws.klippy.gcode_script(script)
 
     def state_startup(self):
         self.printer_initializing(_("Firmware is attempting to start"))
@@ -1215,6 +1219,19 @@ class KlipperScreen(Gtk.Window):
         # 更新手册语言
         if hasattr(self, "panels") and "manual" in self.panels:
             self.panels["manual"].update_language(lang)
+
+    def check_auto_extruder_switch(self):
+        # 检查配置文件中是否存在 auto_extruder_switch 段
+        if self.printer is None:
+            return False
+            
+        return self.printer.config_section_exists("auto_extruder_switch")
+
+    def set_auto_extruder_switch(self, is_on):
+        script = 'DISABLE_AUTO_EXTRUDER_SWITCH'
+        if is_on:
+            script = 'ENABLE_AUTO_EXTRUDER_SWITCH'
+        self._ws.klippy.gcode_script(script)
 
 def main():
     minimum = (3, 7)
