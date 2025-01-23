@@ -1465,3 +1465,60 @@ msgstr "Døren er lukket."
 
 msgid "Error getting origin offset values: %s"
 msgstr "Fejl ved hentning af oprindelige offset-værdier: %s"
+
+msgid "Raise"
+msgstr "Hæv"
+
+msgid "Lower"
+msgstr "Senk"
+
+msgid "Filament run out, pausing print"
+msgstr "Filden er brugt op, pause i udskrivning"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "Ikke i enkeltextruder tilstand, pause i udskrivning"
+
+msgid "Current sensor not configured, pausing print"
+msgstr "Nuværende sensor ikke konfigureret, pause i udskrivning"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "Andre sensorer ikke konfigureret, pause i udskrivning"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "Nuværende ekstruder har fild, fortsætter med udskrivning"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "Begge ekstrudere er uden fil, pause i udskrivning"
+
+msgid "Filament run out, switching extruder"
+msgstr "Filden er brugt op, skifter ekstruder"
+
+msgid "Switching to left extruder"
+msgstr "Skifter til venstre ekstruder"
+
+msgid "Switching to right extruder"
+msgstr "Skifter til højre ekstruder"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "Ekstruder-skift færdigt, genoptager udskrivning"
+
+msgid "Auto extruder switch already enabled"
+msgstr "Automatisk ekstruder-skift allerede aktiveret"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "Automatisk ekstruder-skift aktiveret, denne funktion virker kun ved udskrivning med en enkelt ekstruder"
+
+msgid "Auto extruder switch already disabled"
+msgstr "Automatisk ekstruder-skift allerede deaktiveret"
+
+msgid "Auto extruder switch disabled"
+msgstr "Automatisk ekstruder-skift deaktiveret"
+
+msgid "Extruder switch when filament run out"
+msgstr "Ekstruder-skift når filden er brugt op"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr "Fildsensor 0: Ingen fild opdaget, annullerer udskrivning."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr "Fildsensor 1: Ingen fild opdaget, annullerer udskrivning."

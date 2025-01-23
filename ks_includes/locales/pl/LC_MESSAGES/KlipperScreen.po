@@ -1461,3 +1461,60 @@ msgstr "Drzwi są zamknięte."
 
 msgid "Error getting origin offset values: %s"
 msgstr "Błąd podczas pobierania wartości przesunięcia początkowego: %s"
+
+msgid "Raise"
+msgstr "Podnieś"
+
+msgid "Lower"
+msgstr "Opuszczaj"
+
+msgid "Filament run out, pausing print"
+msgstr "Materiał się skończył, wstrzymuję druk"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "Nie jest w trybie jednej dyszy, wstrzymuję druk"
+
+msgid "Current sensor not configured, pausing print"
+msgstr "Bieżący czujnik nie jest skonfigurowany, wstrzymuję druk"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "Inne czujniki nie są skonfigurowane, wstrzymuję druk"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "Bieżąca dysza ma materiał, kontynuuje druk"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "Obie dysze są bez materiału, wstrzymuję druk"
+
+msgid "Filament run out, switching extruder"
+msgstr "Materiał się skończył, zmieniam dyszę"
+
+msgid "Switching to left extruder"
+msgstr "Przełączam na lewą dyszę"
+
+msgid "Switching to right extruder"
+msgstr "Przełączam na prawą dyszę"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "Zmiana dyszy zakończona, wznowienie druku"
+
+msgid "Auto extruder switch already enabled"
+msgstr "Automatyczna zmiana dyszy już włączona"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "Automatyczna zmiana dyszy włączona; ta funkcja działa tylko podczas drukowania za pomocą pojedynczej dyszy"
+
+msgid "Auto extruder switch already disabled"
+msgstr "Automatyczna zmiana dyszy już wyłączona"
+
+msgid "Auto extruder switch disabled"
+msgstr "Automatyczna zmiana dyszy wyłączona"
+
+msgid "Extruder switch when filament run out"
+msgstr "Zmiana dyszy, gdy materiał się kończy"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr "Czujnik Materiału 0: Nie wykryto materiału, anulowanie druku."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr "Czujnik Materiału 1: Nie wykryto materiału, anulowanie druku."

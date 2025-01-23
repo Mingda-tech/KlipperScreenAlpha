@@ -1607,3 +1607,60 @@ msgstr "Uks on suletud."
 
 msgid "Error getting origin offset values: %s"
 msgstr "Viga algse nihke väärtuste hankimisel: %s"
+
+msgid "Raise"
+msgstr "Tõsta"
+
+msgid "Lower"
+msgstr "Langeda"
+
+msgid "Filament run out, pausing print"
+msgstr "Filament otsas, peatan printimist"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "Mitte ühe ekstrudeerija režiimis, peatan printimist"
+
+msgid "Current sensor not configured, pausing print"
+msgstr "Praegune sensor pole seadistatud, peatan printimist"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "Muud sensored pole seadistatud, peatan printimist"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "Praegune ekstrudeerija hulgab filaments, jätkan printimist"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "Mõlemad ekstrudeerijad on filamenti otsas, peatan printimist"
+
+msgid "Filament run out, switching extruder"
+msgstr "Filament otsas, vahetan ekstrudeerija"
+
+msgid "Switching to left extruder"
+msgstr "Vahetan vasakule ekstrudeerijale"
+
+msgid "Switching to right extruder"
+msgstr "Vahetan paremale ekstrudeerijale"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "Ekstrudeerija vahetus lõpule jõudnud, jätkan printimist"
+
+msgid "Auto extruder switch already enabled"
+msgstr "Automaatne ekstrudeerija vahetus juba lubatud"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "Automaatne ekstrudeerija vahetus lubatud; see funktsioon töötab ainult ühe ekstrudeerija printimisel"
+
+msgid "Auto extruder switch already disabled"
+msgstr "Automaatne ekstrudeerija vahetus juba keelatud"
+
+msgid "Auto extruder switch disabled"
+msgstr "Automaatne ekstrudeerija vahetus keelatud"
+
+msgid "Extruder switch when filament run out"
+msgstr "Ekstrudeerija vahetus, kui filament otseneb"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr "Filamentisensor 0: Filamenti ei tuvastatud, tühistan printimist."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr "Filamentisensor 1: Filamenti ei tuvastatud, tühistan printimist."
