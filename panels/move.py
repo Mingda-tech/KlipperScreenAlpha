@@ -27,16 +27,20 @@ class Panel(ScreenPanel):
         self.menu = ['move_menu']
         z_up_image = "z-farther"
         z_down_image = "z-closer"
+        z_up_label = _("Raise") 
+        z_down_label = _("Lower")
         if "MD_400D" in self._printer.get_gcode_macros():
             z_up_image = "bed_down"
             z_down_image = "bed_up"
+            z_up_label = _("Lower")
+            z_down_label = _("Raise")
         self.buttons = {
             'x+': self._gtk.Button("arrow-right", "X+", "color1"),
             'x-': self._gtk.Button("arrow-left", "X-", "color1"),
             'y+': self._gtk.Button("arrow-up", "Y+", "color2"),
             'y-': self._gtk.Button("arrow-down", "Y-", "color2"),
-            'z+': self._gtk.Button(z_up_image, "Z+", "color3"),
-            'z-': self._gtk.Button(z_down_image, "Z-", "color3"),
+            'z+': self._gtk.Button(z_up_image, z_up_label, "color3"),
+            'z-': self._gtk.Button(z_down_image, z_down_label, "color3"),
             'home': self._gtk.Button("home", _("Home"), "color4"),
             'motors_off': self._gtk.Button("motor-off", _("Disable Motors"), "color4"),
         }

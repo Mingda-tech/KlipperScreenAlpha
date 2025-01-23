@@ -695,7 +695,7 @@ class Panel(ScreenPanel):
         self.buttons['elapsed'].set_label(elapsed_label)
         estimated = 0
         slicer_time = filament_time = file_time = None
-        timeleft_type = self._config.get_config()['main'].get('print_estimate_method', 'auto')
+        timeleft_type = self._config.get_config()['main'].get('print_estimate_method', 'slicer')
 
         with suppress(KeyError):
             if self.file_metadata['estimated_time'] > 0:
