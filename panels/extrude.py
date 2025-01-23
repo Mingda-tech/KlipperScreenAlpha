@@ -151,16 +151,19 @@ class Panel(ScreenPanel):
             grid.attach(self.buttons['extrude'], 0, 1, 2, 1)
             grid.attach(self.buttons['retract'], 2, 1, 2, 1)
             grid.attach(self.buttons['load'], 0, 2, 2, 1)
-            grid.attach(self.buttons['unload'], 2, 2, 2, 1)
+            if self.unload_filament:
+                grid.attach(self.buttons['retract'], 2, 2, 2, 1)
+            else:
+                grid.attach(self.buttons['temperature'], 2, 2, 2, 1)
             grid.attach(distbox, 0, 3, 4, 1)
             grid.attach(speedbox, 0, 4, 4, 1)
             grid.attach(sensors, 0, 5, 4, 1)
         else:
             grid.attach(self.buttons['extrude'], 0, 2, 2, 1)
-            # grid.attach(self.buttons['load'], 1, 2, 1, 1)
-            # grid.attach(self.buttons['unload'], 2, 2, 1, 1)
-            # grid.attach(self.buttons['retract'], 2, 2, 2, 1)
-            grid.attach(self.buttons['temperature'], 2, 2, 2, 1)
+            if self.unload_filament:
+                grid.attach(self.buttons['retract'], 2, 2, 2, 1)
+            else:
+                grid.attach(self.buttons['temperature'], 2, 2, 2, 1)
             grid.attach(distbox, 0, 3, 2, 1)
             grid.attach(speedbox, 2, 3, 2, 1)
             grid.attach(sensors, 0, 4, 4, 1)
@@ -250,9 +253,7 @@ class Panel(ScreenPanel):
             self._screen._ws.klippy.gcode_script(KlippyGcodes.EXTRUDE_REL)
             if direction == "-":
                 self._screen._send_action(widget, "printer.gcode.script",
-                                  {"script": f"G1 E{direction}20 F1800"})
-                self._screen._send_action(widget, "printer.gcode.script",
-                                  {"script": f"G1 E{direction}37 F120"})
+                                  {"script": f"UNLOAD_FILAMENT"})
             else:
                 self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"G1 E{direction}{self.distance} F{self.speed * 60}"})
