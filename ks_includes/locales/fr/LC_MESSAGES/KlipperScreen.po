@@ -1653,3 +1653,60 @@ msgstr "La porte est fermée."
 
 msgid "Error getting origin offset values: %s"
 msgstr "Erreur lors de l'obtention des valeurs de décalage d'origine : %s"
+
+msgid "Raise"
+msgstr "Élever"
+
+msgid "Lower"
+msgstr "Abaisser"
+
+msgid "Filament run out, pausing print"
+msgstr "Le filament est épuisé, pause de l'impression"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "Pas en mode à une seule buse, pause de l'impression"
+
+msgid "Current sensor not configured, pausing print"
+msgstr "Le capteur actuel n'est pas configuré, pause de l'impression"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "Les autres capteurs ne sont pas configurés, pause de l'impression"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "La buse actuelle contient du filament, continuation de l'impression"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "Les deux buses sont à court de filament, pause de l'impression"
+
+msgid "Filament run out, switching extruder"
+msgstr "Le filament est épuisé, changement de buse"
+
+msgid "Switching to left extruder"
+msgstr "Changement à la buse de gauche"
+
+msgid "Switching to right extruder"
+msgstr "Changement à la buse de droite"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "Changement de buse terminé, reprise de l'impression"
+
+msgid "Auto extruder switch already enabled"
+msgstr "Le changement automatique de buse est déjà activé"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "Le changement automatique de buse est activé ; cette fonctionne ne fonctionne que lors de l'impression avec une seule buse"
+
+msgid "Auto extruder switch already disabled"
+msgstr "Le changement automatique de buse est déjà désactivé"
+
+msgid "Auto extruder switch disabled"
+msgstr "Le changement automatique de buse est désactivé"
+
+msgid "Extruder switch when filament run out"
+msgstr "Changement de buse lorsque le filament est épuisé"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr "Capteur de filament 0 : Aucun filament détecté, annulation de l'impression."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr "Capteur de filament 1 : Aucun filament détecté, annulation de l'impression."

@@ -1633,3 +1633,60 @@ msgstr "La puerta está cerrada."
 
 msgid "Error getting origin offset values: %s"
 msgstr "Error al obtener los valores de desplazamiento de origen: %s"
+
+msgid "Raise"
+msgstr "Elevación"
+
+msgid "Lower"
+msgstr "Bajada"
+
+msgid "Filament run out, pausing print"
+msgstr "Se ha agotado el filamento, se pone en pausa la impresión"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "No está en modo de una sola extrusora, se pone en pausa la impresión"
+
+msgid "Current sensor not configured, pausing print"
+msgstr "El sensor actual no está configurado, se pone en pausa la impresión"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "Otros sensores no están configurados, se pone en pausa la impresión"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "La extrusora actual tiene filamento, continuando la impresión"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "Ambas extrusoras están sin filamento, se pone en pausa la impresión"
+
+msgid "Filament run out, switching extruder"
+msgstr "Se ha agotado el filamento, cambiando de extrusora"
+
+msgid "Switching to left extruder"
+msgstr "Cambiando a la extrusora izquierda"
+
+msgid "Switching to right extruder"
+msgstr "Cambiando a la extrusora derecha"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "Cambio de extrusora completo, reanudando la impresión"
+
+msgid "Auto extruder switch already enabled"
+msgstr "El cambio automático de extrusora ya está habilitado"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "El cambio automático de extrusora está habilitado; esta función solo funciona al imprimir con una sola extrusora"
+
+msgid "Auto extruder switch already disabled"
+msgstr "El cambio automático de extrusora ya está deshabilitado"
+
+msgid "Auto extruder switch disabled"
+msgstr "El cambio automático de extrusora está deshabilitado"
+
+msgid "Extruder switch when filament run out"
+msgstr "Cambio de extrusora cuando se agota el filamento"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr "Sensor de Filamento 0: No se detectó filamento, cancelando la impresión."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr "Sensor de Filamento 1: No se detectó filamento, cancelando la impresión."

@@ -1648,3 +1648,60 @@ msgstr "הדלת סגורה."
 
 msgid "Error getting origin offset values: %s"
 msgstr "שגיאה בקבלת ערכי היסט המקור: %s"
+
+msgid "Raise"
+msgstr "להעלות"
+
+msgid "Lower"
+msgstr "לרדת"
+
+msgid "Filament run out, pausing print"
+msgstr "סיב נגמר, מפסיק את הדפסה"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "לא במצב צינור יחיד, מפסיק את הדפסה"
+
+msgid "Current sensor not configured, pausing print"
+msgstr " censor נוכחי לא מוגדר, מפסיק את הדפסה"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "sensors אחרים לא מוגדרים, מפסיק את הדפסה"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "צינור הניקוב הנוכחי מכיל סיב, ממשיך את הדפסה"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "שני הצינורות חסרים סיב, מפסיק את הדפסה"
+
+msgid "Filament run out, switching extruder"
+msgstr "סיב נגמר, משנה לצינור אחר"
+
+msgid "Switching to left extruder"
+msgstr "מחליף לצינור השמאלי"
+
+msgid "Switching to right extruder"
+msgstr "מחליף לצינור הימני"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "החלפת הצינור הושלמה, ממשיך את הדפסה"
+
+msgid "Auto extruder switch already enabled"
+msgstr "swith אוטומטי של צינור כבר מופעל"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "swith אוטומטי של צינור מופעל; תכונה זו עובדת רק עם צינור יחיד"
+
+msgid "Auto extruder switch already disabled"
+msgstr "swith אוטומטי של צינור כבר כבה"
+
+msgid "Auto extruder switch disabled"
+msgstr "swith אוטומטי של צינור כבה"
+
+msgid "Extruder switch when filament run out"
+msgstr "swith צינור כאשר הסיב נגמר"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr " censor סיב 0: לא זוהה סיב, בטל את הדפסה."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr " censor סיב 1: לא זוהה סיב, בטל את הדפסה."

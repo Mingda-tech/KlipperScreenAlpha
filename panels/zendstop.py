@@ -29,9 +29,18 @@ class Panel(ScreenPanel):
             pos.attach(Gtk.Label(_("New")), 1, 3, 1, 1)
             pos.attach(Gtk.Label(f"{self.z_offset:.3f}"), 0, 4, 1, 1)
             pos.attach(self.widgets['zoffset'], 1, 4, 1, 1)
+        z_up_image = "z-farther"
+        z_down_image = "z-closer"
+        z_up_label = _("Raise")  
+        z_down_label = _("Lower")
+        if "MD_400D" in self._printer.get_gcode_macros():
+            z_up_image = "bed_down"
+            z_down_image = "bed_up"
+            z_up_label = _("Lower")
+            z_down_label = _("Raise")            
         self.buttons = {
-            'zpos': self._gtk.Button('z-farther', _("Raise Nozzle"), 'color4'),
-            'zneg': self._gtk.Button('z-closer', _("Lower Nozzle"), 'color1'),
+            'zpos': self._gtk.Button(z_up_image, z_up_label, 'color4'),
+            'zneg': self._gtk.Button(z_down_image, z_down_label, 'color1'),
             'start': self._gtk.Button('resume', _("Start"), 'color3'),
             'complete': self._gtk.Button('complete', _('Accept'), 'color3'),
             'cancel': self._gtk.Button('cancel', _('Abort'), 'color2'),
@@ -90,8 +99,12 @@ class Panel(ScreenPanel):
             grid.attach(self.buttons['cancel'], 1, 2, 1, 1)
             grid.attach(distances, 0, 3, 2, 1)
         else:
-            grid.attach(self.buttons['zpos'], 0, 0, 1, 1)
-            grid.attach(self.buttons['zneg'], 0, 1, 1, 1)
+            if "MD_400D" in self._printer.get_gcode_macros():
+                grid.attach(self.buttons['zneg'], 0, 0, 1, 1)
+                grid.attach(self.buttons['zpos'], 0, 1, 1, 1)
+            else:            
+                grid.attach(self.buttons['zpos'], 0, 0, 1, 1)
+                grid.attach(self.buttons['zneg'], 0, 1, 1, 1)
             grid.attach(self.buttons['start'], 1, 0, 1, 1)
             grid.attach(pos, 1, 1, 1, 1)
             grid.attach(self.buttons['complete'], 2, 0, 1, 1)

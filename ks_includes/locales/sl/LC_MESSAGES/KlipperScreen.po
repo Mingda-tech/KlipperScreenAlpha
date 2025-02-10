@@ -1683,3 +1683,60 @@ msgstr "Vrata so zaprta."
 
 msgid "Error getting origin offset values: %s"
 msgstr "Napaka pri pridobivanju vrednosti odmika izhodišča: %s"
+
+msgid "Raise"
+msgstr "Naprej"
+
+msgid "Lower"
+msgstr "Navzdol"
+
+msgid "Filament run out, pausing print"
+msgstr "Filament se je iztekel, postavljam tiskanje na pauzo"
+
+msgid "Not in single extruder mode, pausing print"
+msgstr "Ni v načinu z enim ekstruderm, postavljam tiskanje na pauzo"
+
+msgid "Current sensor not configured, pausing print"
+msgstr "Trenutni senzor ni konfiguriran, postavljam tiskanje na pauzo"
+
+msgid "Other sensor not configured, pausing print"
+msgstr "Ostali senzorji niso konfigurirani, postavljam tiskanje na pauzo"
+
+msgid "Current extruder has filament, continuing print"
+msgstr "Trenutni ekstruder ima filament, nadaljujem s tiskanjem"
+
+msgid "Both extruders out of filament, pausing print"
+msgstr "Oba ekstruderja sta brez filamente, postavljam tiskanje na pauzo"
+
+msgid "Filament run out, switching extruder"
+msgstr "Filament se je iztekel, zamenjam ekstruder"
+
+msgid "Switching to left extruder"
+msgstr "Prehod na levi ekstruder"
+
+msgid "Switching to right extruder"
+msgstr "Prehod na desni ekstruder"
+
+msgid "Extruder switch complete, resuming print"
+msgstr "Zamenjava ekstruderja končana, nadaljujem s tiskanjem"
+
+msgid "Auto extruder switch already enabled"
+msgstr "Samodejna zamenjava ekstruderja že omogočena"
+
+msgid "Auto extruder switch enabled, this feature only works when printing with a single extruder"
+msgstr "Samodejna zamenjava ekstruderja omogočena; ta funkcija deluje le pri tiskanju z enim ekstruderjem"
+
+msgid "Auto extruder switch already disabled"
+msgstr "Samodejna zamenjava ekstruderja že onemogočena"
+
+msgid "Auto extruder switch disabled"
+msgstr "Samodejna zamenjava ekstruderja onemogočena"
+
+msgid "Extruder switch when filament run out"
+msgstr "Zamenjava ekstruderja, ko se filament izteče"
+
+msgid "Filament Sensor0: No filament detected, canceling print."
+msgstr "Senzor filamente 0: Ni zaznan filament, prekinjam tiskanje."
+
+msgid "Filament Sensor1: No filament detected, canceling print."
+msgstr "Senzor filamente 1: Ni zaznan filament, prekinjam tiskanje."

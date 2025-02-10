@@ -284,6 +284,8 @@ class KlipperScreenConfig:
             {"shutdown_print_end": {"section": "main", "name": _("Shut down after printing completes"), "type": "binary", "value": "False"}},                                                                                  
             {"filament_box_power": {"section": "main", "name": _("Filament Box Power"), "type": "binary", 
                                     "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
+            {"auto_extruder_switch": {"section": "main", "name": _("Extruder switch when filament run out"), "type": "binary", 
+                                    "value": "False", "callback": screen.set_auto_extruder_switch}},                                                                                  
             # {"": {"section": "main", "name": _(""), "type": ""}}
         ]
 
