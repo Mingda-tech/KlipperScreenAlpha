@@ -286,7 +286,17 @@ class KlipperScreenConfig:
                                     "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
             {"auto_extruder_switch": {"section": "main", "name": _("Extruder switch when filament run out"), "type": "binary", 
                                     "value": "False", "callback": screen.set_auto_extruder_switch}},                                                                                  
-            # {"": {"section": "main", "name": _(""), "type": ""}}
+            {"ai_service": {"section": "main", "name": _("AI Service"), "type": "binary", "value": "False"}},
+            {"ai_confidence_threshold": {
+                "section": "main", 
+                "name": _("AI Confidence Threshold"), 
+                "type": "scale", 
+                "value": "80",
+                "range": [0, 100],
+                "step": 1
+            }},
+            {"ai_auto_pause": {"section": "main", "name": _("Auto Pause on AI Detection"), "type": "binary", "value": "False"}},
+            {"ai_cloud_service": {"section": "main", "name": _("Use AI Cloud Service"), "type": "binary", "value": "True"}},
         ]
 
         # Options that are in panels and shouldn't be added to the main settings

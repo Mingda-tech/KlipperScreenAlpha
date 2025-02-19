@@ -110,6 +110,7 @@ class KlipperScreen(Gtk.Window):
         self.confirm = None
         self.panels_reinit = []
         self.manual_settings = {}
+        self.show_ai_pause = True
 
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
@@ -710,7 +711,11 @@ class KlipperScreen(Gtk.Window):
     def state_paused(self):
         self.state_printing()
         if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
-            self.show_panel("extrude", _("Extrude"))
+            if self.show_ai_pause:
+                self.show_panel("ai_pause", _("AI Warning"))
+                self.show_ai_pause = False
+            else:
+                self.show_panel("extrude", _("Extrude"))
 
     def state_printing(self):            
         self.close_screensaver()
