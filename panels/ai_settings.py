@@ -14,11 +14,7 @@ class Panel(ScreenPanel):
         self.settings = {}
         
         # 获取AI相关的配置选项
-        options = []
-        for option in self._config.get_configurable_options():
-            name = list(option)[0]
-            if name.startswith('ai_'):
-                options.append(option)
+        options = self._config.ai_options
 
         # 创建滚动窗口
         self.labels['ai_settings_menu'] = self._gtk.ScrolledWindow()
