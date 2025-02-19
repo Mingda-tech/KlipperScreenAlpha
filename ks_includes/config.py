@@ -296,6 +296,10 @@ class KlipperScreenConfig:
             {"move_speed_xy": {"section": "main", "name": _("XY Move Speed (mm/s)"), "type": None, "value": "50"}},
             {"move_speed_z": {"section": "main", "name": _("Z Move Speed (mm/s)"), "type": None, "value": "10"}},
             {"print_sort_dir": {"section": "main", "type": None, "value": "name_asc"}},
+        ]
+
+        # AI related options that should only show in ai_pause panel
+        ai_options = [
             {"ai_service": {"section": "main", "name": _("AI Service"), "type": "binary", "value": "False"}},
             {"ai_confidence_threshold": {
                 "section": "main", 
@@ -310,6 +314,17 @@ class KlipperScreenConfig:
         ]
 
         self.configurable_options.extend(panel_options)
+        
+        # Store AI options separately for use in ai_pause panel
+        self.ai_options = ai_options
+        # Make sure AI options are still in config but not shown in main settings
+        for option in ai_options:
+            name = list(option)[0]
+            opt = option[name]
+            if opt['section'] not in self.config.sections():
+                self.config.add_section(opt['section'])
+            if name not in list(self.config[opt['section']]):
+                self.config.set(opt['section'], name, opt['value'])
 
         t_path = os.path.join(klipperscreendir, 'styles')
         # themes = [d for d in os.listdir(t_path) if (not os.path.isfile(os.path.join(t_path, d)) and d != "z-bolt")]
