@@ -898,6 +898,8 @@ class KlipperScreen(Gtk.Window):
                         self.show_popup_message(translated_msg, level)
                 elif data.startswith("echo: "):
                     self.show_popup_message(_(data[6:]), 1)
+                    if data.lower() == "echo: ai detected a potential printing error":
+                        self.show_ai_pause = True
                 elif data.startswith("!! "):
                     self.show_popup_message(_(data[3:]), 3)
                 elif "unknown" in data.lower() and \
