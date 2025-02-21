@@ -177,6 +177,12 @@ label {
     color: @text;
 }
 
+.small-label {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin-top: -0.5em;
+}
+
 menu {
     background-color: @bg;
     border: .1em solid @lines;
