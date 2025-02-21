@@ -77,56 +77,140 @@ class Panel(ScreenPanel):
             logging.info(f"Processing menu item - Key: {key}, Name: {name}")
 
             # Add numbers for calibration menu items
-            if '__main calibrate' in key:
+            if 'calibrate' in key:
                 logging.info(f"Found calibration menu item: {key}")
-                if 'zoffset' in key and 'Z Calibrate' in name:
+                if key == 'calibrate zoffset':
                     logging.info("Creating Z Calibrate button with number 1")
-                    b = self._gtk.Button(icon, None, style or f"color{i % 4 + 1}", scale=scale)
-                    label = Gtk.Label()
-                    markup_text = f"{name}\n<span size='small'>1</span>"
-                    logging.info(f"Setting markup: {markup_text}")
-                    label.set_markup(markup_text)
-                    label.set_line_wrap(True)
-                    label.set_justify(Gtk.Justification.CENTER)
-                    label.set_lines(2)
-                    b.set_child(label)
+                    b = Gtk.Button()
+                    b.get_style_context().add_class(style or f"color{i % 4 + 1}")
+                    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+                    box.set_halign(Gtk.Align.CENTER)
+                    box.set_valign(Gtk.Align.CENTER)
+                    
+                    if icon:
+                        img = self._gtk.Image(icon, self._gtk.img_scale * 1.5, self._gtk.img_scale * 1.5)
+                        img.set_valign(Gtk.Align.CENTER)
+                        img.set_halign(Gtk.Align.CENTER)
+                        box.pack_start(img, True, True, 0)
+                    
+                    title = Gtk.Label()
+                    title.set_markup(f'<span size="large">{name}</span>')
+                    title.set_line_wrap(True)
+                    title.set_justify(Gtk.Justification.CENTER)
+                    title.set_halign(Gtk.Align.CENTER)
+                    title.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(title, True, True, 0)
+                    
+                    number = Gtk.Label()
+                    number.set_markup('<span size="20000" foreground="#FFD700">1</span>')
+                    number.set_halign(Gtk.Align.CENTER)
+                    number.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(number, True, True, 0)
+                    
+                    b.add(box)
+                    box.show_all()
                     logging.info("Z Calibrate button created")
-                elif 'bedmesh' in key and 'Leveling' in name:
+                elif key == 'calibrate bedmesh':
                     logging.info("Creating Leveling button with number 2")
-                    b = self._gtk.Button(icon, None, style or f"color{i % 4 + 1}", scale=scale)
-                    label = Gtk.Label()
-                    markup_text = f"{name}\n<span size='small'>2</span>"
-                    logging.info(f"Setting markup: {markup_text}")
-                    label.set_markup(markup_text)
-                    label.set_line_wrap(True)
-                    label.set_justify(Gtk.Justification.CENTER)
-                    label.set_lines(2)
-                    b.set_child(label)
+                    b = Gtk.Button()
+                    b.get_style_context().add_class(style or f"color{i % 4 + 1}")
+                    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+                    box.set_halign(Gtk.Align.CENTER)
+                    box.set_valign(Gtk.Align.CENTER)
+                    
+                    if icon:
+                        img = self._gtk.Image(icon, self._gtk.img_scale * 1.5, self._gtk.img_scale * 1.5)
+                        img.set_valign(Gtk.Align.CENTER)
+                        img.set_halign(Gtk.Align.CENTER)
+                        box.pack_start(img, True, True, 0)
+                    
+                    title = Gtk.Label()
+                    title.set_markup(f'<span size="large">{name}</span>')
+                    title.set_line_wrap(True)
+                    title.set_justify(Gtk.Justification.CENTER)
+                    title.set_halign(Gtk.Align.CENTER)
+                    title.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(title, True, True, 0)
+                    
+                    number = Gtk.Label()
+                    number.set_markup('<span size="20000" foreground="#FFD700">2</span>')
+                    number.set_halign(Gtk.Align.CENTER)
+                    number.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(number, True, True, 0)
+                    
+                    b.add(box)
+                    box.show_all()
                     logging.info("Leveling button created")
-                elif 'extruder_xyoffset' in key and 'XY Offset' in name:
+                elif key == 'calibrate extruder_xyoffset':
                     logging.info("Creating XY Offset button with number 3")
-                    b = self._gtk.Button(icon, None, style or f"color{i % 4 + 1}", scale=scale)
-                    label = Gtk.Label()
-                    markup_text = f"{name}\n<span size='small'>3</span>"
-                    logging.info(f"Setting markup: {markup_text}")
-                    label.set_markup(markup_text)
-                    label.set_line_wrap(True)
-                    label.set_justify(Gtk.Justification.CENTER)
-                    label.set_lines(2)
-                    b.set_child(label)
+                    b = Gtk.Button()
+                    b.get_style_context().add_class(style or f"color{i % 4 + 1}")
+                    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+                    box.set_halign(Gtk.Align.CENTER)
+                    box.set_valign(Gtk.Align.CENTER)
+                    
+                    if icon:
+                        img = self._gtk.Image(icon, self._gtk.img_scale * 1.5, self._gtk.img_scale * 1.5)
+                        img.set_valign(Gtk.Align.CENTER)
+                        img.set_halign(Gtk.Align.CENTER)
+                        box.pack_start(img, True, True, 0)
+                    
+                    title = Gtk.Label()
+                    title.set_markup(f'<span size="large">{name}</span>')
+                    title.set_line_wrap(True)
+                    title.set_justify(Gtk.Justification.CENTER)
+                    title.set_halign(Gtk.Align.CENTER)
+                    title.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(title, True, True, 0)
+                    
+                    number = Gtk.Label()
+                    number.set_markup('<span size="20000" foreground="#FFD700">3</span>')
+                    number.set_halign(Gtk.Align.CENTER)
+                    number.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(number, True, True, 0)
+                    
+                    b.add(box)
+                    box.show_all()
                     logging.info("XY Offset button created")
-                elif 'dual_nozzle_height_calibration' in key and 'Z Height Diff' in name:
+                elif key == 'calibrate dual_nozzle_height_calibration':
                     logging.info("Creating Z Height Diff button with number 4")
-                    b = self._gtk.Button(icon, None, style or f"color{i % 4 + 1}", scale=scale)
-                    label = Gtk.Label()
-                    markup_text = f"{name}\n<span size='small'>4</span>"
-                    logging.info(f"Setting markup: {markup_text}")
-                    label.set_markup(markup_text)
-                    label.set_line_wrap(True)
-                    label.set_justify(Gtk.Justification.CENTER)
-                    label.set_lines(2)
-                    b.set_child(label)
+                    b = Gtk.Button()
+                    b.get_style_context().add_class(style or f"color{i % 4 + 1}")
+                    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+                    box.set_halign(Gtk.Align.CENTER)
+                    box.set_valign(Gtk.Align.CENTER)
+                    
+                    if icon:
+                        img = self._gtk.Image(icon, self._gtk.img_scale * 1.5, self._gtk.img_scale * 1.5)
+                        img.set_valign(Gtk.Align.CENTER)
+                        img.set_halign(Gtk.Align.CENTER)
+                        box.pack_start(img, True, True, 0)
+                    
+                    title = Gtk.Label()
+                    title.set_markup(f'<span size="large">{name}</span>')
+                    title.set_line_wrap(True)
+                    title.set_justify(Gtk.Justification.CENTER)
+                    title.set_halign(Gtk.Align.CENTER)
+                    title.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(title, True, True, 0)
+                    
+                    number = Gtk.Label()
+                    number.set_markup('<span size="20000" foreground="#FFD700">4</span>')
+                    number.set_halign(Gtk.Align.CENTER)
+                    number.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(number, True, True, 0)
+                    
+                    b.add(box)
+                    box.show_all()
                     logging.info("Z Height Diff button created")
+                else:
+                    logging.info(f"Creating regular button for {key}")
+                    b = self._gtk.Button(icon, name, style or f"color{i % 4 + 1}", scale=scale)
+                    label = b.get_child().get_children()[1] if b.get_child() and isinstance(b.get_child(), Gtk.Box) else None
+                    if label and isinstance(label, Gtk.Label):
+                        label.set_line_wrap(True)
+                        label.set_justify(Gtk.Justification.CENTER)
+                        label.set_lines(2)
             else:
                 b = self._gtk.Button(icon, name, style or f"color{i % 4 + 1}", scale=scale)
                 label = b.get_child().get_children()[1] if b.get_child() and isinstance(b.get_child(), Gtk.Box) else None
