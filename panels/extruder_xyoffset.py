@@ -32,10 +32,10 @@ class Panel(ScreenPanel):
                 logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")
 
         self.buttons = {
-            'x+': self._gtk.Button(None, "X+", "color1"),
-            'x-': self._gtk.Button(None, "X-", "color1"),
-            'y+': self._gtk.Button(None, "Y+", "color2"),
-            'y-': self._gtk.Button(None, "Y-", "color2"),
+            'x+': self._gtk.Button("move_right", None, "color5"),
+            'x-': self._gtk.Button("move_left", None, "color5"),
+            'y+': self._gtk.Button("move_back", None, "color4"),
+            'y-': self._gtk.Button("move_forward", None, "color4"),
             'z+': self._gtk.Button(None, "Z+", "color3"),
             'z-': self._gtk.Button(None, "Z-", "color3"),
             'home': self._gtk.Button(None, _("Home"), "color4"),

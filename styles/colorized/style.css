@@ -66,10 +66,17 @@ button.color4 {
     border-radius: 1em;
 }
 
+button.color5 {
+    background-color: @solarized-base02;
+    border-bottom-color: @solarized-red;
+    border-radius: 1em;
+}
+
 button.color1:active,
 button.color2:active,
 button.color3:active,
 button.color4:active,
+button.color5:active,
 button.update:active,
 button.invalid:active,
 .dialog button:active {
