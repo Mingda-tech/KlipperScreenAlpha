@@ -81,7 +81,7 @@ class Panel(ScreenPanel):
         self.fan_speed = 35
         self.fans = self._printer.get_fans()
         self.start_time = time.time()
-        self.time_out = 60     #seconds
+        self.time_out = 90     #seconds
         #Nozzle Heating
         for extruder in self._printer.get_tools():
             temp = self._printer.get_dev_stat(extruder, "temperature")

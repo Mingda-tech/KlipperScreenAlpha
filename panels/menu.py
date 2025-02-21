@@ -14,6 +14,7 @@ class Panel(ScreenPanel):
         super().__init__(screen, title)
         self.items = items
         self.j2_data = self._printer.get_printer_status_data()
+        self.need_calibrate_endstop = "MD_1000D" in self._printer.get_gcode_macros()
         self.create_menu_items()
         self.grid = self._gtk.HomogeneousGrid()
         self.scroll = self._gtk.ScrolledWindow()
@@ -78,9 +79,7 @@ class Panel(ScreenPanel):
 
             # Add numbers for calibration menu items
             if 'calibrate' in key:
-                logging.info(f"Found calibration menu item: {key}")
-                if key == 'calibrate zoffset':
-                    logging.info("Creating Z Calibrate button with number 1")
+                if key == 'calibrate zendstop':
                     b = Gtk.Button()
                     b.get_style_context().add_class(style or f"color{i % 4 + 1}")
                     box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -109,9 +108,39 @@ class Panel(ScreenPanel):
                     
                     b.add(box)
                     box.show_all()
-                    logging.info("Z Calibrate button created")
+                elif key == 'calibrate zoffset':
+                    b = Gtk.Button()
+                    b.get_style_context().add_class(style or f"color{i % 4 + 1}")
+                    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+                    box.set_halign(Gtk.Align.CENTER)
+                    box.set_valign(Gtk.Align.CENTER)
+                    
+                    if icon:
+                        img = self._gtk.Image(icon, self._gtk.img_scale * 1.5, self._gtk.img_scale * 1.5)
+                        img.set_valign(Gtk.Align.CENTER)
+                        img.set_halign(Gtk.Align.CENTER)
+                        box.pack_start(img, True, True, 0)
+                    
+                    title = Gtk.Label()
+                    title.set_markup(f'<span size="large">{name}</span>')
+                    title.set_line_wrap(True)
+                    title.set_justify(Gtk.Justification.CENTER)
+                    title.set_halign(Gtk.Align.CENTER)
+                    title.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(title, True, True, 0)
+                    
+                    number = Gtk.Label()
+                    if self.need_calibrate_endstop:
+                        number.set_markup('<span size="20000" foreground="#FFD700">2</span>')
+                    else:
+                        number.set_markup('<span size="20000" foreground="#FFD700">1</span>')
+                    number.set_halign(Gtk.Align.CENTER)
+                    number.set_valign(Gtk.Align.CENTER)
+                    box.pack_start(number, True, True, 0)
+                    
+                    b.add(box)
+                    box.show_all()
                 elif key == 'calibrate bedmesh':
-                    logging.info("Creating Leveling button with number 2")
                     b = Gtk.Button()
                     b.get_style_context().add_class(style or f"color{i % 4 + 1}")
                     box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -133,16 +162,17 @@ class Panel(ScreenPanel):
                     box.pack_start(title, True, True, 0)
                     
                     number = Gtk.Label()
-                    number.set_markup('<span size="20000" foreground="#FFD700">2</span>')
+                    if self.need_calibrate_endstop:
+                        number.set_markup('<span size="20000" foreground="#FFD700">3</span>')
+                    else:
+                        number.set_markup('<span size="20000" foreground="#FFD700">2</span>')
                     number.set_halign(Gtk.Align.CENTER)
                     number.set_valign(Gtk.Align.CENTER)
                     box.pack_start(number, True, True, 0)
                     
                     b.add(box)
                     box.show_all()
-                    logging.info("Leveling button created")
                 elif key == 'calibrate extruder_xyoffset':
-                    logging.info("Creating XY Offset button with number 3")
                     b = Gtk.Button()
                     b.get_style_context().add_class(style or f"color{i % 4 + 1}")
                     box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -164,16 +194,17 @@ class Panel(ScreenPanel):
                     box.pack_start(title, True, True, 0)
                     
                     number = Gtk.Label()
-                    number.set_markup('<span size="20000" foreground="#FFD700">3</span>')
+                    if self.need_calibrate_endstop:
+                        number.set_markup('<span size="20000" foreground="#FFD700">4</span>')
+                    else:
+                        number.set_markup('<span size="20000" foreground="#FFD700">3</span>')
                     number.set_halign(Gtk.Align.CENTER)
                     number.set_valign(Gtk.Align.CENTER)
                     box.pack_start(number, True, True, 0)
                     
                     b.add(box)
                     box.show_all()
-                    logging.info("XY Offset button created")
-                elif key == 'calibrate dual_nozzle_height_calibration':
-                    logging.info("Creating Z Height Diff button with number 4")
+                elif key == 'calibrate dual_nozzle_height_calibration' or key == 'calibrate extruder_zoffset':
                     b = Gtk.Button()
                     b.get_style_context().add_class(style or f"color{i % 4 + 1}")
                     box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -195,16 +226,17 @@ class Panel(ScreenPanel):
                     box.pack_start(title, True, True, 0)
                     
                     number = Gtk.Label()
-                    number.set_markup('<span size="20000" foreground="#FFD700">4</span>')
+                    if self.need_calibrate_endstop:
+                        number.set_markup('<span size="20000" foreground="#FFD700">5</span>')
+                    else:
+                        number.set_markup('<span size="20000" foreground="#FFD700">4</span>')
                     number.set_halign(Gtk.Align.CENTER)
                     number.set_valign(Gtk.Align.CENTER)
                     box.pack_start(number, True, True, 0)
                     
                     b.add(box)
                     box.show_all()
-                    logging.info("Z Height Diff button created")
                 else:
-                    logging.info(f"Creating regular button for {key}")
                     b = self._gtk.Button(icon, name, style or f"color{i % 4 + 1}", scale=scale)
                     label = b.get_child().get_children()[1] if b.get_child() and isinstance(b.get_child(), Gtk.Box) else None
                     if label and isinstance(label, Gtk.Label):
