@@ -64,8 +64,8 @@ class Panel(ScreenPanel):
         #     if i < limit:
         #         grid.attach(self.labels[extruder], i, 0, 1, 1)
         #         i += 1
-        grid.attach(self.buttons['x+'], 0, 1, 1, 1)
-        grid.attach(self.buttons['x-'], 1, 1, 1, 1)
+        grid.attach(self.buttons['x+'], 1, 1, 1, 1)
+        grid.attach(self.buttons['x-'], 0, 1, 1, 1)
         grid.attach(self.buttons['y+'], 0, 2, 1, 1)
         grid.attach(self.buttons['y-'], 1, 2, 1, 1)
 

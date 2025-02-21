@@ -2,6 +2,7 @@
 @define-color color2 #B10080;
 @define-color color3 #009384;
 @define-color color4 #A7E100;
+@define-color color5 #DC322F;
 @define-color bg #13181C;
 @define-color active #404E57;
 @define-color echo #367554;
@@ -85,7 +86,8 @@ button:disabled,
 button.color1:disabled,
 button.color2:disabled,
 button.color3:disabled,
-button.color4:disabled {
+button.color4:disabled, 
+button.color5:disabled {
     border: 0;
 }
 
@@ -93,7 +95,8 @@ button:disabled label,
 button.color1:disabled label,
 button.color2:disabled label,
 button.color3:disabled label,
-button.color4:disabled label {
+button.color4:disabled label,
+button.color5:disabled label {
     color: grey;
 }
 
@@ -122,6 +125,12 @@ button.color3 {
 
 button.color4 {
     border-bottom: .4em solid @color4;
+    margin: .3em;
+    min-height: 3em;
+}
+
+button.color5 {
+    border-bottom: .4em solid @color5;
     margin: .3em;
     min-height: 3em;
 }
