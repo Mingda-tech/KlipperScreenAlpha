@@ -1,5 +1,6 @@
 import logging
 from typing import Dict, List, Optional
+from gi.repository import Gtk
 
 class ErrorHandler:
     """处理KlipperScreen中的错误并提供修复指导"""
@@ -44,6 +45,7 @@ class ErrorHandler:
             },
             "movement": {
                 "patterns": [
+                    "Move out of range",
                     "move out of range",
                     "endstop not triggered",
                     "homing failed",
@@ -51,11 +53,13 @@ class ErrorHandler:
                 ],
                 "title": "运动错误",
                 "solutions": [
-                    "1. 检查限位开关状态和连接",
-                    "2. 确认打印机配置中的最大行程值",
-                    "3. 检查步进电机和驱动器",
-                    "4. 确认皮带张紧度",
-                    "5. 检查运动系统是否有卡阻"
+                    "1. 确保已经执行回零操作",
+                    "2. 检查打印机配置中的最大行程设置",
+                    "3. 检查移动命令中的坐标值是否正确",
+                    "4. 检查限位开关状态和连接",
+                    "5. 检查步进电机和驱动器",
+                    "6. 确认皮带张紧度",
+                    "7. 检查运动系统是否有卡阻",
                 ],
                 "help_link": "https://www.klipper3d.org/Config_Reference.html#stepper"
             },
@@ -105,8 +109,8 @@ class ErrorHandler:
 
         # 显示带有解决方案的对话框
         buttons = [
-            {"name": "确定", "response": self._screen.gtk.ResponseType.OK},
-            {"name": "取消", "response": self._screen.gtk.ResponseType.CANCEL}
+            {"name": "确定", "response": Gtk.ResponseType.OK},
+            {"name": "取消", "response": Gtk.ResponseType.CANCEL}
         ]
         
         label = self._screen.gtk.Label()
