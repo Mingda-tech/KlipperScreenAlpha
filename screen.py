@@ -28,6 +28,7 @@ from ks_includes.printer import Printer
 from ks_includes.widgets.keyboard import Keyboard
 from ks_includes.config import KlipperScreenConfig
 from panels.base_panel import BasePanel
+from ks_includes.error_handler import ErrorHandler
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
@@ -110,6 +111,8 @@ class KlipperScreen(Gtk.Window):
         self.confirm = None
         self.panels_reinit = []
         self.manual_settings = {}
+        # 初始化错误处理器
+        self.error_handler = ErrorHandler(self)
 
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
@@ -407,8 +410,15 @@ class KlipperScreen(Gtk.Window):
         return False
 
     def show_error_modal(self, err, e=""):
+        """显示错误模态框并尝试提供解决方案"""
         logging.error(f"Showing error modal: {err} {e}")
-
+        
+        # 首先尝试通过错误处理器识别错误并显示引导
+        if isinstance(e, str) and e.strip():
+            self.error_handler.show_error_guide(e)
+            return
+            
+        # 如果无法识别错误类型，显示默认错误对话框
         title = Gtk.Label()
         title.set_markup(f"<b>{err}</b>\n")
         title.set_line_wrap(True)
@@ -705,6 +715,9 @@ class KlipperScreen(Gtk.Window):
             msg += _("A FIRMWARE_RESTART may fix the issue.") + "\n"
         elif "micro-controller" in state:
             msg += _("Please recompile and flash the micro-controller.") + "\n"
+        
+        # 使用错误处理器显示错误引导
+        self.error_handler.show_error_guide(state)
         self.printer_initializing(msg + "\n" + state, remove=True)
 
     def state_paused(self):
