@@ -98,6 +98,7 @@ class ErrorHandler:
 
         # 创建错误引导对话框内容
         content = f"<b>{error_info['title']}</b>\n\n"
+        content += f"错误信息: {error_message}\n\n"
         content += "可能的解决方案:\n\n"
         content += "\n".join(error_info["solutions"])
         content += f"\n\n详细文档: {error_info['help_link']}"

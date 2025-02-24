@@ -903,11 +903,16 @@ class KlipperScreen(Gtk.Window):
                         msg = data[msg_start+5:-1] if data.endswith('"') else data[msg_start+5:]
                         translated_msg = _(msg)
                         level = 3 if "TYPE=error" in data else 2 if "TYPE=warning" in data else 1
-                        self.show_popup_message(translated_msg, level)
+                        # 使用错误处理器处理错误
+                        if level == 3:
+                            self.error_handler.show_error_guide(translated_msg)
+                        else:
+                            self.show_popup_message(translated_msg, level)
                 elif data.startswith("echo: "):
                     self.show_popup_message(_(data[6:]), 1)
                 elif data.startswith("!! "):
-                    self.show_popup_message(_(data[3:]), 3)
+                    # 使用错误处理器处理错误
+                    self.error_handler.show_error_guide(data[3:])
                 elif "unknown" in data.lower() and \
                         not ("TESTZ" in data or "MEASURE_AXES_NOISE" in data or "ACCELEROMETER_QUERY" in data):
                     self.show_popup_message(_(data))
