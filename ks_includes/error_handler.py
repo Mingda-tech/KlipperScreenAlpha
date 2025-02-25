@@ -113,7 +113,7 @@ class ErrorHandler:
             {"name": "取消", "response": Gtk.ResponseType.CANCEL}
         ]
         
-        label = self._screen.gtk.Label()
+        label = Gtk.Label(label="") # 创建一个空的标签
         label.set_markup(content)
         label.set_line_wrap(True)
         
