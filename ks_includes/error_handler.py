@@ -1,7 +1,7 @@
 import logging
 import os
 from typing import Dict, List, Optional
-from gi.repository import Gtk, Pango, GdkPixbuf, GLib
+from gi.repository import Gtk, Pango, GdkPixbuf, GLib, Gdk
 
 class ErrorHandler:
     """处理KlipperScreen中的错误并提供修复指导"""
@@ -9,6 +9,23 @@ class ErrorHandler:
     def __init__(self, screen):
         self._screen = screen
         self.resource_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "resource/error_resolution")
+        
+        # 获取屏幕分辨率
+        display = Gdk.Display.get_default()
+        monitor = display.get_primary_monitor() if display else None
+        if monitor:
+            geometry = monitor.get_geometry()
+            self.screen_width = geometry.width
+            self.screen_height = geometry.height
+        else:
+            # 如果无法获取屏幕分辨率，使用默认值
+            self.screen_width = 1024
+            self.screen_height = 600
+            
+        # 计算图片显示尺寸（屏幕宽度的75%）
+        self.image_width = int(self.screen_width * 0.75)
+        self.image_height = int(self.screen_height * 0.75)
+        
         # 定义常见错误类型及其解决方案
         self.error_solutions: Dict[str, Dict] = {
             "bed_leveling": {
@@ -123,15 +140,37 @@ class ErrorHandler:
         # 如果有对应的图片，添加图片
         if image_path and os.path.exists(image_path):
             try:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
-                    image_path,
-                    400,  # 宽度
-                    300,  # 高度
-                    True  # 保持比例
+                # 先加载原始图片
+                original_pixbuf = GdkPixbuf.Pixbuf.new_from_file(image_path)
+                original_width = original_pixbuf.get_width()
+                original_height = original_pixbuf.get_height()
+                
+                # 计算缩放比例
+                width_ratio = self.image_width / original_width
+                height_ratio = self.image_height / original_height
+                scale_ratio = min(width_ratio, height_ratio)
+                
+                # 计算缩放后的尺寸
+                new_width = int(original_width * scale_ratio)
+                new_height = int(original_height * scale_ratio)
+                
+                # 创建缩放后的图片
+                pixbuf = original_pixbuf.scale_simple(
+                    new_width,
+                    new_height,
+                    GdkPixbuf.InterpType.BILINEAR
                 )
+                
+                # 创建图片容器
+                image_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+                image_box.set_halign(Gtk.Align.CENTER)  # 水平居中
+                
                 image = Gtk.Image.new_from_pixbuf(pixbuf)
                 image.set_margin_top(5)
-                step_box.pack_start(image, False, False, 0)
+                image_box.pack_start(image, False, False, 0)
+                
+                step_box.pack_start(image_box, False, False, 0)
+                
             except GLib.Error as e:
                 logging.error(f"无法加载图片 {image_path}: {str(e)}")
         
@@ -232,8 +271,10 @@ class ErrorHandler:
         
         scroll.add(main_box)
         
-        # 设置对话框大小
-        scroll.set_size_request(500, 600)  # 设置固定宽度和高度
+        # 设置对话框大小为屏幕的80%
+        dialog_width = int(self.screen_width * 0.8)
+        dialog_height = int(self.screen_height * 0.8)
+        scroll.set_size_request(dialog_width, dialog_height)
         
         # 显示对话框
         buttons = [
