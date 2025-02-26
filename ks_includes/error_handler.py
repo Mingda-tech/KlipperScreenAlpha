@@ -13,7 +13,6 @@ class ErrorHandler:
                 "patterns": [
                     "probe failed to trigger",
                     "bed leveling failed",
-                    "out of range",
                     "z-probe",
                 ],
                 "title": "调平错误",
