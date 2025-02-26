@@ -1,6 +1,6 @@
 import logging
 from typing import Dict, List, Optional
-from gi.repository import Gtk
+from gi.repository import Gtk, Pango
 
 class ErrorHandler:
     """处理KlipperScreen中的错误并提供修复指导"""
@@ -94,17 +94,24 @@ class ErrorHandler:
     def show_error_guide(self, error_message: str):
         """显示错误引导对话框"""
         error_info = self.identify_error(error_message)
-        if not error_info:
-            # 如果无法识别错误类型，显示通用错误信息
-            self._screen.show_error_modal("未知错误", error_message)
-            return
-
+        
         # 创建错误引导对话框内容
-        content = f"<b>{error_info['title']}</b>\n\n"
-        content += f"错误信息: {error_message}\n\n"
-        content += "可能的解决方案:\n\n"
-        content += "\n".join(error_info["solutions"])
-        content += f"\n\n详细文档: {error_info['help_link']}"
+        if error_info:
+            title = error_info["title"]
+            content = f"<b>{title}</b>\n\n"
+            content += f"错误信息: {error_message}\n\n"
+            content += "可能的解决方案:\n\n"
+            content += "\n".join(error_info["solutions"])
+            content += f"\n\n详细文档: {error_info['help_link']}"
+        else:
+            title = "未知错误"
+            content = f"<b>{title}</b>\n\n"
+            content += f"错误信息: {error_message}\n\n"
+            content += "建议解决方案:\n\n"
+            content += "1. 检查打印机的物理连接\n"
+            content += "2. 查看打印机日志获取详细信息\n"
+            content += "3. 检查printer.cfg配置文件\n"
+            content += "4. 如果问题持续，请联系技术支持"
 
         # 显示带有解决方案的对话框
         buttons = [
@@ -112,12 +119,13 @@ class ErrorHandler:
             {"name": "取消", "response": Gtk.ResponseType.CANCEL}
         ]
         
-        label = Gtk.Label(label="") # 创建一个空的标签
+        label = Gtk.Label(label="")
         label.set_markup(content)
         label.set_line_wrap(True)
+        label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
         
         self._screen.gtk.Dialog(
-            error_info["title"],
+            title,
             buttons,
             label,
             self.error_guide_response
