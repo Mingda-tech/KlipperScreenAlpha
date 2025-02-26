@@ -105,102 +105,148 @@ class ErrorHandler:
                     return error_info
         return None
 
-    def create_image_box(self, image_dir: str) -> Gtk.Box:
-        """创建包含图片的滚动框"""
-        scroll = Gtk.ScrolledWindow()
-        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.NEVER)
+    def create_step_box(self, step: str, image_path: str = None) -> Gtk.Box:
+        """创建单个步骤的容器，包含文字说明和可选的图片"""
+        step_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        step_box.set_margin_top(10)
+        step_box.set_margin_bottom(10)
+        step_box.set_margin_start(10)
+        step_box.set_margin_end(10)
         
-        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        box.set_homogeneous(False)
+        # 添加步骤文字
+        label = Gtk.Label(label=step)
+        label.set_line_wrap(True)
+        label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        label.set_halign(Gtk.Align.START)
+        step_box.pack_start(label, False, False, 0)
         
-        # 获取图片目录
-        img_path = os.path.join(self.resource_path, image_dir)
-        if not os.path.exists(img_path):
-            return None
-            
-        # 加载并显示所有图片
-        images = sorted([f for f in os.listdir(img_path) if f.endswith(('.png', '.jpg', '.jpeg'))])
-        for img_file in images:
+        # 如果有对应的图片，添加图片
+        if image_path and os.path.exists(image_path):
             try:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
-                    os.path.join(img_path, img_file),
-                    300,  # 宽度
-                    200,  # 高度
-                    True   # 保持比例
+                    image_path,
+                    400,  # 宽度
+                    300,  # 高度
+                    True  # 保持比例
                 )
                 image = Gtk.Image.new_from_pixbuf(pixbuf)
-                box.pack_start(image, False, False, 0)
+                image.set_margin_top(5)
+                step_box.pack_start(image, False, False, 0)
             except GLib.Error as e:
-                logging.error(f"无法加载图片 {img_file}: {str(e)}")
-                continue
+                logging.error(f"无法加载图片 {image_path}: {str(e)}")
         
-        scroll.add(box)
-        return scroll
+        return step_box
 
     def show_error_guide(self, error_message: str):
         """显示错误引导对话框"""
         error_info = self.identify_error(error_message)
         
-        # 创建主容器
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        # 创建主滚动窗口
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         
-        # 创建错误引导对话框内容
+        # 创建主容器
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        main_box.set_margin_top(10)
+        main_box.set_margin_bottom(10)
+        
         if error_info:
-            title = error_info["title"]
-            content = f"<b>{title}</b>\n\n"
-            content += f"错误信息: {error_message}\n\n"
-            content += "可能的解决方案:\n\n"
-            content += "\n".join(error_info["solutions"])
-            content += f"\n\n联系方式:\n{error_info['contact']}"
+            # 添加错误标题和信息
+            error_header = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+            error_header.get_style_context().add_class('error-header')
+            error_header.set_margin_bottom(20)
+            error_header.set_margin_start(10)
+            error_header.set_margin_end(10)
             
-            # 添加文字说明
-            label = Gtk.Label(label="")
-            label.set_markup(content)
-            label.set_line_wrap(True)
-            label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
-            main_box.pack_start(label, False, False, 0)
+            title_label = Gtk.Label()
+            title_label.set_markup(f"<b>{error_info['title']}</b>")
+            title_label.set_halign(Gtk.Align.START)
+            error_header.pack_start(title_label, False, False, 0)
             
-            # 添加图片指引
-            if "image_dir" in error_info:
-                image_box = self.create_image_box(error_info["image_dir"])
-                if image_box:
-                    main_box.pack_start(image_box, True, True, 10)
+            error_label = Gtk.Label(label=error_message)
+            error_label.set_line_wrap(True)
+            error_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+            error_label.set_halign(Gtk.Align.START)
+            error_header.pack_start(error_label, False, False, 0)
+            
+            main_box.pack_start(error_header, False, False, 0)
+            
+            # 添加解决步骤
+            steps_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            img_path = os.path.join(self.resource_path, error_info.get("image_dir", ""))
+            
+            for i, solution in enumerate(error_info["solutions"], 1):
+                img_file = f"{i}.png"
+                img_full_path = os.path.join(img_path, img_file) if os.path.exists(os.path.join(img_path, img_file)) else None
+                step_box = self.create_step_box(solution, img_full_path)
+                steps_box.pack_start(step_box, False, False, 0)
+            
+            main_box.pack_start(steps_box, True, True, 0)
+            
+            # 添加联系方式
+            contact_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+            contact_box.set_margin_top(20)
+            contact_box.set_margin_start(10)
+            contact_box.set_margin_end(10)
+            
+            contact_label = Gtk.Label()
+            contact_label.set_markup(f"<b>联系方式</b>\n{error_info['contact']}")
+            contact_label.set_halign(Gtk.Align.START)
+            contact_box.pack_start(contact_label, False, False, 0)
+            
+            main_box.pack_start(contact_box, False, False, 0)
         else:
+            # 处理未知错误
             title = "未知错误"
-            content = f"<b>{title}</b>\n\n"
-            content += f"错误信息: {error_message}\n\n"
-            content += "建议解决方案:\n\n"
-            content += "1. 检查打印机的物理连接\n"
-            content += "2. 查看打印机日志获取详细信息\n"
-            content += "3. 检查printer.cfg配置文件\n"
-            content += "4. 如果问题持续，请联系技术支持\n\n"
-            content += "联系方式:\n"
-            content += "售后邮箱: support@3dmingda.com\n"
-            content += "WhatsApp: (+86）13530306290"
+            unknown_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+            unknown_box.set_margin_start(10)
+            unknown_box.set_margin_end(10)
             
-            label = Gtk.Label(label="")
-            label.set_markup(content)
-            label.set_line_wrap(True)
-            label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
-            main_box.pack_start(label, False, False, 0)
-
-        # 显示带有解决方案的对话框
-        buttons = [
-            {"name": "确定", "response": Gtk.ResponseType.OK},
-            {"name": "取消", "response": Gtk.ResponseType.CANCEL}
-        ]
+            title_label = Gtk.Label()
+            title_label.set_markup(f"<b>{title}</b>")
+            title_label.set_halign(Gtk.Align.START)
+            unknown_box.pack_start(title_label, False, False, 0)
+            
+            error_label = Gtk.Label(label=error_message)
+            error_label.set_line_wrap(True)
+            error_label.set_halign(Gtk.Align.START)
+            unknown_box.pack_start(error_label, False, False, 0)
+            
+            solutions = [
+                "1. 检查打印机的物理连接",
+                "2. 查看打印机日志获取详细信息",
+                "3. 检查printer.cfg配置文件",
+                "4. 如果问题持续，请联系技术支持"
+            ]
+            
+            for solution in solutions:
+                step_box = self.create_step_box(solution)
+                unknown_box.pack_start(step_box, False, False, 0)
+            
+            contact_label = Gtk.Label()
+            contact_label.set_markup("\n<b>联系方式</b>\n售后邮箱: support@3dmingda.com\nWhatsApp: (+86）13530306290")
+            contact_label.set_halign(Gtk.Align.START)
+            unknown_box.pack_start(contact_label, False, False, 0)
+            
+            main_box.pack_start(unknown_box, True, True, 0)
+        
+        scroll.add(main_box)
         
         # 设置对话框大小
-        main_box.set_size_request(800, -1)  # 设置固定宽度
+        scroll.set_size_request(500, 600)  # 设置固定宽度和高度
+        
+        # 显示对话框
+        buttons = [
+            {"name": "确定", "response": Gtk.ResponseType.OK}
+        ]
         
         self._screen.gtk.Dialog(
-            title,
+            "错误修复指南",
             buttons,
-            main_box,
+            scroll,
             self.error_guide_response
         )
 
     def error_guide_response(self, dialog, response_id):
         """处理错误引导对话框的响应"""
-        self._screen.gtk.remove_dialog(dialog)
-        # 这里可以添加更多的响应处理逻辑 
+        self._screen.gtk.remove_dialog(dialog) 
