@@ -23,7 +23,7 @@ class ErrorHandler:
                     "4. 检查调平点是否在打印平台范围内",
                     "5. 校准Z偏移值"
                 ],
-                "help_link": "https://www.klipper3d.org/Bed_Level.html"
+                "contact": "售后邮箱: support@3dmingda.com\nWhatsApp: (+86）13530306290"
             },
             "temperature": {
                 "patterns": [
@@ -40,7 +40,7 @@ class ErrorHandler:
                     "4. 执行PID校准",
                     "5. 检查温度传感器是否损坏"
                 ],
-                "help_link": "https://www.klipper3d.org/Config_Reference.html#temperature_sensor"
+                "contact": "售后邮箱: support@3dmingda.com\nWhatsApp: (+86）13530306290"
             },
             "movement": {
                 "patterns": [
@@ -60,7 +60,7 @@ class ErrorHandler:
                     "6. 确认皮带张紧度",
                     "7. 检查运动系统是否有卡阻",
                 ],
-                "help_link": "https://www.klipper3d.org/Config_Reference.html#stepper"
+                "contact": "售后邮箱: support@3dmingda.com\nWhatsApp: (+86）13530306290"
             },
             "firmware": {
                 "patterns": [
@@ -77,7 +77,7 @@ class ErrorHandler:
                     "4. 确认串口配置正确",
                     "5. 尝试重启打印机"
                 ],
-                "help_link": "https://www.klipper3d.org/Config_Reference.html#mcu"
+                "contact": "售后邮箱: support@3dmingda.com\nWhatsApp: (+86）13530306290"
             }
         }
 
@@ -102,7 +102,7 @@ class ErrorHandler:
             content += f"错误信息: {error_message}\n\n"
             content += "可能的解决方案:\n\n"
             content += "\n".join(error_info["solutions"])
-            content += f"\n\n详细文档: {error_info['help_link']}"
+            content += f"\n\n联系方式:\n{error_info['contact']}"
         else:
             title = "未知错误"
             content = f"<b>{title}</b>\n\n"
@@ -111,7 +111,10 @@ class ErrorHandler:
             content += "1. 检查打印机的物理连接\n"
             content += "2. 查看打印机日志获取详细信息\n"
             content += "3. 检查printer.cfg配置文件\n"
-            content += "4. 如果问题持续，请联系技术支持"
+            content += "4. 如果问题持续，请联系技术支持\n\n"
+            content += "联系方式:\n"
+            content += "售后邮箱: support@3dmingda.com\n"
+            content += "WhatsApp: (+86）13530306290"
 
         # 显示带有解决方案的对话框
         buttons = [
