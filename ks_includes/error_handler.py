@@ -25,7 +25,7 @@ class ErrorHandler:
         # 计算图片显示尺寸（屏幕宽度的75%）
         self.image_width = int(self.screen_width * 0.75)
         self.image_height = int(self.screen_height * 0.75)
-        
+        logging.info(f"屏幕分辨率: {self.screen_width}x{self.screen_height}")
         # 定义常见错误类型及其解决方案
         self.error_solutions: Dict[str, Dict] = {
             "bed_leveling": {
@@ -236,7 +236,7 @@ class ErrorHandler:
             main_box.pack_start(contact_box, False, False, 0)
         else:
             # 处理未知错误
-            title = "未知错误"
+            title = "错误信息"
             unknown_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
             unknown_box.set_margin_start(10)
             unknown_box.set_margin_end(10)
