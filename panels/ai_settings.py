@@ -60,7 +60,7 @@ class Panel(ScreenPanel):
             }
             
             response = requests.post(
-                "http://localhost:8081/api/v1/settings/sync",
+                "http://localhost:8584/api/v1/settings/sync",
                 headers={"Content-Type": "application/json"},
                 json=data,
                 timeout=5
