@@ -34,7 +34,11 @@ class Panel(ScreenPanel):
         main_grid.set_margin_top(self.margin)
         main_grid.set_margin_bottom(self.margin)
 
-        # Left preview area
+        # Left preview area and button container
+        left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=self.margin)
+        left_box.set_halign(Gtk.Align.CENTER)
+        
+        # Preview frame
         preview_frame = Gtk.Frame()
         preview_frame.set_size_request(self.preview_size, self.preview_size)
         
@@ -51,7 +55,18 @@ class Panel(ScreenPanel):
         
         preview_box.pack_start(self.preview_image, True, True, self.margin // 2)
         preview_frame.add(preview_box)
-        main_grid.attach(preview_frame, 0, 0, 1, 6)  # 增加一行以适应文件名
+        left_box.pack_start(preview_frame, False, False, 0)
+
+        # Resume print button
+        resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
+        resume_button.connect("clicked", self.resume_print)
+        resume_button.set_size_request(min(self.preview_size, 200), self.button_height)
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        button_box.set_halign(Gtk.Align.CENTER)
+        button_box.pack_start(resume_button, False, False, 0)
+        left_box.pack_start(button_box, False, False, 0)
+
+        main_grid.attach(left_box, 0, 0, 1, 6)
 
         # Right info area
         info_grid = Gtk.Grid()
@@ -107,25 +122,23 @@ class Panel(ScreenPanel):
 
         main_grid.attach(info_grid, 1, 0, 1, 6)
 
-        # Resume print button
-        resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
-        resume_button.connect("clicked", self.resume_print)
-        resume_button.set_size_request(min(self.width // 3, 200), self.button_height)
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        button_box.set_halign(Gtk.Align.CENTER)
-        button_box.pack_start(resume_button, False, False, 0)
-        main_grid.attach(button_box, 0, 6, 2, 1)
-
-        # Tip message
+        # Tip message (占满整行)
+        tip_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        tip_box.set_hexpand(True)  # 水平方向扩展
+        tip_box.set_halign(Gtk.Align.FILL)
+        
         tip_label = Gtk.Label()
         tip_label.set_markup(
             f"<span foreground='orange'>{_('Tip: Please ensure the nozzle is about 0.1mm above the model')}</span>"
         )
         tip_label.set_halign(Gtk.Align.CENTER)
+        tip_label.set_hexpand(True)  # 标签也设置为扩展
         tip_label.set_line_wrap(True)
         tip_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
-        tip_label.set_max_width_chars(50)
-        main_grid.attach(tip_label, 0, 7, 2, 1)
+        tip_label.set_justify(Gtk.Justification.CENTER)
+        
+        tip_box.pack_start(tip_label, True, True, 0)
+        main_grid.attach(tip_box, 0, 6, 2, 1)
 
         # Make the main grid expand to fill available space
         main_grid.set_vexpand(True)
