@@ -51,7 +51,7 @@ class Panel(ScreenPanel):
         
         preview_box.pack_start(self.preview_image, True, True, self.margin // 2)
         preview_frame.add(preview_box)
-        main_grid.attach(preview_frame, 0, 0, 1, 5)
+        main_grid.attach(preview_frame, 0, 0, 1, 6)  # 增加一行以适应文件名
 
         # Right info area
         info_grid = Gtk.Grid()
@@ -62,46 +62,50 @@ class Panel(ScreenPanel):
         # Calculate label sizes
         label_width = (self.width - self.preview_size - self.margin * 6) // 2
         
-        # Filename
+        # Filename (占用两列宽度)
         filename_label = Gtk.Label(label=_("Filename:"), halign=Gtk.Align.START)
+        filename_label.set_size_request(label_width, -1)
+        info_grid.attach(filename_label, 0, 0, 2, 1)
+        
         self.filename_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        self.filename_value.set_max_width_chars(20)
-        self.filename_value.set_ellipsize(Pango.EllipsizeMode.END)
-        info_grid.attach(filename_label, 0, 0, 1, 1)
-        info_grid.attach(self.filename_value, 1, 0, 1, 1)
+        self.filename_value.set_size_request(label_width * 2, -1)  # 两倍宽度
+        self.filename_value.set_line_wrap(True)
+        self.filename_value.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        self.filename_value.set_justify(Gtk.Justification.LEFT)
+        info_grid.attach(self.filename_value, 0, 1, 2, 1)  # 占用下一行的两列
 
         # Print height
         height_label = Gtk.Label(label=_("Print Height:"), halign=Gtk.Align.START)
         self.height_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        info_grid.attach(height_label, 0, 1, 1, 1)
-        info_grid.attach(self.height_value, 1, 1, 1, 1)
+        info_grid.attach(height_label, 0, 2, 1, 1)
+        info_grid.attach(self.height_value, 1, 2, 1, 1)
 
         # Nozzle temperature
         nozzle_label = Gtk.Label(label=_("Nozzle Temp:"), halign=Gtk.Align.START)
         self.nozzle_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        info_grid.attach(nozzle_label, 0, 2, 1, 1)
-        info_grid.attach(self.nozzle_value, 1, 2, 1, 1)
+        info_grid.attach(nozzle_label, 0, 3, 1, 1)
+        info_grid.attach(self.nozzle_value, 1, 3, 1, 1)
 
         # Bed temperature
         bed_label = Gtk.Label(label=_("Bed Temp:"), halign=Gtk.Align.START)
         self.bed_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        info_grid.attach(bed_label, 0, 3, 1, 1)
-        info_grid.attach(self.bed_value, 1, 3, 1, 1)
+        info_grid.attach(bed_label, 0, 4, 1, 1)
+        info_grid.attach(self.bed_value, 1, 4, 1, 1)
 
         # Active extruder
         extruder_label = Gtk.Label(label=_("Active Extruder:"), halign=Gtk.Align.START)
         self.extruder_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        info_grid.attach(extruder_label, 0, 4, 1, 1)
-        info_grid.attach(self.extruder_value, 1, 4, 1, 1)
+        info_grid.attach(extruder_label, 0, 5, 1, 1)
+        info_grid.attach(self.extruder_value, 1, 5, 1, 1)
 
-        # Set width for all labels
+        # Set width for all labels (除了文件名)
         for child in info_grid.get_children():
-            if isinstance(child, Gtk.Label):
+            if isinstance(child, Gtk.Label) and child not in [self.filename_value, filename_label]:
                 child.set_size_request(label_width, -1)
                 child.set_line_wrap(True)
                 child.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
 
-        main_grid.attach(info_grid, 1, 0, 1, 5)
+        main_grid.attach(info_grid, 1, 0, 1, 6)
 
         # Resume print button
         resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
@@ -110,7 +114,7 @@ class Panel(ScreenPanel):
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         button_box.set_halign(Gtk.Align.CENTER)
         button_box.pack_start(resume_button, False, False, 0)
-        main_grid.attach(button_box, 0, 5, 2, 1)
+        main_grid.attach(button_box, 0, 6, 2, 1)
 
         # Tip message
         tip_label = Gtk.Label()
@@ -121,7 +125,7 @@ class Panel(ScreenPanel):
         tip_label.set_line_wrap(True)
         tip_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
         tip_label.set_max_width_chars(50)
-        main_grid.attach(tip_label, 0, 6, 2, 1)
+        main_grid.attach(tip_label, 0, 7, 2, 1)
 
         # Make the main grid expand to fill available space
         main_grid.set_vexpand(True)
