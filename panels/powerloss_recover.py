@@ -16,42 +16,57 @@ class Panel(ScreenPanel):
         self.filename = None
         self.print_state_file = "/home/mingda/printer_data/config/print_state.cfg"
         
+        # Calculate sizes based on screen resolution
+        self.width = screen.width
+        self.height = screen.height
+        
+        # Calculate optimal sizes
+        self.preview_size = min(self.width // 3, self.height // 2)  # 预览图尺寸不超过屏幕宽度的1/3和高度的1/2
+        self.button_height = self.height // 12  # 按钮高度为屏幕高度的1/12
+        self.margin = min(20, self.width // 50)  # 边距最大20，或屏幕宽度的1/50
+        
         # Create main grid layout
         main_grid = Gtk.Grid()
-        main_grid.set_row_spacing(5)
-        main_grid.set_column_spacing(5)
-        main_grid.set_margin_start(20)
-        main_grid.set_margin_end(20)
-        main_grid.set_margin_top(20)
-        main_grid.set_margin_bottom(20)
+        main_grid.set_row_spacing(self.margin // 2)
+        main_grid.set_column_spacing(self.margin)
+        main_grid.set_margin_start(self.margin)
+        main_grid.set_margin_end(self.margin)
+        main_grid.set_margin_top(self.margin)
+        main_grid.set_margin_bottom(self.margin)
 
         # Left preview area
         preview_frame = Gtk.Frame()
-        preview_frame.set_size_request(300, 300)
+        preview_frame.set_size_request(self.preview_size, self.preview_size)
         
         # Create preview container
         preview_box = Gtk.Box()
-        preview_box.set_size_request(300, 300)
+        preview_box.set_size_request(self.preview_size, self.preview_size)
         preview_box.set_halign(Gtk.Align.CENTER)
         preview_box.set_valign(Gtk.Align.CENTER)
         
         # Create preview image
         self.preview_image = Gtk.Image()
-        self.preview_image.set_size_request(280, 280)  # Leave some margin
+        self.preview_image.set_size_request(self.preview_size - self.margin, 
+                                          self.preview_size - self.margin)
         
-        preview_box.pack_start(self.preview_image, True, True, 10)
+        preview_box.pack_start(self.preview_image, True, True, self.margin // 2)
         preview_frame.add(preview_box)
         main_grid.attach(preview_frame, 0, 0, 1, 5)
 
         # Right info area
         info_grid = Gtk.Grid()
-        info_grid.set_row_spacing(10)
-        info_grid.set_column_spacing(10)
-        info_grid.set_margin_start(20)
-
+        info_grid.set_row_spacing(self.margin)
+        info_grid.set_column_spacing(self.margin)
+        info_grid.set_margin_start(self.margin)
+        
+        # Calculate label sizes
+        label_width = (self.width - self.preview_size - self.margin * 6) // 2
+        
         # Filename
         filename_label = Gtk.Label(label=_("Filename:"), halign=Gtk.Align.START)
         self.filename_value = Gtk.Label(label="", halign=Gtk.Align.START)
+        self.filename_value.set_max_width_chars(20)
+        self.filename_value.set_ellipsize(Pango.EllipsizeMode.END)
         info_grid.attach(filename_label, 0, 0, 1, 1)
         info_grid.attach(self.filename_value, 1, 0, 1, 1)
 
@@ -79,12 +94,19 @@ class Panel(ScreenPanel):
         info_grid.attach(extruder_label, 0, 4, 1, 1)
         info_grid.attach(self.extruder_value, 1, 4, 1, 1)
 
+        # Set width for all labels
+        for child in info_grid.get_children():
+            if isinstance(child, Gtk.Label):
+                child.set_size_request(label_width, -1)
+                child.set_line_wrap(True)
+                child.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+
         main_grid.attach(info_grid, 1, 0, 1, 5)
 
         # Resume print button
         resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
         resume_button.connect("clicked", self.resume_print)
-        resume_button.set_size_request(200, 60)
+        resume_button.set_size_request(min(self.width // 3, 200), self.button_height)
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         button_box.set_halign(Gtk.Align.CENTER)
         button_box.pack_start(resume_button, False, False, 0)
@@ -96,8 +118,15 @@ class Panel(ScreenPanel):
             f"<span foreground='orange'>{_('Tip: Please ensure the nozzle is about 0.1mm above the model')}</span>"
         )
         tip_label.set_halign(Gtk.Align.CENTER)
+        tip_label.set_line_wrap(True)
+        tip_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        tip_label.set_max_width_chars(50)
         main_grid.attach(tip_label, 0, 6, 2, 1)
 
+        # Make the main grid expand to fill available space
+        main_grid.set_vexpand(True)
+        main_grid.set_hexpand(True)
+        
         self.content.add(main_grid)
         
         # Load power loss recovery info on initialization
@@ -131,7 +160,7 @@ class Panel(ScreenPanel):
                 extruder_temp = 0
             self.nozzle_value.set_label(f"{extruder_temp}℃")
             
-            bed_temp = int(float(config.get("temperatures", "heater_bed", fallback="0")))
+            bed_temp = int(float(config.get("temperatures", "bed", fallback="0")))
             self.bed_value.set_label(f"{bed_temp}℃")
             
             # Get active extruder
@@ -162,7 +191,8 @@ class Panel(ScreenPanel):
                 return
                 
             # Get preview image
-            pixbuf = self.get_file_image(self.filename, 280, 280)
+            pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin,
+                                        self.preview_size - self.margin)
             if pixbuf is not None:
                 self.preview_image.set_from_pixbuf(pixbuf)
             else:
