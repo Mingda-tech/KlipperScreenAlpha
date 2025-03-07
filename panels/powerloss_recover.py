@@ -122,14 +122,20 @@ class Panel(ScreenPanel):
             self.height_value.set_label(f"{z_position:.2f} mm")
             
             # Get temperature information
-            extruder_temp = int(float(config.get("temperatures", "extruder")))
+            # 检查配置文件中的温度节点名称
+            if config.has_option("temperatures", "extruder1"):
+                extruder_temp = int(float(config.get("temperatures", "extruder1")))
+            elif config.has_option("temperatures", "extruder"):
+                extruder_temp = int(float(config.get("temperatures", "extruder")))
+            else:
+                extruder_temp = 0
             self.nozzle_value.set_label(f"{extruder_temp}℃")
             
-            bed_temp = int(float(config.get("temperatures", "bed")))
+            bed_temp = int(float(config.get("temperatures", "heater_bed", fallback="0")))
             self.bed_value.set_label(f"{bed_temp}℃")
             
             # Get active extruder
-            active_extruder = config.get("extruder", "active_extruder")
+            active_extruder = config.get("extruder", "active_extruder", fallback="extruder")
             self.extruder_value.set_label(active_extruder)
             
             # Update preview image
