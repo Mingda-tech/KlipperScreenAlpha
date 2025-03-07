@@ -75,6 +75,7 @@ class Panel(ScreenPanel):
         info_grid.set_margin_start(self.margin)
         info_grid.set_vexpand(True)  # 允许垂直扩展
         info_grid.set_valign(Gtk.Align.FILL)  # 填充整个可用空间
+        info_grid.set_size_request(-1, self.preview_size)  # 设置与预览图相同的高度
         
         # Calculate label sizes
         label_width = (self.width - self.preview_size - self.margin * 6) // 2
@@ -83,45 +84,55 @@ class Panel(ScreenPanel):
         
         # Filename (占用两列宽度)
         filename_label = Gtk.Label(label=_("Filename:"), halign=Gtk.Align.START)
-        filename_label.set_size_request(label_width, row_height)
+        filename_label.set_size_request(label_width, -1)
+        filename_label.set_vexpand(True)  # 允许垂直扩展
         info_grid.attach(filename_label, 0, 0, 2, 1)
         
         self.filename_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        self.filename_value.set_size_request(label_width * 2, row_height)  # 两倍宽度
+        self.filename_value.set_size_request(label_width * 2, -1)  # 两倍宽度
         self.filename_value.set_line_wrap(True)
         self.filename_value.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
         self.filename_value.set_justify(Gtk.Justification.LEFT)
+        self.filename_value.set_vexpand(True)  # 允许垂直扩展
         info_grid.attach(self.filename_value, 0, 1, 2, 1)  # 占用下一行的两列
 
         # Print height
         height_label = Gtk.Label(label=_("Print Height:"), halign=Gtk.Align.START)
-        height_label.set_size_request(label_width, row_height)
+        height_label.set_size_request(label_width, -1)
+        height_label.set_vexpand(True)  # 允许垂直扩展
         self.height_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        self.height_value.set_size_request(label_width, row_height)
+        self.height_value.set_size_request(label_width, -1)
+        self.height_value.set_vexpand(True)  # 允许垂直扩展
         info_grid.attach(height_label, 0, 2, 1, 1)
         info_grid.attach(self.height_value, 1, 2, 1, 1)
 
         # Nozzle temperature
         nozzle_label = Gtk.Label(label=_("Nozzle Temp:"), halign=Gtk.Align.START)
-        nozzle_label.set_size_request(label_width, row_height)
+        nozzle_label.set_size_request(label_width, -1)
+        nozzle_label.set_vexpand(True)  # 允许垂直扩展
         self.nozzle_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        self.nozzle_value.set_size_request(label_width, row_height)
+        self.nozzle_value.set_size_request(label_width, -1)
+        self.nozzle_value.set_vexpand(True)  # 允许垂直扩展
         info_grid.attach(nozzle_label, 0, 3, 1, 1)
         info_grid.attach(self.nozzle_value, 1, 3, 1, 1)
 
         # Bed temperature
         bed_label = Gtk.Label(label=_("Bed Temp:"), halign=Gtk.Align.START)
-        bed_label.set_size_request(label_width, row_height)
+        bed_label.set_size_request(label_width, -1)
+        bed_label.set_vexpand(True)  # 允许垂直扩展
         self.bed_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        self.bed_value.set_size_request(label_width, row_height)
+        self.bed_value.set_size_request(label_width, -1)
+        self.bed_value.set_vexpand(True)  # 允许垂直扩展
         info_grid.attach(bed_label, 0, 4, 1, 1)
         info_grid.attach(self.bed_value, 1, 4, 1, 1)
 
         # Active extruder
         extruder_label = Gtk.Label(label=_("Active Extruder:"), halign=Gtk.Align.START)
-        extruder_label.set_size_request(label_width, row_height)
+        extruder_label.set_size_request(label_width, -1)
+        extruder_label.set_vexpand(True)  # 允许垂直扩展
         self.extruder_value = Gtk.Label(label="", halign=Gtk.Align.START)
-        self.extruder_value.set_size_request(label_width, row_height)
+        self.extruder_value.set_size_request(label_width, -1)
+        self.extruder_value.set_vexpand(True)  # 允许垂直扩展
         info_grid.attach(extruder_label, 0, 5, 1, 1)
         info_grid.attach(self.extruder_value, 1, 5, 1, 1)
 
