@@ -9,7 +9,7 @@ from gi.repository import Gtk, GLib, Pango, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-class PowerlossRecoverPanel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.menu = ['powerloss_recover']
@@ -174,7 +174,7 @@ class PowerlossRecoverPanel(ScreenPanel):
         
         # Send resume print command
         self._screen._ws.klippy.gcode_script(
-            f"RESTORE_PRINT_STATE"
+            f"RESTORE_PRINT"
         )
         
         # Switch to print status panel
