@@ -24,6 +24,14 @@ class Panel(ScreenPanel):
         self.preview_size = min(self.width // 3, self.height // 2)  # 预览图尺寸不超过屏幕宽度的1/3和高度的1/2
         self.button_height = self.height // 12  # 按钮高度为屏幕高度的1/12
         self.margin = min(20, self.width // 50)  # 边距最大20，或屏幕宽度的1/50
+
+        # 计算实际可用宽度（考虑所有边距）
+        total_margin_width = self.margin * 4  # 左右两侧的外边距 + 中间分隔的边距
+        available_width = self.width - total_margin_width
+        
+        # 重新计算预览区域和信息区域的宽度
+        self.preview_size = min(available_width // 3, self.height // 2)  # 调整预览图尺寸
+        info_area_width = available_width - self.preview_size - self.margin  # 信息区域的可用宽度
         
         # Create main grid layout
         main_grid = Gtk.Grid()
@@ -78,7 +86,7 @@ class Panel(ScreenPanel):
         info_grid.set_size_request(-1, self.preview_size)  # 设置与预览图相同的高度
         
         # Calculate label sizes
-        label_width = (self.width - self.preview_size - self.margin * 6) // 2
+        label_width = (info_area_width - self.margin * 2) // 2  # 考虑标签之间的间距
         info_height = self.preview_size  # 与预览图等高
         row_height = (info_height - self.margin * 5) // 6  # 6行信息，5个间隔
         
