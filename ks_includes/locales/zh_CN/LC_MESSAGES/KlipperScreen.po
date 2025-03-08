@@ -1722,3 +1722,6 @@ msgstr "热床温度"
 
 msgid "Active Extruder"
 msgstr "当前挤出机"
+
+msgid "Power Loss Recovery"
+msgstr "断电续打"

@@ -67,7 +67,7 @@ class Panel(ScreenPanel):
         left_box.pack_start(preview_frame, False, False, 0)
 
         # Resume print button
-        self.resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
+        self.resume_button = self._gtk.Button("powerloss_recover", _("Power Loss Recovery"), "color2")
         self.resume_button.connect("clicked", self.resume_print)
         self.resume_button.set_size_request(min(self.preview_size, 200), self.button_height)
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
