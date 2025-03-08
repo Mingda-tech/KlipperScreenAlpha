@@ -179,6 +179,40 @@ class Panel(ScreenPanel):
         # Load power loss recovery info on initialization
         self.load_powerloss_info()
 
+    def get_file_image(self, filename, width, height):
+        """获取文件预览图"""
+        if filename is None:
+            return None
+            
+        # 检查是否有缩略图
+        if self._files.has_thumbnail(filename):
+            loc = self._files.get_thumbnail_location(filename)
+            if loc and loc[0] == "file":
+                # 本地文件缩略图
+                return self._gtk.PixbufFromFile(loc[1], width, height)
+            if loc and loc[0] == "http":
+                # HTTP缩略图
+                return self._gtk.PixbufFromHttp(loc[1], width, height)
+        return None
+
+    def update_preview_image(self):
+        """更新预览图"""
+        try:
+            if self.filename is None:
+                self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+                return
+                
+            # 获取预览图
+            pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin,
+                                        self.preview_size - self.margin)
+            if pixbuf is not None:
+                self.preview_image.set_from_pixbuf(pixbuf)
+            else:
+                self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+        except Exception as e:
+            logging.exception(f"Failed to load preview image: {str(e)}")
+            self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+
     def load_powerloss_info(self):
         """Load power loss recovery information"""
         if not os.path.exists(self.print_state_file):
@@ -191,6 +225,8 @@ class Panel(ScreenPanel):
             
             # Get file information
             self.filename = config.get("print_state", "file_path")
+            if self.filename.startswith('gcodes/'):
+                self.filename = self.filename[7:]  # 移除 'gcodes/' 前缀
             self.filename_value.set_label(os.path.basename(self.filename))
             
             # Get position information
@@ -219,34 +255,6 @@ class Panel(ScreenPanel):
             
         except Exception as e:
             logging.exception(f"Failed to load power loss recovery info: {str(e)}")
-
-    def get_file_image(self, filename, width, height):
-        """Get file preview image"""
-        if filename is None:
-            return None
-            
-        # Try to get thumbnail
-        if self._files.has_thumbnail(filename):
-            return self._files.get_thumbnail(filename, width, height)
-        return None
-
-    def update_preview_image(self):
-        """Update preview image"""
-        try:
-            if self.filename is None:
-                self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
-                return
-                
-            # Get preview image
-            pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin,
-                                        self.preview_size - self.margin)
-            if pixbuf is not None:
-                self.preview_image.set_from_pixbuf(pixbuf)
-            else:
-                self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
-        except Exception as e:
-            logging.exception(f"Failed to load preview image: {str(e)}")
-            self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
 
     def resume_print(self, widget):
         """Resume printing"""
