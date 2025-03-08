@@ -429,9 +429,22 @@ class Panel(ScreenPanel):
         logging.info("Starting to resume print...")
         
         # Send resume print command
-        self._screen._ws.klippy.gcode_script(
-            f"RESTORE_PRINT"
-        )
+        script = [
+            "M84\n",
+            "RESTORE_PRINT\n"
+        ]
+        self._screen._send_action(widget, "printer.gcode.script", {"script": "\n".join(script)})
+        self._screen.state_printing()
+    def activate(self):
+        """每次进入面板时调用"""
+        # 清空所有显示的值
+        self.filename = None
+        self.filename_value.set_label("")
+        self.height_value.set_label("")
+        self.nozzle_value.set_label("")
+        self.bed_value.set_label("")
+        self.extruder_value.set_label("")
+        self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
         
-        # Switch to print status panel
-        self._screen._menu_go_back() 
+        # 重新加载断电续打信息
+        self.load_powerloss_info()
