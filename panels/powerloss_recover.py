@@ -15,6 +15,8 @@ class Panel(ScreenPanel):
         self.menu = ['powerloss_recover']
         self.filename = None
         self.print_state_file = "/home/mingda/printer_data/config/print_state.cfg"
+        self.resume_button = None
+        self.tip_label = None
         
         # Calculate sizes based on screen resolution
         self.width = self._gtk.content_width
@@ -65,12 +67,12 @@ class Panel(ScreenPanel):
         left_box.pack_start(preview_frame, False, False, 0)
 
         # Resume print button
-        resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
-        resume_button.connect("clicked", self.resume_print)
-        resume_button.set_size_request(min(self.preview_size, 200), self.button_height)
+        self.resume_button = self._gtk.Button("resume", _("Resume Print"), "color2")
+        self.resume_button.connect("clicked", self.resume_print)
+        self.resume_button.set_size_request(min(self.preview_size, 200), self.button_height)
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         button_box.set_halign(Gtk.Align.CENTER)
-        button_box.pack_start(resume_button, False, False, 0)
+        button_box.pack_start(self.resume_button, False, False, 0)
         left_box.pack_start(button_box, False, False, 0)
 
         main_grid.attach(left_box, 0, 0, 1, 6)
@@ -157,17 +159,17 @@ class Panel(ScreenPanel):
         tip_box.set_hexpand(True)  # 水平方向扩展
         tip_box.set_halign(Gtk.Align.FILL)
         
-        tip_label = Gtk.Label()
-        tip_label.set_markup(
+        self.tip_label = Gtk.Label()
+        self.tip_label.set_markup(
             f"<span foreground='orange'>{_('Tip: Please ensure the nozzle is about 0.1mm above the model')}</span>"
         )
-        tip_label.set_halign(Gtk.Align.CENTER)
-        tip_label.set_hexpand(True)  # 标签也设置为扩展
-        tip_label.set_line_wrap(True)
-        tip_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
-        tip_label.set_justify(Gtk.Justification.CENTER)
+        self.tip_label.set_halign(Gtk.Align.CENTER)
+        self.tip_label.set_hexpand(True)  # 标签也设置为扩展
+        self.tip_label.set_line_wrap(True)
+        self.tip_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        self.tip_label.set_justify(Gtk.Justification.CENTER)
         
-        tip_box.pack_start(tip_label, True, True, 0)
+        tip_box.pack_start(self.tip_label, True, True, 0)
         main_grid.attach(tip_box, 0, 6, 2, 1)
 
         # Make the main grid expand to fill available space
@@ -280,15 +282,104 @@ class Panel(ScreenPanel):
             logging.exception(f"Failed to load preview image: {str(e)}")
             self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
 
+    def check_recovery_info(self, config):
+        """检查恢复信息是否完整"""
+        missing_items = []
+        warnings = []
+        
+        # 检查文件路径
+        try:
+            if not config.get("print_state", "file_path"):
+                missing_items.append(_("Filename"))
+        except:
+            missing_items.append(_("Filename"))
+            
+        # 检查打印高度
+        try:
+            z_position = float(config.get("position", "z"))
+            if not z_position:
+                missing_items.append(_("Print Height"))
+            elif z_position < 5:  # 检查打印高度是否小于5mm
+                warnings.append(_("Print height is less than 5mm"))
+        except:
+            missing_items.append(_("Print Height"))
+            
+        # 检查温度信息
+        has_extruder_temp = False
+        try:
+            if config.has_option("temperatures", "extruder1"):
+                has_extruder_temp = True
+            elif config.has_option("temperatures", "extruder"):
+                has_extruder_temp = True
+        except:
+            pass
+        
+        if not has_extruder_temp:
+            missing_items.append(_("Nozzle Temperature"))
+            
+        try:
+            if not config.has_option("temperatures", "bed"):
+                missing_items.append(_("Bed Temperature"))
+        except:
+            missing_items.append(_("Bed Temperature"))
+            
+        # 检查活跃喷头
+        try:
+            if not config.get("extruder", "active_extruder"):
+                missing_items.append(_("Active Extruder"))
+        except:
+            missing_items.append(_("Active Extruder"))
+            
+        return missing_items, warnings
+
+    def update_ui_state(self, missing_items, warnings=None):
+        """更新UI状态"""
+        if missing_items or warnings:
+            # 禁用恢复按钮
+            self.resume_button.set_sensitive(False)
+            
+            # 更新提示信息
+            if missing_items:
+                missing_info = ", ".join(missing_items)
+                self.tip_label.set_markup(
+                    f"<span foreground='red'>{_('Missing required information')}: {missing_info}</span>"
+                )
+            elif warnings:
+                warning_info = ", ".join(warnings)
+                self.tip_label.set_markup(
+                    f"<span foreground='red'>{warning_info}</span>"
+                )
+        else:
+            # 启用恢复按钮
+            self.resume_button.set_sensitive(True)
+            
+            # 恢复默认提示
+            self.tip_label.set_markup(
+                f"<span foreground='orange'>{_('Tip: Please ensure the nozzle is about 0.1mm above the model')}</span>"
+            )
+
     def load_powerloss_info(self):
         """Load power loss recovery information"""
         if not os.path.exists(self.print_state_file):
             logging.error(f"Print state file not found: {self.print_state_file}")
+            self.update_ui_state([_("Recovery File")], [])
             return
             
         try:
             config = configparser.ConfigParser()
             config.read(self.print_state_file)
+            
+            # 检查恢复信息是否完整
+            missing_items, warnings = self.check_recovery_info(config)
+            self.update_ui_state(missing_items, warnings)
+            
+            if missing_items:
+                logging.warning(f"Missing recovery information: {', '.join(missing_items)}")
+                return
+                
+            if warnings:
+                logging.warning(f"Recovery warnings: {', '.join(warnings)}")
+                return
             
             # Get file information
             self.filename = config.get("print_state", "file_path")
