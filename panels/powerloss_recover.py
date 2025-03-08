@@ -182,16 +182,25 @@ class Panel(ScreenPanel):
     def get_file_image(self, filename, width, height):
         """获取文件预览图"""
         if filename is None:
+            logging.info("Filename is None, cannot get thumbnail")
             return None
             
+        logging.info(f"Trying to get thumbnail for file: {filename}")
         # 检查是否有缩略图
-        if self._files.has_thumbnail(filename):
+        has_thumb = self._files.has_thumbnail(filename)
+        logging.info(f"Has thumbnail: {has_thumb}")
+        
+        if has_thumb:
             loc = self._files.get_thumbnail_location(filename)
+            logging.info(f"Thumbnail location: {loc}")
+            
             if loc and loc[0] == "file":
                 # 本地文件缩略图
+                logging.info(f"Loading local thumbnail from: {loc[1]}")
                 return self._gtk.PixbufFromFile(loc[1], width, height)
             if loc and loc[0] == "http":
                 # HTTP缩略图
+                logging.info(f"Loading HTTP thumbnail from: {loc[1]}")
                 return self._gtk.PixbufFromHttp(loc[1], width, height)
         return None
 
@@ -199,15 +208,19 @@ class Panel(ScreenPanel):
         """更新预览图"""
         try:
             if self.filename is None:
+                logging.info("No filename available for preview image")
                 self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
                 return
                 
+            logging.info(f"Updating preview image for file: {self.filename}")
             # 获取预览图
             pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin,
                                         self.preview_size - self.margin)
             if pixbuf is not None:
+                logging.info("Successfully loaded preview image")
                 self.preview_image.set_from_pixbuf(pixbuf)
             else:
+                logging.info("No preview image available, using default icon")
                 self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
         except Exception as e:
             logging.exception(f"Failed to load preview image: {str(e)}")
@@ -225,8 +238,12 @@ class Panel(ScreenPanel):
             
             # Get file information
             self.filename = config.get("print_state", "file_path")
+            logging.info(f"Original filename from print_state: {self.filename}")
+            
             if self.filename.startswith('gcodes/'):
                 self.filename = self.filename[7:]  # 移除 'gcodes/' 前缀
+                logging.info(f"Filename after removing gcodes/ prefix: {self.filename}")
+            
             self.filename_value.set_label(os.path.basename(self.filename))
             
             # Get position information
