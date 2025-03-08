@@ -1677,3 +1677,48 @@ msgstr "耗材传感器0：未检测到耗材，取消打印。"
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "耗材传感器1：未检测到耗材，取消打印。"
+
+msgid "Resume Print"
+msgstr "恢复打印"
+
+msgid "Filename:"
+msgstr "文件名："
+
+msgid "Print Height:"
+msgstr "打印高度："
+
+msgid "Nozzle Temp:"
+msgstr "喷嘴温度："
+
+msgid "Bed Temp:"
+msgstr "热床温度："
+
+msgid "Active Extruder:"
+msgstr "当前挤出机："
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "提示：请确保喷嘴位于模型上方约0.1mm处"
+
+msgid "Recovery File"
+msgstr "恢复文件"
+
+msgid "Print height is less than 5mm"
+msgstr "打印高度小于5mm"
+
+msgid "Missing required information"
+msgstr "缺少必要信息"
+
+msgid "Filename"
+msgstr "文件名"
+
+msgid "Print Height"
+msgstr "打印高度"
+
+msgid "Nozzle Temperature"
+msgstr "喷嘴温度"
+
+msgid "Bed Temperature"
+msgstr "热床温度"
+
+msgid "Active Extruder"
+msgstr "当前挤出机"
