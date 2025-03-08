@@ -37,10 +37,13 @@ class Panel(ScreenPanel):
         # Left preview area and button container
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=self.margin)
         left_box.set_halign(Gtk.Align.CENTER)
+        left_box.set_valign(Gtk.Align.START)  # 顶部对齐
         
         # Preview frame
         preview_frame = Gtk.Frame()
         preview_frame.set_size_request(self.preview_size, self.preview_size)
+        preview_frame.set_halign(Gtk.Align.CENTER)
+        preview_frame.set_valign(Gtk.Align.START)  # 顶部对齐
         
         # Create preview container
         preview_box = Gtk.Box()
@@ -50,10 +53,10 @@ class Panel(ScreenPanel):
         
         # Create preview image
         self.preview_image = Gtk.Image()
-        self.preview_image.set_size_request(self.preview_size - self.margin, 
-                                          self.preview_size - self.margin)
+        self.preview_image.set_size_request(self.preview_size - self.margin * 2, 
+                                          self.preview_size - self.margin * 2)
         
-        preview_box.pack_start(self.preview_image, True, True, self.margin // 2)
+        preview_box.pack_start(self.preview_image, True, True, self.margin)
         preview_frame.add(preview_box)
         left_box.pack_start(preview_frame, False, False, 0)
 
@@ -220,7 +223,13 @@ class Panel(ScreenPanel):
             
         # Try to get thumbnail
         if self._files.has_thumbnail(filename):
-            return self._files.get_thumbnail(filename, width, height)
+            loc = self._files.get_thumbnail_location(filename)
+            if loc is None:
+                return None
+            if loc[0] == "file":
+                return self._gtk.PixbufFromFile(loc[1], width, height)
+            if loc[0] == "http":
+                return self._gtk.PixbufFromHttp(loc[1], width, height)
         return None
 
     def update_preview_image(self):
@@ -231,12 +240,13 @@ class Panel(ScreenPanel):
                 return
                 
             # Get preview image
-            pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin,
-                                        self.preview_size - self.margin)
+            pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin * 2,
+                                       self.preview_size - self.margin * 2)
             if pixbuf is not None:
                 self.preview_image.set_from_pixbuf(pixbuf)
             else:
-                self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+                # Try to get file icon
+                self.preview_image.set_from_icon_name("text-x-gcode", Gtk.IconSize.DIALOG)
         except Exception as e:
             logging.exception(f"Failed to load preview image: {str(e)}")
             self.preview_image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)

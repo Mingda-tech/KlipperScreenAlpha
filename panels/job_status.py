@@ -42,10 +42,8 @@ class Panel(ScreenPanel):
         self.mms2 = _("mm/s²")
         self.mms3 = _("mm³/s")
         self.status_grid = self.move_grid = self.time_grid = self.extrusion_grid = None
-        self.absolute_extrude = False
         self.extruder_target = 0.0
         self.bed_target = 0.0
-        self.file_position = '0'
         self.previous_extruder  = ''
 
         data = ['pos_x', 'pos_y', 'pos_z', 'time_left', 'duration', 'slicer_time', 'file_time',
@@ -587,9 +585,6 @@ class Panel(ScreenPanel):
             with suppress(KeyError):
                 self.zoffset = float(data["gcode_move"]["homing_origin"][2])
                 self.labels['zoffset'].set_label(f"{self.zoffset:.3f} {self.mm}")
-            if "absolute_extrude" in data["gcode_move"]:
-                self.absolute_extrude = data["gcode_move"]["absolute_extrude"]
-                logging.info(f"Absolute extrude: {self.absolute_extrude}------------------------")
 
         if "motion_report" in data:
             with suppress(KeyError):
@@ -689,7 +684,6 @@ class Panel(ScreenPanel):
             print_duration = total_duration
         fila_used = float(self._printer.get_stat('print_stats', 'filament_used'))
         progress = float(self._printer.get_stat("virtual_sdcard", "progress"))
-        self.file_position = self._printer.get_stat("virtual_sdcard", "file_position")
         self.labels["duration"].set_label(self.format_time(total_duration))
         elapsed_label = f"{self.labels['elapsed'].get_text()}  {self.labels['duration'].get_text()}"
         self.buttons['elapsed'].set_label(elapsed_label)
@@ -759,7 +753,6 @@ class Panel(ScreenPanel):
             self.buttons['left'].set_label("-")
             self._add_timeout(self._config.get_main_config().getint("job_complete_timeout", 0))
         elif state == "error":
-            self.save_print_states()
             self.labels['status'].set_label(_("Error"))
             self._screen.show_popup_message(msg)
             self._add_timeout(self._config.get_main_config().getint("job_error_timeout", 0))
@@ -770,11 +763,8 @@ class Panel(ScreenPanel):
             self._add_timeout(self._config.get_main_config().getint("job_cancelled_timeout", 0))
         elif state == "paused":
             self.labels["status"].set_label(_("Paused"))
-            self.save_print_states()
         elif state == "standby":
             self.labels["status"].set_label(_("Standby"))
-        elif state == "shutdown":
-            self.save_print_states()
         if self.state != state:
             logging.debug(f"Changing job_status state from '{self.state}' to '{state}'")
             self.state = state
@@ -910,27 +900,6 @@ class Panel(ScreenPanel):
             logging.debug("Cannot find file metadata. Listening for updated metadata")
             self._screen.files.add_file_callback(self._callback_metadata)
         self.show_file_thumbnail()
-
-    def save_print_states(self):
-        if self._screen.klippy_config is None:
-            return
-        try:
-            self._screen.klippy_config.set("Variables", "curextrudertarget", f"{self.extruder_target:.2f}")
-            self._screen.klippy_config.set("Variables", "currentextruder", f"'{self.current_extruder}'")
-            self._screen.klippy_config.set("Variables", "filepath", f"'{self.filename}'")
-            self._screen.klippy_config.set("Variables", "fileposition", f"{self.file_position}")
-            self._screen.klippy_config.set("Variables", "heaterbedtarget", f"{self.bed_target:.2f}")
-            self._screen.klippy_config.set("Variables", "positionz", f"{self.pos_z:.2f}")
-            self.absolute_extrude = False            
-            self._screen.klippy_config.set("Variables", "was_absolute_extrude", f"{self.absolute_extrude}")
-            self._screen.klippy_config.set("Variables", "resumeflag", "1")
-            logging.info(f"Saving print state to {self._screen.klippy_config_path} successfully!")
-            with open(self._screen.klippy_config_path, 'w') as file:
-                self._screen.klippy_config.write(file)
-        except Exception as e:
-            logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
-            self._screen.show_popup_message(_("Error writing configuration"))
-
     def save_e1_zoffset(self):
             if self._screen.klippy_config is not None and abs(self._screen.manual_settings['extruder1']['zoffset']) < 10:
                 e1_zoffset = self._screen.manual_settings['extruder1']['zoffset']
