@@ -186,9 +186,23 @@ class Panel(ScreenPanel):
             return None
             
         logging.info(f"Trying to get thumbnail for file: {filename}")
+        
+        # 确保文件名编码正确
+        filename = filename.strip()
+        logging.info(f"Sanitized filename: {filename}")
+        
         # 检查是否有缩略图
         has_thumb = self._files.has_thumbnail(filename)
         logging.info(f"Has thumbnail: {has_thumb}")
+        
+        def scale_pixbuf(pixbuf, target_width, target_height):
+            """缩放图片以适应目标尺寸，保持宽高比"""
+            img_width = pixbuf.get_width()
+            img_height = pixbuf.get_height()
+            scale_ratio = min(target_width / img_width, target_height / img_height)
+            new_width = int(img_width * scale_ratio)
+            new_height = int(img_height * scale_ratio)
+            return pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.BILINEAR)
         
         if has_thumb:
             loc = self._files.get_thumbnail_location(filename)
@@ -196,12 +210,49 @@ class Panel(ScreenPanel):
             
             if loc and loc[0] == "file":
                 # 本地文件缩略图
-                logging.info(f"Loading local thumbnail from: {loc[1]}")
-                return self._gtk.PixbufFromFile(loc[1], width, height)
+                thumb_path = loc[1]
+                logging.info(f"Loading local thumbnail from: {thumb_path}")
+                # 检查文件是否存在
+                if os.path.exists(thumb_path):
+                    logging.info(f"Thumbnail file exists at: {thumb_path}")
+                    try:
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file(thumb_path)
+                        return scale_pixbuf(pixbuf, width, height)
+                    except Exception as e:
+                        logging.error(f"Error loading thumbnail: {str(e)}")
+                else:
+                    logging.error(f"Thumbnail file not found at: {thumb_path}")
             if loc and loc[0] == "http":
                 # HTTP缩略图
                 logging.info(f"Loading HTTP thumbnail from: {loc[1]}")
-                return self._gtk.PixbufFromHttp(loc[1], width, height)
+                try:
+                    pixbuf = self._gtk.PixbufFromHttp(loc[1])
+                    return scale_pixbuf(pixbuf, width, height)
+                except Exception as e:
+                    logging.error(f"Error loading HTTP thumbnail: {str(e)}")
+        
+        # 如果没有找到缩略图，尝试直接查找 .thumbs 目录
+        gcode_dir = os.path.dirname(self.print_state_file).replace('config', 'gcodes')
+        thumbs_dir = os.path.join(gcode_dir, '.thumbs')
+        base_name = os.path.basename(filename)
+        
+        # 按优先级尝试不同尺寸的缩略图
+        thumb_sizes = ['300x300', '48x48', '32x32']
+        for size in thumb_sizes:
+            thumb_pattern = f"{base_name.rsplit('.', 1)[0]}-{size}.png"
+            direct_thumb_path = os.path.join(thumbs_dir, thumb_pattern)
+            
+            logging.info(f"Trying direct thumbnail path: {direct_thumb_path}")
+            if os.path.exists(direct_thumb_path):
+                logging.info(f"Found thumbnail directly at: {direct_thumb_path}")
+                try:
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(direct_thumb_path)
+                    return scale_pixbuf(pixbuf, width, height)
+                except Exception as e:
+                    logging.error(f"Error loading direct thumbnail: {str(e)}")
+                    continue
+        
+        logging.info("No thumbnail found through any method")
         return None
 
     def update_preview_image(self):
@@ -213,11 +264,14 @@ class Panel(ScreenPanel):
                 return
                 
             logging.info(f"Updating preview image for file: {self.filename}")
+            # 计算实际显示尺寸
+            display_size = self.preview_size - (self.margin * 2)  # 考虑边距
+            logging.info(f"Display size for preview: {display_size}x{display_size}")
+            
             # 获取预览图
-            pixbuf = self.get_file_image(self.filename, self.preview_size - self.margin,
-                                        self.preview_size - self.margin)
+            pixbuf = self.get_file_image(self.filename, display_size, display_size)
             if pixbuf is not None:
-                logging.info("Successfully loaded preview image")
+                logging.info(f"Successfully loaded preview image: {pixbuf.get_width()}x{pixbuf.get_height()}")
                 self.preview_image.set_from_pixbuf(pixbuf)
             else:
                 logging.info("No preview image available, using default icon")
@@ -240,10 +294,13 @@ class Panel(ScreenPanel):
             self.filename = config.get("print_state", "file_path")
             logging.info(f"Original filename from print_state: {self.filename}")
             
-            if self.filename.startswith('gcodes/'):
-                self.filename = self.filename[7:]  # 移除 'gcodes/' 前缀
-                logging.info(f"Filename after removing gcodes/ prefix: {self.filename}")
+            # 处理文件路径，提取相对路径部分
+            if "/gcodes/" in self.filename:
+                self.filename = self.filename.split("/gcodes/")[-1]
+                logging.info(f"Filename after extracting relative path: {self.filename}")
             
+            # 确保文件名没有前后空格
+            self.filename = self.filename.strip()
             self.filename_value.set_label(os.path.basename(self.filename))
             
             # Get position information
