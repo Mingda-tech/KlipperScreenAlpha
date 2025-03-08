@@ -17,20 +17,16 @@ class Panel(ScreenPanel):
         self.print_state_file = "/home/mingda/printer_data/config/print_state.cfg"
         
         # Calculate sizes based on screen resolution
-        self.width = screen.width
-        self.height = screen.height
-        
-        # Consider menu width
-        menu_width = self._screen.menu.get_width()  # 获取菜单宽度
-        self.content_width = self.width - menu_width  # 实际可用内容宽度
+        self.width = self._gtk.content_width
+        self.height = self._gtk.content_height
         
         # Calculate optimal sizes
         self.button_height = self.height // 12  # 按钮高度为屏幕高度的1/12
-        self.margin = min(20, self.content_width // 50)  # 边距最大20，或可用宽度的1/50
+        self.margin = min(20, self.width // 50)  # 边距最大20，或可用宽度的1/50
 
         # 计算实际可用宽度（考虑所有边距）
         total_margin_width = self.margin * 4  # 左右两侧的外边距 + 中间分隔的边距
-        available_width = self.content_width - total_margin_width
+        available_width = self.width - total_margin_width
         
         # 重新计算预览区域和信息区域的宽度
         self.preview_size = min(available_width // 3, self.height // 2)  # 调整预览图尺寸
