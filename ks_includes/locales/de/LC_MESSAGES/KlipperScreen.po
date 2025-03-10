@@ -8,16 +8,63 @@ msgstr ""
 "Project-Id-Version: KlipperScreen\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-20 00:09-0300\n"
-"PO-Revision-Date: 2023-11-16 02:51+0000\n"
-"Last-Translator: bbraeu <braeu.bernhard@gmail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/klipperscreen/"
-"klipperscreen/de/>\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.1\n"
+
+msgid "Active Extruder"
+msgstr "Aktiver Extruder"
+
+msgid "Active Extruder:"
+msgstr "Aktiver Extruder:"
+
+msgid "Bed Temp:"
+msgstr "Bett Temp:"
+
+msgid "Bed Temperature"
+msgstr "Bett Temperatur"
+
+msgid "Filename"
+msgstr "Dateiname"
+
+msgid "Filename:"
+msgstr "Dateiname:"
+
+msgid "Missing required information"
+msgstr "Erforderliche Informationen fehlen"
+
+msgid "Nozzle Temp:"
+msgstr "Düsen Temp:"
+
+msgid "Nozzle Temperature"
+msgstr "Düsen Temperatur"
+
+msgid "Power Loss Recovery"
+msgstr "Stromausfall Wiederherstellung"
+
+msgid "Print Height"
+msgstr "Druckhöhe"
+
+msgid "Print Height:"
+msgstr "Druckhöhe:"
+
+msgid "Print height is less than 5mm"
+msgstr "Druckhöhe ist weniger als 5mm"
+
+msgid "Recovery File"
+msgstr "Wiederherstellungsdatei"
+
+msgid "Resume Print"
+msgstr "Druck fortsetzen"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Tipp: Stellen Sie sicher, dass die Düse etwa 0,1mm über dem Modell ist"
 
 #, python-format
 msgid "%s will be updated to version"

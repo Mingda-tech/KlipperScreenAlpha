@@ -16,10 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
-"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
-"1 : 2);\n"
-"X-Generator: Weblate 5.3-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.1\n"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -1497,3 +1495,51 @@ msgstr "Filamento jutiklis 0: Filamento nėra aptiktas, atsisakau spausdinimo."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Filamento jutiklis 1: Filamento nėra aptiktas, atsisakau spausdinimo."
+
+msgid "Active Extruder"
+msgstr "Aktyvus Ekstruderis"
+
+msgid "Active Extruder:"
+msgstr "Aktyvus Ekstruderis:"
+
+msgid "Bed Temp:"
+msgstr "Pagrindo Temp.:"
+
+msgid "Bed Temperature"
+msgstr "Pagrindo Temperatūra"
+
+msgid "Filename"
+msgstr "Failo Pavadinimas"
+
+msgid "Filename:"
+msgstr "Failo Pavadinimas:"
+
+msgid "Missing required information"
+msgstr "Trūksta būtinos informacijos"
+
+msgid "Nozzle Temp:"
+msgstr "Antgalio Temp.:"
+
+msgid "Nozzle Temperature"
+msgstr "Antgalio Temperatūra"
+
+msgid "Power Loss Recovery"
+msgstr "Maitinimo Praradimo Atkūrimas"
+
+msgid "Print Height"
+msgstr "Spausdinimo Aukštis"
+
+msgid "Print Height:"
+msgstr "Spausdinimo Aukštis:"
+
+msgid "Print height is less than 5mm"
+msgstr "Spausdinimo aukštis mažesnis nei 5mm"
+
+msgid "Recovery File"
+msgstr "Atkūrimo Failas"
+
+msgid "Resume Print"
+msgstr "Tęsti Spausdinimą"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Patarimas: Įsitikinkite, kad antgalis yra apie 0.1mm virš modelio"

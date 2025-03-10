@@ -1705,3 +1705,51 @@ msgstr " censor סיב 0: לא זוהה סיב, בטל את הדפסה."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr " censor סיב 1: לא זוהה סיב, בטל את הדפסה."
+
+msgid "Active Extruder"
+msgstr "אקסטרודר פעיל"
+
+msgid "Active Extruder:"
+msgstr "אקסטרודר פעיל:"
+
+msgid "Bed Temp:"
+msgstr "טמפ' מיטה:"
+
+msgid "Bed Temperature"
+msgstr "טמפרטורת מיטה"
+
+msgid "Filename"
+msgstr "שם קובץ"
+
+msgid "Filename:"
+msgstr "שם קובץ:"
+
+msgid "Missing required information"
+msgstr "חסר מידע נדרש"
+
+msgid "Nozzle Temp:"
+msgstr "טמפ' חרטום:"
+
+msgid "Nozzle Temperature"
+msgstr "טמפרטורת חרטום"
+
+msgid "Power Loss Recovery"
+msgstr "שחזור לאחר הפסקת חשמל"
+
+msgid "Print Height"
+msgstr "גובה הדפסה"
+
+msgid "Print Height:"
+msgstr "גובה הדפסה:"
+
+msgid "Print height is less than 5mm"
+msgstr "גובה ההדפסה נמוך מ-5 מ\"מ"
+
+msgid "Recovery File"
+msgstr "קובץ שחזור"
+
+msgid "Resume Print"
+msgstr "המשך הדפסה"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "טיפ: וודא שהחרטום נמצא כ-0.1 מ\"מ מעל המודל"

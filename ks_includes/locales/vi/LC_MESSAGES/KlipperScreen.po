@@ -1724,3 +1724,51 @@ msgstr "Cảm biến Filament 0: Không phát hiện filament, hủy bỏ in ấ
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Cảm biến Filament 1: Không phát hiện filament, hủy bỏ in ấn."
+
+msgid "Active Extruder"
+msgstr "Đầu Phun Hoạt Động"
+
+msgid "Active Extruder:"
+msgstr "Đầu Phun Hoạt Động:"
+
+msgid "Bed Temp:"
+msgstr "Nhiệt Độ Bàn:"
+
+msgid "Bed Temperature"
+msgstr "Nhiệt Độ Bàn"
+
+msgid "Filename"
+msgstr "Tên Tệp"
+
+msgid "Filename:"
+msgstr "Tên Tệp:"
+
+msgid "Missing required information"
+msgstr "Thiếu thông tin cần thiết"
+
+msgid "Nozzle Temp:"
+msgstr "Nhiệt Độ Đầu Phun:"
+
+msgid "Nozzle Temperature"
+msgstr "Nhiệt Độ Đầu Phun"
+
+msgid "Power Loss Recovery"
+msgstr "Khôi Phục Sau Mất Điện"
+
+msgid "Print Height"
+msgstr "Chiều Cao In"
+
+msgid "Print Height:"
+msgstr "Chiều Cao In:"
+
+msgid "Print height is less than 5mm"
+msgstr "Chiều cao in thấp hơn 5mm"
+
+msgid "Recovery File"
+msgstr "Tệp Khôi Phục"
+
+msgid "Resume Print"
+msgstr "Tiếp Tục In"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Mẹo: Hãy đảm bảo đầu phun cách mô hình khoảng 0.1mm"

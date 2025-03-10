@@ -1521,3 +1521,51 @@ msgstr "Filaam-sensor 0: Geen filament gedetecteerd, annuleer het printen."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Filaam-sensor 1: Geen filament gedetecteerd, annuleer het printen."
+
+msgid "Active Extruder"
+msgstr "Actieve Extruder"
+
+msgid "Active Extruder:"
+msgstr "Actieve Extruder:"
+
+msgid "Bed Temp:"
+msgstr "Bed Temp:"
+
+msgid "Bed Temperature"
+msgstr "Bed Temperatuur"
+
+msgid "Filename"
+msgstr "Bestandsnaam"
+
+msgid "Filename:"
+msgstr "Bestandsnaam:"
+
+msgid "Missing required information"
+msgstr "Vereiste informatie ontbreekt"
+
+msgid "Nozzle Temp:"
+msgstr "Nozzle Temp:"
+
+msgid "Nozzle Temperature"
+msgstr "Nozzle Temperatuur"
+
+msgid "Power Loss Recovery"
+msgstr "Stroomuitval Herstel"
+
+msgid "Print Height"
+msgstr "Print Hoogte"
+
+msgid "Print Height:"
+msgstr "Print Hoogte:"
+
+msgid "Print height is less than 5mm"
+msgstr "Print hoogte is minder dan 5mm"
+
+msgid "Recovery File"
+msgstr "Herstel Bestand"
+
+msgid "Resume Print"
+msgstr "Print Hervatten"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Tip: Zorg ervoor dat de nozzle ongeveer 0.1mm boven het model staat"

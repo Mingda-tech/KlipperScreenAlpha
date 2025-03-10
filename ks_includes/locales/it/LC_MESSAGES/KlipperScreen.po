@@ -11,8 +11,56 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.1\n"
+
+msgid "Active Extruder"
+msgstr "Estrusore Attivo"
+
+msgid "Active Extruder:"
+msgstr "Estrusore Attivo:"
+
+msgid "Bed Temp:"
+msgstr "Temp. Piano:"
+
+msgid "Bed Temperature"
+msgstr "Temperatura Piano"
+
+msgid "Filename"
+msgstr "Nome File"
+
+msgid "Filename:"
+msgstr "Nome File:"
+
+msgid "Missing required information"
+msgstr "Informazioni richieste mancanti"
+
+msgid "Nozzle Temp:"
+msgstr "Temp. Ugello:"
+
+msgid "Nozzle Temperature"
+msgstr "Temperatura Ugello"
+
+msgid "Power Loss Recovery"
+msgstr "Recupero da Interruzione"
+
+msgid "Print Height"
+msgstr "Altezza di Stampa"
+
+msgid "Print Height:"
+msgstr "Altezza di Stampa:"
+
+msgid "Print height is less than 5mm"
+msgstr "L'altezza di stampa è inferiore a 5mm"
+
+msgid "Recovery File"
+msgstr "File di Recupero"
+
+msgid "Resume Print"
+msgstr "Riprendi Stampa"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Suggerimento: Assicurarsi che l'ugello sia circa 0.1mm sopra il modello"
 
 #, python-format
 msgid "%s will be updated to version"

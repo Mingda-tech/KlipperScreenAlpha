@@ -15,9 +15,56 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.1\n"
+
+msgid "Active Extruder"
+msgstr "Активний Екструдер"
+
+msgid "Active Extruder:"
+msgstr "Активний Екструдер:"
+
+msgid "Bed Temp:"
+msgstr "Темп. Столу:"
+
+msgid "Bed Temperature"
+msgstr "Температура Столу"
+
+msgid "Filename"
+msgstr "Ім'я Файлу"
+
+msgid "Filename:"
+msgstr "Ім'я Файлу:"
+
+msgid "Missing required information"
+msgstr "Відсутня необхідна інформація"
+
+msgid "Nozzle Temp:"
+msgstr "Темп. Сопла:"
+
+msgid "Nozzle Temperature"
+msgstr "Температура Сопла"
+
+msgid "Power Loss Recovery"
+msgstr "Відновлення після Втрати Живлення"
+
+msgid "Print Height"
+msgstr "Висота Друку"
+
+msgid "Print Height:"
+msgstr "Висота Друку:"
+
+msgid "Print height is less than 5mm"
+msgstr "Висота друку менше 5мм"
+
+msgid "Recovery File"
+msgstr "Файл Відновлення"
+
+msgid "Resume Print"
+msgstr "Відновити Друк"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Порада: Переконайтеся, що сопло знаходиться приблизно в 0.1мм над моделлю"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -65,7 +112,7 @@ msgid "Archived"
 msgstr "Архівовано"
 
 msgid "Are you sure do you want to exclude the object?"
-msgstr "Ви впевнені, що бажаєте виключити об’єкт?"
+msgstr "Ви впевнені, що бажаєте виключити об'єкт?"
 
 msgid "Are you sure you want to run Emergency Stop?"
 msgstr "Ви впевнені, що хочете зробити аварійну зупинку?"
@@ -205,7 +252,7 @@ msgid "Estimated Time Method"
 msgstr "Метод розрахунку часу"
 
 msgid "Exclude Object"
-msgstr "Виключити об’єкт"
+msgstr "Виключити об'єкт"
 
 msgid "Extra Large"
 msgstr "Дуже Великий"
@@ -354,7 +401,7 @@ msgstr "Залежно від потужності обігрівача це м�
 
 
 msgid "Firmware has disconnected"
-msgstr "Фірма-версія від’єднана"
+msgstr "Фірма-версія від'єднана"
 
 msgid "Firmware has encountered an error."
 msgstr "У фірма-версії виявлено помилку."
@@ -748,7 +795,7 @@ msgid "Up To Date"
 msgstr "Актуально"
 
 msgid "Update"
-msgstr "О��овлення"
+msgstr "Оновлення"
 
 msgid "Updating"
 msgstr "Оновлення"
@@ -1079,7 +1126,7 @@ msgid "New nozzle height difference is: "
 msgstr "Нова різниця висоти сопла: "
 
 msgid "Warning: Current value is negative. This is dangerous and may damage the machine. Please recalibrate."
-msgstr "Попередження: Поточне значення н��гативне. Це небезпечно і може пошкодити машину. Будь ласка, виконайте повторне калібрування."
+msgstr "Попередження: Поточне значення негативне. Це небезпечно і може пошкодити машину. Будь ласка, виконайте повторне калібрування."
 
 msgid "Z Height Diff"
 msgstr "Різниця висоти Z"

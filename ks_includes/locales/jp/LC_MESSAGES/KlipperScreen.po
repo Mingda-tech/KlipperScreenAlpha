@@ -1516,3 +1516,51 @@ msgstr "フィラメントセンサー0：フィラメントが検出されま�
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "フィラメントセンサー1：フィラメントが検出されません、印刷をキャンセルします。"
+
+msgid "Active Extruder"
+msgstr "アクティブエクストルーダー"
+
+msgid "Active Extruder:"
+msgstr "アクティブエクストルーダー:"
+
+msgid "Bed Temp:"
+msgstr "ベッド温度:"
+
+msgid "Bed Temperature"
+msgstr "ベッド温度"
+
+msgid "Filename"
+msgstr "ファイル名"
+
+msgid "Filename:"
+msgstr "ファイル名:"
+
+msgid "Missing required information"
+msgstr "必要な情報が不足しています"
+
+msgid "Nozzle Temp:"
+msgstr "ノズル温度:"
+
+msgid "Nozzle Temperature"
+msgstr "ノズル温度"
+
+msgid "Power Loss Recovery"
+msgstr "停電復旧"
+
+msgid "Print Height"
+msgstr "印刷高さ"
+
+msgid "Print Height:"
+msgstr "印刷高さ:"
+
+msgid "Print height is less than 5mm"
+msgstr "印刷高さが5mm未満です"
+
+msgid "Recovery File"
+msgstr "復旧ファイル"
+
+msgid "Resume Print"
+msgstr "印刷再開"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "ヒント: ノズルがモデルの約0.1mm上にあることを確認してください"

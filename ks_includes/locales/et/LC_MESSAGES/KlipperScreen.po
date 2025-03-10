@@ -1664,3 +1664,51 @@ msgstr "Filamentisensor 0: Filamenti ei tuvastatud, tühistan printimist."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Filamentisensor 1: Filamenti ei tuvastatud, tühistan printimist."
+
+msgid "Active Extruder"
+msgstr "Aktiivne Ekstruuder"
+
+msgid "Active Extruder:"
+msgstr "Aktiivne Ekstruuder:"
+
+msgid "Bed Temp:"
+msgstr "Aluse Temp:"
+
+msgid "Bed Temperature"
+msgstr "Aluse Temperatuur"
+
+msgid "Filename"
+msgstr "Failinimi"
+
+msgid "Filename:"
+msgstr "Failinimi:"
+
+msgid "Missing required information"
+msgstr "Puudub vajalik informatsioon"
+
+msgid "Nozzle Temp:"
+msgstr "Düüsi Temp:"
+
+msgid "Nozzle Temperature"
+msgstr "Düüsi Temperatuur"
+
+msgid "Power Loss Recovery"
+msgstr "Voolukatkestuse Taastamine"
+
+msgid "Print Height"
+msgstr "Printimise Kõrgus"
+
+msgid "Print Height:"
+msgstr "Printimise Kõrgus:"
+
+msgid "Print height is less than 5mm"
+msgstr "Printimise kõrgus on vähem kui 5mm"
+
+msgid "Recovery File"
+msgstr "Taastefail"
+
+msgid "Resume Print"
+msgstr "Jätka Printimist"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Vihje: Veenduge, et düüs oleks umbes 0.1mm mudelist kõrgemal"

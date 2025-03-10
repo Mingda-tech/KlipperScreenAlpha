@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: KlipperScreen\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-20 00:09-0300\n"
-"PO-Revision-Date: 2023-10-24 05:59+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/klipperscreen/"
-"klipperscreen/es/>\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.1\n"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -1690,3 +1689,51 @@ msgstr "Sensor de Filamento 0: No se detectó filamento, cancelando la impresió
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Sensor de Filamento 1: No se detectó filamento, cancelando la impresión."
+
+msgid "Active Extruder"
+msgstr "Extrusor Activo"
+
+msgid "Active Extruder:"
+msgstr "Extrusor Activo:"
+
+msgid "Bed Temp:"
+msgstr "Temp. Cama:"
+
+msgid "Bed Temperature"
+msgstr "Temperatura de Cama"
+
+msgid "Filename"
+msgstr "Nombre del archivo"
+
+msgid "Filename:"
+msgstr "Nombre del archivo:"
+
+msgid "Missing required information"
+msgstr "Falta información requerida"
+
+msgid "Nozzle Temp:"
+msgstr "Temp. Boquilla:"
+
+msgid "Nozzle Temperature"
+msgstr "Temperatura de Boquilla"
+
+msgid "Power Loss Recovery"
+msgstr "Recuperación por Pérdida de Energía"
+
+msgid "Print Height"
+msgstr "Altura de Impresión"
+
+msgid "Print Height:"
+msgstr "Altura de Impresión:"
+
+msgid "Print height is less than 5mm"
+msgstr "La altura de impresión es menor a 5mm"
+
+msgid "Recovery File"
+msgstr "Archivo de Recuperación"
+
+msgid "Resume Print"
+msgstr "Reanudar Impresión"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Consejo: Asegúrese de que la boquilla esté aproximadamente 0.1mm por encima del modelo"

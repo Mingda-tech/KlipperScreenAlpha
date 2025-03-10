@@ -1665,3 +1665,51 @@ msgstr "Filament-Sensor 0: Kein Filament erkannt, Druck wird abgebrochen."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Filament-Sensor 1: Kein Filament erkannt, Druck wird abgebrochen."
+
+msgid "Active Extruder"
+msgstr "Aktiver Extruder"
+
+msgid "Active Extruder:"
+msgstr "Aktiver Extruder:"
+
+msgid "Bed Temp:"
+msgstr "Bett Temperatur:"
+
+msgid "Bed Temperature"
+msgstr "Bett Temperatur"
+
+msgid "Filename"
+msgstr "Dateiname"
+
+msgid "Filename:"
+msgstr "Dateiname:"
+
+msgid "Missing required information"
+msgstr "Erforderliche Informationen fehlen"
+
+msgid "Nozzle Temp:"
+msgstr "Düsentemperatur:"
+
+msgid "Nozzle Temperature"
+msgstr "Düsentemperatur"
+
+msgid "Power Loss Recovery"
+msgstr "Stromausfall-Wiederherstellung"
+
+msgid "Print Height"
+msgstr "Druckhöhe"
+
+msgid "Print Height:"
+msgstr "Druckhöhe:"
+
+msgid "Print height is less than 5mm"
+msgstr "Die Druckhöhe beträgt weniger als 5mm"
+
+msgid "Recovery File"
+msgstr "Wiederherstellungsdatei"
+
+msgid "Resume Print"
+msgstr "Druck fortsetzen"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "Hinweis: Bitte stellen Sie sicher, dass die Düse etwa 0,1mm über dem Modell positioniert ist"

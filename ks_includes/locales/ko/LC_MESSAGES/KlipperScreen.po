@@ -12,7 +12,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Poedit 3.2.1\n"
+
+msgid "Active Extruder"
+msgstr "활성 압출기"
+
+msgid "Active Extruder:"
+msgstr "활성 압출기:"
+
+msgid "Bed Temp:"
+msgstr "베드 온도:"
+
+msgid "Bed Temperature"
+msgstr "베드 온도"
+
+msgid "Filename"
+msgstr "파일명"
+
+msgid "Filename:"
+msgstr "파일명:"
+
+msgid "Missing required information"
+msgstr "필수 정보 누락"
+
+msgid "Nozzle Temp:"
+msgstr "노즐 온도:"
+
+msgid "Nozzle Temperature"
+msgstr "노즐 온도"
+
+msgid "Power Loss Recovery"
+msgstr "전원 복구"
+
+msgid "Print Height"
+msgstr "인쇄 높이"
+
+msgid "Print Height:"
+msgstr "인쇄 높이:"
+
+msgid "Print height is less than 5mm"
+msgstr "인쇄 높이가 5mm 미만입니다"
+
+msgid "Recovery File"
+msgstr "복구 파일"
+
+msgid "Resume Print"
+msgstr "인쇄 재개"
+
+msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
+msgstr "팁: 노즐이 모델 위로 약 0.1mm에 위치하도록 확인하세요"
 
 #, python-format
 msgid "%s will be updated to version"
