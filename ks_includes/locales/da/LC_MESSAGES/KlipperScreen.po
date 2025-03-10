@@ -1570,3 +1570,9 @@ msgstr "Genoptag Print"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Tip: Sørg for at dysen er cirka 0.1mm over modellen"
+
+msgid "Force Move"
+msgstr "Tving bevægelse"
+
+msgid "Force move: "
+msgstr "Tving bevægelse:"

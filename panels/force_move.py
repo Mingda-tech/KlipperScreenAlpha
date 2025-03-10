@@ -21,7 +21,7 @@ class Panel(ScreenPanel):
                 dis = [str(i.strip()) for i in dis.split(',')]
                 if 1 < len(dis) <= 7:
                     self.distances = dis
-                    self.distance = self.distances[-2]
+                    self.distance = self.distances[0]
 
         self.settings = {}
         self.menu = ['move_menu']
@@ -107,12 +107,7 @@ class Panel(ScreenPanel):
 
         bottomgrid = self._gtk.HomogeneousGrid()
         bottomgrid.set_direction(Gtk.TextDirection.LTR)
-        bottomgrid.attach(self.labels['pos_x'], 0, 0, 1, 1)
-        bottomgrid.attach(self.labels['pos_y'], 1, 0, 1, 1)
-        bottomgrid.attach(self.labels['pos_z'], 2, 0, 1, 1)
-        bottomgrid.attach(self.labels['move_dist'], 0, 1, 3, 1)
-        # if not self._screen.vertical_mode:
-        #     bottomgrid.attach(adjust, 3, 0, 1, 2)
+        bottomgrid.attach(self.labels['move_dist'], 0, 1, 1, 1)
 
         self.labels['move_menu'] = self._gtk.HomogeneousGrid()
         self.labels['move_menu'].attach(grid, 0, 0, 1, 3)
@@ -150,33 +145,6 @@ class Panel(ScreenPanel):
         for option in configurable_options:
             name = list(option)[0]
             self.add_option('options', self.settings, name, option[name])
-
-    def process_update(self, action, data):
-        if action != "notify_status_update":
-            return
-        homed_axes = self._printer.get_stat("toolhead", "homed_axes")
-        if homed_axes == "xyz":
-            if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
-                self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
-                self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
-        else:
-            if "x" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
-            else:
-                self.labels['pos_x'].set_text("X: ?")
-            if "y" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
-            else:
-                self.labels['pos_y'].set_text("Y: ?")
-            if "z" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
-            else:
-                self.labels['pos_z'].set_text("Z: ?")
-
     def change_distance(self, widget, distance):
         logging.info(f"### Distance {distance}")
         self.labels[f"{self.distance}"].get_style_context().remove_class("distbutton_active")
@@ -200,14 +168,14 @@ class Panel(ScreenPanel):
         script = f"FORCE_MOVE STEPPER={stepper} DISTANCE={dist} VELOCITY={speed} ACCEL=100"
         if (int(self.distance) > 1):
             self._screen._confirm_send_action(
-                None,
-                _("Forced move: ") + f"{dist}mm?",
+                widget,
+                _("Force move: ") + f"{axis} {dist}mm?",
                 "printer.gcode.script",
                 {"script": script}
             )
         else:
             self._screen._send_action(
-                None,
+                widget,
                 "printer.gcode.script", 
                 {"script": script}
             )

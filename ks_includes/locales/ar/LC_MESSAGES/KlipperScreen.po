@@ -1591,3 +1591,9 @@ msgstr "استئناف الطباعة"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "نصيحة: تأكد من أن الفوهة على ارتفاع 0.1 مم فوق النموذج"
+
+msgid "Force Move"
+msgstr "حركة قسرية"
+
+msgid "Force move: "
+msgstr "حركة قسرية:"

@@ -1630,3 +1630,9 @@ msgstr "필라멘트 센서0: 필라멘트가 감지되지 않았습니다, 인�
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "필라멘트 센서1: 필라멘트가 감지되지 않았습니다, 인쇄를 취소합니다."
+
+msgid "Force Move"
+msgstr "강제 이동"
+
+msgid "Force move: "
+msgstr "강제 이동："

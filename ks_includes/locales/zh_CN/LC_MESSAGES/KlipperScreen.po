@@ -1725,3 +1725,9 @@ msgstr "当前挤出机"
 
 msgid "Power Loss Recovery"
 msgstr "断电续打"
+
+msgid "Force Move"
+msgstr "强制移动"
+
+msgid "Force move: "
+msgstr "强制移动："

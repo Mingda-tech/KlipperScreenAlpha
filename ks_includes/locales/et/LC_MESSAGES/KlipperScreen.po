@@ -1712,3 +1712,9 @@ msgstr "Jätka Printimist"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Vihje: Veenduge, et düüs oleks umbes 0.1mm mudelist kõrgemal"
+
+msgid "Force Move"
+msgstr "Sundjuhtimine"
+
+msgid "Force move: "
+msgstr "Sundjuhtimine:"

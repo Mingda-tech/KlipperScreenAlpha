@@ -1467,3 +1467,9 @@ msgstr "Pokračovat v tisku"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Tip: Ujistěte se, že tryska je přibližně 0.1mm nad modelem"
+
+msgid "Force Move"
+msgstr "Vynucený pohyb"
+
+msgid "Force move: "
+msgstr "Vynucený pohyb:"

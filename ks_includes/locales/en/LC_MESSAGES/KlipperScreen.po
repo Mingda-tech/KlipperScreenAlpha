@@ -1529,3 +1529,9 @@ msgstr ""
 
 msgid "Power Loss Recovery"
 msgstr ""
+
+msgid "Force Move"
+msgstr ""
+
+msgid "Force move: "
+msgstr ""

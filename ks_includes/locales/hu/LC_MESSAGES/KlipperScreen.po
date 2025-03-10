@@ -1534,3 +1534,9 @@ msgstr "Filamenérzékelő 0: Nincs észlelt filamen, megszakítom a nyomtatást
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Filamenérzékelő 1: Nincs észlelt filamen, megszakítom a nyomtatást."
+
+msgid "Force Move"
+msgstr "Kényszerített mozgás"
+
+msgid "Force move: "
+msgstr "Kényszerített mozgás:"

@@ -1646,3 +1646,9 @@ msgstr "Baskıyı Devam Ettir"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "İpucu: Lütfen nozulun model üzerinde yaklaşık 0.1mm olduğundan emin olun"
+
+msgid "Force Move"
+msgstr "Zorla Hareket"
+
+msgid "Force move: "
+msgstr "Zorla hareket:"

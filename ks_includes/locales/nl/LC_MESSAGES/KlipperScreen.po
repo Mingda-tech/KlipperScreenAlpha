@@ -1569,3 +1569,9 @@ msgstr "Print Hervatten"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Tip: Zorg ervoor dat de nozzle ongeveer 0.1mm boven het model staat"
+
+msgid "Force Move"
+msgstr "Geforceerde beweging"
+
+msgid "Force move: "
+msgstr "Geforceerde beweging:"

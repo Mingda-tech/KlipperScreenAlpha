@@ -1617,3 +1617,9 @@ msgstr "Återuppta Utskrift"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Tips: Se till att munstycket är cirka 0.1mm ovanför modellen"
+
+msgid "Force Move"
+msgstr "Tvinga förflyttning"
+
+msgid "Force move: "
+msgstr "Tvinga förflyttning:"

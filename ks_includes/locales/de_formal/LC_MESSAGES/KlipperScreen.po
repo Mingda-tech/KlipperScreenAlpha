@@ -1713,3 +1713,9 @@ msgstr "Druck fortsetzen"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Hinweis: Bitte stellen Sie sicher, dass die Düse etwa 0,1mm über dem Modell positioniert ist"
+
+msgid "Force Move"
+msgstr "Erzwungene Bewegung"
+
+msgid "Force move: "
+msgstr "Erzwungene Bewegung:"

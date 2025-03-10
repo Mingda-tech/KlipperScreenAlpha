@@ -1735,3 +1735,9 @@ msgstr "Возобновить Печать"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Совет: Убедитесь, что сопло находится примерно в 0.1мм над моделью"
+
+msgid "Force Move"
+msgstr "Принудительное перемещение"
+
+msgid "Force move: "
+msgstr "Принудительное перемещение："

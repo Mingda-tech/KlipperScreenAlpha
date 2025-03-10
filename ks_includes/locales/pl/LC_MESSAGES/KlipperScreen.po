@@ -1565,3 +1565,9 @@ msgstr "Czujnik Materiału 0: Nie wykryto materiału, anulowanie druku."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Czujnik Materiału 1: Nie wykryto materiału, anulowanie druku."
+
+msgid "Force Move"
+msgstr "Wymuszony ruch"
+
+msgid "Force move: "
+msgstr "Wymuszony ruch:"

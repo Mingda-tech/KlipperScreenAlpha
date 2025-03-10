@@ -1610,3 +1610,9 @@ msgstr "Filamentsensor 0: Kein Filament erkannt, Druck wird abgebrochen."
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Filamentsensor 1: Kein Filament erkannt, Druck wird abgebrochen."
+
+msgid "Force Move"
+msgstr "Erzwungene Bewegung"
+
+msgid "Force move: "
+msgstr "Erzwungene Bewegung:"

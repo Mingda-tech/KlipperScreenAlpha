@@ -1705,3 +1705,9 @@ msgstr "活動擠出機"
 
 msgid "Power Loss Recovery"
 msgstr "斷電恢復"
+
+msgid "Force Move"
+msgstr "強制移動"
+
+msgid "Force move: "
+msgstr "強制移動："

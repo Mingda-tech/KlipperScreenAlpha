@@ -1543,3 +1543,9 @@ msgstr "Tęsti Spausdinimą"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Patarimas: Įsitikinkite, kad antgalis yra apie 0.1mm virš modelio"
+
+msgid "Force Move"
+msgstr "Priverstinis judėjimas"
+
+msgid "Force move: "
+msgstr "Priverstinis judėjimas:"

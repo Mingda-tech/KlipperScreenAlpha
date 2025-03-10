@@ -1737,3 +1737,9 @@ msgstr "Reanudar Impresión"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Consejo: Asegúrese de que la boquilla esté aproximadamente 0.1mm por encima del modelo"
+
+msgid "Force Move"
+msgstr "Movimiento forzado"
+
+msgid "Force move: "
+msgstr "Movimiento forzado:"

@@ -1564,3 +1564,9 @@ msgstr "印刷再開"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "ヒント: ノズルがモデルの約0.1mm上にあることを確認してください"
+
+msgid "Force Move"
+msgstr "強制移動"
+
+msgid "Force move: "
+msgstr "強制移動："

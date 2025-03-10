@@ -1788,3 +1788,9 @@ msgstr "Nadaljuj Tiskanje"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Nasvet: Prepričajte se, da je šoba približno 0.1mm nad modelom"
+
+msgid "Force Move"
+msgstr "Prisilno premikanje"
+
+msgid "Force move: "
+msgstr "Prisilno premikanje:"

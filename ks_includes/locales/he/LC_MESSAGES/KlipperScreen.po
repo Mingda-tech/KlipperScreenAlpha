@@ -1064,7 +1064,7 @@ msgid "Please wait for the camera initialization to complete."
 msgstr "אנא המתן עד שהאתחול של המצלמה יסתיים."
 
 msgid "Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"
-msgstr "אנא המתן עד שאור המילוי של המצלמה ידלק למשך 5 שניות לפני ללחוץ על 'התחל'"
+msgstr "אנא המתן עד שאור המילוי של המצלמה יידלק למשך 5 שניות לפני ללחוץ על 'התחל'"
 
 msgid "Couldn't get the calibration camera position."
 msgstr "לא הצלחנו לקבוע את מיקום הקליברציה של המצלמה."
@@ -1753,3 +1753,9 @@ msgstr "המשך הדפסה"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "טיפ: וודא שהחרטום נמצא כ-0.1 מ\"מ מעל המודל"
+
+msgid "Force Move"
+msgstr "תנועה מאולצת"
+
+msgid "Force move: "
+msgstr "תנועה מאולצת:"

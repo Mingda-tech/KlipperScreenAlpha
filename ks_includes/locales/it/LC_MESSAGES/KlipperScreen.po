@@ -1699,3 +1699,9 @@ msgstr "Sensore Filamento 0: Nessun filamento rilevato, annullamento della stamp
 
 msgid "Filament Sensor1: No filament detected, canceling print."
 msgstr "Sensore Filamento 1: Nessun filamento rilevato, annullamento della stampa."
+
+msgid "Force Move"
+msgstr "Movimento forzato"
+
+msgid "Force move: "
+msgstr "Movimento forzato:"

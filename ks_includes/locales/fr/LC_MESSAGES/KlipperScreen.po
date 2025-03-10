@@ -65,7 +65,7 @@ msgid "Archived"
 msgstr "Archivé"
 
 msgid "Are you sure do you want to exclude the object?"
-msgstr "Êtes-vous sûr de vouloir exclure l’objet ?"
+msgstr "Êtes-vous sûr de vouloir exclure l'objet ?"
 
 msgid "Are you sure you want to run Emergency Stop?"
 msgstr "Êtes-vous sûr de vouloir exécuter l'arrêt d'urgence ?"
@@ -247,7 +247,7 @@ msgid "Filter"
 msgstr "Filtre"
 
 msgid "Finding ADXL"
-msgstr "Recherche de l’ADXL"
+msgstr "Recherche de l'ADXL"
 
 msgid "Fine Tuning"
 msgstr "Réglages précis"
@@ -310,7 +310,7 @@ msgid "Host"
 msgstr "Hôte"
 
 msgid "Hostname"
-msgstr "Nom d’hôte"
+msgstr "Nom d'hôte"
 
 msgid "ID"
 msgstr "ID"
@@ -1758,3 +1758,9 @@ msgstr "Reprendre l'Impression"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Conseil: Assurez-vous que la buse est à environ 0,1mm au-dessus du modèle"
+
+msgid "Force Move"
+msgstr "Mouvement forcé"
+
+msgid "Force move: "
+msgstr "Mouvement forcé:"

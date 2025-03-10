@@ -1772,3 +1772,9 @@ msgstr "Tiếp Tục In"
 
 msgid "Tip: Please ensure the nozzle is about 0.1mm above the model"
 msgstr "Mẹo: Hãy đảm bảo đầu phun cách mô hình khoảng 0.1mm"
+
+msgid "Force Move"
+msgstr "Di chuyển cưỡng bức"
+
+msgid "Force move: "
+msgstr "Di chuyển cưỡng bức:"
