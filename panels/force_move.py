@@ -203,10 +203,14 @@ class Panel(ScreenPanel):
                 None,
                 _("Forced move: ") + f"{dist}mm?",
                 "printer.gcode.script",
-                script
-            )        
+                {"script": script}
+            )
         else:
-            self._screen._send_action(widget, "printer.gcode.script", {"script": script})
+            self._screen._send_action(
+                None,
+                "printer.gcode.script", 
+                {"script": script}
+            )
 
     def add_option(self, boxname, opt_array, opt_name, option):
         name = Gtk.Label()
