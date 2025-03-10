@@ -194,7 +194,7 @@ class Panel(ScreenPanel):
             stepper = 'stepper_x'
             speed = 50
         elif axis == 'Y':
-            stepper = 'stepper_z'
+            stepper = 'stepper_y'
             speed = 50
             
         script = f"FORCE_MOVE STEPPER={stepper} DISTANCE={dist} VELOCITY={speed} ACCEL=100"
