@@ -200,7 +200,7 @@ class Panel(ScreenPanel):
         script = f"FORCE_MOVE STEPPER={stepper} DISTANCE={dist} VELOCITY={speed} ACCEL=100"
         if (int(self.distance) > 1):
             self._screen._confirm_send_action(
-                widget,
+                None,
                 _("Forced move: ") + f"{dist}mm?",
                 "printer.gcode.script",
                 script
