@@ -11,6 +11,7 @@ import locale
 import sys
 import gi
 import configparser
+import threading
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib, Pango
@@ -823,7 +824,7 @@ class KlipperScreen(Gtk.Window):
         if lang in timezone_map:
             try:
                 logging.info(f"Setting timezone to {timezone_map[lang]} for language {lang}")
-                os.system(f'sudo timedatectl set-timezone {timezone_map[lang]}')
+                set_timezone_async(timezone_map[lang])
             except Exception as e:
                 logging.error(f"Error setting timezone: {e}")
         
@@ -1232,6 +1233,33 @@ class KlipperScreen(Gtk.Window):
         if is_on:
             script = 'ENABLE_AUTO_EXTRUDER_SWITCH'
         self._ws.klippy.gcode_script(script)
+
+def set_timezone_async(timezone):
+    """异步设置时区的函数"""
+    def _set_timezone():
+        try:
+            # 添加超时控制，5秒后如果还没完成就终止
+            process = subprocess.Popen(
+                ['sudo', 'timedatectl', 'set-timezone', timezone],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            try:
+                process.wait(timeout=5)
+                if process.returncode == 0:
+                    logging.info(f"Successfully set timezone to {timezone}")
+                else:
+                    logging.error(f"Failed to set timezone: {process.stderr.read().decode()}")
+            except subprocess.TimeoutExpired:
+                process.kill()
+                logging.error(f"Timeout while setting timezone to {timezone}")
+        except Exception as e:
+            logging.error(f"Error setting timezone: {e}")
+
+    # 在新线程中执行时区设置
+    thread = threading.Thread(target=_set_timezone)
+    thread.daemon = True
+    thread.start()
 
 def main():
     minimum = (3, 7)
