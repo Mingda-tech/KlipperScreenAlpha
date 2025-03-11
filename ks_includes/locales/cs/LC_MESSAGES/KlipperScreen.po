@@ -1456,8 +1456,8 @@ msgstr "Výška tisku"
 msgid "Print Height:"
 msgstr "Výška tisku:"
 
-msgid "Print height is less than 5mm"
-msgstr "Výška tisku je menší než 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Výška tisku je menší než 1mm"
 
 msgid "Recovery File"
 msgstr "Soubor obnovy"

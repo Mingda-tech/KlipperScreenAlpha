@@ -1532,8 +1532,8 @@ msgstr "Spausdinimo Aukštis"
 msgid "Print Height:"
 msgstr "Spausdinimo Aukštis:"
 
-msgid "Print height is less than 5mm"
-msgstr "Spausdinimo aukštis mažesnis nei 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Spausdinimo aukštis mažesnis nei 1mm"
 
 msgid "Recovery File"
 msgstr "Atkūrimo Failas"

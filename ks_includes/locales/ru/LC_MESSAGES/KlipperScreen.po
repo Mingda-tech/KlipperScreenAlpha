@@ -1724,8 +1724,8 @@ msgstr "Высота Печати"
 msgid "Print Height:"
 msgstr "Высота Печати:"
 
-msgid "Print height is less than 5mm"
-msgstr "Высота печати меньше 5мм"
+msgid "Print height is less than 1mm"
+msgstr "Высота печати меньше 1мм"
 
 msgid "Recovery File"
 msgstr "Файл Восстановления"

@@ -1701,8 +1701,8 @@ msgstr "Printimise Kõrgus"
 msgid "Print Height:"
 msgstr "Printimise Kõrgus:"
 
-msgid "Print height is less than 5mm"
-msgstr "Printimise kõrgus on vähem kui 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Printimise kõrgus on vähem kui 1mm"
 
 msgid "Recovery File"
 msgstr "Taastefail"

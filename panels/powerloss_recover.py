@@ -299,8 +299,8 @@ class Panel(ScreenPanel):
             z_position = float(config.get("position", "z"))
             if not z_position:
                 missing_items.append(_("Print Height"))
-            elif z_position < 5:  # 检查打印高度是否小于5mm
-                warnings.append(_("Print height is less than 5mm"))
+            elif z_position < 1:  # 检查打印高度是否小于1mm
+                warnings.append(_("Print height is less than 1mm"))
         except:
             missing_items.append(_("Print Height"))
             

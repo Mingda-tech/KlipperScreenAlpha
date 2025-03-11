@@ -1682,8 +1682,8 @@ msgstr "提示：請確保噴嘴距離模型上方約為0.1毫米"
 msgid "Recovery File"
 msgstr "恢復檔案"  # 翻译自简体“恢复文件”
 
-msgid "Print height is less than 5mm"
-msgstr "列印高度小於5毫米" 
+msgid "Print height is less than 1mm"
+msgstr "列印高度小於1毫米" 
 
 msgid "Missing required information"
 msgstr "缺少必要的資訊" 

@@ -1761,8 +1761,8 @@ msgstr "Chiều Cao In"
 msgid "Print Height:"
 msgstr "Chiều Cao In:"
 
-msgid "Print height is less than 5mm"
-msgstr "Chiều cao in thấp hơn 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Chiều cao in thấp hơn 1mm"
 
 msgid "Recovery File"
 msgstr "Tệp Khôi Phục"

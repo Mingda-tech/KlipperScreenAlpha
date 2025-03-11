@@ -1742,8 +1742,8 @@ msgstr "גובה הדפסה"
 msgid "Print Height:"
 msgstr "גובה הדפסה:"
 
-msgid "Print height is less than 5mm"
-msgstr "גובה ההדפסה נמוך מ-5 מ\"מ"
+msgid "Print height is less than 1mm"
+msgstr "גובה ההדפסה נמוך מ-1 מ\"מ"
 
 msgid "Recovery File"
 msgstr "קובץ שחזור"

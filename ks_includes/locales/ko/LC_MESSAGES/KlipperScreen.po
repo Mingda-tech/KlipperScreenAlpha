@@ -50,8 +50,8 @@ msgstr "인쇄 높이"
 msgid "Print Height:"
 msgstr "인쇄 높이:"
 
-msgid "Print height is less than 5mm"
-msgstr "인쇄 높이가 5mm 미만입니다"
+msgid "Print height is less than 1mm"
+msgstr "인쇄 높이가 1mm 미만입니다"
 
 msgid "Recovery File"
 msgstr "복구 파일"

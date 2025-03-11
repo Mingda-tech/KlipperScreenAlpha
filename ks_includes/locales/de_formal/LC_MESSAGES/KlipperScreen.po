@@ -1702,8 +1702,8 @@ msgstr "Druckhöhe"
 msgid "Print Height:"
 msgstr "Druckhöhe:"
 
-msgid "Print height is less than 5mm"
-msgstr "Die Druckhöhe beträgt weniger als 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Die Druckhöhe beträgt weniger als 1mm"
 
 msgid "Recovery File"
 msgstr "Wiederherstellungsdatei"

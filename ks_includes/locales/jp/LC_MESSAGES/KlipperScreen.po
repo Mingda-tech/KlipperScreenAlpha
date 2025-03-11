@@ -1553,8 +1553,8 @@ msgstr "印刷高さ"
 msgid "Print Height:"
 msgstr "印刷高さ:"
 
-msgid "Print height is less than 5mm"
-msgstr "印刷高さが5mm未満です"
+msgid "Print height is less than 1mm"
+msgstr "印刷高さが1mm未満です"
 
 msgid "Recovery File"
 msgstr "復旧ファイル"

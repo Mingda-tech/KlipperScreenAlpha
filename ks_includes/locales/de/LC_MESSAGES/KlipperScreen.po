@@ -54,8 +54,8 @@ msgstr "Druckhöhe"
 msgid "Print Height:"
 msgstr "Druckhöhe:"
 
-msgid "Print height is less than 5mm"
-msgstr "Druckhöhe ist weniger als 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Druckhöhe ist weniger als 1mm"
 
 msgid "Recovery File"
 msgstr "Wiederherstellungsdatei"

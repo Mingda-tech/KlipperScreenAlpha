@@ -1580,8 +1580,8 @@ msgstr "ارتفاع الطباعة"
 msgid "Print Height:"
 msgstr "ارتفاع الطباعة:"
 
-msgid "Print height is less than 5mm"
-msgstr "ارتفاع الطباعة أقل من 5 مم"
+msgid "Print height is less than 1mm"
+msgstr "ارتفاع الطباعة أقل من 1 مم"
 
 msgid "Recovery File"
 msgstr "ملف الاستعادة"

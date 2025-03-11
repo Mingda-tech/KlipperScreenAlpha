@@ -54,8 +54,8 @@ msgstr "Висота Друку"
 msgid "Print Height:"
 msgstr "Висота Друку:"
 
-msgid "Print height is less than 5mm"
-msgstr "Висота друку менше 5мм"
+msgid "Print height is less than 1mm"
+msgstr "Висота друку менше 1мм"
 
 msgid "Recovery File"
 msgstr "Файл Відновлення"

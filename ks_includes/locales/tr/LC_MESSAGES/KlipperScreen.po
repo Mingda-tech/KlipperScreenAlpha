@@ -1635,8 +1635,8 @@ msgstr "Baskı Yüksekliği"
 msgid "Print Height:"
 msgstr "Baskı Yüksekliği:"
 
-msgid "Print height is less than 5mm"
-msgstr "Baskı yüksekliği 5mm'den az"
+msgid "Print height is less than 1mm"
+msgstr "Baskı yüksekliği 1mm'den az"
 
 msgid "Recovery File"
 msgstr "Kurtarma Dosyası"

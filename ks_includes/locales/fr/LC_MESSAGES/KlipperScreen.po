@@ -1747,8 +1747,8 @@ msgstr "Hauteur d'Impression"
 msgid "Print Height:"
 msgstr "Hauteur d'Impression:"
 
-msgid "Print height is less than 5mm"
-msgstr "La hauteur d'impression est inférieure à 5mm"
+msgid "Print height is less than 1mm"
+msgstr "La hauteur d'impression est inférieure à 1mm"
 
 msgid "Recovery File"
 msgstr "Fichier de Récupération"

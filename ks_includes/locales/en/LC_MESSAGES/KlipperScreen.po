@@ -1506,7 +1506,7 @@ msgstr ""
 msgid "Recovery File"
 msgstr ""
 
-msgid "Print height is less than 5mm"
+msgid "Print height is less than 1mm"
 msgstr ""
 
 msgid "Missing required information"

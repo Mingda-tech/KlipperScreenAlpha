@@ -1777,8 +1777,8 @@ msgstr "Višina Tiska"
 msgid "Print Height:"
 msgstr "Višina Tiska:"
 
-msgid "Print height is less than 5mm"
-msgstr "Višina tiska je manjša od 5mm"
+msgid "Print height is less than 1mm"
+msgstr "Višina tiska je manjša od 1mm"
 
 msgid "Recovery File"
 msgstr "Datoteka za Obnovitev"
