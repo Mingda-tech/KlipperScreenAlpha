@@ -166,7 +166,7 @@ class Panel(ScreenPanel):
             speed = 50
             
         script = f"FORCE_MOVE STEPPER={stepper} DISTANCE={dist} VELOCITY={speed} ACCEL=100"
-        if (int(self.distance) > 1):
+        if (float(self.distance) > 2):
             self._screen._confirm_send_action(
                 widget,
                 _("Force move: ") + f"{axis} {dist}mm?",
