@@ -428,13 +428,30 @@ class Panel(ScreenPanel):
             
         logging.info("Starting to resume print...")
         
-        # Send resume print command
-        script = [
-            "M84\n",
-            "RESTORE_PRINT\n"
-        ]
+        # 获取当前温度
+        current_temp = self._printer.get_dev_stat("extruder", "temperature")
+        target_temp = 80
+        
+        script = []
+        # 如果当前温度小于80度,需要预热
+        if current_temp < target_temp:
+            logging.info(f"Current temperature {current_temp}°C is below {target_temp}°C, preheating...")
+            script.extend([
+                f"M104 S{target_temp}",  # 设置喷嘴温度到80度
+                f"M109 S{target_temp}",  # 等待喷嘴达到80度
+            ])
+        else:
+            logging.info(f"Current temperature {current_temp}°C is above {target_temp}°C, no preheating needed")
+            
+        # 添加恢复打印命令
+        script.extend([
+            "M84\n",     # 解锁电机
+            "RESTORE_PRINT\n"  # 恢复打印
+        ])
+        
         self._screen._send_action(widget, "printer.gcode.script", {"script": "\n".join(script)})
         self._screen.state_printing()
+
     def activate(self):
         """每次进入面板时调用"""
         # 清空所有显示的值
