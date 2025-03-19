@@ -423,34 +423,142 @@ class Panel(ScreenPanel):
 
     def resume_print(self, widget):
         """Resume printing"""
-        if self.filename is None:
-            return
+        try:
+            if self.filename is None:
+                logging.error("No filename available for resume")
+                self.tip_label.set_markup(
+                    f"<span foreground='red'>{_('Missing required recovery data')}</span>"
+                )
+                return
+                
+            logging.info("Starting to resume print...")
             
-        logging.info("Starting to resume print...")
-        
-        # 获取当前温度
-        current_temp = self._printer.get_dev_stat("extruder", "temperature")
-        target_temp = 80
-        
-        script = []
-        # 如果当前温度小于80度,需要预热
-        if current_temp < target_temp:
-            logging.info(f"Current temperature {current_temp}°C is below {target_temp}°C, preheating...")
+            # 读取配置文件获取打印信息
+            if not os.path.exists(self.print_state_file):
+                logging.error(f"Print state file not found: {self.print_state_file}")
+                self.tip_label.set_markup(
+                    f"<span foreground='red'>{_('No power loss recovery data found')}</span>"
+                )
+                return
+                
+            try:
+                config = configparser.ConfigParser()
+                config.read(self.print_state_file)
+            except Exception as e:
+                logging.exception(f"Failed to read print state file: {str(e)}")
+                self.tip_label.set_markup(
+                    f"<span foreground='red'>{_('Error reading recovery file')}</span>"
+                )
+                return
+            
+            # 获取活跃喷头
+            try:
+                active_extruder = config.get("extruder", "active_extruder", fallback="extruder")
+                logging.info(f"Active extruder: {active_extruder}")
+            except Exception as e:
+                logging.exception(f"Failed to get active extruder: {str(e)}")
+                active_extruder = "extruder"  # 默认使用左喷头
+                
+            # 检查是否有双喷头配置
+            has_dual_carriage = config.has_section("dual_carriage")
+            dual_mode = None
+            if has_dual_carriage:
+                try:
+                    dual_mode = config.get("dual_carriage", "mode", fallback=None)
+                    logging.info(f"Dual carriage mode: {dual_mode}")
+                except Exception as e:
+                    logging.exception(f"Failed to get dual carriage mode: {str(e)}")
+            
+            target_temp = 80
+            script = []
+            
+            # 根据活跃喷头和打印模式决定加热策略
+            try:
+                if active_extruder == "extruder1":
+                    current_temp = self._printer.get_dev_stat("extruder1", "temperature")
+                    if current_temp < target_temp:
+                        logging.info(f"Preheating extruder1 from {current_temp}°C to {target_temp}°C")
+                        script.extend([
+                            f"M104 T1 S{target_temp}",  # 设置右喷头温度
+                            f"M109 T1 S{target_temp}",  # 等待右喷头达到温度
+                        ])
+                else:  # extruder
+                    current_temp = self._printer.get_dev_stat("extruder", "temperature")
+                    if current_temp < target_temp:
+                        logging.info(f"Preheating extruder from {current_temp}°C to {target_temp}°C")
+                        script.extend([
+                            f"M104 T0 S{target_temp}",  # 设置左喷头温度
+                            f"M109 T0 S{target_temp}",  # 等待左喷头达到温度
+                        ])
+            except Exception as e:
+                logging.exception(f"Failed to get/set primary extruder temperature: {str(e)}")
+                # 如果获取温度失败,为安全起见仍然执行预热
+                if active_extruder == "extruder1":
+                    script.extend([
+                        f"M104 T1 S{target_temp}",
+                        f"M109 T1 S{target_temp}",
+                    ])
+                else:
+                    script.extend([
+                        f"M104 T0 S{target_temp}",
+                        f"M109 T0 S{target_temp}",
+                    ])
+                    
+            # 如果是复制或镜像模式,需要加热另一个喷头
+            if has_dual_carriage and dual_mode in ["MIRROR", "COPY"]:
+                try:
+                    if active_extruder == "extruder1":
+                        other_temp = self._printer.get_dev_stat("extruder", "temperature")
+                        if other_temp < target_temp:
+                            logging.info(f"Preheating extruder for {dual_mode} mode")
+                            script.extend([
+                                f"M104 T0 S{target_temp}",  # 设置左喷头温度
+                                f"M109 T0 S{target_temp}",  # 等待左喷头达到温度
+                            ])
+                    else:
+                        other_temp = self._printer.get_dev_stat("extruder1", "temperature")
+                        if other_temp < target_temp:
+                            logging.info(f"Preheating extruder1 for {dual_mode} mode")
+                            script.extend([
+                                f"M104 T1 S{target_temp}",  # 设置右喷头温度
+                                f"M109 T1 S{target_temp}",  # 等待右喷头达到温度
+                            ])
+                except Exception as e:
+                    logging.exception(f"Failed to get/set secondary extruder temperature: {str(e)}")
+                    # 如果获取温度失败,为安全起见仍然执行预热
+                    if active_extruder == "extruder1":
+                        script.extend([
+                            f"M104 T0 S{target_temp}",
+                            f"M109 T0 S{target_temp}",
+                        ])
+                    else:
+                        script.extend([
+                            f"M104 T1 S{target_temp}",
+                            f"M109 T1 S{target_temp}",
+                        ])
+                
+            # 添加恢复打印命令
             script.extend([
-                f"M104 S{target_temp}",  # 设置喷嘴温度到80度
-                f"M109 S{target_temp}",  # 等待喷嘴达到80度
+                "M84",     # 解锁电机
+                "RESTORE_PRINT"  # 恢复打印
             ])
-        else:
-            logging.info(f"Current temperature {current_temp}°C is above {target_temp}°C, no preheating needed")
             
-        # 添加恢复打印命令
-        script.extend([
-            "M84\n",     # 解锁电机
-            "RESTORE_PRINT\n"  # 恢复打印
-        ])
-        
-        self._screen._send_action(widget, "printer.gcode.script", {"script": "\n".join(script)})
-        self._screen.state_printing()
+            try:
+                self._screen._send_action(widget, "printer.gcode.script", {"script": "\n".join(script)})
+                self._screen.state_printing()
+            except Exception as e:
+                logging.exception(f"Failed to send resume print commands: {str(e)}")
+                self.tip_label.set_markup(
+                    f"<span foreground='red'>{_('Failed to resume print')}</span>"
+                )
+                return
+                
+        except Exception as e:
+            logging.exception(f"Unexpected error during resume print: {str(e)}")
+            self.tip_label.set_markup(
+                f"<span foreground='red'>{_('Failed to resume print')}</span>"
+            )
+            return
 
     def activate(self):
         """每次进入面板时调用"""
