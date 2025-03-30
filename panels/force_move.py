@@ -12,6 +12,15 @@ class Panel(ScreenPanel):
     distances = ['.02', '.1', '.2', '.5', '1', '5', '10']
     distance = distances[-2]
 
+    # Constants for movement
+    AXIS_SETTINGS = {
+        'X': {'stepper': 'stepper_x', 'speed': 50},
+        'Y': {'stepper': 'stepper_y', 'speed': 50},
+        'Z': {'stepper': 'stepper_z', 'speed': 10}
+    }
+    LARGE_MOVE_THRESHOLD = 2
+    DEFAULT_ACCEL = 100
+
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
@@ -22,6 +31,10 @@ class Panel(ScreenPanel):
                 if 1 < len(dis) <= 7:
                     self.distances = dis
                     self.distance = self.distances[0]
+
+        macros = self._printer.get_config_section_list("gcode_macro ")
+        logging.info(f"111111111111### macros: {macros}")
+        self.force_move = any("FORCE_MOVE" in macro.upper() for macro in macros)
 
         self.settings = {}
         self.menu = ['move_menu']
@@ -145,40 +158,70 @@ class Panel(ScreenPanel):
         for option in configurable_options:
             name = list(option)[0]
             self.add_option('options', self.settings, name, option[name])
+
     def change_distance(self, widget, distance):
         logging.info(f"### Distance {distance}")
         self.labels[f"{self.distance}"].get_style_context().remove_class("distbutton_active")
         self.labels[f"{distance}"].get_style_context().add_class("distbutton_active")
         self.distance = distance
 
-    def move(self, widget, axis, direction):
-        if self._config.get_config()['main'].getboolean(f"invert_{axis.lower()}", False):
-            direction = "-" if direction == "+" else "+"
+    def _build_z_movement_script(self, axis, dist, speed):
+        """构建Z轴移动的G代码脚本"""
+        return [
+            f"SET_KINEMATIC_POSITION_Z Z=10.0",
+            f"{KlippyGcodes.MOVE_RELATIVE}",
+            f"G1 {axis}{dist} F{speed * 60}",
+            "M400",
+            f"{KlippyGcodes.MOVE_ABSOLUTE}"
+        ]
 
-        dist = f"{direction}{self.distance}"
-        speed = 10
-        stepper = 'stepper_z'
-        if axis == 'X':
-            stepper = 'stepper_x'
-            speed = 50
-        elif axis == 'Y':
-            stepper = 'stepper_y'
-            speed = 50
-            
-        script = f"FORCE_MOVE STEPPER={stepper} DISTANCE={dist} VELOCITY={speed} ACCEL=100"
-        if (float(self.distance) > 2):
+    def _execute_movement(self, widget, axis, script, distance, show_confirm=True):
+        """执行移动命令，根据距离决定是否需要确认"""
+        is_large_move = abs(float(distance)) > self.LARGE_MOVE_THRESHOLD
+        
+        if is_large_move and show_confirm:
             self._screen._confirm_send_action(
                 widget,
-                _("Force move: ") + f"{axis} {dist}mm?",
+                _("Force move: ") + f"{axis} {distance}mm?",
                 "printer.gcode.script",
-                {"script": script}
+                {"script": script if isinstance(script, str) else "\n".join(script)},
+                False
             )
         else:
             self._screen._send_action(
                 widget,
-                "printer.gcode.script", 
-                {"script": script}
+                "printer.gcode.script",
+                {"script": script if isinstance(script, str) else "\n".join(script)}
             )
+
+    def move(self, widget, axis, direction):
+        """处理轴移动请求"""
+        try:
+            # 检查轴反转设置
+            if self._config.get_config()['main'].getboolean(f"invert_{axis.lower()}", False):
+                direction = "-" if direction == "+" else "+"
+
+            # 计算移动距离和获取轴设置
+            dist = f"{direction}{self.distance}"
+            axis_config = self.AXIS_SETTINGS.get(axis)
+            if not axis_config:
+                logging.error(f"Invalid axis: {axis}")
+                return
+
+            if self.force_move:
+                if axis == 'Z':
+                    script = self._build_z_movement_script(axis, dist, axis_config['speed'])
+                    self._execute_movement(widget, axis, script, self.distance)
+                    return
+                else:
+                    script = f"FORCE_MOVE_BACE STEPPER={axis_config['stepper']} DISTANCE={dist} VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
+            else:
+                script = f"FORCE_MOVE STEPPER={axis_config['stepper']} DISTANCE={dist} VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
+
+            self._execute_movement(widget, axis, script, self.distance)
+
+        except Exception as e:
+            logging.exception(f"Error during axis movement: {str(e)}")
 
     def add_option(self, boxname, opt_array, opt_name, option):
         name = Gtk.Label()
