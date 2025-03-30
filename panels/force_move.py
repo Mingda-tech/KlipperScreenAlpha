@@ -177,22 +177,57 @@ class Panel(ScreenPanel):
 
     def _execute_movement(self, widget, axis, script, distance, show_confirm=True):
         """执行移动命令，根据距离决定是否需要确认"""
-        is_large_move = abs(float(distance)) > self.LARGE_MOVE_THRESHOLD
+        try:
+            is_large_move = abs(float(distance)) > self.LARGE_MOVE_THRESHOLD
+            script_data = {"script": script if isinstance(script, str) else "\n".join(script)}
+            
+            if is_large_move and show_confirm:
+                self._show_move_confirmation(axis, distance, script_data)
+            else:
+                self._screen._send_action(
+                    widget,
+                    "printer.gcode.script",
+                    script_data
+                )
+        except ValueError as ve:
+            logging.exception(f"Invalid distance value: {distance}")
+        except Exception as e:
+            logging.exception(f"Error executing movement: {str(e)}")
+
+    def _show_move_confirmation(self, axis, distance, script_data):
+        """显示移动确认对话框"""
+        sign = "+" if float(distance) > 0 else ""
+        label = Gtk.Label()
+        label.set_label(_("Force move: ") + f"{axis}{sign}{distance}mm?")
+        label.set_hexpand(True)
+        label.set_halign(Gtk.Align.CENTER)
+        label.set_vexpand(True)
+        label.set_valign(Gtk.Align.CENTER)
+        label.set_line_wrap(True)
+        label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+
+        grid = self._gtk.HomogeneousGrid()
+        grid.attach(label, 0, 0, 1, 1)
+
+        buttons = [
+            {"name": _("Move"), "response": Gtk.ResponseType.OK},
+            {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
+        ]
         
-        if is_large_move and show_confirm:
-            self._screen._confirm_send_action(
-                widget,
-                _("Force move: ") + f"{axis} {distance}mm?",
-                "printer.gcode.script",
-                {"script": script if isinstance(script, str) else "\n".join(script)},
-                False
-            )
-        else:
-            self._screen._send_action(
-                widget,
-                "printer.gcode.script",
-                {"script": script if isinstance(script, str) else "\n".join(script)}
-            )
+        self._gtk.Dialog(_("Confirm Movement"), buttons, grid, self._handle_movement_confirm, script_data)
+
+    def _handle_movement_confirm(self, dialog, response_id, script_data):
+        """处理移动确认对话框的回调"""
+        self._gtk.remove_dialog(dialog)
+        try:
+            if response_id == Gtk.ResponseType.OK:
+                self._screen._send_action(
+                    None,
+                    "printer.gcode.script",
+                    script_data
+                )
+        except Exception as e:
+            logging.exception(f"Error handling movement confirmation: {str(e)}")
 
     def move(self, widget, axis, direction):
         """处理轴移动请求"""
@@ -211,8 +246,6 @@ class Panel(ScreenPanel):
             if self.force_move:
                 if axis == 'Z':
                     script = self._build_z_movement_script(axis, dist, axis_config['speed'])
-                    self._execute_movement(widget, axis, script, self.distance)
-                    return
                 else:
                     script = f"FORCE_MOVE_BACE STEPPER={axis_config['stepper']} DISTANCE={dist} VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
             else:
