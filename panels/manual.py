@@ -26,6 +26,8 @@ class Panel(ScreenPanel):
             return "1000D"
         elif "MD_600D" in self._printer.available_commands:
             return "600D"
+        elif "MD_1000PRO" in self._printer.available_commands:
+            return "1000PRO"
         return "400D"  # 默认机型
 
     def get_manual_path(self):
