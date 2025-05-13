@@ -19,7 +19,7 @@ class Panel(ScreenPanel):
         self.grid = self._gtk.HomogeneousGrid()
         self.grid.set_row_homogeneous(False)
         for extruder in self._printer.get_tools():
-            self._screen.manual_settings[extruder] = {"extruder_temp": 0, "speedfactor": 0, "extrudefactor": 0, "zoffset": 99}        
+            self._screen.manual_settings[extruder] = {"extruder_temp": 0.0, "speedfactor": 0.0, "extrudefactor": 0.0, "zoffset": 99.0}        
         self.pos_z = 0.0
         self.extrusion = 100
         self.speed_factor = 1.0
@@ -395,15 +395,55 @@ class Panel(ScreenPanel):
 
     def save_offset(self, widget, device):
         sign = "+" if self.zoffset > 0 else "-"
+        left_zoffset = self.zoffset
+        right_zoffset = 0
+        
+        # Get the right extruder Z offset
+        if 'extruder' in self._screen.manual_settings:
+            left_zoffset = self._screen.manual_settings['extruder']['zoffset']
+        if 'extruder1' in self._screen.manual_settings:
+            right_zoffset = self._screen.manual_settings['extruder1']['zoffset']
+        
+        left_sign = "+" if left_zoffset > 0 else "-"
+        right_sign = "+" if right_zoffset > 0 else "-"
+        
+        # Check if offsets have been adjusted
+        left_adjusted = abs(left_zoffset) > 0.001 and abs(left_zoffset) < 10
+        right_adjusted = abs(right_zoffset) > 0.001 and abs(right_zoffset) < 10
+        
         label = Gtk.Label()
         if device == "probe":
             probe = self._printer.get_probe()
             saved_z_offset = probe['z_offset'] if probe else "?"
-            label.set_label(_("Apply %s%.3f offset to Probe?") % (sign, abs(self.zoffset))
-                            + "\n\n"
-                            + _("Saved offset: %s") % saved_z_offset)
+            label_text = _("Apply Z offset to Probe?") + "\n\n"
+            
+            if left_adjusted:
+                label_text += _("Left Extruder: %s%.3f") % (left_sign, abs(left_zoffset)) + "\n"
+            else:
+                label_text += _("Left Extruder: Not adjusted") + "\n"
+                
+            if right_adjusted:
+                label_text += _("Right Extruder: %s%.3f") % (right_sign, abs(right_zoffset))
+            else:
+                label_text += _("Right Extruder: Not adjusted")
+                
+            # label_text += "\n\n" + _("Saved offset: %s") % saved_z_offset
+            label.set_label(label_text)
         elif device == "endstop":
-            label.set_label(_("Apply %s%.3f offset to Endstop?") % (sign, abs(self.zoffset)))
+            label_text = _("Apply Z offset to Endstop?") + "\n\n"
+            
+            if left_adjusted:
+                label_text += _("Left Extruder: %s%.3f") % (left_sign, abs(left_zoffset)) + "\n"
+            else:
+                label_text += _("Left Extruder: Not adjusted") + "\n"
+                
+            if right_adjusted:
+                label_text += _("Right Extruder: %s%.3f") % (right_sign, abs(right_zoffset))
+            else:
+                label_text += _("Right Extruder: Not adjusted")
+                
+            label.set_label(label_text)
+            
         label.set_hexpand(True)
         label.set_halign(Gtk.Align.CENTER)
         label.set_vexpand(True)
@@ -417,19 +457,53 @@ class Panel(ScreenPanel):
             {"name": _("Apply"), "response": Gtk.ResponseType.APPLY},
             {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
         ]
-        self._gtk.Dialog(_("Save Z"), buttons, grid, self.save_confirm, device)
+        
+        # Pass the adjustment status to save_confirm via a dictionary
+        adjustment_status = {
+            "left_adjusted": left_adjusted,
+            "right_adjusted": right_adjusted
+        }
+        
+        self._gtk.Dialog(_("Save Z"), buttons, grid, self.save_confirm, (device, adjustment_status))
 
-    def save_confirm(self, dialog, response_id, device):
+    def save_confirm(self, dialog, response_id, data):
         self._gtk.remove_dialog(dialog)
         if response_id == Gtk.ResponseType.APPLY:
-            if device == "probe":
-                self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_PROBE")
-            # if device == "endstop":
-            if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
-                self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_ENDSTOP")
-            # self._screen._ws.klippy.gcode_script("SAVE_CONFIG")
-            if self._screen.manual_settings is not None and 'extruder1' in self._screen.manual_settings:
-                self.save_e1_zoffset()
+            device, adjustment_status = data
+            left_adjusted = adjustment_status["left_adjusted"]
+            right_adjusted = adjustment_status["right_adjusted"]
+            
+            # If current extruder is right and left needs adjustment
+            if self.current_extruder != "extruder" and left_adjusted:
+                # Save right extruder offset to config file if adjusted
+                if right_adjusted and self._screen.manual_settings is not None and 'extruder1' in self._screen.manual_settings:
+                    self.save_e1_zoffset()
+                
+                # Switch to left extruder offset
+                script = "SET_GCODE_OFFSET Z=" + str(self._screen.manual_settings['extruder']['zoffset']) + " MOVE=0"
+                self._screen._ws.klippy.gcode_script(script)
+                logging.info(f"{script}")
+                
+                # Apply left extruder Z offset
+                if device == "probe":
+                    self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_PROBE")
+                if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
+                    self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_ENDSTOP")
+            else:
+                # Current extruder is left or left doesn't need adjustment
+                # Save right extruder offset to config file if adjusted
+                if right_adjusted and self._screen.manual_settings is not None and 'extruder1' in self._screen.manual_settings:
+                    if left_adjusted:
+                        self.save_e1_zoffset()
+                    else:
+                        self.save_e1_zoffset(reboot=True)
+                
+                # Apply left extruder Z offset if needed
+                if left_adjusted:
+                    if device == "probe":
+                        self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_PROBE")
+                    if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
+                        self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_ENDSTOP")                   
 
     def restart(self, widget):
         if self.filename:
@@ -665,7 +739,10 @@ class Panel(ScreenPanel):
                         
                         # logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
                         if abs(self._screen.manual_settings[self.current_extruder]["zoffset"]) < 10:
-                            self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
+                            if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
+                                self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=0")
+                            else:
+                                self._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z={self._screen.manual_settings[self.current_extruder]['zoffset']} MOVE=1")
                             logging.info(f"Setting zoffset to {self._screen.manual_settings[self.current_extruder]['zoffset']}, {self.current_extruder}")
                         self.previous_extruder = self.current_extruder
     def update_flow(self):
@@ -795,8 +872,22 @@ class Panel(ScreenPanel):
         else:
             offset = self._printer.get_stat("gcode_move", "homing_origin")
             self.zoffset = float(offset[2]) if offset else 0
-            if self.zoffset != 0:
-                # if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.available_commands:
+            
+            # Check if any extruder has adjusted Z offset
+            left_zoffset = 0
+            right_zoffset = 0
+            
+            if 'extruder' in self._screen.manual_settings:
+                left_zoffset = self._screen.manual_settings['extruder']['zoffset']
+            if 'extruder1' in self._screen.manual_settings:
+                right_zoffset = self._screen.manual_settings['extruder1']['zoffset']
+                
+            left_adjusted = abs(left_zoffset) > 0.001 and abs(left_zoffset) < 10
+            right_adjusted = abs(right_zoffset) > 0.001 and abs(right_zoffset) < 10
+            
+            # Only show save buttons if there are adjustments to save
+            if left_adjusted or right_adjusted:
+                # if "Z_OFFSET_APPLY_ENDSTOP" in self._printer.get_gcode_macros():
                 #     self.buttons['button_grid'].attach(self.buttons["save_offset_endstop"], 0, 0, 1, 1)
                 # else:
                 #     self.buttons['button_grid'].attach(Gtk.Label(), 0, 0, 1, 1)
@@ -856,12 +947,13 @@ class Panel(ScreenPanel):
             return
         self.filename = filename
         self.labels["file"].set_label(os.path.splitext(self.filename)[0])
+        label_text = self.labels['file'].get_label()
         self.filename_label = {
-            "complete": self.labels['file'].get_label(),
-            "current": self.labels['file'].get_label(),
+            "complete": label_text,
+            "current": label_text,
             "position": 0,
             "limit": (self._screen.width * 37 / 480) // (self._gtk.font_size / 11),
-            "length": len(self.labels['file'].get_label())
+            "length": len(label_text)
         }
         if self.animation_timeout is None and (self.filename_label['length'] - self.filename_label['limit']) > 0:
             self.animation_timeout = GLib.timeout_add_seconds(1, self.animate_label)
@@ -900,14 +992,29 @@ class Panel(ScreenPanel):
             logging.debug("Cannot find file metadata. Listening for updated metadata")
             self._screen.files.add_file_callback(self._callback_metadata)
         self.show_file_thumbnail()
-    def save_e1_zoffset(self):
-            if self._screen.klippy_config is not None and abs(self._screen.manual_settings['extruder1']['zoffset']) < 10:
-                e1_zoffset = self._screen.manual_settings['extruder1']['zoffset']
+    def save_e1_zoffset(self, reboot=False):
+        if self._screen.klippy_config is not None and 'extruder1' in self._screen.manual_settings:
+            e1_zoffset = self._screen.manual_settings['extruder1']['zoffset']
+            # Only save if there's a meaningful offset (greater than 0.001) and within safe limits
+            if abs(e1_zoffset) > 0.001 and abs(e1_zoffset) < 10:
                 self._screen.klippy_config.set("Variables", "e1_zoffset", f"{e1_zoffset:.2f}")
                 try:
                     with open(self._screen.klippy_config_path, 'w') as file:
                         self._screen.klippy_config.write(file)
-                        logging.info(f"Saving extruder1 z-offset: {e1_zoffset:.2f} to {self._screen.klippy_config_path} successfully!")
+                        logging.info(f"Saving right extruder z-offset: {e1_zoffset:.2f} to {self._screen.klippy_config_path} successfully!")
+                        if reboot:
+                            script = {"script": "RESTART"}
+                            self._screen._confirm_send_action(
+                                None,
+                                _("Saved successfully!") + "\n\n" + _("Need reboot, relaunch immediately?"),
+                                "printer.gcode.script",
+                                script
+                            )
                 except Exception as e:
                     logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
-                    self._screen.show_popup_message(_("Error writing configuration")) 
+                    self._screen.show_popup_message(_("Error writing configuration"))
+            elif abs(e1_zoffset) >= 10:
+                logging.warning(f"Right extruder z-offset {e1_zoffset:.2f} exceeds safe range, skipping save")
+                self._screen.show_popup_message(_("Z offset exceeds safe range"))
+            else:
+                logging.info("Right extruder z-offset not adjusted, skipping save") 
