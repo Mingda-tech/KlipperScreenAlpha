@@ -1575,3 +1575,21 @@ msgstr "Geforceerde beweging"
 
 msgid "Force move: "
 msgstr "Geforceerde beweging:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Z-offset toepassen op sonde?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Linker extruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Linker extruder: Niet aangepast"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Rechter extruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Rechter extruder: Niet aangepast"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Z-offset toepassen op eindstop?"

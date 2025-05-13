@@ -1705,3 +1705,21 @@ msgstr "Movimento forzato"
 
 msgid "Force move: "
 msgstr "Movimento forzato:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Applicare offset Z alla sonda?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Estrusore sinistro: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Estrusore sinistro: Non regolato"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Estrusore destro: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Estrusore destro: Non regolato"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Applicare offset Z al finecorsa?"

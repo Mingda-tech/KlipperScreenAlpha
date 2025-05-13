@@ -1636,3 +1636,21 @@ msgstr "강제 이동"
 
 msgid "Force move: "
 msgstr "강제 이동："
+
+msgid "Apply Z offset to Probe?"
+msgstr "프로브에 Z 오프셋을 적용하시겠습니까?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "왼쪽 압출기: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "왼쪽 압출기: 조정되지 않음"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "오른쪽 압출기: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "오른쪽 압출기: 조정되지 않음"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "엔드스톱에 Z 오프셋을 적용하시겠습니까?"

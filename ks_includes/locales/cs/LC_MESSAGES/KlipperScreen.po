@@ -1473,3 +1473,21 @@ msgstr "Vynucený pohyb"
 
 msgid "Force move: "
 msgstr "Vynucený pohyb:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Použít Z offset na sondu?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Levý extruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Levý extruder: Neupraveno"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Pravý extruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Pravý extruder: Neupraveno"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Použít Z offset na koncový spínač?"

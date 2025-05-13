@@ -1571,3 +1571,21 @@ msgstr "Wymuszony ruch"
 
 msgid "Force move: "
 msgstr "Wymuszony ruch:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Zastosować przesunięcie Z do sondy?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Lewy ekstruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Lewy ekstruder: Nie dostosowany"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Prawy ekstruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Prawy ekstruder: Nie dostosowany"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Zastosować przesunięcie Z do wyłącznika krańcowego?"

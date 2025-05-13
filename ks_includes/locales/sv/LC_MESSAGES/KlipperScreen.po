@@ -1623,3 +1623,21 @@ msgstr "Tvinga förflyttning"
 
 msgid "Force move: "
 msgstr "Tvinga förflyttning:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Tillämpa Z-offset på sonden?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Vänster extruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Vänster extruder: Inte justerad"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Höger extruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Höger extruder: Inte justerad"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Tillämpa Z-offset på ändläget?"

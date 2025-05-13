@@ -1576,3 +1576,21 @@ msgstr "Tving bevægelse"
 
 msgid "Force move: "
 msgstr "Tving bevægelse:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Anvend Z-offset til sonde?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Venstre ekstruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Venstre ekstruder: Ikke justeret"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Højre ekstruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Højre ekstruder: Ikke justeret"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Anvend Z-offset til endestop?"

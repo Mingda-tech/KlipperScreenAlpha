@@ -1652,3 +1652,21 @@ msgstr "Zorla Hareket"
 
 msgid "Force move: "
 msgstr "Zorla hareket:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Z ofsetini Proba uygula?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Sol Ekstruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Sol Ekstruder: Ayarlanmamış"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Sağ Ekstruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Sağ Ekstruder: Ayarlanmamış"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Z ofsetini Sonlandırıcıya uygula?"

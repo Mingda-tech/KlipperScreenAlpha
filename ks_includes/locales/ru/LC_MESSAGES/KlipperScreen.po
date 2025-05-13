@@ -1741,3 +1741,21 @@ msgstr "Принудительное перемещение"
 
 msgid "Force move: "
 msgstr "Принудительное перемещение："
+
+msgid "Apply Z offset to Probe?"
+msgstr "Применить смещение по оси Z к датчику?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Левый экструдер: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Левый экструдер: Не настроен"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Правый экструдер: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Правый экструдер: Не настроен"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Применить смещение по оси Z к концевому выключателю?"

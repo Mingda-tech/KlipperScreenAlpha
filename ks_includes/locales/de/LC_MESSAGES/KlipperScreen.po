@@ -1616,3 +1616,21 @@ msgstr "Erzwungene Bewegung"
 
 msgid "Force move: "
 msgstr "Erzwungene Bewegung:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Z-Offset auf Messsonde anwenden?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Linker Extruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Linker Extruder: Nicht angepasst"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Rechter Extruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Rechter Extruder: Nicht angepasst"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Z-Offset auf Endschalter anwenden?"

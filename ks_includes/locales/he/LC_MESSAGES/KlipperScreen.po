@@ -1759,3 +1759,21 @@ msgstr "תנועה מאולצת"
 
 msgid "Force move: "
 msgstr "תנועה מאולצת:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "להחיל היסט Z על החיישן?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "אקסטרודר שמאלי: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "אקסטרודר שמאלי: לא מכוון"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "אקסטרודר ימני: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "אקסטרודר ימני: לא מכוון"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "להחיל היסט Z על מפסק הקצה?"

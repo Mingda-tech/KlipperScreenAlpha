@@ -1570,3 +1570,21 @@ msgstr "強制移動"
 
 msgid "Force move: "
 msgstr "強制移動："
+
+msgid "Apply Z offset to Probe?"
+msgstr "プローブにZオフセットを適用しますか？"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "左エクストルーダー: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "左エクストルーダー: 調整なし"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "右エクストルーダー: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "右エクストルーダー: 調整なし"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "エンドストップにZオフセットを適用しますか？"

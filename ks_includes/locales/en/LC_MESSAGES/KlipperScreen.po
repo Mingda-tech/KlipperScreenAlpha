@@ -1535,3 +1535,21 @@ msgstr ""
 
 msgid "Force move: "
 msgstr ""
+
+msgid "Apply Z offset to Probe?"
+msgstr ""
+
+msgid "Left Extruder: %s%.3f"
+msgstr ""
+
+msgid "Left Extruder: Not adjusted"
+msgstr ""
+
+msgid "Right Extruder: %s%.3f"
+msgstr ""
+
+msgid "Right Extruder: Not adjusted"
+msgstr ""
+
+msgid "Apply Z offset to Endstop?"
+msgstr ""

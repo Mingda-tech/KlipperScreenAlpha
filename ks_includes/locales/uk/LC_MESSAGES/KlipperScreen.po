@@ -1653,3 +1653,21 @@ msgstr "Примусовий рух"
 
 msgid "Force move: "
 msgstr "Примусовий рух:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Застосувати зміщення Z до датчика?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Лівий екструдер: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Лівий екструдер: Не налаштовано"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Правий екструдер: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Правий екструдер: Не налаштовано"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Застосувати зміщення Z до кінцевого вимикача?"

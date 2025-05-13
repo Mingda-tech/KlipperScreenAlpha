@@ -1731,3 +1731,21 @@ msgstr "强制移动"
 
 msgid "Force move: "
 msgstr "强制移动："
+
+msgid "Apply Z offset to Probe?"
+msgstr "将Z轴偏移应用于探针？"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "左挤出机: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "左挤出机: 未调整"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "右挤出机: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "右挤出机: 未调整"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "将Z轴偏移应用于限位开关？"

@@ -1764,3 +1764,21 @@ msgstr "Mouvement forcé"
 
 msgid "Force move: "
 msgstr "Mouvement forcé:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Appliquer le décalage Z à la sonde ?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Extrudeur gauche : %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Extrudeur gauche : Non ajusté"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Extrudeur droit : %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Extrudeur droit : Non ajusté"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Appliquer le décalage Z à la butée ?"

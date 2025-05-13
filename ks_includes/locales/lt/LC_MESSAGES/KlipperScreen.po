@@ -1549,3 +1549,21 @@ msgstr "Priverstinis judėjimas"
 
 msgid "Force move: "
 msgstr "Priverstinis judėjimas:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Taikyti Z poslinkį zondui?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Kairysis ekstruderis: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Kairysis ekstruderis: Nekoreguotas"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Dešinysis ekstruderis: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Dešinysis ekstruderis: Nekoreguotas"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Taikyti Z poslinkį galiniam jungikliui?"

@@ -1597,3 +1597,21 @@ msgstr "حركة قسرية"
 
 msgid "Force move: "
 msgstr "حركة قسرية:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "تطبيق إزاحة Z على المجس؟"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "الباثق الأيسر: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "الباثق الأيسر: غير معدّل"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "الباثق الأيمن: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "الباثق الأيمن: غير معدّل"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "تطبيق إزاحة Z على نقطة التوقف؟"

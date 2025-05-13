@@ -1718,3 +1718,21 @@ msgstr "Sundjuhtimine"
 
 msgid "Force move: "
 msgstr "Sundjuhtimine:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Rakenda Z-nihe sondile?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Vasak ekstruuder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Vasak ekstruuder: Reguleerimata"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Parem ekstruuder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Parem ekstruuder: Reguleerimata"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Rakenda Z-nihe lõpplülitile?"

@@ -1540,3 +1540,21 @@ msgstr "Kényszerített mozgás"
 
 msgid "Force move: "
 msgstr "Kényszerített mozgás:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Alkalmazza a Z eltolást a szondára?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Bal extruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Bal extruder: Nincs beállítva"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Jobb extruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Jobb extruder: Nincs beállítva"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Alkalmazza a Z eltolást a végállásra?"

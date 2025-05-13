@@ -1794,3 +1794,21 @@ msgstr "Prisilno premikanje"
 
 msgid "Force move: "
 msgstr "Prisilno premikanje:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Uporabim Z odmik za sondo?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Levi ekstruder: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Levi ekstruder: Ni prilagojen"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Desni ekstruder: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Desni ekstruder: Ni prilagojen"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Uporabim Z odmik za končno stikalo?"

@@ -1778,3 +1778,21 @@ msgstr "Di chuyển cưỡng bức"
 
 msgid "Force move: "
 msgstr "Di chuyển cưỡng bức:"
+
+msgid "Apply Z offset to Probe?"
+msgstr "Áp dụng độ lệch Z cho đầu dò?"
+
+msgid "Left Extruder: %s%.3f"
+msgstr "Đầu phun trái: %s%.3f"
+
+msgid "Left Extruder: Not adjusted"
+msgstr "Đầu phun trái: Chưa điều chỉnh"
+
+msgid "Right Extruder: %s%.3f"
+msgstr "Đầu phun phải: %s%.3f"
+
+msgid "Right Extruder: Not adjusted"
+msgstr "Đầu phun phải: Chưa điều chỉnh"
+
+msgid "Apply Z offset to Endstop?"
+msgstr "Áp dụng độ lệch Z cho công tắc hành trình?"
