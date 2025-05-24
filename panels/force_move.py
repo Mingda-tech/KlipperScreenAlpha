@@ -16,24 +16,23 @@ class Panel(ScreenPanel):
     AXIS_SETTINGS = {
         'X': {'stepper': 'stepper_x', 'speed': 50},
         'Y': {'stepper': 'stepper_y', 'speed': 50},
-        'Z': {'stepper': 'stepper_z', 'speed': 10}
+        'Z': {'stepper': 'stepper_z', 'speed': 2}
     }
     LARGE_MOVE_THRESHOLD = 2
-    DEFAULT_ACCEL = 100
+    DEFAULT_ACCEL = 60
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
         if self.ks_printer_cfg is not None:
             dis = self.ks_printer_cfg.get("move_distances", '0.02, 0.1, 0.2, 0.5, 1, 5, 10')
-            if re.match(r'^[0-9,\.\s]+$', dis):
+            if re.match(r'^[0-9,\\.\\s]+$', dis):
                 dis = [str(i.strip()) for i in dis.split(',')]
                 if 1 < len(dis) <= 7:
                     self.distances = dis
                     self.distance = self.distances[0]
 
         macros = self._printer.get_config_section_list("gcode_macro ")
-        logging.info(f"111111111111### macros: {macros}")
         self.force_move = any("FORCE_MOVE" in macro.upper() for macro in macros)
 
         self.settings = {}
@@ -61,6 +60,35 @@ class Panel(ScreenPanel):
         self.buttons['y-'].connect("clicked", self.move, "Y", "-")
         self.buttons['z+'].connect("clicked", self.move, "Z", "+")
         self.buttons['z-'].connect("clicked", self.move, "Z", "-")
+
+        # Check homing status on panel load and enable steppers if needed
+        toolhead_status = self._printer.get_stat("toolhead")
+        if toolhead_status:
+            homed_axes = toolhead_status.get("homed_axes", "").upper()
+            enable_commands_on_init = []
+            for axis_char_loop, axis_cfg_loop in self.AXIS_SETTINGS.items():
+                current_axis_char = axis_char_loop.upper()
+                if current_axis_char not in homed_axes:
+                    stepper_name = axis_cfg_loop['stepper']
+                    logging.info(
+                        f"ForceMove Panel Init: Axis {current_axis_char} is not homed. Enabling stepper {stepper_name}."
+                    )
+                    enable_commands_on_init.append(f"SET_STEPPER_ENABLE STEPPER={stepper_name} ENABLE=1")
+            
+            if enable_commands_on_init:
+                # Add G4 P2000 for a delay, based on user's previous preference
+                enable_commands_on_init.append("G4 P2000")
+                
+                logging.info(f"ForceMove Panel Init: Sending commands to enable unhomed axes and wait 2s.")
+                for gcode_command in enable_commands_on_init:
+                    logging.info(f"ForceMove Panel Init: Sending individual command: {gcode_command}")
+                    self._screen._send_action(
+                        None, 
+                        "printer.gcode.script",
+                        {"script": gcode_command}
+                    )
+        else:
+            logging.warning("ForceMove Panel Init: Could not retrieve toolhead status to check for homing state.")
 
         adjust = self._gtk.Button("settings", None, "color2", 1, Gtk.PositionType.LEFT, 1)
         adjust.connect("clicked", self.load_menu, 'options', _('Settings'))
@@ -242,16 +270,29 @@ class Panel(ScreenPanel):
             if not axis_config:
                 logging.error(f"Invalid axis: {axis}")
                 return
-
+            
+            # 构建主要的移动命令
+            # main_movement_script_list 将包含一个或多个G-code命令字符串
+            main_movement_script_list = []
             if self.force_move:
                 if axis == 'Z':
-                    script = self._build_z_movement_script(axis, dist, axis_config['speed'])
+                    # _build_z_movement_script 返回一个命令列表
+                    main_movement_script_list = self._build_z_movement_script(axis, dist, 2)
                 else:
-                    script = f"FORCE_MOVE_BACE STEPPER={axis_config['stepper']} DISTANCE={dist} VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
+                    # 对于 X/Y 轴，这是一个单独的命令字符串，将其放入列表中
+                    main_movement_script_list = [
+                        f"FORCE_MOVE_BACE STEPPER={axis_config['stepper']} DISTANCE={dist} "
+                        f"VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
+                    ]
             else:
-                script = f"FORCE_MOVE STEPPER={axis_config['stepper']} DISTANCE={dist} VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
-
-            self._execute_movement(widget, axis, script, self.distance)
+                # 这是一个单独的命令字符串，将其放入列表中
+                main_movement_script_list = [
+                    f"FORCE_MOVE STEPPER={axis_config['stepper']} DISTANCE={dist} "
+                    f"VELOCITY={axis_config['speed']} ACCEL={self.DEFAULT_ACCEL}"
+                ]
+            
+            # _execute_movement 方法可以处理命令列表，它会在内部将列表连接成一个脚本字符串
+            self._execute_movement(widget, axis, main_movement_script_list, self.distance)
 
         except Exception as e:
             logging.exception(f"Error during axis movement: {str(e)}")
