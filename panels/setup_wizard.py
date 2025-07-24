@@ -142,7 +142,7 @@ class Panel(ScreenPanel):
         self.labels[boxname].show_all()
 
     def on_next_click(self, widget=None):
-        self._screen.setup_init = 2
+        self._screen.setup_init = 4
         self._screen.save_init_step()
         self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
         

@@ -743,11 +743,7 @@ class KlipperScreen(Gtk.Window):
             self.setup_init = self.klippy_config.getint("Variables", "setup_step", fallback=0)
 
         if self.setup_init == 1:
-            if self.check_image_files():
-                self.is_show_manual = True
-                self.show_panel("manual", _("Manual"), remove_all=True)
-            else :
-                self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
+            self.show_panel("setup_image", _("Setup Wizard"), remove_all=True)
         elif self.auto_check:
             self.show_panel("self_check", _("Self-check"), remove_all=True)
         self.auto_check = False
