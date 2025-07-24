@@ -19,19 +19,14 @@ class Panel(ScreenPanel):
     def init_ui(self):
         grid = self._gtk.HomogeneousGrid()
         
-        # Skip button
-        skip_btn = self._gtk.Button(None, _("Skip All"), "color1", .66)
-        skip_btn.connect("clicked", self.on_skip_click)
-        grid.attach(skip_btn, 0, 0, 1, 1)
-        
-        # Title
+        # Title - centered across the top
         title_label = Gtk.Label()
         title_label.set_text(_("Setup Wizard"))
         title_label.set_line_wrap(True)
         grid.attach(title_label, 1, 0, 3, 1)
         
-        # Next button
-        next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
+        # Next button (no previous button since this is the first page)
+        next_btn = self._gtk.Button("arrow-right", _("Next"), "color1", .66)
         next_btn.connect("clicked", self.on_next_click)
         grid.attach(next_btn, 4, 0, 1, 1)
         
@@ -64,9 +59,6 @@ class Panel(ScreenPanel):
         grid.attach(image, 0, 1, 5, 5)
         self.content.add(grid)
 
-    def on_skip_click(self, widget):
-        self._screen.show_panel("main_menu", None, remove_all=True, items=self._config.get_menu_items("__main"))
-        
     def on_next_click(self, widget):
         # Move to the force move panel for Z axis
         self._screen.setup_init = 2

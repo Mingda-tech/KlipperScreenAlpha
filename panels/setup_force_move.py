@@ -27,13 +27,13 @@ class Panel(ScreenPanel):
     def init_ui(self):
         grid = self._gtk.HomogeneousGrid()
         
-        # Skip button
-        skip_btn = self._gtk.Button(None, _("Skip"), "color1", .66)
-        skip_btn.connect("clicked", self.on_skip_click)
-        grid.attach(skip_btn, 0, 0, 1, 1)
+        # Previous button
+        prev_btn = self._gtk.Button("arrow-left", _("Previous"), "color1", .66)
+        prev_btn.connect("clicked", self.on_previous_click)
+        grid.attach(prev_btn, 0, 0, 1, 1)
         
         # Next button
-        next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
+        next_btn = self._gtk.Button("arrow-right", _("Next"), "color1", .66)
         next_btn.connect("clicked", self.on_next_click)
         grid.attach(next_btn, 4, 0, 1, 1)
         
@@ -111,11 +111,14 @@ class Panel(ScreenPanel):
                     self._screen._send_action(None, "printer.gcode.script",
                         {"script": f"FORCE_MOVE STEPPER=stepper_z DISTANCE={dist} VELOCITY={speed}"})
 
-    def on_skip_click(self, widget):
-        self._screen.show_panel("main_menu", None, remove_all=True, items=self._config.get_menu_items("__main"))
+    def on_previous_click(self, widget):
+        # Go back to the setup image
+        self._screen.setup_init = 1
+        self._screen.save_init_step()
+        self._screen.show_panel("setup_image", _("Setup Wizard"), remove_all=True)
         
     def on_next_click(self, widget):
         # Continue to language selection
-        self._screen.setup_init = 3
+        self._screen.setup_init = 2
         self._screen.save_init_step()
         self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
