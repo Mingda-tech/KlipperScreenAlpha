@@ -19,21 +19,27 @@ class Panel(ScreenPanel):
     def init_ui(self):
         grid = self._gtk.HomogeneousGrid()
         
-        # Title - centered across the top
-        title_label = Gtk.Label()
-        title_label.set_text(_("Setup Wizard"))
-        title_label.set_line_wrap(True)
-        grid.attach(title_label, 1, 0, 3, 1)
+        # Empty space for first column (no back button since this is the first page)
+        empty_space = Gtk.Label()
+        grid.attach(empty_space, 0, 0, 1, 1)
         
-        # Next button (no previous button since this is the first page)
-        next_btn = self._gtk.Button("arrow-right", _("Next"), "color1", .66)
+        # Empty space for center columns (title is already in titlebar)
+        empty_center = Gtk.Label()
+        grid.attach(empty_center, 1, 0, 2, 1)
+        
+        # Next button
+        next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
         next_btn.connect("clicked", self.on_next_click)
-        grid.attach(next_btn, 4, 0, 1, 1)
+        grid.attach(next_btn, 3, 0, 1, 1)
         
         # Image display
-        image = Gtk.Image()
+        self.image = Gtk.Image()
+        self.update_image()
+        grid.attach(self.image, 0, 1, 4, 5)
         
-        # Try to load image, if not found, show a placeholder
+        self.content.add(grid)
+    
+    def update_image(self):
         if os.path.exists(self.image_path):
             new_width = 900
             new_height = 450
@@ -44,20 +50,20 @@ class Panel(ScreenPanel):
                 new_width = 600
                 new_height = 320
             
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.image_path)
-            # Scale the image to fit
-            scaled_pixbuf = pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.BILINEAR)
-            image.set_from_pixbuf(scaled_pixbuf)
+            scaled_pixbuf = self.scale_image(self.image_path, new_width, new_height)
+            self.image.set_from_pixbuf(scaled_pixbuf)
         else:
-            # If image not found, show a placeholder text
-            placeholder = Gtk.Label()
-            placeholder.set_text(_("Setup image not found"))
-            grid.attach(placeholder, 0, 1, 5, 5)
-            self.content.add(grid)
-            return
+            # If image not found, show a placeholder
+            self.image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+    
+    def scale_image(self, filename, new_width, new_height):
+        # Load the image from the file
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
         
-        grid.attach(image, 0, 1, 5, 5)
-        self.content.add(grid)
+        # Scale the Pixbuf
+        scaled_pixbuf = pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.BILINEAR)
+        
+        return scaled_pixbuf
 
     def on_next_click(self, widget):
         # Move to the force move panel for Z axis
