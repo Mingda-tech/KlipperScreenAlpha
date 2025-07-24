@@ -294,6 +294,9 @@ class Panel(ScreenPanel):
                 image = f"extruder-{device[8:]}" if device[8:] else "extruder-0"
             else:
                 image = "extruder"
+            # Change extruder display name to Extruder0
+            if device == "extruder":
+                devname = "Extruder0"
             class_name = f"graph_label_{device}"
             dev_type = "extruder"
         elif device == "heater_bed":
