@@ -431,7 +431,12 @@ class Panel(ScreenPanel):
             self.update_timeout = None
 
     def on_back_click(self, widget=None):
-        self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
+        # 通过setup_init判断是否从setup_force_move面板过来的
+        if self._screen.setup_init != 2:
+            self._screen.show_panel("setup_force_move", _("Remove Foam"), remove_all=True)
+        else:
+            # 其他情况返回到语言选择面板
+            self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
 
     def on_next_click(self, widget=None):
         self._screen.setup_init = 0

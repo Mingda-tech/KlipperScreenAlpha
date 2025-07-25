@@ -75,7 +75,8 @@ class Panel(ScreenPanel):
 
     def on_next_click(self, widget):
         # Move to the force move panel for Z axis
-        self._screen.setup_init = 2
+        if self._screen.setup_init < 3: 
+            self._screen.setup_init = 3
         self._screen.save_init_step()
         self._screen.show_panel("setup_force_move", _("Remove Foam"), remove_all=True)
     

@@ -34,7 +34,6 @@ class Panel(ScreenPanel):
         
         self.next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
         self.next_btn.connect("clicked", self.on_next_click)
-        self.next_btn.set_sensitive(False)  # Disable next button by default
         grid.attach(self.next_btn, 4, 0, 1, 1)
         
         # Row 1: Z axis raise button (1/6 width, centered)
@@ -64,7 +63,12 @@ class Panel(ScreenPanel):
         # Center the text using columns 2-3 (2/6 width)
         grid.attach(tip_label, 0, 3, 5, 3)
         
-
+        if self._screen.setup_init == 3:
+            self.next_btn.set_sensitive(False)
+            self.z_raise_btn.set_sensitive(True)
+        else:
+            self.next_btn.set_sensitive(True)
+            self.z_raise_btn.set_sensitive(False)
         
         self.content.add(grid)
 
@@ -105,12 +109,12 @@ class Panel(ScreenPanel):
 
     def on_previous_click(self, widget):
         # Go back to the setup image
-        self._screen.setup_init = 1
         self._screen.save_init_step()
         self._screen.show_panel("setup_image", _("Remove Foam"), remove_all=True)
         
     def on_next_click(self, widget):
         # Continue to language selection
-        self._screen.setup_init = 2
+        if self._screen.setup_init < 4:
+            self._screen.setup_init = 4
         self._screen.save_init_step()
         self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)

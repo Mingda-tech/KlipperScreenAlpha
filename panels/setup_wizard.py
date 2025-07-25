@@ -139,14 +139,14 @@ class Panel(ScreenPanel):
 
     def on_next_click(self, widget=None):
         # Check if this is MD_400D model
+        if self._screen.setup_init < 2:
+            self._screen.setup_init = 2
         if self._screen.printer and "MD_400D" in self._screen.printer.get_gcode_macros():
             # For MD_400D, skip directly to WiFi selection
-            self._screen.setup_init = 3
             self._screen.save_init_step()
             self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
         else:
             # For other models, show the setup image
-            self._screen.setup_init = 2
             self._screen.save_init_step()
             self._screen.show_panel("setup_image", _("Remove Foam"), remove_all=True)
         
