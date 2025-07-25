@@ -1729,3 +1729,12 @@ msgstr "右擠出機: 未調整"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "將Z軸偏移應用於限位開關？"
+
+msgid "Remove Foam"
+msgstr "移除泡沫"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "請移除擠出頭泡沫並取出門把手。"
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "請點擊Z軸抬升按鈕，抬升Z軸以移除機箱底部周圍的泡沫。"

@@ -1558,3 +1558,12 @@ msgstr "Jobb extruder: Nincs beállítva"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Alkalmazza a Z eltolást a végállásra?"
+
+msgid "Remove Foam"
+msgstr "Hab eltávolítása"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Kérjük, távolítsa el az extruder habot és vegye ki az ajtókilincset."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Kérjük, kattintson a Z emelés gombra a Z tengely emeléséhez és a ház alja körüli hab eltávolításához."

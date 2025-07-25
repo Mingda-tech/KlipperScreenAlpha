@@ -1615,3 +1615,12 @@ msgstr "الباثق الأيمن: غير معدّل"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "تطبيق إزاحة Z على نقطة التوقف؟"
+
+msgid "Remove Foam"
+msgstr "إزالة الرغوة"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "يرجى إزالة رغوة الطارد وإخراج مقبض الباب."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "يرجى النقر على زر رفع Z لرفع المحور Z وإزالة الرغوة حول الجزء السفلي من العلبة."

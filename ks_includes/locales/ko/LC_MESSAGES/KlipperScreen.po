@@ -1654,3 +1654,12 @@ msgstr "오른쪽 압출기: 조정되지 않음"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "엔드스톱에 Z 오프셋을 적용하시겠습니까?"
+
+msgid "Remove Foam"
+msgstr "폼 제거"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "익스트루더 폼을 제거하고 도어 핸들을 꺼내주세요."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Z 상승 버튼을 클릭하여 Z축을 올려 케이스 하단 주변의 폼을 제거하세요."

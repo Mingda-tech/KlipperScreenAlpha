@@ -1491,3 +1491,12 @@ msgstr "Pravý extruder: Neupraveno"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Použít Z offset na koncový spínač?"
+
+msgid "Remove Foam"
+msgstr "Odstranit pěnu"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Prosím odstraňte pěnu extruderu a vyjměte kliku dveří."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Prosím klikněte na tlačítko zvednutí Z pro zvednutí osy Z a odstranění pěny kolem spodní části skříně."

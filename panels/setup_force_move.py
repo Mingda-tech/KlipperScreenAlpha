@@ -101,10 +101,10 @@ class Panel(ScreenPanel):
         # Go back to the setup image
         self._screen.setup_init = 1
         self._screen.save_init_step()
-        self._screen.show_panel("setup_image", _("Setup Wizard"), remove_all=True)
+        self._screen.show_panel("setup_image", _("Remove Foam"), remove_all=True)
         
     def on_next_click(self, widget):
         # Continue to language selection
         self._screen.setup_init = 2
         self._screen.save_init_step()
-        self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
+        self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)

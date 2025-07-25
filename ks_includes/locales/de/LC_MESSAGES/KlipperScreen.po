@@ -1634,3 +1634,12 @@ msgstr "Rechter Extruder: Nicht angepasst"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Z-Offset auf Endschalter anwenden?"
+
+msgid "Remove Foam"
+msgstr "Schaum entfernen"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Bitte entfernen Sie den Extruderschaum und nehmen Sie den Türgriff heraus."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Bitte klicken Sie auf die Z-Anheben-Taste, um die Z-Achse anzuheben und den Schaum um den Boden des Gehäuses zu entfernen."

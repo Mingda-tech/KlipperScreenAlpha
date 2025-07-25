@@ -1777,3 +1777,12 @@ msgstr "אקסטרודר ימני: לא מכוון"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "להחיל היסט Z על מפסק הקצה?"
+
+msgid "Remove Foam"
+msgstr "הסר קצף"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "אנא הסר את קצף המכבש והוצא את ידית הדלת."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "אנא לחץ על כפתור הרמת Z כדי להרים את ציר Z ולהסיר את הקצף סביב תחתית המארז."

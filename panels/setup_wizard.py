@@ -20,15 +20,11 @@ class Panel(ScreenPanel):
 
         grid = self._gtk.HomogeneousGrid()
 
-        self.labels['skip'] = self._gtk.Button(None, _("Skip All"), "color1", .66)
-        self.labels['skip'].connect("clicked", self.on_skip_click)
-        grid.attach(self.labels['skip'], 0, 0, 1, 1)
-
         self.labels['tip'] = Gtk.Label()
         self.labels['tip'].set_text(_("Choose a language"))
         self.labels['tip'].set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
         self.labels['tip'].set_line_wrap(True)            
-        grid.attach(self.labels['tip'], 1, 0, 3, 1)
+        grid.attach(self.labels['tip'], 0, 0, 4, 1)
 
         self.labels['next'] = self._gtk.Button("arrow-right", None, "color1", .66)
         self.labels['next'].connect("clicked", self.on_next_click)
@@ -142,9 +138,17 @@ class Panel(ScreenPanel):
         self.labels[boxname].show_all()
 
     def on_next_click(self, widget=None):
-        self._screen.setup_init = 3
-        self._screen.save_init_step()
-        self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
+        # Check if this is MD_400D model
+        if self._screen.printer and "MD_400D" in self._screen.printer.get_gcode_macros():
+            # For MD_400D, skip directly to WiFi selection
+            self._screen.setup_init = 3
+            self._screen.save_init_step()
+            self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
+        else:
+            # For other models, show the setup image
+            self._screen.setup_init = 2
+            self._screen.save_init_step()
+            self._screen.show_panel("setup_image", _("Remove Foam"), remove_all=True)
         
     def change_language(self, widget, lang_name, lang_code):
         message = _("Current language: ") + lang_name
@@ -152,5 +156,4 @@ class Panel(ScreenPanel):
         self._screen.change_language(widget, lang_code, force_reload=False)
         # self.labels['next'].set_sensitive(True)
     
-    def on_skip_click(self, widget):
-        self._screen.show_panel("main_menu", None, remove_all=True, items=self._config.get_menu_items("__main"))       
+       

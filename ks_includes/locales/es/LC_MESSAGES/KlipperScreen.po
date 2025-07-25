@@ -1761,3 +1761,12 @@ msgstr "Extrusor derecho: No ajustado"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "¿Aplicar desplazamiento Z al final de carrera?"
+
+msgid "Remove Foam"
+msgstr "Quitar espuma"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Por favor, retire la espuma del extrusor y saque la manija de la puerta."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Por favor, haga clic en el botón de elevar Z para elevar el eje Z y quitar la espuma alrededor de la parte inferior de la caja."

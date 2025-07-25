@@ -1589,3 +1589,12 @@ msgstr "Prawy ekstruder: Nie dostosowany"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Zastosować przesunięcie Z do wyłącznika krańcowego?"
+
+msgid "Remove Foam"
+msgstr "Usuń pianę"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Proszę usunąć piankę ekstrudera i wyjąć klamkę drzwi."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Proszę kliknąć przycisk podnoszenia Z, aby podnieść oś Z i usunąć piankę wokół dolnej części obudowy."

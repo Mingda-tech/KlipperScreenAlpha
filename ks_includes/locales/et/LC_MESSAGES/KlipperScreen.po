@@ -1736,3 +1736,12 @@ msgstr "Parem ekstruuder: Reguleerimata"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Rakenda Z-nihe lõpplülitile?"
+
+msgid "Remove Foam"
+msgstr "Eemalda vaht"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Palun eemaldage ekstruderi vaht ja võtke välja uksekäepide."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Palun klõpsake Z tõstmise nuppu, et tõsta Z-telge ja eemaldada vaht korpuse põhja ümber."

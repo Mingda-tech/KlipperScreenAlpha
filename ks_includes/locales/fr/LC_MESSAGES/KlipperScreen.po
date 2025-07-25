@@ -1782,3 +1782,12 @@ msgstr "Extrudeur droit : Non ajusté"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Appliquer le décalage Z à la butée ?"
+
+msgid "Remove Foam"
+msgstr "Retirer la mousse"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Veuillez retirer la mousse de l'extrudeur et retirer la poignée de porte."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Veuillez cliquer sur le bouton de levée Z pour lever l'axe Z afin de retirer la mousse autour du bas du boîtier."

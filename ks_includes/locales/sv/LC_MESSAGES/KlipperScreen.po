@@ -1641,3 +1641,12 @@ msgstr "Höger extruder: Inte justerad"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Tillämpa Z-offset på ändläget?"
+
+msgid "Remove Foam"
+msgstr "Ta bort skum"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Ta bort extruderskummet och ta ut dörrhandtaget."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Klicka på Z-höjningsknappen för att höja Z-axeln och ta bort skummet runt botten av höljet."

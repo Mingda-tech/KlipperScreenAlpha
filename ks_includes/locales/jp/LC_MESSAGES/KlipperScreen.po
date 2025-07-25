@@ -1588,3 +1588,12 @@ msgstr "右エクストルーダー: 調整なし"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "エンドストップにZオフセットを適用しますか？"
+
+msgid "Remove Foam"
+msgstr "Remove Foam"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Please remove the extruder foam and take out the door handle."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."

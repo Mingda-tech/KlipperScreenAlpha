@@ -1759,3 +1759,12 @@ msgstr "Правый экструдер: Не настроен"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Применить смещение по оси Z к концевому выключателю?"
+
+msgid "Remove Foam"
+msgstr "Удалить пену"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Пожалуйста, удалите пену экструдера и извлеките дверную ручку."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Пожалуйста, нажмите кнопку подъема Z, чтобы поднять ось Z и удалить пену вокруг нижней части корпуса."

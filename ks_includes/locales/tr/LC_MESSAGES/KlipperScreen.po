@@ -1670,3 +1670,12 @@ msgstr "Sağ Ekstruder: Ayarlanmamış"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Z ofsetini Sonlandırıcıya uygula?"
+
+msgid "Remove Foam"
+msgstr "Köpüğü kaldır"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Lütfen ekstrüder köpüğünü çıkarın ve kapı kolunu çıkarın."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Kasanın alt kısmındaki köpüğü çıkarmak için Z eksenini yükseltmek üzere Z yükselt düğmesine tıklayın."

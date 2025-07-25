@@ -1796,3 +1796,12 @@ msgstr "Đầu phun phải: Chưa điều chỉnh"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Áp dụng độ lệch Z cho công tắc hành trình?"
+
+msgid "Remove Foam"
+msgstr "Tháo bọt"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Vui lòng tháo bọt đầu đùn và lấy tay nắm cửa ra."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Vui lòng nhấp vào nút nâng Z để nâng trục Z và loại bỏ bọt xung quanh đáy vỏ máy."

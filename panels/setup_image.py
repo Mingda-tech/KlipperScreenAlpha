@@ -19,6 +19,11 @@ class Panel(ScreenPanel):
     def init_ui(self):
         grid = self._gtk.HomogeneousGrid()        
         
+        # Back button
+        back_btn = self._gtk.Button("arrow-left", None, "color1", .66)
+        back_btn.connect("clicked", self.on_back_click)
+        grid.attach(back_btn, 0, 0, 1, 1)
+        
         # Next button
         next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
         next_btn.connect("clicked", self.on_next_click)
@@ -32,7 +37,7 @@ class Panel(ScreenPanel):
         tip_label.set_justify(Gtk.Justification.CENTER)
         tip_label.set_hexpand(True)
         tip_label.set_halign(Gtk.Align.CENTER)
-        grid.attach(tip_label, 0, 1, 5, 1)
+        grid.attach(tip_label, 1, 1, 3, 1)
 
         # Image display - adjust position to prevent offset
         self.image = Gtk.Image()
@@ -73,3 +78,7 @@ class Panel(ScreenPanel):
         self._screen.setup_init = 2
         self._screen.save_init_step()
         self._screen.show_panel("setup_force_move", _("Remove Foam"), remove_all=True)
+    
+    def on_back_click(self, widget):
+        # Go back to language selection
+        self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)

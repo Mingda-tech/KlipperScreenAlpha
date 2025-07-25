@@ -1812,3 +1812,12 @@ msgstr "Desni ekstruder: Ni prilagojen"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Uporabim Z odmik za končno stikalo?"
+
+msgid "Remove Foam"
+msgstr "Odstrani peno"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Prosimo, odstranite peno ekstruderja in izvlecite kljuko vrat."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Prosimo, kliknite gumb za dvig Z, da dvignete os Z in odstranite peno okoli dna ohišja."

@@ -743,13 +743,8 @@ class KlipperScreen(Gtk.Window):
             self.setup_init = self.klippy_config.getint("Variables", "setup_step", fallback=0)
 
         if self.setup_init == 1:
-            # Only show setup_image for non-MD_400D models
-            if self.printer and "MD_400D" in self.printer.get_gcode_macros():
-                # For MD_400D, skip directly to language selection
-                self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
-            else:
-                # For other models, show the setup image first
-                self.show_panel("setup_image", _("Setup Wizard"), remove_all=True)
+            # Always show language selection first
+            self.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
         elif self.auto_check:
             self.show_panel("self_check", _("Self-check"), remove_all=True)
         self.auto_check = False

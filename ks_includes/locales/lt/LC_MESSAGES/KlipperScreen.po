@@ -1567,3 +1567,12 @@ msgstr "Dešinysis ekstruderis: Nekoreguotas"
 
 msgid "Apply Z offset to Endstop?"
 msgstr "Taikyti Z poslinkį galiniam jungikliui?"
+
+msgid "Remove Foam"
+msgstr "Pašalinti putas"
+
+msgid "Please remove the extruder foam and take out the door handle."
+msgstr "Prašome pašalinti ekstruderio putas ir išimti durų rankeną."
+
+msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+msgstr "Spustelėkite Z kėlimo mygtuką, kad pakeltumėte Z ašį ir pašalintumėte putas aplink korpuso apačią."
