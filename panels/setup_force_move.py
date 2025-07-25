@@ -41,7 +41,7 @@ class Panel(ScreenPanel):
             z_up_image = "bed_down"
             z_up_label = _("Bed Lower")
             
-        self.z_raise_btn = self._gtk.Button(z_up_image, z_up_label, "color3", scale=1.5)
+        self.z_raise_btn = self._gtk.Button(z_up_image, None, "color3", scale=.66)
         self.z_raise_btn.connect("clicked", self.move_z_up)
         grid.attach(self.z_raise_btn, 2, 0, 1, 1)
         
