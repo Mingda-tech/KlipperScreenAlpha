@@ -28,6 +28,11 @@ class Panel(ScreenPanel):
         next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
         next_btn.connect("clicked", self.on_next_click)
         grid.attach(next_btn, 4, 0, 1, 1)
+
+        # Image display - adjust position to prevent offset
+        self.image = Gtk.Image()
+        self.update_image()
+        grid.attach(self.image, 0, 1, 5, 4)  # Changed from (0, 2, 5, 8) to (0, 2, 5, 4)
         
         tip_label = Gtk.Label()
         tip_label.set_markup(f'<span foreground="red">{_("Please remove the extruder foam and take out the door handle.")}</span>')
@@ -37,12 +42,7 @@ class Panel(ScreenPanel):
         tip_label.set_justify(Gtk.Justification.CENTER)
         tip_label.set_hexpand(True)
         tip_label.set_halign(Gtk.Align.CENTER)
-        grid.attach(tip_label, 1, 1, 3, 1)
-
-        # Image display - adjust position to prevent offset
-        self.image = Gtk.Image()
-        self.update_image()
-        grid.attach(self.image, 0, 2, 5, 4)  # Changed from (0, 2, 5, 8) to (0, 2, 5, 4)
+        grid.attach(tip_label, 0, 5, 5, 1)
         
         self.content.add(grid)
     
@@ -52,8 +52,8 @@ class Panel(ScreenPanel):
             new_width = 700
             new_height = 350
             if self._screen.width == 1280 and self._screen.height == 800:
-                new_width = 800
-                new_height = 400
+                new_width = 1000
+                new_height = 480
             elif self._screen.width == 800 and self._screen.height == 480:
                 new_width = 500
                 new_height = 250

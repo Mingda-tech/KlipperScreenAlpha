@@ -32,9 +32,10 @@ class Panel(ScreenPanel):
         prev_btn.connect("clicked", self.on_previous_click)
         grid.attach(prev_btn, 0, 0, 1, 1)
         
-        next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
-        next_btn.connect("clicked", self.on_next_click)
-        grid.attach(next_btn, 4, 0, 1, 1)
+        self.next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
+        self.next_btn.connect("clicked", self.on_next_click)
+        self.next_btn.set_sensitive(False)  # Disable next button by default
+        grid.attach(self.next_btn, 4, 0, 1, 1)
         
         # Row 1: Z axis raise button (1/6 width, centered)
         z_up_image = "z-farther"
@@ -74,7 +75,7 @@ class Panel(ScreenPanel):
         self.distance = dist
 
     def move_z_up(self, widget):
-        dist = 50.0
+        dist = 70.0
         speed = 2  # Z speed in mm/s
         
         # Check if Z is homed
@@ -96,6 +97,11 @@ class Panel(ScreenPanel):
                 else:
                     self._screen._send_action(None, "printer.gcode.script",
                         {"script": f"FORCE_MOVE STEPPER=stepper_z DISTANCE={dist} VELOCITY={speed}"})
+        
+        # Disable the z_raise button after clicking
+        self.z_raise_btn.set_sensitive(False)
+        # Enable the next button
+        self.next_btn.set_sensitive(True)
 
     def on_previous_click(self, widget):
         # Go back to the setup image
