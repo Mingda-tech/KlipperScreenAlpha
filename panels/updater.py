@@ -62,7 +62,9 @@ class Panel(ScreenPanel):
     def create_info_grid(self):
         infogrid = Gtk.Grid()
         infogrid.get_style_context().add_class("system-program-grid")
-        for i, prog in enumerate(sorted(list(self.update_status["version_info"]))):
+        # Filter out "system" from the programs list
+        programs = [prog for prog in sorted(list(self.update_status["version_info"])) if prog != "system"]
+        for i, prog in enumerate(programs):
             self.labels[prog] = Gtk.Label(
                 hexpand=True, halign=Gtk.Align.START, ellipsize=Pango.EllipsizeMode.END
             )
@@ -317,7 +319,7 @@ class Panel(ScreenPanel):
             {"application": {program}, "message": msg, "complete": False},
         )
 
-        if program in ["klipper", "moonraker", "system", "full"]:
+        if program in ["klipper", "moonraker", "full"]:
             logging.info(f"Sending machine.update.{program}")
             self._screen._ws.send_method(f"machine.update.{program}")
         else:
