@@ -1,10 +1,13 @@
 import logging
 import gi
+import os
+import pathlib
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, GdkPixbuf, Pango
 from ks_includes.screen_panel import ScreenPanel
 
+klipperscreendir = pathlib.Path(__file__).parent.resolve().parent
 
 class Panel(ScreenPanel):
     distances = ['10', '50']
@@ -21,7 +24,7 @@ class Panel(ScreenPanel):
                 logging.info("Setup Force Move: Z axis is not homed. Enabling stepper_z.")
                 self._screen._send_action(None, "printer.gcode.script", {"script": "SET_STEPPER_ENABLE STEPPER=stepper_z ENABLE=1"})
                 self._screen._send_action(None, "printer.gcode.script", {"script": "G4 P2000"})
-
+        self.image_path = os.path.join(klipperscreendir, "ks_includes", "locales", "en", "manual", "remove_foam2.jpg")
         self.init_ui()
 
     def init_ui(self):
@@ -32,11 +35,6 @@ class Panel(ScreenPanel):
         prev_btn.connect("clicked", self.on_previous_click)
         grid.attach(prev_btn, 0, 0, 1, 1)
         
-        self.next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
-        self.next_btn.connect("clicked", self.on_next_click)
-        grid.attach(self.next_btn, 4, 0, 1, 1)
-        
-        # Row 1: Z axis raise button (1/6 width, centered)
         z_up_image = "z-farther"
         z_up_label = _("Z Raise")
         if "MD_400D" in self._printer.get_gcode_macros():
@@ -45,11 +43,16 @@ class Panel(ScreenPanel):
             
         self.z_raise_btn = self._gtk.Button(z_up_image, z_up_label, "color3", scale=1.5)
         self.z_raise_btn.connect("clicked", self.move_z_up)
-        # Center the button by using columns 2-3 (middle third)
-        grid.attach(self.z_raise_btn, 0, 1, 5, 2)
+        grid.attach(self.z_raise_btn, 2, 0, 1, 1)
         
-        # Row 3: Instruction text (2/6 width, centered)
-        # Check if current language is not Chinese, use English
+        self.next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
+        self.next_btn.connect("clicked", self.on_next_click)
+        grid.attach(self.next_btn, 4, 0, 1, 1)
+        
+        self.image = Gtk.Image()
+        self.update_image()
+        grid.attach(self.image, 0, 1, 5, 4)
+
         instruction_text = _("Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case.")
             
         tip_label = Gtk.Label()
@@ -61,7 +64,7 @@ class Panel(ScreenPanel):
         tip_label.set_hexpand(True)
         tip_label.set_halign(Gtk.Align.CENTER)
         # Center the text using columns 2-3 (2/6 width)
-        grid.attach(tip_label, 0, 3, 5, 3)
+        grid.attach(tip_label, 0, 5, 5, 1)
         
         if self._screen.setup_init == 3:
             self.next_btn.set_sensitive(False)
@@ -118,3 +121,30 @@ class Panel(ScreenPanel):
             self._screen.setup_init = 4
         self._screen.save_init_step()
         self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
+
+    def update_image(self):
+        if os.path.exists(self.image_path):
+            # Reduce image sizes to prevent overflow
+            new_width = 700
+            new_height = 350
+            if self._screen.width == 1280 and self._screen.height == 800:
+                new_width = 1000
+                new_height = 480
+            elif self._screen.width == 800 and self._screen.height == 480:
+                new_width = 500
+                new_height = 250
+            
+            scaled_pixbuf = self.scale_image(self.image_path, new_width, new_height)
+            self.image.set_from_pixbuf(scaled_pixbuf)
+        else:
+            # If image not found, show a placeholder
+            self.image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+    
+    def scale_image(self, filename, new_width, new_height):
+        # Load the image from the file
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
+        
+        # Scale the Pixbuf
+        scaled_pixbuf = pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.BILINEAR)
+        
+        return scaled_pixbuf        

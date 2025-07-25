@@ -13,7 +13,7 @@ class Panel(ScreenPanel):
         super().__init__(screen, title)
         
         # You can change this path to your desired image
-        self.image_path = os.path.join(klipperscreendir, "ks_includes", "locales", "en", "manual", "setup.jpg")
+        self.image_path = os.path.join(klipperscreendir, "ks_includes", "locales", "en", "manual", "remove_foam1.jpg")
         self.init_ui()
 
     def init_ui(self):
