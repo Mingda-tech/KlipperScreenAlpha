@@ -3,7 +3,7 @@ import os
 import pathlib
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, Pango
 from ks_includes.screen_panel import ScreenPanel
 
 klipperscreendir = pathlib.Path(__file__).parent.resolve().parent
@@ -17,38 +17,41 @@ class Panel(ScreenPanel):
         self.init_ui()
 
     def init_ui(self):
-        grid = self._gtk.HomogeneousGrid()
-        
-        # Empty space for first column (no back button since this is the first page)
-        empty_space = Gtk.Label()
-        grid.attach(empty_space, 0, 0, 1, 1)
-        
-        # Empty space for center columns (title is already in titlebar)
-        empty_center = Gtk.Label()
-        grid.attach(empty_center, 1, 0, 2, 1)
+        grid = self._gtk.HomogeneousGrid()        
         
         # Next button
         next_btn = self._gtk.Button("arrow-right", None, "color1", .66)
         next_btn.connect("clicked", self.on_next_click)
-        grid.attach(next_btn, 3, 0, 1, 1)
+        grid.attach(next_btn, 4, 0, 1, 1)
         
-        # Image display
+        tip_label = Gtk.Label()
+        tip_label.set_markup(f'<span foreground="red">{_("Please remove the extruder foam and take out the door handle.")}</span>')
+        # 设置自动换行以防止文字越界
+        tip_label.set_line_wrap(True)
+        tip_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        tip_label.set_justify(Gtk.Justification.CENTER)
+        tip_label.set_hexpand(True)
+        tip_label.set_halign(Gtk.Align.CENTER)
+        grid.attach(tip_label, 0, 1, 5, 1)
+
+        # Image display - adjust position to prevent offset
         self.image = Gtk.Image()
         self.update_image()
-        grid.attach(self.image, 0, 1, 4, 5)
+        grid.attach(self.image, 0, 2, 5, 4)  # Changed from (0, 2, 5, 8) to (0, 2, 5, 4)
         
         self.content.add(grid)
     
     def update_image(self):
         if os.path.exists(self.image_path):
-            new_width = 900
-            new_height = 450
+            # Reduce image sizes to prevent overflow
+            new_width = 700
+            new_height = 350
             if self._screen.width == 1280 and self._screen.height == 800:
-                new_width = 1000
-                new_height = 600
+                new_width = 800
+                new_height = 400
             elif self._screen.width == 800 and self._screen.height == 480:
-                new_width = 600
-                new_height = 320
+                new_width = 500
+                new_height = 250
             
             scaled_pixbuf = self.scale_image(self.image_path, new_width, new_height)
             self.image.set_from_pixbuf(scaled_pixbuf)
