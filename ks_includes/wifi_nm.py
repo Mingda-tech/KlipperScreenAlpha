@@ -18,7 +18,7 @@ from dbus.mainloop.glib import DBusGMainLoop
 
 
 class WorkerTask:
-    """表示一个后台任务的类"""
+    """Represents a background task."""
     def __init__(self, task_type: str, args: tuple = (), kwargs: dict = None, callback: Callable = None):
         self.task_type = task_type
         self.args = args or ()
@@ -27,13 +27,13 @@ class WorkerTask:
 
 
 class WifiManager:
-    """完全异步化的WiFi管理器，所有操作都在后台线程中执行"""
+    """Fully asynchronous WiFi manager, all operations are executed in a background thread."""
     
     def __init__(self, interface_name, *args, **kwargs):
         super().__init__(*args, **kwargs)
         DBusGMainLoop(set_as_default=True)
         
-        # 回调系统
+        # Callback system
         self._callbacks = {
             "connected": [],
             "connecting_status": [],
@@ -41,7 +41,7 @@ class WifiManager:
             "popup": [],
         }
         
-        # 状态变量
+        # State variables
         self.connected = False
         self.connected_ssid = None
         self.interface_name = interface_name
@@ -51,43 +51,43 @@ class WifiManager:
         self.path_by_ssid = {}
         self.hidden_ssid_index = 0
 
-        # 初始化后台工作线程系统
+        # Initialize background worker thread system
         self._task_queue = queue.Queue()
         self._worker_thread = None
         self._shutdown_event = threading.Event()
         self._thread_lock = threading.Lock()
         
-        # NetworkManager设备初始化
+        # NetworkManager device initialization
         self.wifi_dev = None
         self.initialized = False
         
-        # 启动后台线程并进行初始化
+        # Start background thread and initialize
         self._start_worker_thread()
         self._initialize_async()
 
     def _start_worker_thread(self):
-        """启动后台工作线程"""
+        """Start the background worker thread."""
         with self._thread_lock:
             if self._worker_thread is None or not self._worker_thread.is_alive():
                 self._shutdown_event.clear()
                 self._worker_thread = threading.Thread(target=self._worker_thread_func, daemon=True)
                 self._worker_thread.start()
-                logging.info("WiFi Manager后台工作线程已启动")
+                logging.debug("WiFi Manager background worker thread started")
 
     def _worker_thread_func(self):
-        """后台工作线程的主函数，处理所有耗时的D-Bus操作"""
-        logging.info("WiFi Manager后台工作线程开始运行")
+        """Main function of the background worker thread, handles all time-consuming D-Bus operations."""
+        logging.debug("WiFi Manager background worker thread running")
         
         while not self._shutdown_event.is_set():
             try:
-                # 等待任务，超时1秒以便检查shutdown信号
+                # Wait for a task, timeout after 1 second to check for shutdown signal
                 task = self._task_queue.get(timeout=1.0)
                 
                 try:
                     result = None
                     error = None
                     
-                    # 根据任务类型执行相应的操作
+                    # Execute corresponding operation based on task type
                     if task.task_type == "initialize":
                         result = self._worker_initialize(*task.args, **task.kwargs)
                     elif task.task_type == "rescan":
@@ -109,13 +109,13 @@ class WifiManager:
                     elif task.task_type == "get_supplicant_networks":
                         result = self._worker_get_supplicant_networks(*task.args, **task.kwargs)
                     else:
-                        error = f"未知的任务类型: {task.task_type}"
+                        error = f"Unknown task type: {task.task_type}"
                         
                 except Exception as e:
                     error = str(e)
-                    logging.error(f"后台任务 {task.task_type} 执行失败: {e}")
+                    logging.error(f"Background task {task.task_type} failed: {e}")
                 
-                # 如果有回调函数，通过GLib.idle_add安全地调用回调
+                # If there is a callback function, call it safely via GLib.idle_add
                 if task.callback:
                     if error:
                         GLib.idle_add(task.callback, None, error)
@@ -125,39 +125,39 @@ class WifiManager:
                 self._task_queue.task_done()
                 
             except queue.Empty:
-                # 超时，继续循环检查shutdown信号
+                # Timeout, continue loop to check for shutdown signal
                 continue
             except Exception as e:
-                logging.error(f"后台工作线程出现异常: {e}")
+                logging.error(f"Exception in background worker thread: {e}")
                 
-        logging.info("WiFi Manager后台工作线程已停止")
+        logging.info("WiFi Manager background worker thread stopped")
 
     def _submit_task(self, task_type: str, callback: Optional[Callable] = None, *args, **kwargs):
-        """提交任务到后台线程"""
+        """Submit a task to the background thread."""
         if self._shutdown_event.is_set():
-            logging.warning("工作线程已关闭，无法提交任务")
+            logging.warning("Worker thread is shut down, cannot submit task")
             if callback:
-                GLib.idle_add(callback, None, "工作线程已关闭")
+                GLib.idle_add(callback, None, "Worker thread is shut down")
             return
             
         task = WorkerTask(task_type, args, kwargs, callback)
         self._task_queue.put(task)
 
     def shutdown(self):
-        """关闭后台工作线程"""
-        logging.info("正在关闭WiFi Manager后台工作线程...")
+        """Shutdown the background worker thread."""
+        logging.info("Shutting down WiFi Manager background worker thread...")
         self._shutdown_event.set()
         
         with self._thread_lock:
             if self._worker_thread and self._worker_thread.is_alive():
                 self._worker_thread.join(timeout=5.0)
                 if self._worker_thread.is_alive():
-                    logging.warning("后台工作线程未能在规定时间内关闭")
+                    logging.warning("Background worker thread did not shut down in time")
 
-    # =============== 后台线程工作函数 ===============
+    # =============== Background Thread Worker Functions ===============
     
     def _worker_initialize(self):
-        """在后台线程中进行初始化"""
+        """Initialization in the background thread."""
         try:
             self.wifi_dev = NetworkManager.NetworkManager.GetDeviceByIpIface(self.interface_name)
             self.wifi_dev.OnAccessPointAdded(self._ap_added)
@@ -165,59 +165,59 @@ class WifiManager:
             self.wifi_dev.OnStateChanged(self._ap_state_changed)
 
             access_points = self.wifi_dev.GetAccessPoints()
-            logging.info(f"找到 {len(access_points)} 个接入点")
+            logging.debug(f"Found {len(access_points)} access points")
             
             for ap in access_points:
                 ssid = self._add_ap(ap)
-                logging.debug(f"添加接入点: {ssid}")
+                logging.debug(f"Added access point: {ssid}")
             
             self._worker_update_known_connections()
             self.initialized = True
-            logging.info("WiFi Manager 初始化完成")
+            logging.info("WiFi Manager initialized")
             return True
         except Exception as e:
-            logging.error(f"WiFi Manager 初始化失败: {e}")
+            logging.error(f"WiFi Manager initialization failed: {e}")
             raise
 
     def _worker_update_known_connections(self):
-        """在后台线程中更新已知连接"""
+        """Update known connections in the background thread."""
         self.known_networks = {}
         connections = NetworkManager.Settings.ListConnections()
-        logging.info(f"检查 {len(connections)} 个NetworkManager连接")
+        logging.debug(f"Checking {len(connections)} NetworkManager connections")
         
         for con in connections:
             settings = con.GetSettings()
             if "802-11-wireless" in settings:
                 ssid = settings["802-11-wireless"]['ssid']
                 self.known_networks[ssid] = con
-                logging.debug(f"添加已知网络: {ssid}")
+                logging.debug(f"Added known network: {ssid}")
                 
-        logging.info(f"找到 {len(self.known_networks)} 个已知WiFi网络")
+        logging.debug(f"Found {len(self.known_networks)} known WiFi networks")
         return self.known_networks
 
     def _worker_rescan(self):
-        """在后台线程中执行WiFi扫描"""
+        """Perform WiFi scan in the background thread."""
         try:
             self.wifi_dev.RequestScan({})
             return True
         except dbus.exceptions.DBusException as e:
-            logging.error(f"扫描时出错: {e}")
+            logging.error(f"Error during scan: {e}")
             raise
 
     def _worker_get_networks(self):
-        """在后台线程中获取网络列表"""
+        """Get network list in the background thread."""
         known_networks = list(self.known_networks.keys())
         visible_networks = list(self.ssid_by_path.values())
         all_networks = list(set(known_networks + visible_networks))
         
-        logging.info(f"已知网络: {known_networks}")
-        logging.info(f"可见网络: {visible_networks}")
-        logging.info(f"所有网络: {all_networks}")
+        logging.debug(f"Known networks: {known_networks}")
+        logging.debug(f"Visible networks: {visible_networks}")
+        logging.debug(f"All networks: {all_networks}")
         
         return all_networks
 
     def _worker_get_network_info(self, ssid: str):
-        """在后台线程中获取网络详细信息"""
+        """Get network details in the background thread."""
         netinfo = {}
         if ssid in self.known_networks:
             con = self.known_networks[ssid]
@@ -230,21 +230,21 @@ class WifiManager:
                             "connected": self._worker_get_connected_ssid() == ssid
                         })
                 except Exception as e:
-                    logging.debug(f"获取网络 {ssid} 的设置时出错: {e}")
+                    logging.debug(f"Error getting settings for network {ssid}: {e}")
         
         path = self.path_by_ssid.get(ssid)
         if path and path in self.visible_networks:
             ap = self.visible_networks[path]
             with suppress(NetworkManager.ObjectVanished):
                 try:
-                    # 安全地获取频率和信道信息
+                    # Safely get frequency and channel info
                     frequency = getattr(ap, 'Frequency', None)
                     channel_info = None
                     if frequency:
                         try:
                             channel_info = WifiChannels.lookup(str(frequency))
                         except Exception as e:
-                            logging.debug(f"查找信道信息时出错: {e}")
+                            logging.debug(f"Error looking up channel info: {e}")
                     
                     netinfo.update({
                         "mac": getattr(ap, 'HwAddress', ''),
@@ -258,8 +258,8 @@ class WifiManager:
                         "signal_level_dBm": str(getattr(ap, 'Strength', 0))
                     })
                 except Exception as e:
-                    logging.debug(f"获取接入点 {ssid} 信息时出错: {e}")
-                    # 提供基本信息
+                    logging.debug(f"Error getting info for access point {ssid}: {e}")
+                    # Provide basic info
                     netinfo.update({
                         "ssid": ssid,
                         "configured": ssid in self.known_networks,
@@ -270,20 +270,20 @@ class WifiManager:
         return netinfo
 
     def _worker_connect(self, ssid: str):
-        """在后台线程中连接到WiFi网络"""
+        """Connect to a WiFi network in the background thread."""
         if ssid in self.known_networks:
             conn = self.known_networks[ssid]
             with suppress(NetworkManager.ObjectVanished):
-                msg = f"正在连接到: {ssid}"
+                msg = f"Connecting to: {ssid}"
                 logging.info(msg)
-                # 通过主线程回调更新状态
+                # Update status via callback on the main thread
                 GLib.idle_add(self.callback, "connecting_status", msg)
                 NetworkManager.NetworkManager.ActivateConnection(conn, self.wifi_dev, "/")
                 return True
         return False
 
     def _worker_add_network(self, ssid: str, psk: str):
-        """在后台线程中添加新的WiFi网络"""
+        """Add a new WiFi network in the background thread."""
         new_connection = {
             '802-11-wireless': {
                 'mode': 'infrastructure',
@@ -309,81 +309,81 @@ class WifiManager:
         }
         try:
             NetworkManager.Settings.AddConnection(new_connection)
-            # 更新已知连接列表
+            # Update the list of known connections
             self._worker_update_known_connections()
             return True
         except dbus.exceptions.DBusException as e:
-            msg = _("密码无效") if "802-11-wireless-security.psk" in str(e) else f"{e}"
+            msg = _("Invalid password") if "802-11-wireless-security.psk" in str(e) else f"{e}"
             GLib.idle_add(self.callback, "popup", msg)
-            logging.info(f"添加网络时出错: {e}")
+            logging.info(f"Error adding network: {e}")
             raise
 
     def _worker_delete_network(self, ssid: str):
-        """在后台线程中删除WiFi网络"""
+        """Delete a WiFi network in the background thread."""
         if ssid in self.known_networks:
             con = self.known_networks[ssid]
             con.Delete()
-            # 更新已知连接列表
+            # Update the list of known connections
             self._worker_update_known_connections()
             return True
         return False
 
     def _worker_get_connected_ssid(self):
-        """在后台线程中获取当前连接的SSID"""
+        """Get the currently connected SSID in the background thread."""
         if self.wifi_dev and self.wifi_dev.SpecificDevice().ActiveAccessPoint:
             return self.wifi_dev.SpecificDevice().ActiveAccessPoint.Ssid
         return None
 
     def _worker_get_supplicant_networks(self):
-        """在后台线程中获取supplicant网络"""
+        """Get supplicant networks in the background thread."""
         return {ssid: {"ssid": ssid} for ssid in self.known_networks.keys()}
 
-    # =============== 异步公共接口方法 ===============
+    # =============== Async Public Interface Methods ===============
     
     def _initialize_async(self):
-        """异步初始化"""
+        """Async initialization."""
         self._submit_task("initialize")
 
     def rescan(self, callback: Optional[Callable] = None):
-        """异步执行WiFi扫描"""
+        """Perform WiFi scan asynchronously."""
         self._submit_task("rescan", callback)
 
     def get_networks(self, callback: Optional[Callable] = None):
-        """异步获取网络列表"""
+        """Get network list asynchronously."""
         self._submit_task("get_networks", callback)
 
     def get_network_info(self, ssid: str, callback: Optional[Callable] = None):
-        """异步获取网络详细信息"""
+        """Get network details asynchronously."""
         self._submit_task("get_network_info", callback, ssid)
 
     def connect(self, ssid: str, callback: Optional[Callable] = None):
-        """异步连接到WiFi网络"""
+        """Connect to a WiFi network asynchronously."""
         self._submit_task("connect", callback, ssid)
 
     def add_network(self, ssid: str, psk: str, callback: Optional[Callable] = None):
-        """异步添加新的WiFi网络"""
+        """Add a new WiFi network asynchronously."""
         self._submit_task("add_network", callback, ssid, psk)
 
     def delete_network(self, ssid: str, callback: Optional[Callable] = None):
-        """异步删除WiFi网络"""
+        """Delete a WiFi network asynchronously."""
         self._submit_task("delete_network", callback, ssid)
 
     def get_connected_ssid(self, callback: Optional[Callable] = None):
-        """异步获取当前连接的SSID"""
+        """Get the currently connected SSID asynchronously."""
         self._submit_task("get_connected_ssid", callback)
 
     def update_known_connections(self, callback: Optional[Callable] = None):
-        """异步更新已知连接"""
+        """Update known connections asynchronously."""
         self._submit_task("update_known_connections", callback)
 
     def get_supplicant_networks(self, callback: Optional[Callable] = None):
-        """异步获取supplicant网络"""
+        """Get supplicant networks asynchronously."""
         self._submit_task("get_supplicant_networks", callback)
 
-    # =============== 信号处理和辅助方法 ===============
+    # =============== Signal Handling and Helper Methods ===============
     
     def _ap_added(self, nm, interface, signal, access_point):
-        """接入点添加回调"""
+        """Access point added callback."""
         with suppress(NetworkManager.ObjectVanished):
             ssid = self._add_ap(access_point)
             for cb in self._callbacks['scan_results']:
@@ -391,7 +391,7 @@ class WifiManager:
                 GLib.idle_add(*args)
 
     def _ap_removed(self, dev, interface, signal, access_point):
-        """接入点移除回调"""
+        """Access point removed callback."""
         path = access_point.object_path
         if path in self.ssid_by_path:
             ssid = self.ssid_by_path[path]
@@ -401,32 +401,32 @@ class WifiManager:
                 GLib.idle_add(*args)
 
     def _ap_state_changed(self, nm, interface, signal, old_state, new_state, reason):
-        """设备状态改变回调"""
+        """Device state change callback."""
         msg = ""
         if new_state in (NetworkManager.NM_DEVICE_STATE_UNKNOWN, NetworkManager.NM_DEVICE_STATE_REASON_UNKNOWN):
-            msg = "状态未知"
+            msg = "State unknown"
         elif new_state == NetworkManager.NM_DEVICE_STATE_UNMANAGED:
-            msg = "错误：未被NetworkManager管理"
+            msg = "Error: Not managed by NetworkManager"
         elif new_state == NetworkManager.NM_DEVICE_STATE_UNAVAILABLE:
-            msg = "错误：设备不可用\n可能的原因包括WiFi开关关闭、缺少固件等"
+            msg = "Error: Device not available\nPossible reasons: WiFi switch off, missing firmware, etc."
         elif new_state == NetworkManager.NM_DEVICE_STATE_DISCONNECTED:
-            msg = "当前已断开连接"
+            msg = "Currently disconnected"
         elif new_state == NetworkManager.NM_DEVICE_STATE_PREPARE:
-            msg = "准备连接到网络"
+            msg = "Preparing to connect to the network"
         elif new_state == NetworkManager.NM_DEVICE_STATE_CONFIG:
-            msg = "正在连接到请求的网络..."
+            msg = "Connecting to the requested network..."
         elif new_state == NetworkManager.NM_DEVICE_STATE_NEED_AUTH:
-            msg = "正在认证"
+            msg = "Authenticating"
         elif new_state == NetworkManager.NM_DEVICE_STATE_IP_CONFIG:
-            msg = "正在请求IP地址和路由信息"
+            msg = "Requesting IP address and routing information"
         elif new_state == NetworkManager.NM_DEVICE_STATE_IP_CHECK:
-            msg = "检查是否需要进一步操作"
+            msg = "Checking if further action is needed"
         elif new_state == NetworkManager.NM_DEVICE_STATE_SECONDARIES:
-            msg = "等待辅助连接（如VPN）"
+            msg = "Waiting for secondary connections (like VPN)"
         elif new_state == NetworkManager.NM_DEVICE_STATE_ACTIVATED:
-            msg = "已连接"
+            msg = "Connected"
             self.connected = True
-            # 异步获取连接的SSID
+            # Get connected SSID asynchronously
             def on_connected_ssid(ssid, error):
                 if not error:
                     for cb in self._callbacks['connected']:
@@ -434,27 +434,27 @@ class WifiManager:
                         GLib.idle_add(*args)
             self.get_connected_ssid(on_connected_ssid)
         elif new_state == NetworkManager.NM_DEVICE_STATE_DEACTIVATING:
-            msg = "正在断开连接"
+            msg = "Disconnecting"
             self.connected = False
         elif new_state == NetworkManager.NM_DEVICE_STATE_FAILED:
-            msg = "连接失败"
+            msg = "Connection failed"
             self.connected = False
             self.callback("popup", msg)
         elif new_state == NetworkManager.NM_DEVICE_STATE_REASON_DEPENDENCY_FAILED:
-            msg = "连接依赖失败"
+            msg = "Connection dependency failed"
         elif new_state == NetworkManager.NM_DEVICE_STATE_REASON_CARRIER:
             msg = ""
         else:
-            logging.info(f"设备状态: {new_state}")
+            logging.debug(f"Device state: {new_state}")
             
         if msg != "":
             self.callback("connecting_status", msg)
 
     def _add_ap(self, ap):
-        """添加接入点"""
+        """Add an access point."""
         ssid = ap.Ssid
         if ssid == "":
-            ssid = _("隐藏网络") + f" {self.hidden_ssid_index}"
+            ssid = _("Hidden Network") + f" {self.hidden_ssid_index}"
             self.hidden_ssid_index += 1
         self.ssid_by_path[ap.object_path] = ssid
         self.path_by_ssid[ssid] = ap.object_path
@@ -462,20 +462,20 @@ class WifiManager:
         return ssid
 
     def _remove_ap(self, path):
-        """移除接入点"""
+        """Remove an access point."""
         ssid = self.ssid_by_path.pop(path, None)
         if ssid:
             self.path_by_ssid.pop(ssid, None)
         self.visible_networks.pop(path, None)
 
     def _get_connected_ap(self):
-        """获取当前连接的接入点"""
+        """Get the currently connected access point."""
         if self.wifi_dev:
             return self.wifi_dev.SpecificDevice().ActiveAccessPoint
         return None
 
     def _visible_networks_by_ssid(self):
-        """按SSID获取可见网络"""
+        """Get visible networks by SSID."""
         if not self.wifi_dev:
             return {}
         aps = self.wifi_dev.GetAccessPoints()
@@ -487,7 +487,7 @@ class WifiManager:
 
     @staticmethod
     def _get_encryption(flags):
-        """获取加密类型"""
+        """Get encryption type."""
         encryption = ""
         if (flags & NetworkManager.NM_802_11_AP_SEC_PAIR_WEP40 or
                 flags & NetworkManager.NM_802_11_AP_SEC_PAIR_WEP104 or
@@ -506,30 +506,30 @@ class WifiManager:
             encryption += "802.1x "
         return encryption.strip()
 
-    # =============== 回调系统 ===============
+    # =============== Callback System ===============
     
     def add_callback(self, name, callback):
-        """添加回调函数"""
+        """Add a callback function."""
         if name in self._callbacks and callback not in self._callbacks[name]:
             self._callbacks[name].append(callback)
 
     def remove_callback(self, name, callback):
-        """移除回调函数"""
+        """Remove a callback function."""
         if name in self._callbacks and callback in self._callbacks[name]:
             self._callbacks[name].remove(callback)
             logging.debug(f"Removed callback for {name}")
 
     def callback(self, cb_type, msg):
-        """触发回调"""
+        """Trigger callbacks."""
         if cb_type in self._callbacks:
             for cb in self._callbacks[cb_type]:
                 GLib.idle_add(cb, msg)
 
-    # =============== 析构函数 ===============
+    # =============== Destructor ===============
     
     def __del__(self):
-        """析构函数，确保后台线程被正确关闭"""
+        """Destructor, ensures the background thread is properly shut down."""
         try:
             self.shutdown()
         except:
-            pass  # 忽略析构过程中的任何异常
+            pass  # Ignore any exceptions during destruction

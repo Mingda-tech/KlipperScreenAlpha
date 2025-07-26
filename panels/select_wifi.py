@@ -88,7 +88,7 @@ class Panel(ScreenPanel):
             self.wifi.add_callback("scan_results", self.scan_callback)
             self.wifi.add_callback("popup", self.popup_callback)
             
-            # 延迟加载网络列表，等待WiFi Manager初始化完成
+            # Delay network loading to wait for WiFi Manager initialization
             GLib.timeout_add_seconds(1, self.delayed_network_loading)
             
             if self.update_timeout is None:
@@ -106,23 +106,20 @@ class Panel(ScreenPanel):
         self.initialized = True
 
     def load_networks_async(self, widget=None):
-        """异步加载网络列表"""
-        logging.info("开始异步加载网络列表...")
+        """Load network list asynchronously"""
         
         def on_networks_loaded(networks, error):
             if error:
-                logging.error(f"加载网络列表失败: {error}")
+                logging.error(f"Failed to load network list: {error}")
                 if widget:
                     GLib.timeout_add_seconds(10, self._gtk.Button_busy, widget, False)
                 return
                 
             if not networks:
-                logging.info("未找到任何WiFi网络")
                 if widget:
                     GLib.timeout_add_seconds(10, self._gtk.Button_busy, widget, False)
                 return
                 
-            logging.info(f"找到 {len(networks)} 个WiFi网络: {networks}")
             for net in networks:
                 self.add_network(net, False)
             self.update_all_networks_async()
@@ -139,10 +136,10 @@ class Panel(ScreenPanel):
         if ssid in list(self.networks):
             return
 
-        # 异步获取supplicant网络信息
+        # Get supplicant network information asynchronously
         def on_supplicant_networks(configured_networks, error):
             if error:
-                logging.error(f"获取supplicant网络失败: {error}")
+                logging.error(f"Failed to get supplicant networks: {error}")
                 configured_networks = {}
                 
             network_id = -1
@@ -152,23 +149,18 @@ class Panel(ScreenPanel):
 
             display_name = _("Hidden") if ssid.startswith("\x00") else f"{ssid}"
             
-            # 异步获取网络信息
+            # Get network information asynchronously
             def on_network_info(netinfo, error):
-                if error:
-                    logging.debug(f"获取网络信息失败: {error}")
-                    netinfo = {'connected': False}
-                if netinfo is None:
-                    logging.debug("Couldn't get netinfo")
+                if error or netinfo is None:
                     netinfo = {'connected': False}
 
-                # 异步获取当前连接的SSID
+                # Get currently connected SSID asynchronously
                 def on_connected_ssid(connected_ssid, error):
                     if error:
                         connected_ssid = None
                     
-                    # 再次检查网络是否已存在（避免竞态条件）
+                    # Check if network already exists (avoid race condition)
                     if ssid in list(self.networks):
-                        logging.debug(f"网络 {ssid} 在创建过程中已被添加，跳过")
                         return
                         
                     name = Gtk.Label(hexpand=True, halign=Gtk.Align.START, wrap=True, wrap_mode=Pango.WrapMode.WORD_CHAR)
@@ -258,28 +250,23 @@ class Panel(ScreenPanel):
         return False
 
     def check_missing_networks(self):
-        """检查并添加缺失的网络"""
+        """Check and add missing networks"""
         def on_networks_loaded(networks, error):
-            if error:
-                logging.error(f"检查缺失网络失败: {error}")
+            if error or not networks:
                 return
                 
-            if not networks:
-                return
-                
-            # 找出缺失的网络
+            # Find missing networks
             missing_networks = []
             for net in networks:
                 if net not in list(self.networks):
                     missing_networks.append(net)
 
-            # 添加缺失的网络
+            # Add missing networks
             for net in missing_networks:
                 self.add_network(net, False)
                 
             if missing_networks:
                 self.labels['networklist'].show_all()
-                logging.debug(f"添加了缺失的网络: {missing_networks}")
             
         self.wifi.get_networks(on_networks_loaded)
 
@@ -301,14 +288,13 @@ class Panel(ScreenPanel):
 
     def connected_callback(self, ssid, prev_ssid):
         logging.info(f"Now connected to a new network: {ssid}")
-        # 不再删除和重新添加网络，而是直接刷新所有网络状态
-        # 这样可以避免UI组件的删除/重建导致的问题
+        # Refresh all network status without deleting/recreating UI components
         self.update_all_networks_async()
 
     def connect_network(self, widget, ssid, showadd=True):
         def on_supplicant_networks(configured_networks, error):
             if error:
-                logging.error(f"获取supplicant网络失败: {error}")
+                logging.error(f"Failed to get supplicant networks: {error}")
                 return
                 
             isdef = any(net['ssid'] == ssid for netid, net in configured_networks.items())
@@ -331,7 +317,7 @@ class Panel(ScreenPanel):
                     label=_("Starting WiFi Association"), halign=Gtk.Align.START, valign=Gtk.Align.START, wrap=True)
                 scroll.add(self.labels['connecting_info'])
                 
-                # 保存对话框实例
+                # Save dialog instance
                 self.connecting_dialog = self._gtk.Dialog(
                     _("Starting WiFi Association"), buttons, scroll, self._gtk.remove_dialog
                 )
@@ -343,8 +329,7 @@ class Panel(ScreenPanel):
                 
                 def on_connect_result(result, error):
                     if error:
-                        logging.error(f"连接失败: {error}")
-                        # 现在状态更新由connecting_status_callback处理
+                        logging.error(f"Connection failed: {error}")
                         
                 self.wifi.connect(ssid, on_connect_result)
                 
@@ -353,7 +338,7 @@ class Panel(ScreenPanel):
         self.wifi.get_supplicant_networks(on_supplicant_networks)
 
     def on_connecting_dialog_close(self, dialog, response):
-        """当用户手动关闭对话框时，确保清理回调"""
+        """Clean up callbacks when user manually closes dialog"""
         self.connecting_dialog = None
         if self.wifi:
             self.wifi.remove_callback("connecting_status", self.connecting_status_callback)
@@ -363,33 +348,33 @@ class Panel(ScreenPanel):
             self.labels['connecting_info'].set_text(f"{self.labels['connecting_info'].get_text()}\n{msg}")
             self.labels['connecting_info'].show_all()
 
-        # 检查是否连接完成或失败
-        final_states = ["已连接", "连接失败", "Connection failed", "Connected"]
+        # Check if connection is complete or failed
+        final_states = ["Connected", "Connection failed", "已连接", "连接失败"]
         if any(state in msg for state in final_states):
-            # 延迟关闭对话框，以便用户可以看到最终状态
+            # Delay closing dialog so user can see final status
             GLib.timeout_add_seconds(2, self.close_connecting_dialog)
 
     def close_connecting_dialog(self):
-        """关闭连接对话框并移除回调"""
+        """Close connecting dialog and remove callbacks"""
         if self.connecting_dialog:
             self._gtk.remove_dialog(self.connecting_dialog)
             self.connecting_dialog = None
         if self.wifi:
             self.wifi.remove_callback("connecting_status", self.connecting_status_callback)
-        return False  # 只执行一次
+        return False  # Execute only once
 
     def remove_network(self, ssid, show=True):
         if ssid not in list(self.networks):
             return
         
-        # 安全地查找并删除网络行
+        # Safely find and remove network row
         try:
-            # 遍历所有行来找到要删除的网络
+            # Find the network by iterating through all rows
             network_widget = self.networks[ssid]
             found_row = -1
             
-            # 获取Grid中的行数
-            for row in range(100):  # 使用一个合理的上限
+            # Get row count in Grid
+            for row in range(100):  # Use reasonable upper limit
                 child = self.labels['networklist'].get_child_at(0, row)
                 if child is None:
                     break
@@ -401,19 +386,18 @@ class Panel(ScreenPanel):
                 self.labels['networklist'].remove_row(found_row)
                 self.labels['networklist'].show()
             
-            # 清理数据结构
+            # Clean up data structures
             del self.networks[ssid]
             if ssid in self.labels['networks']:
                 del self.labels['networks'][ssid]
                 
-            logging.debug(f"成功删除网络: {ssid}")
         except Exception as e:
-            logging.error(f"删除网络 {ssid} 时出错: {e}")
+            logging.error(f"Error removing network {ssid}: {e}")
 
     def remove_wifi_network(self, widget, ssid):
         def on_network_deleted(result, error):
             if error:
-                logging.error(f"删除网络失败: {error}")
+                logging.error(f"Failed to delete network: {error}")
             else:
                 self.remove_network(ssid)
                 self.check_missing_networks()
@@ -461,25 +445,25 @@ class Panel(ScreenPanel):
         self.show_add = True
 
     def update_all_networks_async(self):
-        """异步更新所有网络信息"""
+        """Update all network information asynchronously"""
         if self.wifi is None or not self.wifi.initialized:
-            return True  # 继续周期性调用，等待初始化完成
+            return True  # Continue periodic calls, wait for initialization
             
         networks_to_update = list(self.networks.keys())
         
         def update_next_network():
             if not networks_to_update:
-                return True  # 返回True继续周期性调用
+                return True  # Return True to continue periodic calls
                 
             ssid = networks_to_update.pop(0)
             
             def on_network_info_updated(netinfo, error):
                 if not error and netinfo:
                     self.update_network_info_with_data(ssid, netinfo)
-                # 继续更新下一个网络
+                # Continue updating next network
                 GLib.idle_add(update_next_network)
                 
-            if ssid in self.networks:  # 确保网络仍然存在
+            if ssid in self.networks:  # Ensure network still exists
                 self.wifi.get_network_info(ssid, on_network_info_updated)
             else:
                 GLib.idle_add(update_next_network)
@@ -488,13 +472,13 @@ class Panel(ScreenPanel):
         return True
 
     def update_network_info_with_data(self, ssid, netinfo):
-        """使用提供的网络信息更新UI"""
+        """Update UI with provided network information"""
         if ssid not in list(self.networks) or ssid not in self.labels['networks']:
             logging.info(f"Unknown SSID {ssid}")
             return
 
         def on_connected_ssid(connected_ssid, error):
-            # 初始化所有变量
+            # Initialize all variables
             info = freq = encr = chan = lvl = ipv4 = ipv6 = ""
             
             if error:
@@ -572,7 +556,7 @@ class Panel(ScreenPanel):
         self.labels['networklist'].remove_column(0)
         if self.wifi is not None:
             if not self.wifi.initialized:
-                logging.warning("WiFi Manager尚未初始化，无法重新扫描")
+                logging.warning("WiFi Manager not initialized, cannot rescan")
                 if widget:
                     GLib.timeout_add_seconds(1, self._gtk.Button_busy, widget, False)
                 return
@@ -582,24 +566,23 @@ class Panel(ScreenPanel):
                 
             def on_rescan_complete(result, error):
                 if error:
-                    logging.error(f"重新扫描失败: {error}")
+                    logging.error(f"Rescan failed: {error}")
                     if widget:
                         GLib.timeout_add_seconds(10, self._gtk.Button_busy, widget, False)
                 else:
-                    # 扫描完成后加载网络列表
+                    # Load network list after scan completes
                     GLib.timeout_add_seconds(2, self.load_networks_async, widget)
                     
             self.wifi.rescan(on_rescan_complete)
 
     def delayed_network_loading(self):
-        """延迟加载网络列表，等待WiFi Manager初始化完成"""
+        """Delay network loading to wait for WiFi Manager initialization"""
         if self.wifi is not None and self.wifi.initialized:
-            logging.info("WiFi Manager已初始化，开始加载网络列表")
+            logging.info("WiFi Manager initialized, starting network list loading")
             self.load_networks_async()
-            return False  # 停止重复调用
+            return False  # Stop repeating calls
         else:
-            logging.debug("WiFi Manager尚未初始化，继续等待...")
-            return True  # 继续等待
+            return True  # Continue waiting
 
     def activate(self):
         if self.initialized:
@@ -616,11 +599,11 @@ class Panel(ScreenPanel):
             self.update_timeout = None
 
     def on_back_click(self, widget=None):
-        # 通过setup_init判断是否从setup_force_move面板过来的
+        # Check if coming from setup_force_move panel via setup_init
         if self._screen.setup_init != 2:
             self._screen.show_panel("setup_force_move", _("Remove Foam"), remove_all=True)
         else:
-            # 其他情况返回到语言选择面板
+            # Otherwise return to language selection panel
             self._screen.show_panel("setup_wizard", _("Choose Language"), remove_all=True)
 
     def on_next_click(self, widget=None):
