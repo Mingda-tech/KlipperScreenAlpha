@@ -222,28 +222,51 @@ class WifiManager:
         if ssid in self.known_networks:
             con = self.known_networks[ssid]
             with suppress(NetworkManager.ObjectVanished):
-                settings = con.GetSettings()
-                if settings and '802-11-wireless' in settings:
-                    netinfo.update({
-                        "ssid": settings['802-11-wireless']['ssid'],
-                        "connected": self._worker_get_connected_ssid() == ssid
-                    })
+                try:
+                    settings = con.GetSettings()
+                    if settings and '802-11-wireless' in settings:
+                        netinfo.update({
+                            "ssid": settings['802-11-wireless']['ssid'],
+                            "connected": self._worker_get_connected_ssid() == ssid
+                        })
+                except Exception as e:
+                    logging.debug(f"获取网络 {ssid} 的设置时出错: {e}")
         
         path = self.path_by_ssid.get(ssid)
         if path and path in self.visible_networks:
             ap = self.visible_networks[path]
             with suppress(NetworkManager.ObjectVanished):
-                netinfo.update({
-                    "mac": ap.HwAddress,
-                    "channel": WifiChannels.lookup(str(ap.Frequency))[1],
-                    "configured": ssid in self.known_networks,
-                    "frequency": str(ap.Frequency),
-                    "flags": ap.Flags,
-                    "ssid": ssid,
-                    "connected": self._get_connected_ap() == ap,
-                    "encryption": self._get_encryption(ap.RsnFlags),
-                    "signal_level_dBm": str(ap.Strength)
-                })
+                try:
+                    # 安全地获取频率和信道信息
+                    frequency = getattr(ap, 'Frequency', None)
+                    channel_info = None
+                    if frequency:
+                        try:
+                            channel_info = WifiChannels.lookup(str(frequency))
+                        except Exception as e:
+                            logging.debug(f"查找信道信息时出错: {e}")
+                    
+                    netinfo.update({
+                        "mac": getattr(ap, 'HwAddress', ''),
+                        "channel": channel_info[1] if channel_info and len(channel_info) > 1 else '',
+                        "configured": ssid in self.known_networks,
+                        "frequency": str(frequency) if frequency else '',
+                        "flags": getattr(ap, 'Flags', 0),
+                        "ssid": ssid,
+                        "connected": self._get_connected_ap() == ap,
+                        "encryption": self._get_encryption(getattr(ap, 'RsnFlags', 0)),
+                        "signal_level_dBm": str(getattr(ap, 'Strength', 0))
+                    })
+                except Exception as e:
+                    logging.debug(f"获取接入点 {ssid} 信息时出错: {e}")
+                    # 提供基本信息
+                    netinfo.update({
+                        "ssid": ssid,
+                        "configured": ssid in self.known_networks,
+                        "connected": False,
+                        "encryption": "",
+                        "signal_level_dBm": "0"
+                    })
         return netinfo
 
     def _worker_connect(self, ssid: str):
@@ -402,10 +425,20 @@ class WifiManager:
             msg = "等待辅助连接（如VPN）"
         elif new_state == NetworkManager.NM_DEVICE_STATE_ACTIVATED:
             msg = "已连接"
+            self.connected = True
+            # 异步获取连接的SSID
+            def on_connected_ssid(ssid, error):
+                if not error:
+                    for cb in self._callbacks['connected']:
+                        args = (cb, ssid, None)
+                        GLib.idle_add(*args)
+            self.get_connected_ssid(on_connected_ssid)
         elif new_state == NetworkManager.NM_DEVICE_STATE_DEACTIVATING:
             msg = "正在断开连接"
+            self.connected = False
         elif new_state == NetworkManager.NM_DEVICE_STATE_FAILED:
             msg = "连接失败"
+            self.connected = False
             self.callback("popup", msg)
         elif new_state == NetworkManager.NM_DEVICE_STATE_REASON_DEPENDENCY_FAILED:
             msg = "连接依赖失败"
@@ -416,18 +449,6 @@ class WifiManager:
             
         if msg != "":
             self.callback("connecting_status", msg)
-
-        if new_state == NetworkManager.NM_DEVICE_STATE_ACTIVATED:
-            self.connected = True
-            # 异步获取连接的SSID
-            def on_connected_ssid(ssid, error):
-                if not error:
-                    for cb in self._callbacks['connected']:
-                        args = (cb, ssid, None)
-                        GLib.idle_add(*args)
-            self.get_connected_ssid(on_connected_ssid)
-        else:
-            self.connected = False
 
     def _add_ap(self, ap):
         """添加接入点"""
@@ -491,6 +512,12 @@ class WifiManager:
         """添加回调函数"""
         if name in self._callbacks and callback not in self._callbacks[name]:
             self._callbacks[name].append(callback)
+
+    def remove_callback(self, name, callback):
+        """移除回调函数"""
+        if name in self._callbacks and callback in self._callbacks[name]:
+            self._callbacks[name].remove(callback)
+            logging.debug(f"Removed callback for {name}")
 
     def callback(self, cb_type, msg):
         """触发回调"""
