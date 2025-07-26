@@ -2,6 +2,7 @@ import logging
 import os
 import gi
 import netifaces
+import threading
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib, Pango
@@ -36,14 +37,7 @@ class Panel(ScreenPanel):
             logging.info(_("No wireless interface has been found"))
 
         # Get IP Address
-        gws = netifaces.gateways()
-        if "default" in gws and netifaces.AF_INET in gws["default"]:
-            self.interface = gws["default"][netifaces.AF_INET][1]
-        else:
-            ints = netifaces.interfaces()
-            if 'lo' in ints:
-                ints.pop(ints.index('lo'))
-            self.interface = ints[0] if len(ints) > 0 else 'lo'
+        self.update_interface_info()
 
         self.labels['networks'] = {}
 
@@ -104,6 +98,77 @@ class Panel(ScreenPanel):
         self.content.add(box)
         self.labels['main_box'] = box
         self.initialized = True
+
+    def update_interface_info(self):
+        """Update network interface information"""
+        gws = netifaces.gateways()
+        if "default" in gws and netifaces.AF_INET in gws["default"]:
+            self.interface = gws["default"][netifaces.AF_INET][1]
+        else:
+            ints = netifaces.interfaces()
+            if 'lo' in ints:
+                ints.pop(ints.index('lo'))
+            self.interface = ints[0] if len(ints) > 0 else 'lo'
+        
+        # Update interface label
+        if hasattr(self, 'labels') and 'interface' in self.labels:
+            self.labels['interface'].set_text(_("Interface") + f': {self.interface}  ')
+        
+        logging.debug(f"Updated interface to: {self.interface}")
+
+    def refresh_ip_async(self):
+        """Asynchronously refresh IP address"""
+        def get_ip_info():
+            """Get IP information in background thread"""
+            try:
+                # Re-get interface information
+                gws = netifaces.gateways()
+                if "default" in gws and netifaces.AF_INET in gws["default"]:
+                    interface = gws["default"][netifaces.AF_INET][1]
+                else:
+                    ints = netifaces.interfaces()
+                    if 'lo' in ints:
+                        ints.pop(ints.index('lo'))
+                    interface = ints[0] if len(ints) > 0 else 'lo'
+                
+                # Get IP address
+                ifadd = netifaces.ifaddresses(interface)
+                ip_addr = None
+                if ifadd.get(netifaces.AF_INET):
+                    ip_addr = ifadd[netifaces.AF_INET][0]['addr']
+                
+                return interface, ip_addr
+            except Exception as e:
+                logging.error(f"Error getting IP info: {e}")
+                return None, None
+        
+        def update_ui(interface, ip_addr):
+            """Update UI in main thread"""
+            try:
+                if interface:
+                    self.interface = interface
+                    self.labels['interface'].set_text(_("Interface") + f': {self.interface}  ')
+                
+                if ip_addr:
+                    self.labels['ip'].set_text(f"IP: {ip_addr}  ")
+                    logging.debug(f"Updated IP display to: {ip_addr}")
+                else:
+                    self.labels['ip'].set_text("IP: N/A  ")
+                    logging.debug("No IPv4 address found")
+            except Exception as e:
+                logging.error(f"Error updating UI: {e}")
+            
+            return False  # Execute only once
+        
+        # Execute network operations in background thread
+        def background_task():
+            interface, ip_addr = get_ip_info()
+            # Schedule UI update to main thread
+            GLib.idle_add(update_ui, interface, ip_addr)
+        
+        # Start background thread
+        thread = threading.Thread(target=background_task, daemon=True)
+        thread.start()
 
     def load_networks_async(self, widget=None):
         """Load network list asynchronously"""
@@ -288,7 +353,11 @@ class Panel(ScreenPanel):
 
     def connected_callback(self, ssid, prev_ssid):
         logging.info(f"Now connected to a new network: {ssid}")
-        # Refresh all network status without deleting/recreating UI components
+        
+        # Asynchronously refresh IP address after 2 seconds delay
+        GLib.timeout_add_seconds(2, lambda: (self.refresh_ip_async(), False)[1])
+        
+        # Refresh all network status
         self.update_all_networks_async()
 
     def connect_network(self, widget, ssid, showadd=True):
@@ -349,7 +418,7 @@ class Panel(ScreenPanel):
             self.labels['connecting_info'].show_all()
 
         # Check if connection is complete or failed
-        final_states = ["Connected", "Connection failed", "已连接", "连接失败"]
+        final_states = ["Connected", "Connection failed", _("Connected"), _("Connection failed")]
         if any(state in msg for state in final_states):
             # Delay closing dialog so user can see final status
             GLib.timeout_add_seconds(2, self.close_connecting_dialog)
@@ -535,20 +604,8 @@ class Panel(ScreenPanel):
             return self._gtk.Image('wifi_weak')
 
     def update_single_network_info(self):
-        ifadd = netifaces.ifaddresses(self.interface)
-        ipv6 = f"{ifadd[netifaces.AF_INET6][0]['addr'].split('%')[0]}" if ifadd.get(netifaces.AF_INET6) else ""
-        if netifaces.AF_INET in ifadd and ifadd[netifaces.AF_INET]:
-            ipv4 = f"{ifadd[netifaces.AF_INET][0]['addr']} "
-            self.labels['ip'].set_text(f"IP: {ifadd[netifaces.AF_INET][0]['addr']}  ")
-        else:
-            ipv4 = ""
-        self.labels['networkinfo'].set_markup(
-            f'<b>{self.interface}</b>\n\n'
-            + '<b>' + _("Hostname") + f':</b> {os.uname().nodename}\n'
-            f'<b>IPv4:</b> {ipv4}\n'
-            f'<b>IPv6:</b> {ipv6}'
-        )
-        self.labels['networkinfo'].show_all()
+        # Asynchronously refresh IP information to avoid UI freezing
+        self.refresh_ip_async()
         return True
 
     def reload_networks(self, widget=None):
@@ -570,6 +627,8 @@ class Panel(ScreenPanel):
                     if widget:
                         GLib.timeout_add_seconds(10, self._gtk.Button_busy, widget, False)
                 else:
+                    # Asynchronously refresh IP address
+                    self.refresh_ip_async()
                     # Load network list after scan completes
                     GLib.timeout_add_seconds(2, self.load_networks_async, widget)
                     
@@ -586,6 +645,9 @@ class Panel(ScreenPanel):
 
     def activate(self):
         if self.initialized:
+            # Asynchronously refresh IP information when activated
+            self.refresh_ip_async()
+            
             self.reload_networks()
             if self.update_timeout is None:
                 if self.wifi is not None:
