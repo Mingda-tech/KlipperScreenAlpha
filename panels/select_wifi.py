@@ -25,10 +25,10 @@ class Panel(ScreenPanel):
         if self.wireless_interfaces:
             logging.info(f"Found wireless interfaces: {self.wireless_interfaces}")
             if self.use_network_manager:
-                logging.info("Using NetworkManager")
+                logging.info("Network Manager is active, using ks_includes/wifi_nm.py")
                 from ks_includes.wifi_nm import WifiManager
             else:
-                logging.info("Using wpa_cli")
+                logging.info("Network Manager is not active, using ks_includes/wifi.py (wpa_cli)")
                 from ks_includes.wifi import WifiManager
             self.wifi = WifiManager(self.wireless_interfaces[0])
         else:
