@@ -437,7 +437,7 @@ class WifiManager:
             msg = "Disconnecting"
             self.connected = False
         elif new_state == NetworkManager.NM_DEVICE_STATE_FAILED:
-            msg = "Connection failed"
+            msg = _("Connection failed")
             self.connected = False
             self.callback("popup", msg)
         elif new_state == NetworkManager.NM_DEVICE_STATE_REASON_DEPENDENCY_FAILED:
