@@ -298,19 +298,81 @@ class KlipperScreenConfig:
             {"print_sort_dir": {"section": "main", "type": None, "value": "name_asc"}},
         ]
 
-        # AI related options that should only show in ai_pause panel
+        # AI related options that should only show in ai_settings panel
         ai_options = [
-            {"ai_service": {"section": "main", "name": _("AI Service"), "type": "binary", "value": "False"}},
+            {"ai_service": {
+                "section": "main", 
+                "name": _("AI Detection Service"), 
+                "type": "binary", 
+                "value": "False"
+            }},
+            {"ai_server_url": {
+                "section": "main", 
+                "name": _("AI Server URL"), 
+                "type": "text", 
+                "value": "http://localhost:5000"
+            }},
             {"ai_confidence_threshold": {
                 "section": "main", 
-                "name": _("AI Confidence Threshold"), 
+                "name": _("Confidence Threshold (%)"), 
                 "type": "scale", 
                 "value": "80",
-                "range": [0, 100],
-                "step": 1
+                "range": [50, 95],
+                "step": 5
             }},
-            {"ai_auto_pause": {"section": "main", "name": _("Auto Pause on AI Detection"), "type": "binary", "value": "False"}},
-            {"ai_cloud_service": {"section": "main", "name": _("Use AI Cloud Service"), "type": "binary", "value": "True"}},
+            {"ai_detection_interval": {
+                "section": "main", 
+                "name": _("Detection Interval (seconds)"), 
+                "type": "scale", 
+                "value": "30",
+                "range": [10, 300],
+                "step": 10
+            }},
+            {"ai_auto_pause": {
+                "section": "main", 
+                "name": _("Auto Pause on Detection"), 
+                "type": "binary", 
+                "value": "False"
+            }},
+            {"ai_defect_types": {
+                "section": "main", 
+                "name": _("Enabled Defect Types"), 
+                "type": "multi_select",
+                "value": "spaghetti,layer_crack,warping",
+                "options": [
+                    "spaghetti", "head_burst", "misalignment", 
+                    "layer_crack", "warping", "porosity"
+                ]
+            }},
+            {"ai_camera_source": {
+                "section": "main", 
+                "name": _("Camera Source"), 
+                "type": "dropdown",
+                "value": "moonraker",
+                "options": [
+                    {"name": _("Moonraker"), "value": "moonraker"},
+                    {"name": _("Local"), "value": "local"},
+                    {"name": _("URL"), "value": "url"}
+                ]
+            }},
+            {"ai_camera_url": {
+                "section": "main", 
+                "name": _("Camera URL"), 
+                "type": "text", 
+                "value": "http://camera/snapshot"
+            }},
+            {"ai_detection_enabled_while_paused": {
+                "section": "main", 
+                "name": _("Continue Detection While Paused"), 
+                "type": "binary", 
+                "value": "False"
+            }},
+            {"ai_notification_sound": {
+                "section": "main", 
+                "name": _("Sound Notification"), 
+                "type": "binary", 
+                "value": "True"
+            }},
         ]
 
         self.configurable_options.extend(panel_options)
@@ -619,3 +681,91 @@ class KlipperScreenConfig:
         }
 
         return {name[(len(menu) + 6):]: item}
+    
+    # AI Configuration Access Methods
+    def get_ai_enabled(self):
+        """获取AI服务是否启用"""
+        return self.config.getboolean('main', 'ai_service', fallback=False)
+    
+    def get_ai_server_url(self):
+        """获取AI服务器URL"""
+        return self.config.get('main', 'ai_server_url', fallback='http://localhost:8080')
+    
+    def get_ai_confidence_threshold(self):
+        """获取置信度阈值"""
+        return self.config.getint('main', 'ai_confidence_threshold', fallback=80)
+    
+    def get_ai_detection_interval(self):
+        """获取检测间隔（秒）"""
+        return self.config.getint('main', 'ai_detection_interval', fallback=30)
+    
+    def get_ai_auto_pause(self):
+        """获取是否自动暂停"""
+        return self.config.getboolean('main', 'ai_auto_pause', fallback=False)
+    
+    def get_enabled_defect_types(self):
+        """获取启用的缺陷类型列表"""
+        types_str = self.config.get('main', 'ai_defect_types', fallback='spaghetti,layer_crack,warping')
+        return [t.strip() for t in types_str.split(',') if t.strip()]
+    
+    def get_camera_source(self):
+        """获取摄像头源"""
+        return self.config.get('main', 'ai_camera_source', fallback='moonraker')
+    
+    def get_camera_url(self):
+        """获取摄像头URL"""
+        return self.config.get('main', 'ai_camera_url', fallback='http://camera/snapshot')
+    
+    def get_ai_detection_enabled_while_paused(self):
+        """获取是否在暂停时继续检测"""
+        return self.config.getboolean('main', 'ai_detection_enabled_while_paused', fallback=False)
+    
+    def get_ai_notification_sound(self):
+        """获取是否启用声音通知"""
+        return self.config.getboolean('main', 'ai_notification_sound', fallback=True)
+    
+    def get_moonraker_cameras(self):
+        """获取Moonraker摄像头配置"""
+        # This method should be implemented to get actual camera configurations from Moonraker
+        # For now, return a basic configuration based on the camera URL setting
+        cameras = []
+        camera_url = self.get_camera_url()
+        if camera_url:
+            cameras.append({
+                'name': 'default',
+                'stream_url': camera_url.rsplit('/', 1)[0] if '/' in camera_url else camera_url,
+                'snapshot_url': camera_url
+            })
+        return cameras
+    
+    def get_ai_options(self):
+        """获取AI配置选项"""
+        return getattr(self, 'ai_options', [])
+    
+    def validate_ai_config(self):
+        """验证AI配置"""
+        errors = []
+        
+        # 验证服务器URL
+        server_url = self.get_ai_server_url()
+        if not server_url.startswith(('http://', 'https://')):
+            errors.append("Invalid AI server URL format")
+        
+        # 验证置信度阈值
+        threshold = self.get_ai_confidence_threshold()
+        if not 0 <= threshold <= 100:
+            errors.append("Confidence threshold must be between 0 and 100")
+        
+        # 验证检测间隔
+        interval = self.get_ai_detection_interval()
+        if interval < 5:
+            errors.append("Detection interval must be at least 5 seconds")
+        
+        # 验证缺陷类型
+        defect_types = self.get_enabled_defect_types()
+        valid_types = ["spaghetti", "head_burst", "misalignment", "layer_crack", "warping", "porosity"]
+        for defect_type in defect_types:
+            if defect_type not in valid_types:
+                errors.append(f"Invalid defect type: {defect_type}")
+        
+        return errors

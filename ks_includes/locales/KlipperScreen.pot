@@ -794,3 +794,262 @@ msgstr ""
 
 msgid "mm³/s"
 msgstr ""
+
+# AI Detection related strings
+msgid "AI Detection Service"
+msgstr ""
+
+msgid "AI Server URL"
+msgstr ""
+
+msgid "AI Confidence Threshold"
+msgstr ""
+
+msgid "AI Detection Interval"
+msgstr ""
+
+msgid "AI Auto Pause"
+msgstr ""
+
+msgid "AI Defect Types"
+msgstr ""
+
+msgid "AI Camera Source"
+msgstr ""
+
+msgid "AI Camera URL"
+msgstr ""
+
+msgid "AI Detection Enabled While Paused"
+msgstr ""
+
+msgid "AI Notification Sound"
+msgstr ""
+
+msgid "AI Monitor"
+msgstr ""
+
+msgid "AI Settings"
+msgstr ""
+
+msgid "AI Detection Alert"
+msgstr ""
+
+msgid "AI Warning"
+msgstr ""
+
+msgid "Detected Defect"
+msgstr ""
+
+msgid "Confidence"
+msgstr ""
+
+msgid "Detection Time"
+msgstr ""
+
+msgid "Print has been automatically paused"
+msgstr ""
+
+msgid "Please check your print and decide the next action"
+msgstr ""
+
+msgid "Continue Print"
+msgstr ""
+
+msgid "Cancel Print"
+msgstr ""
+
+msgid "View Details"
+msgstr ""
+
+msgid "Print resumed"
+msgstr ""
+
+msgid "Failed to resume print"
+msgstr ""
+
+msgid "Print cancelled"
+msgstr ""
+
+msgid "Failed to cancel print"
+msgstr ""
+
+msgid "Spaghetti (炒面)"
+msgstr ""
+
+msgid "Head Burst (爆头)"
+msgstr ""
+
+msgid "Misalignment (错位)"
+msgstr ""
+
+msgid "Layer Crack (层间开裂)"
+msgstr ""
+
+msgid "Warping (翘曲变形)"
+msgstr ""
+
+msgid "Porosity (孔隙)"
+msgstr ""
+
+msgid "Spaghetti failure detected. The filament appears to be tangled or the print has failed catastrophically. Immediate attention required."
+msgstr ""
+
+msgid "Head burst detected. There may be a nozzle clog or extrusion problem. Check the hotend and clear any blockages."
+msgstr ""
+
+msgid "Layer misalignment detected. Check belt tension, motor steps, and mechanical components for proper alignment."
+msgstr ""
+
+msgid "Layer adhesion problems detected. Check print temperature, layer height, and cooling settings."
+msgstr ""
+
+msgid "Warping detected. Consider adjusting bed temperature, print speed, or adding support structures."
+msgstr ""
+
+msgid "Surface porosity detected. Check extrusion multiplier, print speed, and temperature settings."
+msgstr ""
+
+msgid "An issue has been detected with your print. Please inspect the print carefully."
+msgstr ""
+
+msgid "Configure AI service settings here. The AI service can monitor your prints and detect potential issues like spaghetti failures, layer cracks, and warping. You can adjust the confidence threshold and choose whether to automatically pause prints when issues are detected."
+msgstr ""
+
+msgid "Defect Types"
+msgstr ""
+
+msgid "Connection Test"
+msgstr ""
+
+msgid "Test Connection"
+msgstr ""
+
+msgid "Not tested"
+msgstr ""
+
+msgid "✅ Connected - {} models loaded"
+msgstr ""
+
+msgid "✅ Server connected, camera OK"
+msgstr ""
+
+msgid "⚠️ Server OK, camera failed"
+msgstr ""
+
+msgid "⚠️ Camera OK, server failed"
+msgstr ""
+
+msgid "❌ Connection failed: {}"
+msgstr ""
+
+msgid "❌ AI manager not initialized"
+msgstr ""
+
+msgid "❌ Error: {}"
+msgstr ""
+
+msgid "🔄 Testing..."
+msgstr ""
+
+msgid "Detection Statistics"
+msgstr ""
+
+msgid "Total Detections"
+msgstr ""
+
+msgid "Defect Detections"
+msgstr ""
+
+msgid "Defect Rate"
+msgstr ""
+
+msgid "Avg Inference Time"
+msgstr ""
+
+msgid "Refresh Stats"
+msgstr ""
+
+msgid "AI Detection Status"
+msgstr ""
+
+msgid "Current Image"
+msgstr ""
+
+msgid "Last Detection"
+msgstr ""
+
+msgid "Detection History"
+msgstr ""
+
+msgid "Manual Detection"
+msgstr ""
+
+msgid "Capture & Analyze"
+msgstr ""
+
+msgid "Clear History"
+msgstr ""
+
+msgid "Status: {}"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Idle"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "No image available"
+msgstr ""
+
+msgid "Last: {} at {}"
+msgstr ""
+
+msgid "No detections yet"
+msgstr ""
+
+msgid "Manual detection started"
+msgstr ""
+
+msgid "Failed to perform manual detection"
+msgstr ""
+
+msgid "Detection history cleared"
+msgstr ""
+
+msgid "Failed to clear detection history"
+msgstr ""
+
+msgid "🔍 Analyzing image..."
+msgstr ""
+
+msgid "📸 Capturing image..."
+msgstr ""
+
+msgid "Server Health"
+msgstr ""
+
+msgid "Model Status"
+msgstr ""
+
+msgid "Healthy"
+msgstr ""
+
+msgid "Unhealthy"
+msgstr ""
+
+msgid "Loaded"
+msgstr ""
+
+msgid "Failed"
+msgstr ""

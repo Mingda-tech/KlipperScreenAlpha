@@ -8,3 +8,5 @@ build/
 venv/
 CLAUDE.md
 .claude/settings.local.json
+docs/ai_architecture_design.md
+docs/ai_klipperscreen_integration.md
