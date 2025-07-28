@@ -164,6 +164,9 @@ msgstr "Prijungta"
 msgid "Connecting to %s"
 msgstr "Prisijungiama prie %s"
 
+msgid "Connection failed"
+msgstr "Prisijungimas nepavyko"
+
 msgid "Console"
 msgstr "Terminalas"
 

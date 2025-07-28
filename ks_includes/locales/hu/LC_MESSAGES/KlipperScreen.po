@@ -207,6 +207,9 @@ msgstr "Csatlakoztatva"
 msgid "Connecting to %s"
 msgstr "Csatlakozás %s"
 
+msgid "Connection failed"
+msgstr "Csatlakozás sikertelen"
+
 msgid "Console"
 msgstr "Konzol"
 

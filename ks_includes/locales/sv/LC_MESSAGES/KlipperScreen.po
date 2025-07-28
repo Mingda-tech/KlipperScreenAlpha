@@ -164,6 +164,9 @@ msgstr "Ansluten"
 msgid "Connecting to %s"
 msgstr "Ansluter till %s"
 
+msgid "Connection failed"
+msgstr "Anslutning misslyckades"
+
 msgid "Console"
 msgstr "Konsol"
 

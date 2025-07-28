@@ -164,6 +164,9 @@ msgstr "Verbunden"
 msgid "Connecting to %s"
 msgstr "Verbinden zu %s"
 
+msgid "Connection failed"
+msgstr "Verbindung fehlgeschlagen"
+
 msgid "Console"
 msgstr "Konsole"
 

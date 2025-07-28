@@ -207,6 +207,9 @@ msgstr "연결됨"
 msgid "Connecting to %s"
 msgstr "%s에 연결 중"
 
+msgid "Connection failed"
+msgstr "연결 실패"
+
 msgid "Console"
 msgstr "콘솔 제어"
 

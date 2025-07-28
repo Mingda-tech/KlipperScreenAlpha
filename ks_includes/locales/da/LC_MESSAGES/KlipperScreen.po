@@ -158,6 +158,9 @@ msgstr "Forbundet"
 msgid "Connecting to %s"
 msgstr "Forbinder til %s"
 
+msgid "Connection failed"
+msgstr "Forbindelse mislykkedes"
+
 msgid "Console"
 msgstr "Terminal"
 

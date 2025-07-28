@@ -181,7 +181,7 @@ msgid "Connecting to %s"
 msgstr "Povezujem s/z %s"
 
 msgid "Connection failed"
-msgstr ""
+msgstr "Povezava ni uspela"
 
 msgid "Console"
 msgstr "Konzola"

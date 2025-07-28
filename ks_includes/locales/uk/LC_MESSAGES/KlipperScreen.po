@@ -211,6 +211,9 @@ msgstr "Підключено"
 msgid "Connecting to %s"
 msgstr "Підключення до %s"
 
+msgid "Connection failed"
+msgstr "Підключення не вдалося"
+
 msgid "Console"
 msgstr "Консоль"
 

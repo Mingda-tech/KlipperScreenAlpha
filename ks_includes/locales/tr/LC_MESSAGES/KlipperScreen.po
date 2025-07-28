@@ -163,6 +163,9 @@ msgstr "Bağlandı"
 msgid "Connecting to %s"
 msgstr "%s'e Bağlanılıyor"
 
+msgid "Connection failed"
+msgstr "Bağlantı başarısız"
+
 msgid "Console"
 msgstr "Konsol"
 

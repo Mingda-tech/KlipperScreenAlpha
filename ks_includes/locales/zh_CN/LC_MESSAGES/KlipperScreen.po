@@ -140,7 +140,7 @@ msgid "Cannot connect to Moonraker"
 msgstr "无法连接到Moonraker"
 
 msgid "Channel"
-msgstr "群组"
+msgstr "频道"
 
 msgid "Check ADXL Wiring"
 msgstr "检查ADXL的接线"
@@ -500,7 +500,7 @@ msgid "Outdated by %d"
 msgstr "已落后 %d"
 
 msgid "PSK for"
-msgstr "PSK"
+msgstr "WiFi密码"
 
 msgid "Package will be updated"
 msgstr "软件包将被更新"
@@ -787,6 +787,9 @@ msgstr "更改"
 
 msgid "dBm"
 msgstr "dBm"
+
+msgid "Connection failed"
+msgstr "连接失败"
 
 msgid "hour"
 msgstr "小时"

@@ -163,6 +163,9 @@ msgstr "已連線"
 msgid "Connecting to %s"
 msgstr "連線到 %s"
 
+msgid "Connection failed"
+msgstr "連線失敗"
+
 msgid "Console"
 msgstr "控制台"
 

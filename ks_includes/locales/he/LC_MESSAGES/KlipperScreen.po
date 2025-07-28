@@ -165,6 +165,9 @@ msgstr "מחובר"
 msgid "Connecting to %s"
 msgstr "מתחבר ל- %s"
 
+msgid "Connection failed"
+msgstr "החיבור נכשל"
+
 msgid "Console"
 msgstr "קונסול"
 

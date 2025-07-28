@@ -211,6 +211,9 @@ msgstr "Conectado"
 msgid "Connecting to %s"
 msgstr "Conectando %s"
 
+msgid "Connection failed"
+msgstr "Conexão falhou"
+
 msgid "Console"
 msgstr "Terminal"
 

@@ -165,6 +165,9 @@ msgstr "Подключено"
 msgid "Connecting to %s"
 msgstr "Подключён к %s"
 
+msgid "Connection failed"
+msgstr "Подключение не удалось"
+
 msgid "Console"
 msgstr "Консоль"
 

@@ -208,6 +208,9 @@ msgstr "Połączono"
 msgid "Connecting to %s"
 msgstr "Łączenie z %s"
 
+msgid "Connection failed"
+msgstr "Połączenie nieudane"
+
 msgid "Console"
 msgstr "Konsola"
 

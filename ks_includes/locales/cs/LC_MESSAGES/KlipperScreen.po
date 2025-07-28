@@ -164,6 +164,9 @@ msgstr "Připojeno"
 msgid "Connecting to %s"
 msgstr "Připojování k %s"
 
+msgid "Connection failed"
+msgstr "Připojení selhalo"
+
 msgid "Console"
 msgstr "Konsole"
 
