@@ -286,7 +286,6 @@ class KlipperScreenConfig:
                                     "value": "False", "callback": screen.set_filament_box_power}},                                                                                  
             {"auto_extruder_switch": {"section": "main", "name": _("Extruder switch when filament run out"), "type": "binary", 
                                     "value": "False", "callback": screen.set_auto_extruder_switch}},                                                                                  
-            # {"": {"section": "main", "name": _(""), "type": ""}}
         ]
 
         # Options that are in panels and shouldn't be added to the main settings
@@ -299,7 +298,33 @@ class KlipperScreenConfig:
             {"print_sort_dir": {"section": "main", "type": None, "value": "name_asc"}},
         ]
 
+        # AI related options that should only show in ai_pause panel
+        ai_options = [
+            {"ai_service": {"section": "main", "name": _("AI Service"), "type": "binary", "value": "False"}},
+            {"ai_confidence_threshold": {
+                "section": "main", 
+                "name": _("AI Confidence Threshold"), 
+                "type": "scale", 
+                "value": "80",
+                "range": [0, 100],
+                "step": 1
+            }},
+            {"ai_auto_pause": {"section": "main", "name": _("Auto Pause on AI Detection"), "type": "binary", "value": "False"}},
+            {"ai_cloud_service": {"section": "main", "name": _("Use AI Cloud Service"), "type": "binary", "value": "True"}},
+        ]
+
         self.configurable_options.extend(panel_options)
+        
+        # Store AI options separately for use in ai_pause panel
+        self.ai_options = ai_options
+        # Make sure AI options are still in config but not shown in main settings
+        for option in ai_options:
+            name = list(option)[0]
+            opt = option[name]
+            if opt['section'] not in self.config.sections():
+                self.config.add_section(opt['section'])
+            if name not in list(self.config[opt['section']]):
+                self.config.set(opt['section'], name, opt['value'])
 
         t_path = os.path.join(klipperscreendir, 'styles')
         # themes = [d for d in os.listdir(t_path) if (not os.path.isfile(os.path.join(t_path, d)) and d != "z-bolt")]
@@ -480,7 +505,21 @@ class KlipperScreenConfig:
 
     def save_user_config_options(self):
         save_config = configparser.ConfigParser()
+        
+        # Save configurable options
         for item in self.configurable_options:
+            name = list(item)[0]
+            opt = item[name]
+            curval = self.config[opt['section']].get(name)
+            if curval != opt["value"] or (
+                    self.defined_config is not None and opt['section'] in self.defined_config.sections() and
+                    self.defined_config[opt['section']].get(name, None) not in (None, curval)):
+                if opt['section'] not in save_config.sections():
+                    save_config.add_section(opt['section'])
+                save_config.set(opt['section'], name, str(curval))
+
+        # Save AI options
+        for item in self.ai_options:
             name = list(item)[0]
             opt = item[name]
             curval = self.config[opt['section']].get(name)
