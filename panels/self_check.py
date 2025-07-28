@@ -24,7 +24,7 @@ class Panel(ScreenPanel):
         self.images = []
 
         self.network_interfaces = netifaces.interfaces()
-        self.wireless_interfaces = [iface for iface in self.network_interfaces if iface.startswith('w')]
+        self.wireless_interfaces = [iface for iface in self.network_interfaces if iface.startswith('wl')]
         self.wifi = None
         self.use_network_manager = os.system('systemctl is-active --quiet NetworkManager.service') == 0
         if len(self.wireless_interfaces) > 0:
@@ -171,9 +171,25 @@ class Panel(ScreenPanel):
                         break
             elif step == 7:
                 is_ok = False
-                connected_ssid = self.wifi.get_connected_ssid()
-                if connected_ssid is not None:
-                    is_ok = True
+                if self.wifi is not None:
+                    if self.use_network_manager:
+                        # NetworkManager异步方式 - 检查设备连接状态
+                        try:
+                            if hasattr(self.wifi, 'connected') and self.wifi.connected:
+                                is_ok = True
+                            elif hasattr(self.wifi, 'wifi_dev') and self.wifi.wifi_dev:
+                                # 直接检查NetworkManager设备状态
+                                device = self.wifi.wifi_dev.SpecificDevice()
+                                if device.ActiveAccessPoint:
+                                    is_ok = True
+                        except Exception as e:
+                            logging.error(f"NetworkManager WiFi check failed: {e}")
+                            is_ok = False
+                    else:
+                        # wpa_cli同步方式
+                        connected_ssid = self.wifi.get_connected_ssid()
+                        if connected_ssid is not None:
+                            is_ok = True
 
             if is_ok:
                 GLib.idle_add(self.change_state, step, 0)
