@@ -6,6 +6,7 @@ Handles image capture from various sources for AI detection
 import os
 import time
 import glob
+import socket
 import logging
 import requests
 from typing import Optional, List, Dict
@@ -29,6 +30,33 @@ class AICameraCapture:
             logging.error(f"创建临时目录失败: {e}")
             # 使用备用目录
             self.temp_dir = "/tmp"
+    
+    def _get_local_ip(self) -> str:
+        """获取本机IP地址"""
+        try:
+            # 连接到一个远程地址来获取本地IP
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            local_ip = s.getsockname()[0]
+            s.close()
+            return local_ip
+        except Exception:
+            # 如果失败，尝试其他方法
+            try:
+                hostname = socket.gethostname()
+                return socket.gethostbyname(hostname)
+            except Exception:
+                # 最后的备选方案
+                return "127.0.0.1"
+    
+    def _resolve_camera_url(self, url: str) -> str:
+        """解析摄像头URL，将ip_addr替换为实际IP"""
+        if "ip_addr" in url:
+            actual_ip = self._get_local_ip()
+            resolved_url = url.replace("localhost", actual_ip)
+            logging.debug(f"解析摄像头URL: {url} -> {resolved_url}")
+            return resolved_url
+        return url
     
     def capture_snapshot(self) -> Optional[str]:
         """获取当前快照"""
@@ -104,7 +132,10 @@ class AICameraCapture:
             if not camera_url:
                 raise CameraCaptureError("未配置摄像头URL")
             
-            response = requests.get(camera_url, timeout=10)
+            # 解析URL中的ip_addr占位符
+            resolved_url = self._resolve_camera_url(camera_url)
+            
+            response = requests.get(resolved_url, timeout=10)
             response.raise_for_status()
             
             # 检查内容类型
@@ -200,10 +231,12 @@ class AICameraCapture:
             # 尝试从配置中获取摄像头信息
             camera_url = self.config.get_camera_url()
             if camera_url:
+                # 解析URL中的ip_addr占位符
+                resolved_url = self._resolve_camera_url(camera_url)
                 cameras.append({
                     'name': 'default',
-                    'stream_url': camera_url.rsplit('/', 1)[0] if '/' in camera_url else camera_url,
-                    'snapshot_url': camera_url
+                    'stream_url': resolved_url.rsplit('/', 1)[0] if '/' in resolved_url else resolved_url,
+                    'snapshot_url': resolved_url
                 })
             
             return cameras
@@ -324,7 +357,9 @@ class AICameraCapture:
                 camera_url = self.config.get_camera_url()
                 if not camera_url:
                     return False
-                response = requests.get(camera_url, timeout=5)
+                # 解析URL中的ip_addr占位符
+                resolved_url = self._resolve_camera_url(camera_url)
+                response = requests.get(resolved_url, timeout=5)
                 return response.status_code == 200
                 
             return False
