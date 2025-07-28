@@ -156,15 +156,18 @@ class KlipperScreenConfig:
                 bools = (
                     'invert_x', 'invert_y', 'invert_z',  'show_cursor', 'confirm_estop',
                     'autoclose_popups', 'use_dpms', 'use_default_menu', 'use-matchbox-keyboard',
-                      "voice_notify", "shutdown_print_end", "filament_box_power"
+                      "voice_notify", "shutdown_print_end", "filament_box_power",
+                      'ai_service', 'ai_auto_pause', 'ai_detection_enabled_while_paused', 'ai_notification_sound'
                 )
                 strs = (
                     'default_printer', 'language', 'print_sort_dir', 'screen_blanking', 
                     'print_estimate_method', 'screen_blanking',  "screen_off_devices",
+                    'ai_server_url', 'ai_defect_types', 'ai_camera_source', 'ai_camera_url'
                 )
                 numbers = (
                     'job_complete_timeout', 'job_error_timeout', 'move_speed_xy', 'move_speed_z',
                     'print_estimate_compensation', 'width', 'height',
+                    'ai_confidence_threshold', 'ai_detection_interval'
                 )
             elif section.startswith('printer '):
                 bools = (
