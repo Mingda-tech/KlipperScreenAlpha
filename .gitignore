@@ -7,3 +7,4 @@ dist/
 build/
 venv/
 CLAUDE.md
+.claude/settings.local.json

@@ -1,7 +1,5 @@
 import gi
 import logging
-import json
-import requests
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
@@ -49,32 +47,6 @@ class Panel(ScreenPanel):
 
         self.content.add(main)
 
-    def sync_ai_settings(self):
-        try:
-            config = self._config.get_config()
-            data = {
-                "enable_ai": config.getboolean('main', 'ai_service'),
-                "enable_cloud_ai": config.getboolean('main', 'ai_cloud_service'),
-                "confidence_threshold": config.getint('main', 'ai_confidence_threshold'),
-                "pause_on_threshold": config.getboolean('main', 'ai_auto_pause')
-            }
-            
-            response = requests.post(
-                "http://localhost:8584/api/v1/settings/sync",
-                headers={"Content-Type": "application/json"},
-                json=data,
-                timeout=5
-            )
-            
-            if response.status_code != 200:
-                logging.error(f"Failed to sync AI settings: {response.text}")
-                self._screen.show_popup_message(_("Failed to sync AI settings"), level=3)
-            else:
-                logging.info("AI settings synced successfully")
-                
-        except Exception as e:
-            logging.exception(f"Error syncing AI settings: {e}")
-            self._screen.show_popup_message(_("Error syncing AI settings"), level=3)
 
     def add_option(self, boxname, opt_array, opt_name, option):
         name = Gtk.Label()
@@ -126,11 +98,9 @@ class Panel(ScreenPanel):
 
     def on_setting_changed(self, switch, active, section, option, callback=None):
         self.switch_config_option(switch, active, section, option, callback)
-        self.sync_ai_settings()
 
     def on_scale_changed(self, widget, event, section, option):
         self.scale_moved(widget, event, section, option)
-        self.sync_ai_settings()
 
     def process_update(self, action, data):
         if action != "notify_status_update":
