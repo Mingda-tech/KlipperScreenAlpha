@@ -50,13 +50,21 @@ class AICameraCapture:
                 return "127.0.0.1"
     
     def _resolve_camera_url(self, url: str) -> str:
-        """解析摄像头URL，将ip_addr替换为实际IP"""
+        """解析摄像头URL，将localhost和ip_addr替换为实际IP"""
+        actual_ip = self._get_local_ip()
+        resolved_url = url
+        
+        # 替换localhost为实际IP
+        if "localhost" in url:
+            resolved_url = resolved_url.replace("localhost", actual_ip)
+            logging.debug(f"解析摄像头URL (localhost): {url} -> {resolved_url}")
+        
+        # 替换ip_addr占位符为实际IP
         if "ip_addr" in url:
-            actual_ip = self._get_local_ip()
-            resolved_url = url.replace("localhost", actual_ip)
-            logging.debug(f"解析摄像头URL: {url} -> {resolved_url}")
-            return resolved_url
-        return url
+            resolved_url = resolved_url.replace("ip_addr", actual_ip)
+            logging.debug(f"解析摄像头URL (ip_addr): {url} -> {resolved_url}")
+        
+        return resolved_url
     
     def capture_snapshot(self) -> Optional[str]:
         """获取当前快照"""

@@ -704,7 +704,7 @@ class KlipperScreenConfig:
     
     def get_ai_auto_pause(self):
         """获取是否自动暂停"""
-        return self.config.getboolean('main', 'ai_auto_pause', fallback=False)
+        return self.config.getboolean('main', 'ai_auto_pause', fallback=True)
     
     def get_enabled_defect_types(self):
         """获取启用的缺陷类型列表"""
@@ -715,9 +715,31 @@ class KlipperScreenConfig:
         """获取摄像头源"""
         return self.config.get('main', 'ai_camera_source', fallback='moonraker')
     
+    def _resolve_localhost_in_url(self, url):
+        """解析URL中的localhost为实际IP地址"""
+        try:
+            import socket
+            # 获取本机IP地址
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            local_ip = s.getsockname()[0]
+            s.close()
+            
+            # 替换localhost为实际IP
+            resolved_url = url.replace("localhost", local_ip)
+            logging.debug(f"解析摄像头URL配置: {url} -> {resolved_url}")
+            return resolved_url
+        except Exception as e:
+            logging.warning(f"无法解析localhost，使用原始URL: {e}")
+            return url
+
     def get_camera_url(self):
         """获取摄像头URL"""
-        return self.config.get('main', 'ai_camera_url', fallback='http://camera/snapshot')
+        url = self.config.get('main', 'ai_camera_url', fallback='http://camera/snapshot')
+        # 自动替换localhost为实际IP地址
+        if "localhost" in url:
+            url = self._resolve_localhost_in_url(url)
+        return url
     
     def get_ai_detection_enabled_while_paused(self):
         """获取是否在暂停时继续检测"""
