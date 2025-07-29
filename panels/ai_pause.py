@@ -31,8 +31,8 @@ class Panel(ScreenPanel):
         icon_box.set_halign(Gtk.Align.CENTER)
         
         # AI检测相关的图标
-        warning_icon = Gtk.Label("🤖⚠️")
-        warning_icon.set_markup('<span size="xx-large">🤖⚠️</span>')
+        warning_icon = Gtk.Label("Warning: ")
+        warning_icon.set_markup('<span size="xx-large">Warning</span>')
         icon_box.pack_start(warning_icon, False, False, 0)
         
         # 标题

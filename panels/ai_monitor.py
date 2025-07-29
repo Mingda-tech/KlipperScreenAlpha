@@ -168,15 +168,29 @@ class Panel(ScreenPanel):
             return True
         
         try:
-            # 更新服务状态
-            if self.ai_manager.ai_client.health_check():
-                self.service_status.set_text(_("Connected"))
-                self.service_status.get_style_context().remove_class("error")
-                self.service_status.get_style_context().add_class("success")
+            # 更新服务状态 - 只在AI服务启用且打印时才进行健康检查
+            should_check_health = (
+                self.ai_manager.config.get_ai_enabled() and
+                self._screen.printer.get_stat("print_stats", "state") in ["printing", "paused"]
+            )
+            
+            if should_check_health:
+                if self.ai_manager.ai_client.health_check():
+                    self.service_status.set_text(_("Connected"))
+                    self.service_status.get_style_context().remove_class("error")
+                    self.service_status.get_style_context().add_class("success")
+                else:
+                    self.service_status.set_text(_("Disconnected"))
+                    self.service_status.get_style_context().remove_class("success")
+                    self.service_status.get_style_context().add_class("error")
             else:
-                self.service_status.set_text(_("Disconnected"))
+                # AI服务未启用或未在打印时，显示为待机状态
+                if not self.ai_manager.config.get_ai_enabled():
+                    self.service_status.set_text(_("Disabled"))
+                else:
+                    self.service_status.set_text(_("Standby"))
+                self.service_status.get_style_context().remove_class("error")
                 self.service_status.get_style_context().remove_class("success")
-                self.service_status.get_style_context().add_class("error")
             
             # 更新监控状态
             if self.ai_manager.is_monitoring:
@@ -263,13 +277,13 @@ class Panel(ScreenPanel):
                 detections = result.get("detections", [])
                 if detections:
                     max_detection = max(detections, key=lambda x: x.get("confidence", 0))
-                    result_text = f"⚠️ {max_detection.get('class_name', 'Unknown')} " \
+                    result_text = f"{max_detection.get('class_name', 'Unknown')} " \
                                 f"({max_detection.get('confidence', 0):.1%})"
                     self.detection_result.get_style_context().add_class("error")
                 else:
-                    result_text = "⚠️ Defect detected"
+                    result_text = "Defect detected"
             else:
-                result_text = "✅ No defects found"
+                result_text = "No defects found"
                 self.detection_result.get_style_context().remove_class("error")
             
             self.detection_result.set_text(result_text)
