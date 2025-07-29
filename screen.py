@@ -112,7 +112,7 @@ class KlipperScreen(Gtk.Window):
         self.confirm = None
         self.panels_reinit = []
         self.manual_settings = {}
-        self.show_ai_pause = True
+        self.ai_pause_active = False  # 标记是否处于AI暂停状态
 
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
@@ -337,6 +337,9 @@ class KlipperScreen(Gtk.Window):
             elif panel_name in self.panels_reinit:
                 logging.info("Reinitializing panel")
                 self.panels[panel_name].__init__(self, title, **kwargs)
+                # Handle special case for ai_pause panel to pass extra_data during reinit
+                if panel == "ai_pause" and "extra_data" in kwargs:
+                    self.panels[panel_name].extra_data = kwargs["extra_data"]
                 self.panels_reinit.remove(panel_name)
             self._cur_panels.append(panel_name)
             self.attach_panel(panel_name)
@@ -720,12 +723,14 @@ class KlipperScreen(Gtk.Window):
 
     def state_paused(self):
         self.state_printing()
+        
+        # 如果是AI暂停状态，不要被状态回调覆盖
+        if self.ai_pause_active:
+            logging.info("AI暂停状态中，保持当前面板")
+            return
+            
         if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
-            if self.show_ai_pause:
-                self.show_panel("ai_pause", _("AI Warning"))
-                self.show_ai_pause = False
-            else:
-                self.show_panel("extrude", _("Extrude"))
+            self.show_panel("extrude", _("Extrude"))
         
         # Notify AI manager
         if hasattr(self, 'ai_manager') and self.ai_manager:
@@ -733,6 +738,10 @@ class KlipperScreen(Gtk.Window):
 
     def state_printing(self):            
         self.close_screensaver()
+        
+        # 清理AI暂停状态
+        self.ai_pause_active = False
+        
         for dialog in self.dialogs:
             self.gtk.remove_dialog(dialog)
         self.show_panel("job_status", _("Printing"), remove_all=True)
@@ -917,8 +926,6 @@ class KlipperScreen(Gtk.Window):
                         self.show_popup_message(translated_msg, level)
                 elif data.startswith("echo: "):
                     self.show_popup_message(_(data[6:]), 1)
-                    if data.lower() == "echo: ai detected a potential printing error":
-                        self.show_ai_pause = True
                 elif data.startswith("!! "):
                     self.show_popup_message(_(data[3:]), 3)
                 elif "unknown" in data.lower() and \

@@ -111,6 +111,9 @@ class DetectionResultHandler:
             if self.config.get_ai_notification_sound():
                 self._play_notification_sound()
             
+            # 设置AI暂停状态，防止状态回调覆盖面板
+            self.screen.ai_pause_active = True
+            
             # 暂停打印
             self.screen._ws.klippy.print_pause()
             
@@ -123,13 +126,13 @@ class DetectionResultHandler:
                 "detection_time": time.time()
             }
             
-            # 使用GLib.idle_add确保在主线程中更新UI
-            GLib.idle_add(
-                self.screen.show_panel,
-                "ai_pause",
-                "AI Detection Alert",
-                extra_data
-            )
+            # 延迟显示AI面板，确保打印状态变化完成后再显示，避免被覆盖
+            def show_ai_pause_delayed():
+                self.screen.show_panel("ai_pause", "AI Detection Alert", 
+                                     remove_all=False, panel_name=None, extra_data=extra_data)
+                return False  # 不重复执行
+            
+            GLib.timeout_add(2000, show_ai_pause_delayed)  # 2秒延迟显示
             
             logging.info(f"因检测到{defect_type}缺陷自动暂停打印，置信度: {confidence:.2%}")
             

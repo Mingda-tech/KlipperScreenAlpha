@@ -10,11 +10,11 @@ from ks_includes.screen_panel import ScreenPanel
 
 
 class Panel(ScreenPanel):
-    def __init__(self, screen, title):
+    def __init__(self, screen, title, **kwargs):
         super().__init__(screen, title)
         
-        # 从传递的额外数据中获取检测信息
-        extra_data = getattr(self, 'extra_data', {})
+        # 从kwargs中直接获取extra_data，或者从实例属性中获取
+        extra_data = kwargs.get('extra_data', getattr(self, 'extra_data', {}))
         defect_type = extra_data.get('defect_type', 'unknown')
         confidence = extra_data.get('confidence', 0)
         auto_paused = extra_data.get('auto_paused', False)
@@ -142,12 +142,18 @@ class Panel(ScreenPanel):
 
     def view_details(self, widget):
         """查看检测详情"""
+        # 清理AI暂停状态
+        self._screen.ai_pause_active = False
+        
         # 跳转到AI监控面板查看详细信息
         self._screen.show_panel("ai_monitor", _("AI Monitor"))
 
     def resume(self, widget):
         """继续打印"""
         try:
+            # 清理AI暂停状态
+            self._screen.ai_pause_active = False
+            
             self._screen._ws.klippy.print_resume()
             self._screen.show_popup_message(_("Print resumed"), level=1)
         except Exception as e:
@@ -159,6 +165,9 @@ class Panel(ScreenPanel):
     def cancel(self, widget):
         """取消打印"""
         try:
+            # 清理AI暂停状态
+            self._screen.ai_pause_active = False
+            
             self._screen._ws.klippy.print_cancel()
             self._screen.show_popup_message(_("Print cancelled"), level=2)
         except Exception as e:
