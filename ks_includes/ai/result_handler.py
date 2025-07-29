@@ -84,24 +84,25 @@ class DetectionResultHandler:
     
     def _should_auto_pause(self, defect_type: str, confidence: float) -> bool:
         """判断是否应该自动暂停"""
-        if not self.config.get_ai_auto_pause():
+        auto_pause_enabled = self.config.get_ai_auto_pause()
+        logging.debug(f"AI自动暂停配置: {auto_pause_enabled}")
+        
+        if not auto_pause_enabled:
+            logging.info("AI自动暂停未启用，仅显示警告")
             return False
         
         # 检查打印机状态
         printer_state = self.screen.printer.get_stat("print_stats", "state")
+        logging.debug(f"打印机当前状态: {printer_state}")
         if printer_state != "printing":
+            logging.info(f"打印机未在打印状态({printer_state})，不执行自动暂停")
             return False
         
-        # 对于严重缺陷（如炒面），可能需要更严格的检查
-        if defect_type == "spaghetti":
-            # 炒面缺陷通常需要立即暂停
-            return confidence >= 0.7
-        elif defect_type in ["head_burst", "layer_crack"]:
-            # 爆头和层间开裂也比较严重
-            return confidence >= 0.8
-        else:
-            # 其他缺陷使用标准阈值
-            return confidence >= self.config.get_ai_confidence_threshold() / 100.0
+        threshold = self.config.get_ai_confidence_threshold() / 100.0
+        should_pause = confidence >= threshold
+        
+        logging.info(f"自动暂停判断: 缺陷={defect_type}, 置信度={confidence:.2%}, 阈值={self.config.get_ai_confidence_threshold()}%, 是否暂停={should_pause}")
+        return should_pause
     
     def _auto_pause_print(self, defect_type: str, confidence: float, result: Dict) -> None:
         """自动暂停打印"""
