@@ -43,18 +43,28 @@ class AIServerClient:
             logging.error(f"健康检查异常: {e}")
             return False
     
-    def detect_sync(self, image_path: str, defect_types: Optional[List[str]] = None, 
+    def detect_sync(self, camera_url: str = None, image_path: str = None, defect_types: Optional[List[str]] = None, 
                    task_id: Optional[str] = None) -> Dict:
-        """同步检测"""
+        """同步检测 - 支持camera_url或image_path"""
         try:
             # 构建请求数据
             request_data = {
-                "image_source": {
-                    "type": "local_path",
-                    "value": image_path
-                },
                 "task_id": task_id or f"detect_{int(time.time())}"
             }
+            
+            # 优先使用camera_url，如果没有则使用image_path
+            if camera_url:
+                request_data["image_source"] = {
+                    "type": "url",
+                    "value": camera_url
+                }
+            elif image_path:
+                request_data["image_source"] = {
+                    "type": "local_path",
+                    "value": image_path
+                }
+            else:
+                raise AIDetectionError("必须提供camera_url或image_path")
             
             # 如果指定了缺陷类型
             if defect_types:
@@ -94,17 +104,27 @@ class AIServerClient:
         except Exception as e:
             raise AIDetectionError(f"检测过程出现未知错误: {e}")
     
-    def detect_async(self, image_path: str, defect_types: Optional[List[str]] = None,
+    def detect_async(self, camera_url: str = None, image_path: str = None, defect_types: Optional[List[str]] = None,
                     task_id: Optional[str] = None, callback_url: Optional[str] = None) -> Dict:
-        """异步检测"""
+        """异步检测 - 支持camera_url或image_path"""
         try:
             request_data = {
-                "image_source": {
-                    "type": "local_path", 
-                    "value": image_path
-                },
                 "task_id": task_id or f"async_{int(time.time())}"
             }
+            
+            # 优先使用camera_url，如果没有则使用image_path
+            if camera_url:
+                request_data["image_source"] = {
+                    "type": "url",
+                    "value": camera_url
+                }
+            elif image_path:
+                request_data["image_source"] = {
+                    "type": "local_path", 
+                    "value": image_path
+                }
+            else:
+                raise AIDetectionError("必须提供camera_url或image_path")
             
             if defect_types and len(defect_types) == 1:
                 request_data["defect_type"] = defect_types[0]

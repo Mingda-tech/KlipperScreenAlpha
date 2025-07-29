@@ -174,13 +174,22 @@ class AIDetectionManager:
                     raise AIServerConnectionError("AI服务器健康检查失败")
                 self._last_health_check = current_time
             
-            # 获取当前图像
-            image_path = self.camera.capture_snapshot()
-            if not image_path:
-                raise CameraCaptureError("无法获取摄像头图像")
+            # 优先尝试使用摄像头URL
+            camera_url = self.camera.get_camera_url()
+            image_path = None
+            
+            if camera_url:
+                logging.debug(f"使用摄像头URL进行AI检测: {camera_url}")
+            else:
+                # 如果无法获取URL，则回退到本地截图方式
+                logging.debug("无法获取摄像头URL，使用本地截图方式")
+                image_path = self.camera.capture_snapshot()
+                if not image_path:
+                    raise CameraCaptureError("无法获取摄像头图像")
             
             # 执行AI检测
             result = self.ai_client.detect_sync(
+                camera_url=camera_url,
                 image_path=image_path,
                 defect_types=self.config.get_enabled_defect_types(),
                 task_id=f"monitor_{int(time.time())}"
@@ -291,13 +300,22 @@ class AIDetectionManager:
             if not self.ai_client.health_check():
                 raise AIServerConnectionError("AI服务器不可用")
             
-            # 获取图像
-            image_path = self.camera.capture_snapshot()
-            if not image_path:
-                raise CameraCaptureError("无法获取摄像头图像")
+            # 优先尝试使用摄像头URL
+            camera_url = self.camera.get_camera_url()
+            image_path = None
+            
+            if camera_url:
+                logging.debug(f"手动检测使用摄像头URL: {camera_url}")
+            else:
+                # 如果无法获取URL，则回退到本地截图方式
+                logging.debug("手动检测无法获取摄像头URL，使用本地截图方式")
+                image_path = self.camera.capture_snapshot()
+                if not image_path:
+                    raise CameraCaptureError("无法获取摄像头图像")
             
             # 执行检测
             result = self.ai_client.detect_sync(
+                camera_url=camera_url,
                 image_path=image_path,
                 defect_types=self.config.get_enabled_defect_types(),
                 task_id=f"manual_{int(time.time())}"

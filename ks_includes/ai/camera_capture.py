@@ -309,6 +309,34 @@ class AICameraCapture:
         except Exception as e:
             logging.error(f"清理临时文件异常: {e}")
     
+    def get_camera_url(self) -> Optional[str]:
+        """获取摄像头URL，用于直接传递给AI服务器"""
+        source = self.config.get_camera_source()
+        
+        try:
+            if source == "moonraker":
+                cameras = self._get_moonraker_cameras()
+                if cameras:
+                    camera = cameras[0]
+                    return self._build_snapshot_url(camera)
+                return None
+            elif source == "url":
+                camera_url = self.config.get_camera_url()
+                if camera_url:
+                    # 解析URL中的ip_addr占位符
+                    return self._resolve_camera_url(camera_url)
+                return None
+            elif source == "local":
+                # 本地摄像头无法提供URL，返回None
+                logging.debug("本地摄像头无法提供URL，将使用本地截图方式")
+                return None
+            else:
+                logging.warning(f"不支持的摄像头源: {source}")
+                return None
+        except Exception as e:
+            logging.error(f"获取摄像头URL失败: {e}")
+            return None
+    
     def get_available_cameras(self) -> List[Dict]:
         """获取可用的摄像头列表"""
         cameras = []
