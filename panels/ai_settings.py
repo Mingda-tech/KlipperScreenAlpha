@@ -81,6 +81,11 @@ class Panel(ScreenPanel):
             switch.connect("notify::active", self.on_setting_changed, option['section'], opt_name,
                            option['callback'] if "callback" in option else None)
             dev.add(switch)
+            
+            # 保存AI服务开关的引用
+            if opt_name == "ai_service":
+                self.ai_service_switch = switch
+                
         elif option['type'] == "scale":
             dev.set_orientation(Gtk.Orientation.VERTICAL)
             scale = Gtk.Scale.new_with_range(orientation=Gtk.Orientation.HORIZONTAL,
@@ -90,6 +95,20 @@ class Panel(ScreenPanel):
             scale.set_digits(0)
             scale.connect("button-release-event", self.on_scale_changed, option['section'], opt_name)
             dev.add(scale)
+            
+            # 保存阈值滑块的引用
+            if opt_name == "ai_confidence_threshold":
+                self.threshold_scale = scale
+                # 根据AI服务状态设置初始启用状态和样式
+                ai_service_enabled = self._config.get_config().getboolean('main', 'ai_service', fallback=False)
+                scale.set_sensitive(ai_service_enabled)
+                
+                # 设置初始CSS样式类
+                style_context = scale.get_style_context()
+                if ai_service_enabled:
+                    style_context.add_class("enabled")
+                else:
+                    style_context.add_class("disabled")
 
         opt_array[opt_name] = {
             "name": option['name'],
@@ -105,6 +124,20 @@ class Panel(ScreenPanel):
 
     def on_setting_changed(self, switch, active, section, option, callback=None):
         self.switch_config_option(switch, active, section, option, callback)
+        
+        # 当AI服务开关变化时，更新阈值滑块的启用状态和样式
+        if option == "ai_service" and hasattr(self, 'threshold_scale'):
+            is_enabled = switch.get_active()
+            self.threshold_scale.set_sensitive(is_enabled)
+            
+            # 更新CSS样式类
+            style_context = self.threshold_scale.get_style_context()
+            if is_enabled:
+                style_context.remove_class("disabled")
+                style_context.add_class("enabled")
+            else:
+                style_context.remove_class("enabled")
+                style_context.add_class("disabled")
 
     def on_scale_changed(self, widget, event, section, option):
         self.scale_moved(widget, event, section, option)

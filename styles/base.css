@@ -215,6 +215,24 @@ scale trough slider {
     min-width: 2em;
 }
 
+/* AI threshold scale disabled state */
+scale.disabled {
+    opacity: 0.4;
+}
+
+scale.disabled trough {
+    background-color: #555555;
+}
+
+scale.disabled trough highlight,
+scale.disabled trough progress {
+    background-color: #777777;
+}
+
+scale.disabled trough slider {
+    background-color: #888888;
+}
+
 scrollbar,
 scrollbar button,
 scrollbar trough {
