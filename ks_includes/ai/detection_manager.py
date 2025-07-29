@@ -201,6 +201,17 @@ class AIDetectionManager:
     def _perform_health_check(self) -> bool:
         """执行健康检查"""
         try:
+            # 检查AI服务是否启用
+            if not self.config.get_ai_enabled():
+                logging.debug("AI服务未启用，跳过健康检查")
+                return True  # AI服务未启用时认为健康检查通过
+            
+            # 检查打印状态，只在打印中才执行健康检查
+            printer_state = self.screen.printer.get_stat("print_stats", "state")
+            if printer_state not in ["printing", "paused"]:
+                logging.debug("打印机未处于打印状态，跳过AI服务健康检查")
+                return True  # 非打印状态时认为健康检查通过
+            
             return self.ai_client.health_check()
         except Exception as e:
             logging.error(f"健康检查异常: {e}")
@@ -308,12 +319,20 @@ class AIDetectionManager:
             server_status = self.ai_client.get_server_status() if self.config.get_ai_enabled() else None
             detection_stats = self.result_handler.get_detection_stats()
             
+            # 只在打印状态且AI服务启用时检查服务器健康状态
+            printer_state = self.screen.printer.get_stat("print_stats", "state")
+            should_check_health = (self.config.get_ai_enabled() and 
+                                 printer_state in ["printing", "paused"])
+            server_healthy = False
+            if should_check_health:
+                server_healthy = self.ai_client.health_check()
+            
             return {
                 "monitoring": self.is_monitoring,
                 "enabled": self.config.get_ai_enabled(),
                 "degraded_mode": self._degraded_mode,
                 "error_count": self._error_count,
-                "server_healthy": self.ai_client.health_check() if self.config.get_ai_enabled() else False,
+                "server_healthy": server_healthy,
                 "server_status": server_status,
                 "camera_available": self.camera.test_camera_connection(),
                 "detection_stats": detection_stats,
@@ -396,12 +415,23 @@ class AIDetectionManager:
         }
         
         try:
-            # 测试AI服务器连接
-            if self.ai_client.health_check():
-                result["server_connection"] = True
-                result["server_status"] = self.ai_client.get_server_status()
+            # 检查AI服务是否启用
+            if not self.config.get_ai_enabled():
+                result["error_messages"].append("AI服务未启用，跳过AI服务器连接测试")
+                # 仍然测试摄像头连接
             else:
-                result["error_messages"].append("AI服务器健康检查失败")
+                # 检查打印状态
+                printer_state = self.screen.printer.get_stat("print_stats", "state")
+                if printer_state not in ["printing", "paused"]:
+                    result["error_messages"].append("打印机未处于打印状态，跳过AI服务器连接测试")
+                    # 仍然测试摄像头连接
+                else:
+                    # 测试AI服务器连接
+                    if self.ai_client.health_check():
+                        result["server_connection"] = True
+                        result["server_status"] = self.ai_client.get_server_status()
+                    else:
+                        result["error_messages"].append("AI服务器健康检查失败")
             
         except Exception as e:
             result["error_messages"].append(f"AI服务器连接错误: {e}")
