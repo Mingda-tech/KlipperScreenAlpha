@@ -30,6 +30,8 @@ class AIDetectionManager:
         self._error_count = 0
         self._max_errors = 5
         self._degraded_mode = False
+        self._retry_monitoring_timer = None
+        self._should_be_monitoring = False  # 记录是否应该正在监控
         
         # 初始化组件
         try:
@@ -57,11 +59,21 @@ class AIDetectionManager:
             # 健康检查
             if not self._perform_health_check():
                 logging.error("AI服务器健康检查失败，无法开始监控")
+                # 弹窗提示AI服务器连接失败
+                GLib.idle_add(self.screen.show_popup_message, 
+                             "AI服务器连接失败，无法启动AI监控", 2)
+                # 设置定时重试
+                self._schedule_monitoring_retry()
                 return False
             
             # 测试摄像头连接
             if not self.camera.test_camera_connection():
                 logging.error("摄像头连接测试失败，无法开始监控")
+                # 弹窗提示摄像头连接失败
+                GLib.idle_add(self.screen.show_popup_message, 
+                             "摄像头连接失败，无法启动AI监控", 2)
+                # 设置定时重试
+                self._schedule_monitoring_retry()
                 return False
             
             # 重置错误状态
@@ -71,6 +83,8 @@ class AIDetectionManager:
             
             # 启动监控
             self.is_monitoring = True
+            self._should_be_monitoring = True
+            self._cancel_monitoring_retry()  # 取消重试定时器
             self._schedule_next_detection()
             
             logging.info("AI监控已启动")
@@ -88,6 +102,8 @@ class AIDetectionManager:
             
             self.is_monitoring = False
             self._should_stop = True
+            self._should_be_monitoring = False
+            self._cancel_monitoring_retry()  # 取消重试定时器
             
             # 取消定时器
             if self.detection_timer:
@@ -171,6 +187,9 @@ class AIDetectionManager:
             current_time = time.time()
             if current_time - self._last_health_check > self._health_check_interval:
                 if not self._perform_health_check():
+                    # 弹窗提示AI服务器连接问题
+                    GLib.idle_add(self.screen.show_popup_message, 
+                                 "AI服务器连接异常，检测功能受影响", 2)
                     raise AIServerConnectionError("AI服务器健康检查失败")
                 self._last_health_check = current_time
             
@@ -185,6 +204,9 @@ class AIDetectionManager:
                 logging.debug("无法获取摄像头URL，使用本地截图方式")
                 image_path = self.camera.capture_snapshot()
                 if not image_path:
+                    # 弹窗提示摄像头问题
+                    GLib.idle_add(self.screen.show_popup_message, 
+                                 "摄像头捕获失败，无法进行AI检测", 2)
                     raise CameraCaptureError("无法获取摄像头图像")
             
             # 执行AI检测
@@ -298,6 +320,9 @@ class AIDetectionManager:
             
             # 健康检查
             if not self.ai_client.health_check():
+                # 弹窗提示AI服务器不可用
+                GLib.idle_add(self.screen.show_popup_message, 
+                             "AI服务器不可用，无法执行检测", 2)
                 raise AIServerConnectionError("AI服务器不可用")
             
             # 优先尝试使用摄像头URL
@@ -311,6 +336,9 @@ class AIDetectionManager:
                 logging.debug("手动检测无法获取摄像头URL，使用本地截图方式")
                 image_path = self.camera.capture_snapshot()
                 if not image_path:
+                    # 弹窗提示摄像头问题
+                    GLib.idle_add(self.screen.show_popup_message, 
+                                 "摄像头无法获取图像，检测失败", 2)
                     raise CameraCaptureError("无法获取摄像头图像")
             
             # 执行检测
@@ -379,10 +407,13 @@ class AIDetectionManager:
             
             if state == "printing":
                 # 开始打印时自动启动监控
-                if self.config.get_ai_enabled() and not self.is_monitoring:
-                    self.start_monitoring()
+                if self.config.get_ai_enabled():
+                    self._should_be_monitoring = True
+                    if not self.is_monitoring:
+                        self.start_monitoring()
             elif state in ["complete", "cancelled", "error"]:
                 # 打印结束时停止监控
+                self._should_be_monitoring = False
                 if self.is_monitoring:
                     self.stop_monitoring()
             elif state == "paused":
@@ -390,9 +421,60 @@ class AIDetectionManager:
                 if not self.config.get_ai_detection_enabled_while_paused():
                     if self.is_monitoring:
                         self.stop_monitoring()
+                else:
+                    # 如果配置允许暂停时检测，且应该监控但当前未监控，则尝试启动
+                    if self._should_be_monitoring and not self.is_monitoring:
+                        self.start_monitoring()
             
         except Exception as e:
             logging.error(f"处理打印状态变化异常: {e}")
+    
+    def _schedule_monitoring_retry(self) -> None:
+        """调度监控重试"""
+        if self._retry_monitoring_timer:
+            return  # 已有重试定时器在运行
+        
+        # 每30秒重试一次
+        retry_interval = 30000  # 毫秒
+        self._retry_monitoring_timer = GLib.timeout_add(
+            retry_interval, 
+            self._retry_start_monitoring
+        )
+        logging.info(f"已调度AI监控重试，{retry_interval/1000}秒后重试")
+    
+    def _cancel_monitoring_retry(self) -> None:
+        """取消监控重试"""
+        if self._retry_monitoring_timer:
+            GLib.source_remove(self._retry_monitoring_timer)
+            self._retry_monitoring_timer = None
+    
+    def _retry_start_monitoring(self) -> bool:
+        """重试启动监控"""
+        try:
+            # 检查是否还应该监控
+            if not self._should_be_monitoring:
+                self._retry_monitoring_timer = None
+                return False  # 停止重试定时器
+            
+            # 检查是否已在监控
+            if self.is_monitoring:
+                self._retry_monitoring_timer = None
+                return False  # 停止重试定时器
+            
+            # 尝试启动监控
+            if self.start_monitoring():
+                # 启动成功，停止重试
+                self._retry_monitoring_timer = None
+                logging.info("AI监控重试启动成功")
+                return False
+            else:
+                # 启动失败，继续重试
+                logging.debug("AI监控重试失败，将继续重试")
+                return True
+                
+        except Exception as e:
+            logging.error(f"监控重试异常: {e}")
+            return True  # 继续重试
     
     def update_config(self, config) -> None:
         """更新配置"""
@@ -471,6 +553,9 @@ class AIDetectionManager:
         try:
             # 停止监控
             self.stop_monitoring()
+            
+            # 取消重试定时器
+            self._cancel_monitoring_retry()
             
             # 关闭AI客户端连接
             if hasattr(self, 'ai_client'):

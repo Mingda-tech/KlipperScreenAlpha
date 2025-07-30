@@ -722,11 +722,17 @@ class KlipperScreen(Gtk.Window):
         self.printer_initializing(msg + "\n" + state, remove=True)
 
     def state_paused(self):
+        # 先检查AI暂停状态，避免被state_printing()清理
+        is_ai_pause = self.ai_pause_active
+        
         self.state_printing()
         
-        # 如果是AI暂停状态，不要被状态回调覆盖
-        if self.ai_pause_active:
-            logging.info("AI暂停状态中，保持当前面板")
+        # 如果是AI暂停状态，跳过extrude面板显示（不恢复标志位）
+        if is_ai_pause:
+            logging.info("AI暂停状态中，跳过extrude面板显示")
+            # 仍然通知AI管理器状态变化
+            if hasattr(self, 'ai_manager') and self.ai_manager:
+                self.ai_manager.on_printer_state_changed("paused")
             return
             
         if self._config.get_main_config().getboolean("auto_open_extrude", fallback=True):
