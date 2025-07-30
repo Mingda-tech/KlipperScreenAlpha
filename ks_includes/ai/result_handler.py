@@ -119,24 +119,24 @@ class DetectionResultHandler:
             self.screen._ws.klippy.print_pause()
             logging.info("发送打印暂停命令")
             
-            # 第三步：准备面板数据
-            extra_data = {
-                "defect_type": defect_type,
-                "confidence": confidence,
-                "auto_paused": True,
-                "detection_result": result,
-                "detection_time": time.time()
-            }
+            # # 第三步：准备面板数据
+            # extra_data = {
+            #     "defect_type": defect_type,
+            #     "confidence": confidence,
+            #     "auto_paused": True,
+            #     "detection_result": result,
+            #     "detection_time": time.time()
+            # }
             
             # 第四步：显示AI暂停面板（使用短暂延迟确保暂停命令已处理）
-            def show_ai_pause_panel():
-                logging.info("显示AI暂停面板")
-                self.screen.show_panel("ai_pause", "AI Detection Alert", 
-                                     remove_all=False, panel_name=None, extra_data=extra_data)
-                return False  # 不重复执行
+            # def show_ai_pause_panel():
+            #     logging.info("显示AI暂停面板")
+            #     self.screen.show_panel("ai_pause", "AI Detection Alert", 
+            #                          remove_all=False, panel_name=None, extra_data=extra_data)
+            #     return False  # 不重复执行
             
             # 使用较短的延迟（3s）确保暂停命令已发送但不会被其他逻辑覆盖
-            GLib.timeout_add(3000, show_ai_pause_panel)
+            # GLib.timeout_add(3000, show_ai_pause_panel)
             
             logging.info(f"因检测到{defect_type}缺陷自动暂停打印，置信度: {confidence:.2%}")
             
