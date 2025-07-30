@@ -34,7 +34,7 @@ class Panel(ScreenPanel):
         alert_label.set_valign(Gtk.Align.CENTER)
         alert_box.pack_start(alert_label, True, True, 0)
         
-        # 2. 中间图片显示区域 - 占用4/7高度
+        # 2. 中间图片显示区域 - 占用5/7高度
         image_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         image_box.set_vexpand(True)
         image_box.set_hexpand(True)
@@ -49,40 +49,24 @@ class Panel(ScreenPanel):
         
         image_box.pack_start(self.detection_image, True, True, 0)
         
-        # 3. 空白区域 - 占用1/7高度（原来的信息区域现在为空）
-        info_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        info_box.set_vexpand(False)
-        info_box.set_hexpand(True)
-        info_box.set_valign(Gtk.Align.CENTER)
-        info_box.set_halign(Gtk.Align.CENTER)
-        
-        # 4. 底部按钮区域 - 占用1/7高度
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
-        button_box.set_vexpand(False)
-        button_box.set_hexpand(True)
-        button_box.set_valign(Gtk.Align.CENTER)
-        button_box.set_halign(Gtk.Align.CENTER)
-        button_box.set_margin_start(50)
-        button_box.set_margin_end(50)
+        # 3. 底部按钮区域 - 占用1/7高度
+        button_box = self._gtk.HomogeneousGrid()  # 使用Grid布局来精确控制
         
         # 继续打印按钮
         resume_button = self._gtk.Button("resume", None, "color1", scale=.66)
         resume_button.connect("clicked", self.resume)
-        resume_button.set_hexpand(True)
         
         # 取消打印按钮
         cancel_button = self._gtk.Button("cancel", None, "color3", scale=.66)
         cancel_button.connect("clicked", self.cancel)
-        cancel_button.set_hexpand(True)
         
-        # 使用不同的expand比例来创建间隔效果
-        button_box.pack_start(resume_button, True, True, 0)
-        button_box.pack_start(cancel_button, True, True, 0)
+        # 使用Grid布局精确控制按钮位置
+        button_box.attach(resume_button, 0, 0, 1, 1)  # 左侧按钮
+        button_box.attach(cancel_button, 2, 0, 1, 1)  # 右侧按钮，跳过中间列
         
         # 组装主布局 - 按比例分配高度
         main.pack_start(alert_box, False, False, 0)    # 1/7
-        main.pack_start(image_box, True, True, 0)      # 4/7 (expand=True)
-        main.pack_start(info_box, False, False, 0)     # 1/7 (空白区域)
+        main.pack_start(image_box, True, True, 0)      # 5/7 (expand=True)
         main.pack_start(button_box, False, False, 0)   # 1/7
         
         self.content.add(main)
@@ -100,10 +84,20 @@ class Panel(ScreenPanel):
                 
                 # 加载并显示图片 - 自适应容器大小
                 try:
-                    # 不设置固定尺寸，让图片自适应容器大小
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(latest_image)
+                    # 获取屏幕尺寸用于缩放
+                    screen_width = self._screen.width
+                    screen_height = self._screen.height
+                    
+                    # 计算图片显示区域的大小 (5/7 of height, with some padding)
+                    max_width = int(screen_width * 0.95)  # 留出5%边距
+                    max_height = int(screen_height * 5/7 * 0.95)  # 5/7高度，留出5%边距
+                    
+                    # 加载图片并按比例缩放
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
+                        latest_image, max_width, max_height, True
+                    )
                     self.detection_image.set_from_pixbuf(pixbuf)
-                    logging.info(f"已加载预测图片: {latest_image}")
+                    logging.info(f"已加载预测图片: {latest_image}, 缩放至: {pixbuf.get_width()}x{pixbuf.get_height()}")
                 except Exception as e:
                     logging.error(f"加载图片失败: {e}")
                     self._set_placeholder_image()
