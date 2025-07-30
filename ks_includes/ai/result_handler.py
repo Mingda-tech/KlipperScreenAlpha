@@ -135,8 +135,8 @@ class DetectionResultHandler:
                                      remove_all=False, panel_name=None, extra_data=extra_data)
                 return False  # 不重复执行
             
-            # 使用较短的延迟（500ms）确保暂停命令已发送但不会被其他逻辑覆盖
-            GLib.timeout_add(500, show_ai_pause_panel)
+            # 使用较短的延迟（3s）确保暂停命令已发送但不会被其他逻辑覆盖
+            GLib.timeout_add(3000, show_ai_pause_panel)
             
             logging.info(f"因检测到{defect_type}缺陷自动暂停打印，置信度: {confidence:.2%}")
             

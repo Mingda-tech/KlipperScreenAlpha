@@ -138,6 +138,11 @@ class Panel(ScreenPanel):
             else:
                 style_context.remove_class("enabled")
                 style_context.add_class("disabled")
+            
+            # 通知AI Detection Manager配置已更改
+            if hasattr(self._screen, 'ai_manager'):
+                self._screen.ai_manager.update_config(self._config)
+                logging.info(f"AI服务配置已更新: {'启用' if is_enabled else '禁用'}")
 
     def on_scale_changed(self, widget, event, section, option):
         self.scale_moved(widget, event, section, option)

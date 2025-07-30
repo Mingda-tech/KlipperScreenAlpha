@@ -484,9 +484,27 @@ class AIDetectionManager:
             # 更新AI客户端配置
             self.ai_client.update_base_url(config.get_ai_server_url())
             
-            # 如果AI服务被禁用，停止监控
-            if not config.get_ai_enabled() and self.is_monitoring:
-                self.stop_monitoring()
+            # 获取当前打印状态
+            printer_state = self.screen.printer.get_stat("print_stats", "state")
+            
+            if config.get_ai_enabled():
+                # AI服务被启用
+                if printer_state == "printing":
+                    # 如果正在打印且未监控，自动启动监控
+                    self._should_be_monitoring = True
+                    if not self.is_monitoring:
+                        logging.info("AI服务已启用且正在打印，自动启动监控")
+                        self.start_monitoring()
+                elif printer_state == "paused" and config.get_ai_detection_enabled_while_paused():
+                    # 如果暂停且允许暂停时检测，自动启动监控
+                    self._should_be_monitoring = True
+                    if not self.is_monitoring:
+                        logging.info("AI服务已启用且暂停时允许检测，自动启动监控")
+                        self.start_monitoring()
+            else:
+                # AI服务被禁用，停止监控
+                if self.is_monitoring:
+                    self.stop_monitoring()
             
             logging.info("AI检测管理器配置已更新")
             
