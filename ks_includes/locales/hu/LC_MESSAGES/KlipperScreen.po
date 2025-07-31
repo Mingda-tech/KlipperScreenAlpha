@@ -1602,3 +1602,33 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Beállítások"
 
+msgid "AI Detection Service"
+msgstr "AI Észlelési Szolgáltatás"
+
+msgid "AI Server URL"
+msgstr "AI Szerver URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "Megbízhatósági Küszöb (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Észlelési Intervallum (másodperc)"
+
+msgid "Auto Pause on Detection"
+msgstr "Automatikus Szünet Észleléskor"
+
+msgid "Enabled Defect Types"
+msgstr "Engedélyezett Hibatípusok"
+
+msgid "Camera Source"
+msgstr "Kamera Forrás"
+
+msgid "Camera URL"
+msgstr "Kamera URL"
+
+msgid "Continue Detection While Paused"
+msgstr "Észlelés Folytatása Szünet Alatt"
+
+msgid "Sound Notification"
+msgstr "Hangos Értesítés"
+

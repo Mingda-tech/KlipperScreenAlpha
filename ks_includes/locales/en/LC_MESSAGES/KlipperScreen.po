@@ -1593,3 +1593,33 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Settings"
 
+msgid "AI Detection Service"
+msgstr "AI Detection Service"
+
+msgid "AI Server URL"
+msgstr "AI Server URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "Confidence Threshold (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Detection Interval (seconds)"
+
+msgid "Auto Pause on Detection"
+msgstr "Auto Pause on Detection"
+
+msgid "Enabled Defect Types"
+msgstr "Enabled Defect Types"
+
+msgid "Camera Source"
+msgstr "Camera Source"
+
+msgid "Camera URL"
+msgstr "Camera URL"
+
+msgid "Continue Detection While Paused"
+msgstr "Continue Detection While Paused"
+
+msgid "Sound Notification"
+msgstr "Sound Notification"
+

@@ -1803,3 +1803,33 @@ msgstr "Монитор ИИ"
 msgid "AI Settings"
 msgstr "Настройки ИИ"
 
+msgid "AI Detection Service"
+msgstr "Служба Обнаружения ИИ"
+
+msgid "AI Server URL"
+msgstr "URL Сервера ИИ"
+
+msgid "Confidence Threshold (%)"
+msgstr "Порог Достоверности (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Интервал Обнаружения (секунды)"
+
+msgid "Auto Pause on Detection"
+msgstr "Автопауза при Обнаружении"
+
+msgid "Enabled Defect Types"
+msgstr "Включенные Типы Дефектов"
+
+msgid "Camera Source"
+msgstr "Источник Камеры"
+
+msgid "Camera URL"
+msgstr "URL Камеры"
+
+msgid "Continue Detection While Paused"
+msgstr "Продолжить Обнаружение на Паузе"
+
+msgid "Sound Notification"
+msgstr "Звуковое Уведомление"
+

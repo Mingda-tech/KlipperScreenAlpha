@@ -1678,3 +1678,36 @@ msgstr "KI-Monitor"
 msgid "AI Settings"
 msgstr "KI-Einstellungen"
 
+msgid "AI Detection Service"
+msgstr "KI-Erkennungsdienst"
+
+msgid "AI Server URL"
+msgstr "KI-Server-URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "Vertrauensschwelle (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Erkennungsintervall (Sekunden)"
+
+msgid "Auto Pause on Detection"
+msgstr "Automatische Pause bei Erkennung"
+
+msgid "Enabled Defect Types"
+msgstr "Aktivierte Fehlertypen"
+
+msgid "Camera Source"
+msgstr "Kameraquelle"
+
+msgid "Local"
+msgstr "Lokal"
+
+msgid "Camera URL"
+msgstr "Kamera-URL"
+
+msgid "Continue Detection While Paused"
+msgstr "Erkennung während Pause fortsetzen"
+
+msgid "Sound Notification"
+msgstr "Tonbenachrichtigung"
+

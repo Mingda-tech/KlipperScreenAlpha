@@ -1821,3 +1821,36 @@ msgstr "מוניטור בינה מלאכותית"
 msgid "AI Settings"
 msgstr "הגדרות בינה מלאכותית"
 
+msgid "AI Detection Service"
+msgstr "שירות זיהוי בינה מלאכותית"
+
+msgid "AI Server URL"
+msgstr "URL שרת בינה מלאכותית"
+
+msgid "Confidence Threshold (%)"
+msgstr "סף בטחון (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "מרווח זיהוי (שניות)"
+
+msgid "Auto Pause on Detection"
+msgstr "השהיה אוטומטית בזיהוי"
+
+msgid "Enabled Defect Types"
+msgstr "סוגי פגמים מופעלים"
+
+msgid "Camera Source"
+msgstr "מקור מצלמה"
+
+msgid "Local"
+msgstr "מקומי"
+
+msgid "Camera URL"
+msgstr "URL מצלמה"
+
+msgid "Continue Detection While Paused"
+msgstr "המשך זיהוי במהלך השהיה"
+
+msgid "Sound Notification"
+msgstr "התראה קולית"
+

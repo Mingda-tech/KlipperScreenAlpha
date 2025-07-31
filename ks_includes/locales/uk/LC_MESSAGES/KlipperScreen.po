@@ -1715,3 +1715,36 @@ msgstr "Монітор ШІ"
 msgid "AI Settings"
 msgstr "Налаштування ШІ"
 
+msgid "AI Detection Service"
+msgstr "Служба виявлення ШІ"
+
+msgid "AI Server URL"
+msgstr "URL-адреса сервера ШІ"
+
+msgid "Confidence Threshold (%)"
+msgstr "Поріг довіри (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Інтервал виявлення (секунди)"
+
+msgid "Auto Pause on Detection"
+msgstr "Автоматична пауза при виявленні"
+
+msgid "Enabled Defect Types"
+msgstr "Увімкнені типи дефектів"
+
+msgid "Camera Source"
+msgstr "Джерело камери"
+
+msgid "Local"
+msgstr "Локальний"
+
+msgid "Camera URL"
+msgstr "URL-адреса камери"
+
+msgid "Continue Detection While Paused"
+msgstr "Продовжити виявлення під час паузи"
+
+msgid "Sound Notification"
+msgstr "Звукове сповіщення"
+

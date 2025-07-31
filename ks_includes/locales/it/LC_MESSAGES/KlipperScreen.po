@@ -1767,3 +1767,33 @@ msgstr "Monitor IA"
 msgid "AI Settings"
 msgstr "Impostazioni IA"
 
+msgid "AI Detection Service"
+msgstr "Servizio di Rilevamento IA"
+
+msgid "AI Server URL"
+msgstr "URL del Server IA"
+
+msgid "Confidence Threshold (%)"
+msgstr "Soglia di Confidenza (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Intervallo di Rilevamento (secondi)"
+
+msgid "Auto Pause on Detection"
+msgstr "Pausa Automatica al Rilevamento"
+
+msgid "Enabled Defect Types"
+msgstr "Tipi di Difetti Abilitati"
+
+msgid "Camera Source"
+msgstr "Sorgente della Camera"
+
+msgid "Camera URL"
+msgstr "URL della Camera"
+
+msgid "Continue Detection While Paused"
+msgstr "Continua Rilevamento Durante la Pausa"
+
+msgid "Sound Notification"
+msgstr "Notifica Sonora"
+

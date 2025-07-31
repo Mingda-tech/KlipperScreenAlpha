@@ -1656,3 +1656,33 @@ msgstr "مراقب الذكاء الاصطناعي"
 msgid "AI Settings"
 msgstr "إعدادات الذكاء الاصطناعي"
 
+msgid "AI Detection Service"
+msgstr "خدمة كشف الذكاء الاصطناعي"
+
+msgid "AI Server URL"
+msgstr "رابط خادم الذكاء الاصطناعي"
+
+msgid "Confidence Threshold (%)"
+msgstr "عتبة الثقة (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "فترة الكشف (ثانية)"
+
+msgid "Auto Pause on Detection"
+msgstr "إيقاف تلقائي عند الكشف"
+
+msgid "Enabled Defect Types"
+msgstr "أنواع العيوب المُمكنة"
+
+msgid "Camera Source"
+msgstr "مصدر الكاميرا"
+
+msgid "Camera URL"
+msgstr "رابط الكاميرا"
+
+msgid "Continue Detection While Paused"
+msgstr "متابعة الكشف أثناء الإيقاف"
+
+msgid "Sound Notification"
+msgstr "تنبيه صوتي"
+

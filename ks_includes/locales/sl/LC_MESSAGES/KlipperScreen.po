@@ -1853,3 +1853,33 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Nastavitve"
 
+msgid "AI Detection Service"
+msgstr "AI Storitev Zaznavanja"
+
+msgid "AI Server URL"
+msgstr "AI Strežniški URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "Prag Zanesljivosti (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Interval Zaznavanja (sekunde)"
+
+msgid "Auto Pause on Detection"
+msgstr "Samodejna Prekinitev ob Zaznavanju"
+
+msgid "Enabled Defect Types"
+msgstr "Omogočene Vrste Napak"
+
+msgid "Camera Source"
+msgstr "Vir Kamere"
+
+msgid "Camera URL"
+msgstr "URL Kamere"
+
+msgid "Continue Detection While Paused"
+msgstr "Nadaljuj Zaznavanje Med Prekinitvijo"
+
+msgid "Sound Notification"
+msgstr "Zvočno Obvestilo"
+

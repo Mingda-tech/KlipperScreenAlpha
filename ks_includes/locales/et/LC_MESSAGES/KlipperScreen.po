@@ -1777,3 +1777,33 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Seaded"
 
+msgid "AI Detection Service"
+msgstr "AI Tuvastamisteenus"
+
+msgid "AI Server URL"
+msgstr "AI Serveri URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "Usaldusväärsuse lävi (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Tuvastamise intervall (sekundid)"
+
+msgid "Auto Pause on Detection"
+msgstr "Automaatne paus tuvastusel"
+
+msgid "Enabled Defect Types"
+msgstr "Lubatud defektitüübid"
+
+msgid "Camera Source"
+msgstr "Kaamera allikas"
+
+msgid "Camera URL"
+msgstr "Kaamera URL"
+
+msgid "Continue Detection While Paused"
+msgstr "Jätka tuvastamist pausi ajal"
+
+msgid "Sound Notification"
+msgstr "Heliteade"
+

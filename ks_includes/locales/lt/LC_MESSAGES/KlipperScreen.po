@@ -1611,3 +1611,33 @@ msgstr "AI Monitorius"
 msgid "AI Settings"
 msgstr "AI Nustatymai"
 
+msgid "AI Detection Service"
+msgstr "AI Aptikimo Tarnyba"
+
+msgid "AI Server URL"
+msgstr "AI Serverio URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "Patikimumo Slenkstis (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Aptikimo Intervalas (sekundės)"
+
+msgid "Auto Pause on Detection"
+msgstr "Automatinė Pauzė Aptikus"
+
+msgid "Enabled Defect Types"
+msgstr "Įgalinti Defektų Tipai"
+
+msgid "Camera Source"
+msgstr "Kameros Šaltinis"
+
+msgid "Camera URL"
+msgstr "Kameros URL"
+
+msgid "Continue Detection While Paused"
+msgstr "Tęsti Aptikimą Pauzės Metu"
+
+msgid "Sound Notification"
+msgstr "Garso Pranešimas"
+

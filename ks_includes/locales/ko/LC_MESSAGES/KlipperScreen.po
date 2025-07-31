@@ -1697,3 +1697,33 @@ msgstr "AI 모니터"
 msgid "AI Settings"
 msgstr "AI 설정"
 
+msgid "AI Detection Service"
+msgstr "AI 감지 서비스"
+
+msgid "AI Server URL"
+msgstr "AI 서버 URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "신뢰도 임계값 (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "감지 간격 (초)"
+
+msgid "Auto Pause on Detection"
+msgstr "감지 시 자동 일시정지"
+
+msgid "Enabled Defect Types"
+msgstr "활성화된 결함 유형"
+
+msgid "Camera Source"
+msgstr "카메라 소스"
+
+msgid "Camera URL"
+msgstr "카메라 URL"
+
+msgid "Continue Detection While Paused"
+msgstr "일시정지 중에도 감지 계속"
+
+msgid "Sound Notification"
+msgstr "소리 알림"
+

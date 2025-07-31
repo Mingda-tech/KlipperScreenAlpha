@@ -1837,3 +1837,36 @@ msgstr "Giám sát AI"
 msgid "AI Settings"
 msgstr "Cài đặt AI"
 
+msgid "AI Detection Service"
+msgstr "Dịch vụ phát hiện AI"
+
+msgid "AI Server URL"
+msgstr "URL máy chủ AI"
+
+msgid "Confidence Threshold (%)"
+msgstr "Ngưỡng tin cậy (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Khoảng thời gian phát hiện (giây)"
+
+msgid "Auto Pause on Detection"
+msgstr "Tự động tạm dừng khi phát hiện"
+
+msgid "Enabled Defect Types"
+msgstr "Các loại lỗi được kích hoạt"
+
+msgid "Camera Source"
+msgstr "Nguồn camera"
+
+msgid "Local"
+msgstr "Nội bộ"
+
+msgid "Camera URL"
+msgstr "URL camera"
+
+msgid "Continue Detection While Paused"
+msgstr "Tiếp tục phát hiện khi tạm dừng"
+
+msgid "Sound Notification"
+msgstr "Thông báo bằng âm thanh"
+

@@ -1772,3 +1772,33 @@ msgstr "AI監控"
 msgid "AI Settings"
 msgstr "AI設定"
 
+msgid "AI Detection Service"
+msgstr "AI檢測服務"
+
+msgid "AI Server URL"
+msgstr "AI伺服器網址"
+
+msgid "Confidence Threshold (%)"
+msgstr "信心閾值 (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "檢測間隔 (秒)"
+
+msgid "Auto Pause on Detection"
+msgstr "檢測到時自動暫停"
+
+msgid "Enabled Defect Types"
+msgstr "啟用的缺陷類型"
+
+msgid "Camera Source"
+msgstr "攝影機來源"
+
+msgid "Camera URL"
+msgstr "攝影機網址"
+
+msgid "Continue Detection While Paused"
+msgstr "暫停時繼續檢測"
+
+msgid "Sound Notification"
+msgstr "聲音通知"
+

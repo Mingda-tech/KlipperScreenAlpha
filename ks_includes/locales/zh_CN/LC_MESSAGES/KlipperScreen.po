@@ -1792,3 +1792,36 @@ msgstr "AI监控"
 msgid "AI Settings"
 msgstr "AI设置"
 
+msgid "AI Detection Service"
+msgstr "AI检测服务"
+
+msgid "AI Server URL"
+msgstr "AI服务器URL"
+
+msgid "Confidence Threshold (%)"
+msgstr "置信度阈值 (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "检测间隔 (秒)"
+
+msgid "Auto Pause on Detection"
+msgstr "检测到问题时自动暂停"
+
+msgid "Enabled Defect Types"
+msgstr "启用的缺陷类型"
+
+msgid "Camera Source"
+msgstr "摄像头源"
+
+msgid "Local"
+msgstr "本地"
+
+msgid "Camera URL"
+msgstr "摄像头URL"
+
+msgid "Continue Detection While Paused"
+msgstr "暂停时继续检测"
+
+msgid "Sound Notification"
+msgstr "声音通知"
+

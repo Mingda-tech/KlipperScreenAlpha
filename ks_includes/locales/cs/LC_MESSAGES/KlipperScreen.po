@@ -1535,3 +1535,33 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "Nastavení AI"
 
+msgid "AI Detection Service"
+msgstr "Služba detekce AI"
+
+msgid "AI Server URL"
+msgstr "URL serveru AI"
+
+msgid "Confidence Threshold (%)"
+msgstr "Práh spolehlivosti (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Interval detekce (sekundy)"
+
+msgid "Auto Pause on Detection"
+msgstr "Automatická pauza při detekci"
+
+msgid "Enabled Defect Types"
+msgstr "Povolené typy vad"
+
+msgid "Camera Source"
+msgstr "Zdroj kamery"
+
+msgid "Camera URL"
+msgstr "URL kamery"
+
+msgid "Continue Detection While Paused"
+msgstr "Pokračovat v detekci během pauzy"
+
+msgid "Sound Notification"
+msgstr "Zvukové oznámení"
+

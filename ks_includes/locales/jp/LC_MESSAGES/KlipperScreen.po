@@ -1631,3 +1631,33 @@ msgstr "AIモニター"
 msgid "AI Settings"
 msgstr "AI設定"
 
+msgid "AI Detection Service"
+msgstr "AI検出サービス"
+
+msgid "AI Server URL"
+msgstr "AIサーバーURL"
+
+msgid "Confidence Threshold (%)"
+msgstr "信頼度閾値 (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "検出間隔 (秒)"
+
+msgid "Auto Pause on Detection"
+msgstr "検出時自動一時停止"
+
+msgid "Enabled Defect Types"
+msgstr "有効な欠陥タイプ"
+
+msgid "Camera Source"
+msgstr "カメラソース"
+
+msgid "Camera URL"
+msgstr "カメラURL"
+
+msgid "Continue Detection While Paused"
+msgstr "一時停止中も検出を継続"
+
+msgid "Sound Notification"
+msgstr "音声通知"
+

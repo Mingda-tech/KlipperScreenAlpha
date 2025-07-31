@@ -1714,3 +1714,33 @@ msgstr "AI Monitör"
 msgid "AI Settings"
 msgstr "AI Ayarları"
 
+msgid "AI Detection Service"
+msgstr "AI Algılama Servisi"
+
+msgid "AI Server URL"
+msgstr "AI Sunucu URL'si"
+
+msgid "Confidence Threshold (%)"
+msgstr "Güven Eşiği (%)"
+
+msgid "Detection Interval (seconds)"
+msgstr "Algılama Aralığı (saniye)"
+
+msgid "Auto Pause on Detection"
+msgstr "Algılamada Otomatik Duraklat"
+
+msgid "Enabled Defect Types"
+msgstr "Etkin Hata Türleri"
+
+msgid "Camera Source"
+msgstr "Kamera Kaynağı"
+
+msgid "Camera URL"
+msgstr "Kamera URL'si"
+
+msgid "Continue Detection While Paused"
+msgstr "Durakladığında Algılamaya Devam Et"
+
+msgid "Sound Notification"
+msgstr "Ses Bildirimi"
+
