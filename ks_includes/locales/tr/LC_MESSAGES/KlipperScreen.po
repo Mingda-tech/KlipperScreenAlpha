@@ -1704,3 +1704,13 @@ msgstr "Yazdırma iptal edilemedi"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Temel AI hizmet ayarlarını yapılandırın. Yazdırma işlemlerinizi izlemek için AI hizmetini etkinleştirin ve algılama hassasiyeti için güven eşiğini ayarlayın."
 
+
+msgid "AI Detection Alert"
+msgstr "AI Algılama Uyarısı"
+
+msgid "AI Monitor"
+msgstr "AI Monitör"
+
+msgid "AI Settings"
+msgstr "AI Ayarları"
+

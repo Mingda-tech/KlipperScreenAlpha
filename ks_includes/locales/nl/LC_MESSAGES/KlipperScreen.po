@@ -1627,3 +1627,13 @@ msgstr "Annuleren van print mislukt"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Configureer basis AI-service instellingen. Schakel de AI-service in om uw prints te monitoren en pas de betrouwbaarheidsdrempel aan voor detectiegevoeligheid."
 
+
+msgid "AI Detection Alert"
+msgstr "AI Detectie Waarschuwing"
+
+msgid "AI Monitor"
+msgstr "AI Monitor"
+
+msgid "AI Settings"
+msgstr "AI Instellingen"
+

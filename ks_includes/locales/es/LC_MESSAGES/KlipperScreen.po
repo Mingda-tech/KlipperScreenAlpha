@@ -1794,3 +1794,13 @@ msgstr "Error al cancelar la impresión"
 
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Configurar ajustes básicos del servicio IA. Habilite el servicio IA para monitorear sus impresiones y ajuste el umbral de confianza para la sensibilidad de detección."
+
+msgid "AI Detection Alert"
+msgstr "Alerta de Detección IA"
+
+msgid "AI Monitor"
+msgstr "Monitor IA"
+
+msgid "AI Settings"
+msgstr "Configuración IA"
+

@@ -1827,3 +1827,13 @@ msgstr "Không thể hủy in"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Cấu hình cài đặt cơ bản của dịch vụ AI. Bật dịch vụ AI để giám sát quá trình in của bạn và điều chỉnh ngưỡng tin cậy cho độ nhạy phát hiện."
 
+
+msgid "AI Detection Alert"
+msgstr "Cảnh báo Phát hiện AI"
+
+msgid "AI Monitor"
+msgstr "Giám sát AI"
+
+msgid "AI Settings"
+msgstr "Cài đặt AI"
+

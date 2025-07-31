@@ -1646,3 +1646,13 @@ msgstr "فشل في إلغاء الطباعة"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "تكوين إعدادات خدمة الذكاء الاصطناعي الأساسية. تمكين خدمة الذكاء الاصطناعي لمراقبة مطبوعاتك وضبط عتبة الثقة لحساسية الكشف."
 
+
+msgid "AI Detection Alert"
+msgstr "تنبيه كشف الذكاء الاصطناعي"
+
+msgid "AI Monitor"
+msgstr "مراقب الذكاء الاصطناعي"
+
+msgid "AI Settings"
+msgstr "إعدادات الذكاء الاصطناعي"
+

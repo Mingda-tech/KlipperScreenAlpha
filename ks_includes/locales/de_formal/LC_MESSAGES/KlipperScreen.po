@@ -1771,3 +1771,13 @@ msgstr "Druck konnte nicht abgebrochen werden"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Grundlegende KI-Service-Einstellungen konfigurieren. Aktivieren Sie den KI-Service zur Überwachung Ihrer Drucke und stellen Sie die Vertrauensschwelle für die Erkennungsempfindlichkeit ein."
 
+
+msgid "AI Detection Alert"
+msgstr "KI-Erkennungsalarm"
+
+msgid "AI Monitor"
+msgstr "KI-Monitor"
+
+msgid "AI Settings"
+msgstr "KI-Einstellungen"
+

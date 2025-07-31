@@ -1601,3 +1601,13 @@ msgstr "Nepavyko atšaukti spausdinimo"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Konfigūruokite pagrindinius AI paslaugos nustatymus. Įjunkite AI paslaugą, kad stebėtų jūsų spaudas ir sureguliuokite pasitikėjimo slenkstį aptikimo jautrumui."
 
+
+msgid "AI Detection Alert"
+msgstr "AI Aptikimo Įspėjimas"
+
+msgid "AI Monitor"
+msgstr "AI Monitorius"
+
+msgid "AI Settings"
+msgstr "AI Nustatymai"
+

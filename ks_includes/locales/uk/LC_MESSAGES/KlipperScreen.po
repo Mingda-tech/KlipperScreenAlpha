@@ -1705,3 +1705,13 @@ msgstr "Не вдалося скасувати друк"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Налаштуйте основні параметри служби ШІ. Увімкніть службу ШІ для моніторингу ваших друків та налаштуйте поріг довіри для чутливості виявлення."
 
+
+msgid "AI Detection Alert"
+msgstr "Сповіщення виявлення ШІ"
+
+msgid "AI Monitor"
+msgstr "Монітор ШІ"
+
+msgid "AI Settings"
+msgstr "Налаштування ШІ"
+

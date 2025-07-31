@@ -1782,3 +1782,13 @@ msgstr "取消打印失败"
 
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "配置基本AI服务设置。启用AI服务来监控您的打印并调整检测敏感度的置信度阈值。"
+
+msgid "AI Detection Alert"
+msgstr "AI检测警报"
+
+msgid "AI Monitor"
+msgstr "AI监控"
+
+msgid "AI Settings"
+msgstr "AI设置"
+

@@ -1628,3 +1628,13 @@ msgstr "Kunne ikke annullere print"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Konfigurer grundlæggende AI-serviceindstillinger. Aktiver AI-tjenesten til at overvåge dine udskrifter og juster konfidensetærsklen for detektionfølsomhed."
 
+
+msgid "AI Detection Alert"
+msgstr "AI Detektionsalarm"
+
+msgid "AI Monitor"
+msgstr "AI Monitor"
+
+msgid "AI Settings"
+msgstr "AI Indstillinger"
+

@@ -1675,3 +1675,13 @@ msgstr "Kunde inte avbryta utskrift"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Konfigurera grundläggande AI-tjänstinställningar. Aktivera AI-tjänsten för att övervaka dina utskrifter och justera konfidenströskeln för detekteringskänslighet."
 
+
+msgid "AI Detection Alert"
+msgstr "AI-detekteringsvarning"
+
+msgid "AI Monitor"
+msgstr "AI-monitor"
+
+msgid "AI Settings"
+msgstr "AI-inställningar"
+

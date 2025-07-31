@@ -1811,3 +1811,13 @@ msgstr "נכשל בביטול ההדפסה"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "הגדר הגדרות בסיסיות של שירות AI. הפעל את שירות ה-AI כדי לנטר את ההדפסות שלך והתאם את סף הביטחון לרגישות הזיהוי."
 
+
+msgid "AI Detection Alert"
+msgstr "התראת זיהוי בינה מלאכותית"
+
+msgid "AI Monitor"
+msgstr "מוניטור בינה מלאכותית"
+
+msgid "AI Settings"
+msgstr "הגדרות בינה מלאכותית"
+

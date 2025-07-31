@@ -1623,3 +1623,13 @@ msgstr "Nie udało się anulować druku"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Skonfiguruj podstawowe ustawienia usługi AI. Włącz usługę AI, aby monitorować swoje wydruki i dostosuj próg ufności dla czułości wykrywania."
 
+
+msgid "AI Detection Alert"
+msgstr "Alert Wykrywania AI"
+
+msgid "AI Monitor"
+msgstr "Monitor AI"
+
+msgid "AI Settings"
+msgstr "Ustawienia AI"
+

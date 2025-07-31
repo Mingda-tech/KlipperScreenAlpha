@@ -1621,3 +1621,13 @@ msgstr "印刷のキャンセルに失敗しました"
 
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "基本的なAIサービス設定を構成します。AIサービスを有効にして印刷を監視し、検出感度の信頼度閾値を調整します。"
+
+msgid "AI Detection Alert"
+msgstr "AI検出アラート"
+
+msgid "AI Monitor"
+msgstr "AIモニター"
+
+msgid "AI Settings"
+msgstr "AI設定"
+

@@ -1525,3 +1525,13 @@ msgstr "Nepodařilo se zrušit tisk"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Nakonfigurujte základní nastavení služby AI. Povolte službu AI pro monitorování vašich tisků a upravte práh spolehlivosti pro citlivost detekce."
 
+
+msgid "AI Detection Alert"
+msgstr "Výstraha detekce AI"
+
+msgid "AI Monitor"
+msgstr "AI Monitor"
+
+msgid "AI Settings"
+msgstr "Nastavení AI"
+

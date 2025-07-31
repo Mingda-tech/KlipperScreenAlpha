@@ -1687,3 +1687,13 @@ msgstr "프린트 취소에 실패했습니다"
 
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "기본 AI 서비스 설정을 구성합니다. AI 서비스를 활성화하여 프린트를 모니터링하고 감지 민감도에 대한 신뢰도 임계값을 조정합니다."
+
+msgid "AI Detection Alert"
+msgstr "AI 감지 알림"
+
+msgid "AI Monitor"
+msgstr "AI 모니터"
+
+msgid "AI Settings"
+msgstr "AI 설정"
+

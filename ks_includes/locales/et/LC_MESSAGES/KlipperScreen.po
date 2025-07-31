@@ -1767,3 +1767,13 @@ msgstr "Printimise tühistamine ebaõnnestus"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Seadistage AI-teenuse põhiseaded. Lubage AI-teenus oma väljatrükkide jälgimiseks ja kohandage usaldusläve tuvastustundlikkuse jaoks."
 
+
+msgid "AI Detection Alert"
+msgstr "AI Tuvastushoiatus"
+
+msgid "AI Monitor"
+msgstr "AI Monitor"
+
+msgid "AI Settings"
+msgstr "AI Seaded"
+

@@ -1757,3 +1757,13 @@ msgstr "Annullamento della stampa fallito"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Configura le impostazioni di base del servizio IA. Abilita il servizio IA per monitorare le tue stampe e regola la soglia di confidenza per la sensibilità di rilevamento."
 
+
+msgid "AI Detection Alert"
+msgstr "Avviso Rilevamento IA"
+
+msgid "AI Monitor"
+msgstr "Monitor IA"
+
+msgid "AI Settings"
+msgstr "Impostazioni IA"
+

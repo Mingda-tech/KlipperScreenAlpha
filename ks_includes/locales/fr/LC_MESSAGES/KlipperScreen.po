@@ -1815,3 +1815,13 @@ msgstr "Échec de l'annulation de l'impression"
 
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Configurer les paramètres de base du service IA. Activez le service IA pour surveiller vos impressions et ajustez le seuil de confiance pour la sensibilité de détection."
+
+msgid "AI Detection Alert"
+msgstr "Alerte de Détection IA"
+
+msgid "AI Monitor"
+msgstr "Moniteur IA"
+
+msgid "AI Settings"
+msgstr "Paramètres IA"
+

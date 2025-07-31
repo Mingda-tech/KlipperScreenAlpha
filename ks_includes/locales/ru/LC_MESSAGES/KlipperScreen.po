@@ -1793,3 +1793,13 @@ msgstr "Не удалось отменить печать"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Настройте основные параметры службы ИИ. Включите службу ИИ для мониторинга ваших отпечатков и настройте порог достоверности для чувствительности обнаружения."
 
+
+msgid "AI Detection Alert"
+msgstr "Оповещение обнаружения ИИ"
+
+msgid "AI Monitor"
+msgstr "Монитор ИИ"
+
+msgid "AI Settings"
+msgstr "Настройки ИИ"
+

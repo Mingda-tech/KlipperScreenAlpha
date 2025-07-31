@@ -1843,3 +1843,13 @@ msgstr "Preklic tiskanja ni uspel"
 msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
 msgstr "Konfigurirajte osnovne nastavitve storitve AI. Omogočite storitev AI za nadzor vaših tiskov in prilagodite prag zaupanja za občutljivost zaznave."
 
+
+msgid "AI Detection Alert"
+msgstr "Opozorilo zaznavanja AI"
+
+msgid "AI Monitor"
+msgstr "AI Monitor"
+
+msgid "AI Settings"
+msgstr "AI Nastavitve"
+
