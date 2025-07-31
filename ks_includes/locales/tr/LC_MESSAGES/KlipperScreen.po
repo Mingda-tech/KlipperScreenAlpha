@@ -1682,3 +1682,25 @@ msgstr "Lütfen ekstrüder köpüğünü çıkarın ve kapı kolunu çıkarın."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Kasanın alt kısmındaki köpüğü çıkarmak için Z eksenini yükseltmek üzere Z yükselt düğmesine tıklayın."
+
+msgid "Print Issue Detected!"
+msgstr "Yazdırma Sorunu Tespit Edildi!"
+
+msgid "No prediction image available"
+msgstr "Tahmin görüntüsü mevcut değil"
+
+msgid "Print resumed"
+msgstr "Yazdırma devam ettirildi"
+
+msgid "Failed to resume print"
+msgstr "Yazdırma devam ettirilemedi"
+
+msgid "Print cancelled"
+msgstr "Yazdırma iptal edildi"
+
+msgid "Failed to cancel print"
+msgstr "Yazdırma iptal edilemedi"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Temel AI hizmet ayarlarını yapılandırın. Yazdırma işlemlerinizi izlemek için AI hizmetini etkinleştirin ve algılama hassasiyeti için güven eşiğini ayarlayın."
+

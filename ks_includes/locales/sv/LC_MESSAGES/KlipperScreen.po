@@ -1653,3 +1653,25 @@ msgstr "Ta bort extruderskummet och ta ut dörrhandtaget."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Klicka på Z-höjningsknappen för att höja Z-axeln och ta bort skummet runt botten av höljet."
+
+msgid "Print Issue Detected!"
+msgstr "Utskriftsproblem upptäckt!"
+
+msgid "No prediction image available"
+msgstr "Ingen förutsägelsebild tillgänglig"
+
+msgid "Print resumed"
+msgstr "Utskrift återupptagen"
+
+msgid "Failed to resume print"
+msgstr "Kunde inte återuppta utskrift"
+
+msgid "Print cancelled"
+msgstr "Utskrift avbruten"
+
+msgid "Failed to cancel print"
+msgstr "Kunde inte avbryta utskrift"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Konfigurera grundläggande AI-tjänstinställningar. Aktivera AI-tjänsten för att övervaka dina utskrifter och justera konfidenströskeln för detekteringskänslighet."
+

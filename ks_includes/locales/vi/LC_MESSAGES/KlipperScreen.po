@@ -1805,3 +1805,25 @@ msgstr "Vui lòng tháo bọt đầu đùn và lấy tay nắm cửa ra."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Vui lòng nhấp vào nút nâng Z để nâng trục Z và loại bỏ bọt xung quanh đáy vỏ máy."
+
+msgid "Print Issue Detected!"
+msgstr "Phát hiện vấn đề in ấn!"
+
+msgid "No prediction image available"
+msgstr "Không có hình ảnh dự đoán"
+
+msgid "Print resumed"
+msgstr "Đã tiếp tục in"
+
+msgid "Failed to resume print"
+msgstr "Không thể tiếp tục in"
+
+msgid "Print cancelled"
+msgstr "Đã hủy in"
+
+msgid "Failed to cancel print"
+msgstr "Không thể hủy in"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Cấu hình cài đặt cơ bản của dịch vụ AI. Bật dịch vụ AI để giám sát quá trình in của bạn và điều chỉnh ngưỡng tin cậy cho độ nhạy phát hiện."
+

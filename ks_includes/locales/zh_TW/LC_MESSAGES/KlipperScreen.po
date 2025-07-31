@@ -1741,3 +1741,24 @@ msgstr "請移除擠出頭泡沫並取出門把手。"
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "請點擊Z軸抬升按鈕，抬升Z軸以移除機箱底部周圍的泡沫。"
+
+msgid "Print Issue Detected!"
+msgstr "檢測到列印問題！"
+
+msgid "No prediction image available"
+msgstr "無預測圖片可用"
+
+msgid "Print resumed"
+msgstr "列印已恢復"
+
+msgid "Failed to resume print"
+msgstr "恢復列印失敗"
+
+msgid "Print cancelled"
+msgstr "列印已取消"
+
+msgid "Failed to cancel print"
+msgstr "取消列印失敗"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "配置基本的AI服務設定。啟用AI服務來監控您的列印作業，並調整信心閾值以控制檢測敏感度。"

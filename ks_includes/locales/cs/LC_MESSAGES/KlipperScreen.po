@@ -1503,3 +1503,25 @@ msgstr "Prosím odstraňte pěnu extruderu a vyjměte kliku dveří."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Prosím klikněte na tlačítko zvednutí Z pro zvednutí osy Z a odstranění pěny kolem spodní části skříně."
+
+msgid "Print Issue Detected!"
+msgstr "Zjištěn problém s tiskem!"
+
+msgid "No prediction image available"
+msgstr "Není k dispozici žádný predikční obrázek"
+
+msgid "Print resumed"
+msgstr "Tisk pokračuje"
+
+msgid "Failed to resume print"
+msgstr "Nepodařilo se obnovit tisk"
+
+msgid "Print cancelled"
+msgstr "Tisk zrušen"
+
+msgid "Failed to cancel print"
+msgstr "Nepodařilo se zrušit tisk"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Nakonfigurujte základní nastavení služby AI. Povolte službu AI pro monitorování vašich tisků a upravte práh spolehlivosti pro citlivost detekce."
+

@@ -1789,3 +1789,25 @@ msgstr "אנא הסר את קצף המכבש והוצא את ידית הדלת."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "אנא לחץ על כפתור הרמת Z כדי להרים את ציר Z ולהסיר את הקצף סביב תחתית המארז."
+
+msgid "Print Issue Detected!"
+msgstr "זוהתה בעיה בהדפסה!"
+
+msgid "No prediction image available"
+msgstr "אין תמונת חיזוי זמינה"
+
+msgid "Print resumed"
+msgstr "ההדפסה התחדשה"
+
+msgid "Failed to resume print"
+msgstr "נכשל בחידוש ההדפסה"
+
+msgid "Print cancelled"
+msgstr "ההדפסה בוטלה"
+
+msgid "Failed to cancel print"
+msgstr "נכשל בביטול ההדפסה"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "הגדר הגדרות בסיסיות של שירות AI. הפעל את שירות ה-AI כדי לנטר את ההדפסות שלך והתאם את סף הביטחון לרגישות הזיהוי."
+

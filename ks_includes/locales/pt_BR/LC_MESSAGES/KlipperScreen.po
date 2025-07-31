@@ -1810,3 +1810,25 @@ msgstr "Por favor, remova a espuma do extrusor e retire a maçaneta da porta."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Por favor, clique no botão de elevar Z para elevar o eixo Z e remover a espuma ao redor da parte inferior do gabinete."
+
+msgid "Print Issue Detected!"
+msgstr "Problema de impressão detectado!"
+
+msgid "No prediction image available"
+msgstr "Nenhuma imagem de previsão disponível"
+
+msgid "Print resumed"
+msgstr "Impressão retomada"
+
+msgid "Failed to resume print"
+msgstr "Falha ao retomar a impressão"
+
+msgid "Print cancelled"
+msgstr "Impressão cancelada"
+
+msgid "Failed to cancel print"
+msgstr "Falha ao cancelar a impressão"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Configure as configurações básicas do serviço de IA. Ative o serviço de IA para monitorar suas impressões e ajuste o limiar de confiança para a sensibilidade de detecção."
+

@@ -1600,3 +1600,24 @@ msgstr "Please remove the extruder foam and take out the door handle."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+
+msgid "Print Issue Detected!"
+msgstr "印刷の問題が検出されました！"
+
+msgid "No prediction image available"
+msgstr "予測画像が利用できません"
+
+msgid "Print resumed"
+msgstr "印刷が再開されました"
+
+msgid "Failed to resume print"
+msgstr "印刷の再開に失敗しました"
+
+msgid "Print cancelled"
+msgstr "印刷がキャンセルされました"
+
+msgid "Failed to cancel print"
+msgstr "印刷のキャンセルに失敗しました"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "基本的なAIサービス設定を構成します。AIサービスを有効にして印刷を監視し、検出感度の信頼度閾値を調整します。"

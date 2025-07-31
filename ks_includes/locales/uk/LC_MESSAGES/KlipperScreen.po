@@ -1683,3 +1683,25 @@ msgstr "Будь ласка, видаліть піну екструдера та
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Будь ласка, натисніть кнопку підняття Z, щоб підняти вісь Z та видалити піну навколо нижньої частини корпусу."
+
+msgid "Print Issue Detected!"
+msgstr "Виявлено проблему з друком!"
+
+msgid "No prediction image available"
+msgstr "Зображення прогнозу недоступне"
+
+msgid "Print resumed"
+msgstr "Друк відновлено"
+
+msgid "Failed to resume print"
+msgstr "Не вдалося відновити друк"
+
+msgid "Print cancelled"
+msgstr "Друк скасовано"
+
+msgid "Failed to cancel print"
+msgstr "Не вдалося скасувати друк"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Налаштуйте основні параметри служби ШІ. Увімкніть службу ШІ для моніторингу ваших друків та налаштуйте поріг довіри для чутливості виявлення."
+

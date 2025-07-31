@@ -1579,3 +1579,25 @@ msgstr "Prašome pašalinti ekstruderio putas ir išimti durų rankeną."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Spustelėkite Z kėlimo mygtuką, kad pakeltumėte Z ašį ir pašalintumėte putas aplink korpuso apačią."
+
+msgid "Print Issue Detected!"
+msgstr "Aptikta spausdinimo problema!"
+
+msgid "No prediction image available"
+msgstr "Prognozės vaizdas neprieinamas"
+
+msgid "Print resumed"
+msgstr "Spausdinimas tęsiamas"
+
+msgid "Failed to resume print"
+msgstr "Nepavyko tęsti spausdinimo"
+
+msgid "Print cancelled"
+msgstr "Spausdinimas atšauktas"
+
+msgid "Failed to cancel print"
+msgstr "Nepavyko atšaukti spausdinimo"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Konfigūruokite pagrindinius AI paslaugos nustatymus. Įjunkite AI paslaugą, kad stebėtų jūsų spaudas ir sureguliuokite pasitikėjimo slenkstį aptikimo jautrumui."
+

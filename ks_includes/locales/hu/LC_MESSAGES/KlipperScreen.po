@@ -1570,3 +1570,25 @@ msgstr "Kérjük, távolítsa el az extruder habot és vegye ki az ajtókilincse
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Kérjük, kattintson a Z emelés gombra a Z tengely emeléséhez és a ház alja körüli hab eltávolításához."
+
+msgid "Print Issue Detected!"
+msgstr "Nyomtatási probléma észlelve!"
+
+msgid "No prediction image available"
+msgstr "Nincs elérhető előrejelzési kép"
+
+msgid "Print resumed"
+msgstr "Nyomtatás folytatva"
+
+msgid "Failed to resume print"
+msgstr "Nem sikerült folytatni a nyomtatást"
+
+msgid "Print cancelled"
+msgstr "Nyomtatás megszakítva"
+
+msgid "Failed to cancel print"
+msgstr "Nem sikerült megszakítani a nyomtatást"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Alapvető AI szolgáltatás beállítások konfigurálása. Az AI szolgáltatás engedélyezése a nyomtatások figyeléséhez és a megbízhatósági küszöb beállítása az észlelési érzékenységhez."
+

@@ -1771,3 +1771,25 @@ msgstr "Пожалуйста, удалите пену экструдера и и
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Пожалуйста, нажмите кнопку подъема Z, чтобы поднять ось Z и удалить пену вокруг нижней части корпуса."
+
+msgid "Print Issue Detected!"
+msgstr "Обнаружена проблема печати!"
+
+msgid "No prediction image available"
+msgstr "Изображение прогноза недоступно"
+
+msgid "Print resumed"
+msgstr "Печать возобновлена"
+
+msgid "Failed to resume print"
+msgstr "Не удалось возобновить печать"
+
+msgid "Print cancelled"
+msgstr "Печать отменена"
+
+msgid "Failed to cancel print"
+msgstr "Не удалось отменить печать"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Настройте основные параметры службы ИИ. Включите службу ИИ для мониторинга ваших отпечатков и настройте порог достоверности для чувствительности обнаружения."
+

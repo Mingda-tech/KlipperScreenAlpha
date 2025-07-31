@@ -1735,3 +1735,25 @@ msgstr "Si prega di rimuovere la schiuma dell'estrusore e rimuovere la maniglia 
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Si prega di fare clic sul pulsante di sollevamento Z per alzare l'asse Z e rimuovere la schiuma intorno al fondo del case."
+
+msgid "Print Issue Detected!"
+msgstr "Problema di stampa rilevato!"
+
+msgid "No prediction image available"
+msgstr "Nessuna immagine di predizione disponibile"
+
+msgid "Print resumed"
+msgstr "Stampa ripresa"
+
+msgid "Failed to resume print"
+msgstr "Ripresa della stampa fallita"
+
+msgid "Print cancelled"
+msgstr "Stampa annullata"
+
+msgid "Failed to cancel print"
+msgstr "Annullamento della stampa fallito"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Configura le impostazioni di base del servizio IA. Abilita il servizio IA per monitorare le tue stampe e regola la soglia di confidenza per la sensibilità di rilevamento."
+

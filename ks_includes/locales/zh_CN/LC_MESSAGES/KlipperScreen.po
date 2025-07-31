@@ -1761,3 +1761,24 @@ msgstr "请移除挤出头泡棉并取出门把手。"
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "请点击Z轴抬升按钮以移除机箱底部的泡棉。"
+
+msgid "Print Issue Detected!"
+msgstr "检测到打印问题！"
+
+msgid "No prediction image available"
+msgstr "无预测图像可用"
+
+msgid "Print resumed"
+msgstr "打印已恢复"
+
+msgid "Failed to resume print"
+msgstr "恢复打印失败"
+
+msgid "Print cancelled"
+msgstr "打印已取消"
+
+msgid "Failed to cancel print"
+msgstr "取消打印失败"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "配置基本AI服务设置。启用AI服务来监控您的打印并调整检测敏感度的置信度阈值。"

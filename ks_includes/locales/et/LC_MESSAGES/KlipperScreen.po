@@ -1745,3 +1745,25 @@ msgstr "Palun eemaldage ekstruderi vaht ja võtke välja uksekäepide."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Palun klõpsake Z tõstmise nuppu, et tõsta Z-telge ja eemaldada vaht korpuse põhja ümber."
+
+msgid "Print Issue Detected!"
+msgstr "Tuvastatud printimisprobleemi!"
+
+msgid "No prediction image available"
+msgstr "Prognoosipilt pole saadaval"
+
+msgid "Print resumed"
+msgstr "Printimine jätkatud"
+
+msgid "Failed to resume print"
+msgstr "Printimise jätkamine ebaõnnestus"
+
+msgid "Print cancelled"
+msgstr "Printimine tühistatud"
+
+msgid "Failed to cancel print"
+msgstr "Printimise tühistamine ebaõnnestus"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Seadistage AI-teenuse põhiseaded. Lubage AI-teenus oma väljatrükkide jälgimiseks ja kohandage usaldusläve tuvastustundlikkuse jaoks."
+

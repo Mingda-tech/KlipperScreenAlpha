@@ -1749,3 +1749,25 @@ msgstr "Please remove the extruder foam and take out the door handle."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
+
+msgid "Print Issue Detected!"
+msgstr "Druckproblem erkannt!"
+
+msgid "No prediction image available"
+msgstr "Kein Vorhersagebild verfügbar"
+
+msgid "Print resumed"
+msgstr "Druck fortgesetzt"
+
+msgid "Failed to resume print"
+msgstr "Druck konnte nicht fortgesetzt werden"
+
+msgid "Print cancelled"
+msgstr "Druck abgebrochen"
+
+msgid "Failed to cancel print"
+msgstr "Druck konnte nicht abgebrochen werden"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Grundlegende KI-Service-Einstellungen konfigurieren. Aktivieren Sie den KI-Service zur Überwachung Ihrer Drucke und stellen Sie die Vertrauensschwelle für die Erkennungsempfindlichkeit ein."
+

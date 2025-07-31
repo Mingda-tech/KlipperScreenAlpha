@@ -1821,3 +1821,25 @@ msgstr "Prosimo, odstranite peno ekstruderja in izvlecite kljuko vrat."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Prosimo, kliknite gumb za dvig Z, da dvignete os Z in odstranite peno okoli dna ohišja."
+
+msgid "Print Issue Detected!"
+msgstr "Zaznana težava s tiskanjem!"
+
+msgid "No prediction image available"
+msgstr "Slika napovedovanja ni na voljo"
+
+msgid "Print resumed"
+msgstr "Tiskanje nadaljevano"
+
+msgid "Failed to resume print"
+msgstr "Nadaljevanje tiskanja ni uspelo"
+
+msgid "Print cancelled"
+msgstr "Tiskanje preklicano"
+
+msgid "Failed to cancel print"
+msgstr "Preklic tiskanja ni uspel"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Konfigurirajte osnovne nastavitve storitve AI. Omogočite storitev AI za nadzor vaših tiskov in prilagodite prag zaupanja za občutljivost zaznave."
+

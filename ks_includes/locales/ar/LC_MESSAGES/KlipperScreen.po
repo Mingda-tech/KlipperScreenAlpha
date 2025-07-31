@@ -1624,3 +1624,25 @@ msgstr "يرجى إزالة رغوة الطارد وإخراج مقبض البا
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "يرجى النقر على زر رفع Z لرفع المحور Z وإزالة الرغوة حول الجزء السفلي من العلبة."
+
+msgid "Print Issue Detected!"
+msgstr "تم اكتشاف مشكلة في الطباعة!"
+
+msgid "No prediction image available"
+msgstr "لا توجد صورة توقع متاحة"
+
+msgid "Print resumed"
+msgstr "تم استئناف الطباعة"
+
+msgid "Failed to resume print"
+msgstr "فشل في استئناف الطباعة"
+
+msgid "Print cancelled"
+msgstr "تم إلغاء الطباعة"
+
+msgid "Failed to cancel print"
+msgstr "فشل في إلغاء الطباعة"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "تكوين إعدادات خدمة الذكاء الاصطناعي الأساسية. تمكين خدمة الذكاء الاصطناعي لمراقبة مطبوعاتك وضبط عتبة الثقة لحساسية الكشف."
+

@@ -1601,3 +1601,25 @@ msgstr "Proszę usunąć piankę ekstrudera i wyjąć klamkę drzwi."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Proszę kliknąć przycisk podnoszenia Z, aby podnieść oś Z i usunąć piankę wokół dolnej części obudowy."
+
+msgid "Print Issue Detected!"
+msgstr "Wykryto problem z drukiem!"
+
+msgid "No prediction image available"
+msgstr "Brak dostępnego obrazu przewidywania"
+
+msgid "Print resumed"
+msgstr "Druk wznowiony"
+
+msgid "Failed to resume print"
+msgstr "Nie udało się wznowić druku"
+
+msgid "Print cancelled"
+msgstr "Druk anulowany"
+
+msgid "Failed to cancel print"
+msgstr "Nie udało się anulować druku"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Skonfiguruj podstawowe ustawienia usługi AI. Włącz usługę AI, aby monitorować swoje wydruki i dostosuj próg ufności dla czułości wykrywania."
+

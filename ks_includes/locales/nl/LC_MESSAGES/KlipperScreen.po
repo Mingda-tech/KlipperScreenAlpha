@@ -1605,3 +1605,25 @@ msgstr "Verwijder het extruderschuim en haal de deurklink eruit."
 
 msgid "Please click the Z raise button to raise the Z axis to remove the foam around the bottom of the case."
 msgstr "Klik op de Z-omhoog knop om de Z-as te verhogen en het schuim rond de onderkant van de behuizing te verwijderen."
+
+msgid "Print Issue Detected!"
+msgstr "Printprobleem gedetecteerd!"
+
+msgid "No prediction image available"
+msgstr "Geen voorspellingsbeeld beschikbaar"
+
+msgid "Print resumed"
+msgstr "Print hervat"
+
+msgid "Failed to resume print"
+msgstr "Hervatten van print mislukt"
+
+msgid "Print cancelled"
+msgstr "Print geannuleerd"
+
+msgid "Failed to cancel print"
+msgstr "Annuleren van print mislukt"
+
+msgid "Configure basic AI service settings. Enable the AI service to monitor your prints and adjust the confidence threshold for detection sensitivity."
+msgstr "Configureer basis AI-service instellingen. Schakel de AI-service in om uw prints te monitoren en pas de betrouwbaarheidsdrempel aan voor detectiegevoeligheid."
+
