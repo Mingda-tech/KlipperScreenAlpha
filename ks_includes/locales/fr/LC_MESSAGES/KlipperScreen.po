@@ -1825,6 +1825,12 @@ msgstr "Moniteur IA"
 msgid "AI Settings"
 msgstr "Paramètres IA"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Défaut détecté : %s (Confiance : %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "Erreur de détection IA : %s"
+
 msgid "AI Detection Service"
 msgstr "Service de Détection IA"
 

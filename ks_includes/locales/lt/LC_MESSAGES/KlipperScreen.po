@@ -1611,6 +1611,12 @@ msgstr "AI Monitorius"
 msgid "AI Settings"
 msgstr "AI Nustatymai"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Aptiktas defektas: %s (Patikimumas: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI aptikimo klaida: %s"
+
 msgid "AI Detection Service"
 msgstr "AI Aptikimo Tarnyba"
 

@@ -1697,6 +1697,12 @@ msgstr "AI 모니터"
 msgid "AI Settings"
 msgstr "AI 설정"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "결함 감지됨: %s (신뢰도: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI 감지 오류: %s"
+
 msgid "AI Detection Service"
 msgstr "AI 감지 서비스"
 

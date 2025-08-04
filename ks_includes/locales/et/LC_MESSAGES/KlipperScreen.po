@@ -1777,6 +1777,12 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Seaded"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Tuvastatud defekt: %s (Kindlus: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI tuvastamise viga: %s"
+
 msgid "AI Detection Service"
 msgstr "AI Tuvastamisteenus"
 

@@ -1714,6 +1714,12 @@ msgstr "AI Monitör"
 msgid "AI Settings"
 msgstr "AI Ayarları"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Hata tespit edildi: %s (Güven: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI tespit hatası: %s"
+
 msgid "AI Detection Service"
 msgstr "AI Algılama Servisi"
 

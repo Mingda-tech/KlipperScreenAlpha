@@ -147,7 +147,7 @@ class DetectionResultHandler:
     
     def _show_defect_warning(self, defect_type: str, confidence: float, result: Dict) -> None:
         """显示缺陷警告"""
-        message = f"Detected defect: {defect_type} (Confidence: {confidence:.1%})"
+        message = _("Detected defect: %s (Confidence: %.1f%%)") % (defect_type, confidence * 100)
         
         # 播放通知声音（如果启用）
         if self.config.get_ai_notification_sound():
@@ -235,7 +235,7 @@ class DetectionResultHandler:
         logging.error(f"AI检测错误: {error}")
         
         # 显示错误通知
-        error_message = f"AI Detection Error: {str(error)}"
+        error_message = _("AI Detection Error: %s") % str(error)
         GLib.idle_add(
             self.screen.show_popup_message,
             error_message,

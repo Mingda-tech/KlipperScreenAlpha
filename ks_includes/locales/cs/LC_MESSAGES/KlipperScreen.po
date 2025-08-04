@@ -1535,6 +1535,12 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "Nastavení AI"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Zjištěna vada: %s (Spolehlivost: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "Chyba AI detekce: %s"
+
 msgid "AI Detection Service"
 msgstr "Služba detekce AI"
 

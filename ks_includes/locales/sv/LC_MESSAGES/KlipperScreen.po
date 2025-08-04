@@ -1685,6 +1685,12 @@ msgstr "AI-monitor"
 msgid "AI Settings"
 msgstr "AI-inställningar"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Defekt upptäckt: %s (Säkerhet: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI-detektionsfel: %s"
+
 msgid "AI Detection Service"
 msgstr "AI-detekteringstjänst"
 

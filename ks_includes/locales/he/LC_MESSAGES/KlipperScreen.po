@@ -1821,6 +1821,12 @@ msgstr "מוניטור בינה מלאכותית"
 msgid "AI Settings"
 msgstr "הגדרות בינה מלאכותית"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "זוהה פגם: %s (רמת ביטחון: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "שגיאה בזיהוי AI: %s"
+
 msgid "AI Detection Service"
 msgstr "שירות זיהוי בינה מלאכותית"
 

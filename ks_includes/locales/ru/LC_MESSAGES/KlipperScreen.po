@@ -1803,6 +1803,12 @@ msgstr "Монитор ИИ"
 msgid "AI Settings"
 msgstr "Настройки ИИ"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Обнаружен дефект: %s (Уверенность: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "Ошибка обнаружения ИИ: %s"
+
 msgid "AI Detection Service"
 msgstr "Служба Обнаружения ИИ"
 

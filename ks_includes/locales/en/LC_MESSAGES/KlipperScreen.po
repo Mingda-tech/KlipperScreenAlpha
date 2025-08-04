@@ -1593,6 +1593,12 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Settings"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Detected defect: %s (Confidence: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI Detection Error: %s"
+
 msgid "AI Detection Service"
 msgstr "AI Detection Service"
 

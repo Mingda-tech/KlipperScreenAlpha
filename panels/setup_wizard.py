@@ -1,9 +1,13 @@
 import gi
 import logging
+import os
+import pathlib
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
 from ks_includes.screen_panel import ScreenPanel
+
+klipperscreendir = pathlib.Path(__file__).parent.resolve().parent
 
 
 class Panel(ScreenPanel):
@@ -137,16 +141,58 @@ class Panel(ScreenPanel):
         self.labels[boxname].attach(opt_array[opt_name]['row'], 0, pos, 1, 1)
         self.labels[boxname].show_all()
 
+    def get_printer_model(self):
+        # 获取打印机型号
+        if "MD_1000D" in self._printer.available_commands:
+            return "1000D"
+        elif "MD_600D" in self._printer.available_commands:
+            return "600D"
+        elif "MD_600PRO" in self._printer.available_commands:
+            return "600PRO"
+        elif "MD_1000PRO" in self._printer.available_commands:
+            return "1000PRO"
+        elif "MD_400D" in self._printer.available_commands:
+            return "400D"
+        return None  # 没有识别到的机型
+    
+    def check_foam_images_exist(self):
+        # 检查foam图片是否存在
+        base_path = os.path.join(klipperscreendir, "ks_includes", "locales")
+        current_lang = self._config.get_main_config().get("language", "en")
+        printer_model = self.get_printer_model()
+        
+        # 如果没有识别到机型，直接返回False
+        if printer_model is None:
+            return False
+        
+        images = ["remove_foam1.jpg", "remove_foam2.jpg"]
+        
+        for image_name in images:
+            # 首先尝试获取当前语言和机型的图片路径
+            lang_model_path = os.path.join(base_path, current_lang, "manual", printer_model, image_name)
+            if os.path.exists(lang_model_path):
+                continue
+            
+            # 如果当前语言的图片不存在，尝试使用英语图片
+            en_model_path = os.path.join(base_path, "en", "manual", printer_model, image_name)
+            if os.path.exists(en_model_path):
+                continue
+                
+            # 如果都不存在，返回False
+            return False
+            
+        return True
+
     def on_next_click(self, widget=None):
         # Check if this is MD_400D model
         if self._screen.setup_init < 2:
             self._screen.setup_init = 2
-        if self._screen.printer and "MD_400D" in self._screen.printer.get_gcode_macros():
-            # For MD_400D, skip directly to WiFi selection
+        if not self.check_foam_images_exist():
+            # when foam images don't exist, skip directly to WiFi selection
             self._screen.save_init_step()
             self._screen.show_panel("select_wifi", _("Select WiFi"), remove_all=True)
         else:
-            # For other models, show the setup image
+            # For other models with foam images available, show the setup image
             self._screen.save_init_step()
             self._screen.show_panel("setup_image", _("Remove Foam"), remove_all=True)
         

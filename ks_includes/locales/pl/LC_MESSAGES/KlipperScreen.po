@@ -1633,6 +1633,12 @@ msgstr "Monitor AI"
 msgid "AI Settings"
 msgstr "Ustawienia AI"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Wykryto defekt: %s (Pewność: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "Błąd detekcji AI: %s"
+
 msgid "AI Detection Service"
 msgstr "Usługa Wykrywania AI"
 

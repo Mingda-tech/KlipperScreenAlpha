@@ -1853,6 +1853,12 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Nastavitve"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Zaznana napaka: %s (Zanesljivost: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "Napaka AI zaznave: %s"
+
 msgid "AI Detection Service"
 msgstr "AI Storitev Zaznavanja"
 

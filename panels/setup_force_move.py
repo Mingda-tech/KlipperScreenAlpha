@@ -24,8 +24,15 @@ class Panel(ScreenPanel):
                 logging.info("Setup Force Move: Z axis is not homed. Enabling stepper_z.")
                 self._screen._send_action(None, "printer.gcode.script", {"script": "SET_STEPPER_ENABLE STEPPER=stepper_z ENABLE=1"})
                 self._screen._send_action(None, "printer.gcode.script", {"script": "G4 P2000"})
-        self.image_path = os.path.join(klipperscreendir, "ks_includes", "locales", "en", "manual", "remove_foam2.jpg")
-        self.init_ui()
+        
+        self.base_path = os.path.join(klipperscreendir, "ks_includes", "locales")
+        self.current_lang = self._config.get_main_config().get("language", "en")
+        self.printer_model = self.get_printer_model()
+        self.image_path = self.get_image_path("remove_foam2.jpg")
+        
+        # Only initialize UI if image exists
+        if os.path.exists(self.image_path):
+            self.init_ui()
 
     def init_ui(self):
         grid = self._gtk.HomogeneousGrid()
@@ -140,6 +147,38 @@ class Panel(ScreenPanel):
             # If image not found, show a placeholder
             self.image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
     
+    def get_printer_model(self):
+        # 获取打印机型号
+        if "MD_1000D" in self._printer.available_commands:
+            return "1000D"
+        elif "MD_600D" in self._printer.available_commands:
+            return "600D"
+        elif "MD_600PRO" in self._printer.available_commands:
+            return "600PRO"
+        elif "MD_1000PRO" in self._printer.available_commands:
+            return "1000PRO"
+        elif "MD_400D" in self._printer.available_commands:
+            return "400D"
+        return None  # 没有识别到的机型
+    
+    def get_image_path(self, image_name):
+        # 如果没有识别到机型，直接返回不存在的路径
+        if self.printer_model is None:
+            return ""
+            
+        # 首先尝试获取当前语言和机型的图片路径
+        lang_model_path = os.path.join(self.base_path, self.current_lang, "manual", self.printer_model, image_name)
+        if os.path.exists(lang_model_path):
+            return lang_model_path
+        
+        # 如果当前语言的图片不存在，尝试使用英语图片
+        en_model_path = os.path.join(self.base_path, "en", "manual", self.printer_model, image_name)
+        if os.path.exists(en_model_path):
+            return en_model_path
+            
+        # 如果都不存在，返回空路径
+        return ""
+
     def scale_image(self, filename, new_width, new_height):
         # Load the image from the file
         pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)

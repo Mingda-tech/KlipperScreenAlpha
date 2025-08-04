@@ -1781,6 +1781,12 @@ msgstr "KI-Monitor"
 msgid "AI Settings"
 msgstr "KI-Einstellungen"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Fehler erkannt: %s (Konfidenz: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "KI-Erkennungsfehler: %s"
+
 msgid "AI Detection Service"
 msgstr "KI-Erkennungsdienst"
 

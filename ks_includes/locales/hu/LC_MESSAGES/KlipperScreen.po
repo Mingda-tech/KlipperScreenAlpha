@@ -1602,6 +1602,12 @@ msgstr "AI Monitor"
 msgid "AI Settings"
 msgstr "AI Beállítások"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Hibát észlelt: %s (Megbízhatóság: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "AI észlelési hiba: %s"
+
 msgid "AI Detection Service"
 msgstr "AI Észlelési Szolgáltatás"
 

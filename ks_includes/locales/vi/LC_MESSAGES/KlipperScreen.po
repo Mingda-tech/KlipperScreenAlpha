@@ -1837,6 +1837,12 @@ msgstr "Giám sát AI"
 msgid "AI Settings"
 msgstr "Cài đặt AI"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "Phát hiện lỗi: %s (Độ tin cậy: %.1f%%)"
+
+msgid "AI Detection Error: %s"
+msgstr "Lỗi phát hiện AI: %s"
+
 msgid "AI Detection Service"
 msgstr "Dịch vụ phát hiện AI"
 

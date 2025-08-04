@@ -1772,6 +1772,12 @@ msgstr "AI監控"
 msgid "AI Settings"
 msgstr "AI設定"
 
+msgid "Detected defect: %s (Confidence: %.1f%%)"
+msgstr "檢測到缺陷：%s（置信度：%.1f%%）"
+
+msgid "AI Detection Error: %s"
+msgstr "AI檢測錯誤：%s"
+
 msgid "AI Detection Service"
 msgstr "AI檢測服務"
 
