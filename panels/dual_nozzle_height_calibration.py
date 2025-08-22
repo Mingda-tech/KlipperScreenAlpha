@@ -42,7 +42,7 @@ class Panel(ScreenPanel):
         self.nozzle_height_difference = None
         if self._screen.klippy_config is not None:
             try:
-                self.nozzle_height_difference = self._screen.klippy_config.getfloat("Variables", "e1_zoffset")
+                self.nozzle_height_difference = self._screen.klippy_config.getfloat("Variables", "idex_zoffset")
             except Exception as e:
                 logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")        
 

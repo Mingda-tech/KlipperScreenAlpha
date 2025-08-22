@@ -3,12 +3,15 @@ import gi
 import os
 import subprocess
 import mpv
+import time
+import threading
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Pango, GLib
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.screen_panel import ScreenPanel
+from ks_includes.nozzle_detector import NozzleDetector
 
 
 class Panel(ScreenPanel):
@@ -22,12 +25,17 @@ class Panel(ScreenPanel):
         self.is_home = False
         self.current_extruder = self._printer.get_stat("toolhead", "extruder")
         self.menu = ['main_menu']
-        self.pos['e1_xoffset'] = None
-        self.pos['e1_yoffset'] = None
+        self.pos['idex_xoffset'] = None
+        self.pos['idex_yoffset'] = None
+        
+        # 初始化喷嘴检测器
+        self.nozzle_detector = NozzleDetector(pixel_to_mm_ratio=0.05)
+        self.auto_calibrating = False
+        
         if self._screen.klippy_config is not None:
             try:
-                self.pos['e1_xoffset'] = self._screen.klippy_config.getfloat("Variables", "e1_xoffset")
-                self.pos['e1_yoffset'] = self._screen.klippy_config.getfloat("Variables", "e1_yoffset")
+                self.pos['idex_xoffset'] = self._screen.klippy_config.getfloat("Variables", "idex_xoffset")
+                self.pos['idex_yoffset'] = self._screen.klippy_config.getfloat("Variables", "idex_yoffset")
             except Exception as e:
                 logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")
 
@@ -94,11 +102,15 @@ class Panel(ScreenPanel):
         offsetgrid = Gtk.Grid()
         self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
         self.labels['save'] = self._gtk.Button(None, "Save", "color1")
+        self.labels['auto_calibrate'] = self._gtk.Button(None, _("Auto Calibrate"), "color3")
 
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
         self.labels['save'].connect("clicked", self.save_offset)
+        self.labels['auto_calibrate'].connect("clicked", self.start_auto_calibration)
+        
         offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)           
-        offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)   
+        offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)
+        offsetgrid.attach(self.labels['auto_calibrate'], 0, 1, 2, 1)   
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -275,19 +287,19 @@ class Panel(ScreenPanel):
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
         
     def save_offset(self, widget):      
-        if self.pos['e1_xoffset'] is None or self.pos['e1_yoffset'] is None:
+        if self.pos['idex_xoffset'] is None or self.pos['idex_yoffset'] is None:
             return
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
         else:
-            self.pos['e1_xoffset'] += self.pos['ox']
-            self.pos['e1_yoffset'] += self.pos['oy']
+            self.pos['idex_xoffset'] += self.pos['ox']
+            self.pos['idex_yoffset'] += self.pos['oy']
             try:
-                self._screen.klippy_config.set("Variables", "e1_xoffset", f"{self.pos['e1_xoffset']:.2f}")
-                self._screen.klippy_config.set("Variables", "e1_yoffset", f"{self.pos['e1_yoffset']:.2f}")
+                self._screen.klippy_config.set("Variables", "idex_xoffset", f"{self.pos['idex_xoffset']:.2f}")
+                self._screen.klippy_config.set("Variables", "idex_yoffset", f"{self.pos['idex_yoffset']:.2f}")
                 self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
                 self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
-                logging.info(f"xy offset change to x: {self.pos['e1_xoffset']:.2f} y: {self.pos['e1_yoffset']:.2f}")
+                logging.info(f"xy offset change to x: {self.pos['idex_xoffset']:.2f} y: {self.pos['idex_yoffset']:.2f}")
                 with open(self._screen.klippy_config_path, 'w') as file:
                     self._screen.klippy_config.write(file)
                     if self.mpv:
@@ -298,8 +310,8 @@ class Panel(ScreenPanel):
             except Exception as e:
                 logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
                 self._screen.show_popup_message(_("Error writing configuration"))
-                self.pos['e1_xoffset'] -= self.pos['ox']
-                self.pos['e1_yoffset'] -= self.pos['oy']
+                self.pos['idex_xoffset'] -= self.pos['ox']
+                self.pos['idex_yoffset'] -= self.pos['oy']
             
     def play(self, widget, cam):
         url = cam['stream_url']
@@ -357,18 +369,49 @@ class Panel(ScreenPanel):
             logging.exception(e)
             return
 
-        font = ImageFont.truetype('DejaVuSans.ttf', 10)
-        font1 = ImageFont.truetype('DejaVuSans.ttf', 12)
         self.overlay = self.mpv.create_image_overlay()
-        img = Image.new('RGBA', (400, 150),  (255, 255, 255, 0))
+        
+        # Get the video dimensions (assuming standard camera resolution)
+        # You may need to adjust these values based on actual camera resolution
+        video_width = 640  # Adjust based on your camera resolution
+        video_height = 480  # Adjust based on your camera resolution
+        
+        # Create overlay image with full video dimensions
+        img = Image.new('RGBA', (video_width, video_height),  (255, 255, 255, 0))
         d = ImageDraw.Draw(img)
-        base_pos = [80, 0]
-        d.text((base_pos[0], base_pos[1]+30), '___________________',font=font, fill=(255, 0, 0, 255))
-        d.text((base_pos[0]+90, base_pos[1]+33), '>',font=font1, fill=(255, 0, 0, 255))
-        d.text((base_pos[0]+36, base_pos[1]), '^',font=font1, fill=(0, 255, 0, 255))
-        for pos in range (base_pos[1], base_pos[1] + 80, 10):
-            d.text((base_pos[0]+40, pos), '|', font=font, fill=(0, 255, 0, 255))
-        self.overlay.update(img, pos=(40, 65))
+        
+        # Draw XY coordinate system
+        center_x = video_width // 2
+        center_y = video_height // 2
+        axis_length = 200  # 200 pixels length for each axis
+        x_axis_color = (255, 0, 0, 255)  # Red color for X axis (horizontal)
+        y_axis_color = (0, 255, 0, 255)  # Green color for Y axis (vertical)
+        line_width = 1  # Thinner line width
+        arrow_size = 10  # Size of arrow head
+        
+        # Draw X axis (horizontal line - red)
+        d.line([(center_x - axis_length, center_y), 
+                (center_x + axis_length, center_y)], 
+               fill=x_axis_color, width=line_width)
+        
+        # Draw X axis arrow (right side)
+        d.polygon([(center_x + axis_length, center_y),
+                   (center_x + axis_length - arrow_size, center_y - arrow_size//2),
+                   (center_x + axis_length - arrow_size, center_y + arrow_size//2)],
+                  fill=x_axis_color)
+        
+        # Draw Y axis (vertical line - green)
+        d.line([(center_x, center_y - axis_length), 
+                (center_x, center_y + axis_length)], 
+               fill=y_axis_color, width=line_width)
+        
+        # Draw Y axis arrow (top side - pointing up for positive Y)
+        d.polygon([(center_x, center_y - axis_length),
+                   (center_x - arrow_size//2, center_y - axis_length + arrow_size),
+                   (center_x + arrow_size//2, center_y - axis_length + arrow_size)],
+                  fill=y_axis_color)
+        
+        self.overlay.update(img, pos=(0, 0))
 
     def log(self, loglevel, component, message):
         logging.debug(f'[{loglevel}] {component}: {message}')

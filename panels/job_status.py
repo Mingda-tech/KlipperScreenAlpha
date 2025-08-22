@@ -477,7 +477,7 @@ class Panel(ScreenPanel):
             if self.current_extruder != "extruder" and left_adjusted:
                 # Save right extruder offset to config file if adjusted
                 if right_adjusted and self._screen.manual_settings is not None and 'extruder1' in self._screen.manual_settings:
-                    self.save_e1_zoffset()
+                    self.save_idex_zoffset()
                 
                 # Switch to left extruder offset
                 script = "SET_GCODE_OFFSET Z=" + str(self._screen.manual_settings['extruder']['zoffset']) + " MOVE=0"
@@ -494,9 +494,9 @@ class Panel(ScreenPanel):
                 # Save right extruder offset to config file if adjusted
                 if right_adjusted and self._screen.manual_settings is not None and 'extruder1' in self._screen.manual_settings:
                     if left_adjusted:
-                        self.save_e1_zoffset()
+                        self.save_idex_zoffset()
                     else:
-                        self.save_e1_zoffset(reboot=True)
+                        self.save_idex_zoffset(reboot=True)
                 
                 # Apply left extruder Z offset if needed
                 if left_adjusted:
@@ -992,16 +992,16 @@ class Panel(ScreenPanel):
             logging.debug("Cannot find file metadata. Listening for updated metadata")
             self._screen.files.add_file_callback(self._callback_metadata)
         self.show_file_thumbnail()
-    def save_e1_zoffset(self, reboot=False):
+    def save_idex_zoffset(self, reboot=False):
         if self._screen.klippy_config is not None and 'extruder1' in self._screen.manual_settings:
-            e1_zoffset = self._screen.manual_settings['extruder1']['zoffset']
+            idex_zoffset = self._screen.manual_settings['extruder1']['zoffset']
             # Only save if there's a meaningful offset (greater than 0.001) and within safe limits
-            if abs(e1_zoffset) > 0.001 and abs(e1_zoffset) < 10:
-                self._screen.klippy_config.set("Variables", "e1_zoffset", f"{e1_zoffset:.2f}")
+            if abs(idex_zoffset) > 0.001 and abs(idex_zoffset) < 10:
+                self._screen.klippy_config.set("Variables", "idex_zoffset", f"{idex_zoffset:.2f}")
                 try:
                     with open(self._screen.klippy_config_path, 'w') as file:
                         self._screen.klippy_config.write(file)
-                        logging.info(f"Saving right extruder z-offset: {e1_zoffset:.2f} to {self._screen.klippy_config_path} successfully!")
+                        logging.info(f"Saving right extruder z-offset: {idex_zoffset:.2f} to {self._screen.klippy_config_path} successfully!")
                         if reboot:
                             script = {"script": "RESTART"}
                             self._screen._confirm_send_action(
@@ -1013,8 +1013,8 @@ class Panel(ScreenPanel):
                 except Exception as e:
                     logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
                     self._screen.show_popup_message(_("Error writing configuration"))
-            elif abs(e1_zoffset) >= 10:
-                logging.warning(f"Right extruder z-offset {e1_zoffset:.2f} exceeds safe range, skipping save")
+            elif abs(idex_zoffset) >= 10:
+                logging.warning(f"Right extruder z-offset {idex_zoffset:.2f} exceeds safe range, skipping save")
                 self._screen.show_popup_message(_("Z offset exceeds safe range"))
             else:
                 logging.info("Right extruder z-offset not adjusted, skipping save") 

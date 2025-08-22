@@ -18,7 +18,7 @@ class Panel(ScreenPanel):
         self.z_offset = None
         if self._screen.klippy_config is not None:
             try:
-                self.z_offset = self._screen.klippy_config.getfloat("Variables", "e1_zoffset")
+                self.z_offset = self._screen.klippy_config.getfloat("Variables", "idex_zoffset")
                 self.zendstop = self._screen.klippy_config.getfloat("Variables", "zendstop", fallback=0)
             except Exception as e:
                 logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")
@@ -110,7 +110,7 @@ class Panel(ScreenPanel):
         self.pos['l_z'] = None
         self.pos['r_z'] = None
         try:
-            self.z_offset = self._screen.klippy_config.getfloat("Variables", "e1_zoffset")
+            self.z_offset = self._screen.klippy_config.getfloat("Variables", "idex_zoffset")
         except Exception as e:
                 logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")        
         self.buttons_not_calibrating()
@@ -219,7 +219,7 @@ class Panel(ScreenPanel):
             return
         logging.info("Accepting right extruder Z offset")
         try:
-            self._screen.klippy_config.set("Variables", "e1_zoffset", f"{self.z_offset:.2f}")
+            self._screen.klippy_config.set("Variables", "idex_zoffset", f"{self.z_offset:.2f}")
             logging.info(f"z offset change to z: {self.z_offset:.2f}")
             with open(self._screen.klippy_config_path, 'w') as file:
                 self._screen.klippy_config.write(file)
