@@ -3,15 +3,12 @@ import gi
 import os
 import subprocess
 import mpv
-import time
-import threading
 from contextlib import suppress
 from PIL import Image, ImageDraw, ImageFont
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib
+from gi.repository import Gtk, Pango
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.screen_panel import ScreenPanel
-from ks_includes.nozzle_detector import NozzleDetector
 
 
 class Panel(ScreenPanel):
@@ -27,11 +24,6 @@ class Panel(ScreenPanel):
         self.menu = ['main_menu']
         self.pos['idex_xoffset'] = None
         self.pos['idex_yoffset'] = None
-        
-        # 初始化喷嘴检测器
-        self.nozzle_detector = NozzleDetector(pixel_to_mm_ratio=0.05)
-        self.auto_calibrating = False
-        
         if self._screen.klippy_config is not None:
             try:
                 self.pos['idex_xoffset'] = self._screen.klippy_config.getfloat("Variables", "idex_xoffset")
@@ -102,15 +94,11 @@ class Panel(ScreenPanel):
         offsetgrid = Gtk.Grid()
         self.labels['confirm'] = self._gtk.Button(None, _("Confirm Pos"), "color1")
         self.labels['save'] = self._gtk.Button(None, "Save", "color1")
-        self.labels['auto_calibrate'] = self._gtk.Button(None, _("Auto Calibrate"), "color3")
 
         self.labels['confirm'].connect("clicked", self.confirm_extrude_position)
         self.labels['save'].connect("clicked", self.save_offset)
-        self.labels['auto_calibrate'].connect("clicked", self.start_auto_calibration)
-        
         offsetgrid.attach(self.labels['confirm'], 0, 0, 1, 1)           
-        offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)
-        offsetgrid.attach(self.labels['auto_calibrate'], 0, 1, 2, 1)   
+        offsetgrid.attach(self.labels['save'], 1, 0, 1, 1)   
 
         self.mpv = None
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
