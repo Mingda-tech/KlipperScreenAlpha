@@ -241,7 +241,10 @@ class Panel(ScreenPanel):
     def back(self):
         if self.mpv:
             self.mpv.terminate()
-            self.mpv = None                    
+            self.mpv = None
+            # Execute macro to turn off calibration camera light when exiting
+            self._screen._ws.klippy.gcode_script("XY_CALIBRATION_LIGHT_OFF")
+            logging.info("Executing XY_CALIBRATION_LIGHT_OFF macro")
         if len(self.menu) > 1:
             self.unload_menu()
             return True
@@ -293,6 +296,9 @@ class Panel(ScreenPanel):
                     if self.mpv:
                         self.mpv.terminate()
                         self.mpv = None
+                        # Execute macro to turn off calibration camera light when saving
+                        self._screen._ws.klippy.gcode_script("XY_CALIBRATION_LIGHT_OFF")
+                        logging.info("Executing XY_CALIBRATION_LIGHT_OFF macro")
                     self.save_config()                    
                     self._screen._menu_go_back()
             except Exception as e:
@@ -318,6 +324,11 @@ class Panel(ScreenPanel):
         if check_web_page_access(url) == False:
             self._screen.show_popup_message(_("Please wait for the camera initialization to complete."), level=1)
             return
+        
+        # Execute macro to turn on calibration camera light
+        self._screen._ws.klippy.gcode_script("XY_CALIBRATION_LIGHT_ON")
+        logging.info("Executing XY_CALIBRATION_LIGHT_ON macro")
+        
         self.reset_pos()
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script("G28")
@@ -449,6 +460,10 @@ class Panel(ScreenPanel):
         self._screen.show_popup_message(_("Please wait for the camera's fill light to light up for 5 seconds before clicking 'Start'"), level=2)
 
     def deactivate(self):
+        # Execute macro to turn off calibration camera light when deactivating
+        self._screen._ws.klippy.gcode_script("XY_CALIBRATION_LIGHT_OFF")
+        logging.info("Executing XY_CALIBRATION_LIGHT_OFF macro")
+        
         symbolic_link = "/home/mingda/printer_data/config/crowsnest.conf"
         source_file = "/home/mingda/printer_data/config/crowsnest1.conf"
         create_symbolic_link(source_file, symbolic_link)

@@ -245,15 +245,22 @@ class Panel(ScreenPanel):
     def extrude(self, widget, direction):
         temp = self._printer.get_dev_stat(self.current_extruder, "temperature")
         if temp < 190:
-            script = {"script": "M104 S240"}
+            # Get current extruder number to heat the correct one
+            extruder_num = self._printer.get_tool_number(self.current_extruder)
+            script = {"script": f"M104 T{extruder_num} S240"}
             self._screen._confirm_send_action(None,
                                               _("The nozzle temperature is too low, Are you sure you want to heat it?"),
                                               "printer.gcode.script", script, save_button=False)
         else:
             self._screen._ws.klippy.gcode_script(KlippyGcodes.EXTRUDE_REL)
             if direction == "-":
+                # Get current extruder number and target temperature for unload
+                extruder_num = self._printer.get_tool_number(self.current_extruder)
+                target_temp = self._printer.get_dev_stat(self.current_extruder, "target")
+                if target_temp < 190:
+                    target_temp = 240  # Default temperature if not set
                 self._screen._send_action(widget, "printer.gcode.script",
-                                  {"script": f"UNLOAD_FILAMENT"})
+                                  {"script": f"UNLOAD_FILAMENT TOOLHEAD={extruder_num} TEMP={target_temp}"})
             else:
                 self._screen._send_action(widget, "printer.gcode.script",
                                   {"script": f"G1 E{direction}{self.distance} F{self.speed * 60}"})
@@ -263,8 +270,13 @@ class Panel(ScreenPanel):
             if not self.unload_filament:
                 self._screen.show_popup_message("Macro UNLOAD_FILAMENT not found")
             else:
+                # Get current extruder number and target temperature for unload
+                extruder_num = self._printer.get_tool_number(self.current_extruder)
+                target_temp = self._printer.get_dev_stat(self.current_extruder, "target")
+                if target_temp < 190:
+                    target_temp = 240  # Default temperature if not set
                 self._screen._send_action(widget, "printer.gcode.script",
-                                          {"script": f"UNLOAD_FILAMENT SPEED={self.speed * 60}"})
+                                          {"script": f"UNLOAD_FILAMENT SPEED={self.speed * 60} TOOLHEAD={extruder_num} TEMP={target_temp}"})
         if direction == "+":
             if not self.load_filament:
                 self._screen.show_popup_message("Macro LOAD_FILAMENT not found")
