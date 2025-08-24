@@ -303,14 +303,6 @@ class Panel(ScreenPanel):
             {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
         ]
 
-        if 'MD_400D' in self._printer.get_gcode_macros():
-            buttons = [
-                {"name": _("Copy Print"), "response": Gtk.ResponseType.YES},
-                {"name": _("Mirror Print"), "response": Gtk.ResponseType.APPLY},
-                {"name": _("Print"), "response": Gtk.ResponseType.OK},
-                {"name": _("Cancel"), "response": Gtk.ResponseType.CANCEL}
-            ]
-
         label = Gtk.Label()
         label.set_markup(f"<b>{filename}</b>\n")
         label.set_hexpand(True)
@@ -338,21 +330,6 @@ class Panel(ScreenPanel):
         self._gtk.remove_dialog(dialog)
         if response_id == Gtk.ResponseType.OK:
             logging.info(f"Starting print: {filename}")
-            if 'MD_400D' in self._printer.get_gcode_macros():
-                self._screen._ws.klippy.gcode_script("M605 S1")
-        elif response_id == Gtk.ResponseType.YES:
-            logging.info(f"Starting copy print: {filename}")
-            homed_axes = self._printer.get_stat("toolhead", "homed_axes")
-            if "z" not in homed_axes:
-                self._screen._ws.klippy.gcode_script("G28 Z")
-            elif "x" not in homed_axes:
-                self._screen._ws.klippy.gcode_script("G28 X")
-            self._screen._ws.klippy.gcode_script("M605 S2")
-        elif response_id == Gtk.ResponseType.APPLY:
-            self._screen._ws.klippy.gcode_script("G28 X")
-            self._screen._ws.klippy.gcode_script("M605 S3")
-            logging.info(f"Starting mirror print: {filename}")
-        if (response_id != Gtk.ResponseType.CANCEL):
             self._screen._ws.klippy.print_start(filename)
             self._screen.state_printing()
     def delete_file(self, filename):
