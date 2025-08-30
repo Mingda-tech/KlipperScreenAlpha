@@ -42,11 +42,9 @@ class Panel(ScreenPanel):
         prev_btn.connect("clicked", self.on_previous_click)
         grid.attach(prev_btn, 0, 0, 1, 1)
         
-        z_up_image = "z-farther"
-        z_up_label = _("Z Raise")
-        if "MD_400D" in self._printer.get_gcode_macros():
-            z_up_image = "bed_down"
-            z_up_label = _("Bed Lower")
+
+        z_up_image = "bed_down"
+        z_up_label = _("Bed Lower")
             
         self.z_raise_btn = self._gtk.Button(z_up_image, None, "color3", scale=.66)
         self.z_raise_btn.connect("clicked", self.move_z_up)
@@ -92,25 +90,21 @@ class Panel(ScreenPanel):
         dist = 70.0
         speed = 2  # Z speed in mm/s
         
-        # Check if Z is homed
-        toolhead_status = self._printer.get_stat("toolhead")
-        if toolhead_status:
-            homed_axes = toolhead_status.get("homed_axes", "").upper()
-            if "Z" in homed_axes:
-                # Use normal G-code if homed
-                logging.info(f"Moving Z up by {dist}mm at {speed}mm/s (homed)")
-                self._screen._send_action(None, "printer.gcode.script", 
-                    {"script": f"G91\nG0 Z{dist} F{speed*60}\nG90"})
-            else:
-                # Use force move if not homed
-                logging.info(f"Force moving Z up by {dist}mm at {speed}mm/s (not homed)")
-                if dist >= 2:
-                    accel = 60
-                    self._screen._send_action(None, "printer.gcode.script",
-                        {"script": f"FORCE_MOVE STEPPER=stepper_z DISTANCE={dist} VELOCITY={speed} ACCEL={accel}"})
-                else:
-                    self._screen._send_action(None, "printer.gcode.script",
-                        {"script": f"FORCE_MOVE STEPPER=stepper_z DISTANCE={dist} VELOCITY={speed}"})
+        # 统一使用G1命令，不管是否归位
+        logging.info(f"Moving Z up by {dist}mm at {speed}mm/s")
+        
+        # 构建统一的命令序列：设置坐标 -> 暂停 -> 使用G1移动
+        script_commands = [
+            "SET_KINEMATIC_POSITION Z=10.0",
+            "G4 P500",
+            "G91",  # 相对移动模式
+            f"G1 Z{dist} F{speed * 60}",
+            "M400",  # 等待移动完成
+            "G90"   # 绝对移动模式
+        ]
+        
+        self._screen._send_action(None, "printer.gcode.script",
+            {"script": "\n".join(script_commands)})
         
         # Disable the z_raise button after clicking
         self.z_raise_btn.set_sensitive(False)

@@ -28,15 +28,10 @@ class Panel(ScreenPanel):
         self.pos['y'] = 0
         self.settings = {}
         self.menu = ['move_menu']
-        z_up_image = "z-farther"
-        z_down_image = "z-closer"
-        z_up_label = _("Raise") 
-        z_down_label = _("Lower")
-        if "MD_400D" in self._printer.get_gcode_macros():
-            z_up_image = "bed_down"
-            z_down_image = "bed_up"
-            z_up_label = _("Lower")
-            z_down_label = _("Raise")     
+        z_up_image = "bed_down"
+        z_down_image = "bed_up"
+        z_up_label = _("Lower")
+        z_down_label = _("Raise")     
         self.buttons = {
             'x+': self._gtk.Button("arrow-right", "X+", "color1"),
             'x-': self._gtk.Button("arrow-left", "X-", "color1"),
@@ -84,12 +79,8 @@ class Panel(ScreenPanel):
                 grid.attach(self.buttons['x-'], 2, 1, 1, 1)
             grid.attach(self.buttons['y+'], 1, 0, 1, 1)
             grid.attach(self.buttons['y-'], 1, 1, 1, 1)
-            if "MD_400D" in self._printer.get_gcode_macros():
-                grid.attach(self.buttons['z-'], 3, 0, 1, 1)
-                grid.attach(self.buttons['z+'], 3, 1, 1, 1)
-            else:
-                grid.attach(self.buttons['z+'], 3, 0, 1, 1)
-                grid.attach(self.buttons['z-'], 3, 1, 1, 1)
+            grid.attach(self.buttons['z-'], 3, 0, 1, 1)
+            grid.attach(self.buttons['z+'], 3, 1, 1, 1)
 
         grid.attach(self.buttons['start'], 0, 0, 1, 1)
         grid.attach(self.buttons['save'], 2, 0, 1, 1)
