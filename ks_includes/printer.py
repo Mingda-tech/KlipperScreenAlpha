@@ -215,6 +215,12 @@ class Printer:
         output_pins = []
         output_pins.extend(iter(self.get_config_section_list("output_pin ")))
         return output_pins
+    
+    def get_gcode_buttons(self):
+        """Get list of gcode_button sections"""
+        gcode_buttons = []
+        gcode_buttons.extend(iter(self.get_config_section_list("gcode_button ")))
+        return gcode_buttons
 
     def get_gcode_macros(self):
         macros = []
