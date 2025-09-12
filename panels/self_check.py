@@ -183,29 +183,33 @@ class Panel(ScreenPanel):
                     if self.use_network_manager:
                         # NetworkManager async method - check device connection status
                         try:
+                            # Get interface name safely (NetworkManager uses interface_name, wpa_cli uses interface)
+                            iface_name = getattr(wifi_mgr, 'interface_name', getattr(wifi_mgr, 'interface', 'unknown'))
+                            
                             if hasattr(wifi_mgr, 'connected') and wifi_mgr.connected:
                                 is_ok = True
-                                logging.info(f"WiFi connected via NetworkManager on interface: {wifi_mgr.interface}")
+                                logging.info(f"WiFi connected via NetworkManager on interface: {iface_name}")
                                 break
                             elif hasattr(wifi_mgr, 'wifi_dev') and wifi_mgr.wifi_dev:
                                 # Direct NetworkManager device status check
                                 device = wifi_mgr.wifi_dev.SpecificDevice()
                                 if device.ActiveAccessPoint:
                                     is_ok = True
-                                    logging.info(f"WiFi connected via NetworkManager on interface: {wifi_mgr.interface}")
+                                    logging.info(f"WiFi connected via NetworkManager on interface: {iface_name}")
                                     break
                         except Exception as e:
-                            logging.error(f"NetworkManager WiFi check failed for {wifi_mgr.interface}: {e}")
+                            iface_name = getattr(wifi_mgr, 'interface_name', getattr(wifi_mgr, 'interface', 'unknown'))
+                            logging.error(f"NetworkManager WiFi check failed for {iface_name}: {e}")
                     else:
                         # wpa_cli sync method
                         try:
                             connected_ssid = wifi_mgr.get_connected_ssid()
                             if connected_ssid is not None:
                                 is_ok = True
-                                logging.info(f"WiFi connected to '{connected_ssid}' on interface: {wifi_mgr.interface}")
+                                logging.info(f"WiFi connected to '{connected_ssid}' on interface: {getattr(wifi_mgr, 'interface', getattr(wifi_mgr, 'interface_name', 'unknown'))}")
                                 break
                         except Exception as e:
-                            logging.error(f"wpa_cli WiFi check failed for {wifi_mgr.interface}: {e}")
+                            logging.error(f"wpa_cli WiFi check failed for {getattr(wifi_mgr, 'interface', getattr(wifi_mgr, 'interface_name', 'unknown'))}: {e}")
 
             if is_ok:
                 GLib.idle_add(self.change_state, step, 0)
