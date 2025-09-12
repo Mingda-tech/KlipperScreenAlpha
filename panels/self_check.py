@@ -25,7 +25,7 @@ class Panel(ScreenPanel):
 
         self.network_interfaces = netifaces.interfaces()
         self.wireless_interfaces = [iface for iface in self.network_interfaces if iface.startswith('wl')]
-        self.wifi = None
+        self.wifi_managers = []  # Store multiple WiFi managers
         self.use_network_manager = os.system('systemctl is-active --quiet NetworkManager.service') == 0
         if len(self.wireless_interfaces) > 0:
             logging.info(f"Found wireless interfaces: {self.wireless_interfaces}")
@@ -35,7 +35,14 @@ class Panel(ScreenPanel):
             else:
                 logging.info("Using wpa_cli")
                 from ks_includes.wifi import WifiManager
-            self.wifi = WifiManager(self.wireless_interfaces[0])
+            # Create a WiFi manager for each wireless interface
+            for interface in self.wireless_interfaces:
+                try:
+                    wifi_mgr = WifiManager(interface)
+                    self.wifi_managers.append(wifi_mgr)
+                    logging.info(f"Created WiFi manager for interface: {interface}")
+                except Exception as e:
+                    logging.error(f"Failed to create WiFi manager for {interface}: {e}")
 
         self.test_items = ["Nozzle Heating", "Hot Bed Heating", "Nozzle Cooling Fan", "Hotend Cooling Fan", "Filament Detection", "Auto Leveling", "Camera", "WiFi"]
         self.steps = [x for x in range(len(self.test_items))]
@@ -171,25 +178,34 @@ class Panel(ScreenPanel):
                         break
             elif step == 7:
                 is_ok = False
-                if self.wifi is not None:
+                # Check all WiFi managers for any connected interface
+                for wifi_mgr in self.wifi_managers:
                     if self.use_network_manager:
-                        # NetworkManager异步方式 - 检查设备连接状态
+                        # NetworkManager async method - check device connection status
                         try:
-                            if hasattr(self.wifi, 'connected') and self.wifi.connected:
+                            if hasattr(wifi_mgr, 'connected') and wifi_mgr.connected:
                                 is_ok = True
-                            elif hasattr(self.wifi, 'wifi_dev') and self.wifi.wifi_dev:
-                                # 直接检查NetworkManager设备状态
-                                device = self.wifi.wifi_dev.SpecificDevice()
+                                logging.info(f"WiFi connected via NetworkManager on interface: {wifi_mgr.interface}")
+                                break
+                            elif hasattr(wifi_mgr, 'wifi_dev') and wifi_mgr.wifi_dev:
+                                # Direct NetworkManager device status check
+                                device = wifi_mgr.wifi_dev.SpecificDevice()
                                 if device.ActiveAccessPoint:
                                     is_ok = True
+                                    logging.info(f"WiFi connected via NetworkManager on interface: {wifi_mgr.interface}")
+                                    break
                         except Exception as e:
-                            logging.error(f"NetworkManager WiFi check failed: {e}")
-                            is_ok = False
+                            logging.error(f"NetworkManager WiFi check failed for {wifi_mgr.interface}: {e}")
                     else:
-                        # wpa_cli同步方式
-                        connected_ssid = self.wifi.get_connected_ssid()
-                        if connected_ssid is not None:
-                            is_ok = True
+                        # wpa_cli sync method
+                        try:
+                            connected_ssid = wifi_mgr.get_connected_ssid()
+                            if connected_ssid is not None:
+                                is_ok = True
+                                logging.info(f"WiFi connected to '{connected_ssid}' on interface: {wifi_mgr.interface}")
+                                break
+                        except Exception as e:
+                            logging.error(f"wpa_cli WiFi check failed for {wifi_mgr.interface}: {e}")
 
             if is_ok:
                 GLib.idle_add(self.change_state, step, 0)
