@@ -79,7 +79,7 @@ class Panel(ScreenPanel):
         self.bed_target = 40
         self.fan_speed = 35
         self.fans = self._printer.get_fans()
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.time_out = 60     #seconds
         #Nozzle Heating
         for extruder in self._printer.get_tools():
@@ -215,7 +215,7 @@ class Panel(ScreenPanel):
                 GLib.idle_add(self.change_state, step, 0)
                 self.steps.remove(step)
 
-        end_time = time.time()
+        end_time = time.monotonic()
         elapsed_time = end_time - self.start_time
         if(self.time_out < elapsed_time):
             for step in self.steps:
