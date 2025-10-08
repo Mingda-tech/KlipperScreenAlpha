@@ -127,7 +127,13 @@ class Panel(ScreenPanel):
         """Handle enter button click - validate PIN"""
         if self.entered_pin == self.default_pin:
             # PIN correct, unlock screen
-            self._screen.close_lock_screen()
+            # Check if we're in overlay mode or panel mode
+            if self._screen.lock_screen is not None:
+                # Overlay mode - close the overlay
+                self._screen.close_lock_screen()
+            else:
+                # Panel mode - go back to previous screen
+                self._screen._menu_go_back()
         else:
             # PIN incorrect, show error
             self.labels['info'].set_text(_("Incorrect PIN"))
@@ -141,3 +147,9 @@ class Panel(ScreenPanel):
         # Show dots for each entered digit
         display = "● " * len(self.entered_pin)
         self.labels['pin_display'].set_text(display.strip())
+    
+    def back(self):
+        """Override back button - require PIN to go back"""
+        # Return True to prevent default back behavior
+        # User must enter correct PIN to unlock
+        return True
