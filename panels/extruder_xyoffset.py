@@ -22,14 +22,6 @@ class Panel(ScreenPanel):
         self.is_home = False
         self.current_extruder = self._printer.get_stat("toolhead", "extruder")
         self.menu = ['main_menu']
-        self.pos['idex_xoffset'] = None
-        self.pos['idex_yoffset'] = None
-        if self._screen.klippy_config is not None:
-            try:
-                self.pos['idex_xoffset'] = self._screen.klippy_config.getfloat("Variables", "idex_xoffset")
-                self.pos['idex_yoffset'] = self._screen.klippy_config.getfloat("Variables", "idex_yoffset")
-            except Exception as e:
-                logging.error(f"Read {self._screen.klippy_config_path} error:\n{e}")
 
         self.buttons = {
             'x+': self._gtk.Button(None, "X+", "color1"),
@@ -133,36 +125,26 @@ class Panel(ScreenPanel):
             return
         homed_axes = self._printer.get_stat("toolhead", "homed_axes")
         if homed_axes == "xyz":
-            if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                # self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
-                # self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
-                # self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
-
-                self.pos['x'] = data['gcode_move']['gcode_position'][0]
-                self.pos['y'] = data['gcode_move']['gcode_position'][1]
-                self.pos['z'] = data['gcode_move']['gcode_position'][2]  
-                # text = f"x: {data['gcode_move']['gcode_position'][0]:.2f}, y: {data['gcode_move']['gcode_position'][1]:.2f}, z: {data['gcode_move']['gcode_position'][2]:.2f}"          
+            # Use toolhead position (raw coordinates without offsets) instead of gcode_position
+            if "toolhead" in data and "position" in data["toolhead"]:
+                self.pos['x'] = data['toolhead']['position'][0]
+                self.pos['y'] = data['toolhead']['position'][1]
+                self.pos['z'] = data['toolhead']['position'][2]  
         else:
             if "x" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    # self.labels['pos_x'].set_text(f"X: {data['gcode_move']['gcode_position'][0]:.2f}")
-                    self.pos['x'] = data['gcode_move']['gcode_position'][0]
+                if "toolhead" in data and "position" in data["toolhead"]:
+                    self.pos['x'] = data['toolhead']['position'][0]
             else:
-                # self.labels['pos_x'].set_text("X: ?")
                 self.pos['x'] = None
             if "y" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    # self.labels['pos_y'].set_text(f"Y: {data['gcode_move']['gcode_position'][1]:.2f}")
-                    self.pos['y'] = data['gcode_move']['gcode_position'][1]
+                if "toolhead" in data and "position" in data["toolhead"]:
+                    self.pos['y'] = data['toolhead']['position'][1]
             else:
-                # self.labels['pos_y'].set_text("Y: ?")
                 self.pos['y'] = None
             if "z" in homed_axes:
-                if "gcode_move" in data and "gcode_position" in data["gcode_move"]:
-                    self.labels['pos_z'].set_text(f"Z: {data['gcode_move']['gcode_position'][2]:.2f}")
-                    self.pos['z'] = data['gcode_move']['gcode_position'][2]
+                if "toolhead" in data and "position" in data["toolhead"]:
+                    self.pos['z'] = data['toolhead']['position'][2]
             else:
-                # self.labels['pos_z'].set_text("Z: ?")
                 self.pos['z'] = None
 
 
@@ -278,34 +260,29 @@ class Panel(ScreenPanel):
                                   {"script": f"T{self._printer.get_tool_number(extruder)}"})
         
     def save_offset(self, widget):      
-        if self.pos['idex_xoffset'] is None or self.pos['idex_yoffset'] is None:
-            return
         if self.pos['ox'] is None or self.pos['oy'] is None:
             self._screen.show_popup_message(_("Need to recalculate the offset value."), level = 2)
-        else:
-            self.pos['idex_xoffset'] += self.pos['ox']
-            self.pos['idex_yoffset'] += self.pos['oy']
-            try:
-                self._screen.klippy_config.set("Variables", "idex_xoffset", f"{self.pos['idex_xoffset']:.2f}")
-                self._screen.klippy_config.set("Variables", "idex_yoffset", f"{self.pos['idex_yoffset']:.2f}")
-                self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
-                self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
-                logging.info(f"xy offset change to x: {self.pos['idex_xoffset']:.2f} y: {self.pos['idex_yoffset']:.2f}")
-                with open(self._screen.klippy_config_path, 'w') as file:
-                    self._screen.klippy_config.write(file)
-                    if self.mpv:
-                        self.mpv.terminate()
-                        self.mpv = None
-                        # Execute macro to turn off calibration camera light when saving
-                        self._screen._ws.klippy.gcode_script("XY_CALIBRATION_LIGHT_OFF")
-                        logging.info("Executing XY_CALIBRATION_LIGHT_OFF macro")
-                    self.save_config()                    
-                    self._screen._menu_go_back()
-            except Exception as e:
-                logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
-                self._screen.show_popup_message(_("Error writing configuration"))
-                self.pos['idex_xoffset'] -= self.pos['ox']
-                self.pos['idex_yoffset'] -= self.pos['oy']
+            return
+        
+        try:
+            self._screen.klippy_config.set("Variables", "idex_xoffset", f"{self.pos['ox']:.2f}")
+            self._screen.klippy_config.set("Variables", "idex_yoffset", f"{self.pos['oy']:.2f}")
+            self._screen.klippy_config.set("Variables", "cam_xpos", f"{self.pos['lx']:.2f}")
+            self._screen.klippy_config.set("Variables", "cam_ypos", f"{self.pos['ly']:.2f}")
+            logging.info(f"xy offset set to x: {self.pos['ox']:.2f} y: {self.pos['oy']:.2f}")
+            with open(self._screen.klippy_config_path, 'w') as file:
+                self._screen.klippy_config.write(file)
+                if self.mpv:
+                    self.mpv.terminate()
+                    self.mpv = None
+                    # Execute macro to turn off calibration camera light when saving
+                    self._screen._ws.klippy.gcode_script("XY_CALIBRATION_LIGHT_OFF")
+                    logging.info("Executing XY_CALIBRATION_LIGHT_OFF macro")
+                self.save_config()                    
+                self._screen._menu_go_back()
+        except Exception as e:
+            logging.error(f"Error writing configuration file in {self._screen.klippy_config_path}:\n{e}")
+            self._screen.show_popup_message(_("Error writing configuration"))
             
     def play(self, widget, cam):
         url = cam['stream_url']
