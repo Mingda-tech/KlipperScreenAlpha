@@ -380,8 +380,8 @@ class Panel(ScreenPanel):
         d = ImageDraw.Draw(img)
         
         # Draw XY coordinate system
-        center_x = video_width // 2
-        center_y = video_height // 2
+        center_x = video_width // 2 + 20
+        center_y = video_height // 2 + 130
         axis_length = 200  # 200 pixels length for each axis
         x_axis_color = (255, 0, 0, 255)  # Red color for X axis (horizontal)
         y_axis_color = (0, 255, 0, 255)  # Green color for Y axis (vertical)
@@ -482,11 +482,16 @@ def create_symbolic_link(source_path, link_path):
 
 def check_web_page_access(url):
     try:
-        # Run the curl command to fetch the headers
-        result = subprocess.run(["curl", "-I", url], check=True, capture_output=True, text=True, timeout=10)
-        
-        # Extract the HTTP status code from the result
-        status_code = result.stdout.splitlines()[0].split()[1]
+        # Run the curl command to fetch the headers, following redirects
+        result = subprocess.run(["curl", "-I", "-L", url], check=True, capture_output=True, text=True, timeout=10)
+
+        # Extract the final HTTP status code (last response when redirects occur)
+        lines = [line for line in result.stdout.splitlines() if line.startswith('HTTP/')]
+        if lines:
+            status_code = lines[-1].split()[1]
+        else:
+            logging.warning(f"Could not parse HTTP status from curl output")
+            return False
 
         if status_code == "200":
             logging.info(f"The web page at {url} is accessible. Status code: {status_code}")
