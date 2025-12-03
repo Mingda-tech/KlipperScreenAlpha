@@ -249,10 +249,9 @@ class Panel(ScreenPanel):
             if self.pos['lx'] is None or self.pos['ly'] is None or self.pos['lz'] is None:
                 self._screen.show_popup_message(f"Please confirm left extruder position.", level = 2)
             else:
-                self.pos['ox'] = self.pos['x'] - self.pos['lx']
-                self.pos['oy'] = self.pos['y'] - self.pos['ly']
-                self.pos['oz'] = self.pos['z']  - self.pos['lz']
-                self._screen.show_popup_message(f"Right extruder offset is ({self.pos['ox']:.2f}, {self.pos['oy']:.2f}, {self.pos['oz']:.2f})", level = 1)
+                self.pos['ox'] = self.pos['lx'] - self.pos['x']
+                self.pos['oy'] = self.pos['ly'] - self.pos['y']
+                self._screen.show_popup_message(f"Right extruder offset is ({self.pos['ox']:.2f}, {self.pos['oy']:.2f})", level = 1)
                 self.labels['save'].set_sensitive(True)                      
 
     def change_extruder(self, widget, extruder):
@@ -403,7 +402,6 @@ class Panel(ScreenPanel):
         self.pos['rz'] = None 
         self.pos['ox'] = None
         self.pos['oy'] = None
-        self.pos['oz'] = None 
         self.labels['save'].set_sensitive(False)
 
     def _calculate_position(self):
