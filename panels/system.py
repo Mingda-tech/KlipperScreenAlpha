@@ -1,4 +1,5 @@
 import logging
+import os
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -60,7 +61,29 @@ class Panel(ScreenPanel):
         self.grid.attach(separator, 0, self.current_row, 2, 1)
         self.current_row += 1
 
+    def get_machine_sn(self):
+        """Read machine serial number from /etc/machine_sn file"""
+        sn_file = "/etc/machine_sn"
+        try:
+            if os.path.exists(sn_file):
+                with open(sn_file, 'r') as f:
+                    for line in f:
+                        line = line.strip()
+                        # Skip empty lines and comments
+                        if line and not line.startswith('#'):
+                            return line
+        except Exception as e:
+            logging.error(f"Error reading machine SN: {e}")
+        return None
+
     def populate_info(self):
+        # Machine SN
+        machine_sn = self.get_machine_sn()
+        if machine_sn:
+            self.add_label_to_grid("Machine SN", 0, bold=True)
+            self.add_label_to_grid(machine_sn, 1)
+            self.add_separator()
+
         # Python
         self.add_label_to_grid("Python", 0, bold=True)
         python_info = self.sysinfo.get("python", {})
