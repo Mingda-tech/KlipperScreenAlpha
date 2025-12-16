@@ -86,6 +86,7 @@ class KlipperScreen(Gtk.Window):
     panels = {}
     popup_message = None
     screensaver = None
+    lock_screen = None
     printers = printer = None
     updating = False
     _ws = None
@@ -610,6 +611,71 @@ class KlipperScreen(Gtk.Window):
             dialog.show()
         self.show_all()
         self.power_devices(None, self._config.get_main_config().get("screen_on_devices", ""), on=True)
+
+    def show_lock_screen(self):
+        """Show the lock screen overlay"""
+        logging.debug("Showing Lock Screen")
+        if self.lock_screen is not None:
+            return  # Already showing
+        
+        # Close screensaver if active
+        if self.screensaver is not None:
+            self.close_screensaver()
+        
+        self.remove_keyboard()
+        self.close_popup_message()
+        
+        # Hide any open dialogs
+        for dialog in self.dialogs:
+            logging.debug("Hiding dialog")
+            dialog.hide()
+        
+        # Create lock screen panel
+        try:
+            from panels.lock_screen import Panel as LockScreenPanel
+            lock_panel = LockScreenPanel(self, _("Lock Screen"))
+            
+            # Create a box to hold the lock screen
+            box = Gtk.Box()
+            box.set_size_request(self.width, self.height)
+            box.pack_start(lock_panel.content, True, True, 0)
+            box.set_halign(Gtk.Align.CENTER)
+            box.get_style_context().add_class("lock-screen")
+            
+            # Replace current content with lock screen
+            self.remove(self.base_panel.main_grid)
+            self.add(box)
+            
+            self.lock_screen = box
+            self.lock_screen_panel = lock_panel
+            self.lock_screen.show_all()
+            
+        except Exception as e:
+            logging.error(f"Error showing lock screen: {e}")
+            import traceback
+            logging.error(traceback.format_exc())
+        
+        return False
+
+    def close_lock_screen(self, widget=None):
+        """Close the lock screen and return to normal operation"""
+        if self.lock_screen is None:
+            return False
+        
+        logging.debug("Closing Lock Screen")
+        self.remove(self.lock_screen)
+        self.lock_screen = None
+        self.lock_screen_panel = None
+        self.add(self.base_panel.main_grid)
+        
+        # Restore any hidden dialogs
+        for dialog in self.dialogs:
+            logging.info(f"Restoring Dialog {dialog}")
+            dialog.show()
+        
+        self.show_all()
+        return True
+
 
     def check_dpms_state(self):
         if not self.use_dpms:

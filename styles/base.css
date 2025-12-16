@@ -596,6 +596,42 @@ popover button {
     margin: 0;
 }
 
+.lock-screen {
+    background-color: @bg;
+}
+
+.lock-screen-title {
+    font-size: KS_FONT_SIZEpx * 1.8;
+    font-weight: bold;
+}
+
+.lock-screen-pin {
+    font-size: KS_FONT_SIZEpx * 2.5;
+    letter-spacing: 0.5em;
+    min-height: 3em;
+}
+
+.lock-screen-info {
+    font-size: KS_FONT_SIZEpx * 1.2;
+    color: @text;
+}
+
+.lock-screen-error {
+    color: @error;
+}
+
+.lock-screen-button {
+    font-size: KS_FONT_SIZEpx * 1.5;
+    font-weight: bold;
+    border-radius: 0.5em;
+    background-color: @active;
+}
+
+.lock-screen-button:hover {
+    background-color: @color3;
+}
+
+
 .option_slider_max trough highlight,
 trough progress {
     background-color: @error;
