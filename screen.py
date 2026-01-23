@@ -380,10 +380,17 @@ class KlipperScreen(Gtk.Window):
             msg.get_style_context().add_class("message_popup_error")
             logging.info(f'error: {message}')
 
-        popup = Gtk.Popover.new(self.base_panel.titlebar)
+        # 将popup附加到当前活动窗口上
+        parent = self.base_panel.titlebar
+        if self.dialogs:
+            # 如果有对话框正在显示，将popup附加到最后一个对话框上
+            parent = self.dialogs[-1]
+        
+        popup = Gtk.Popover.new(parent)
         popup.get_style_context().add_class("message_popup_popover")
         popup.set_size_request(self.width * .9, -1)
         popup.set_halign(Gtk.Align.CENTER)
+        popup.set_modal(False)  # 将popover设置为非模态
         popup.add(msg)
         popup.popup()
 
