@@ -17,9 +17,11 @@ class Panel(ScreenPanel):
         self.load_filament = any("LOAD_FILAMENT" in macro.upper() for macro in macros)
         self.unload_filament = any("UNLOAD_FILAMENT" in macro.upper() for macro in macros)
 
+        self.preheat_temp = 240
         self.speeds = ['2', '5']
         self.distances = ['10', '25', '50', '100']
         if self.ks_printer_cfg is not None:
+            self.preheat_temp = int(self.ks_printer_cfg.get("extrude_preheat_temp", "240"))
             dis = self.ks_printer_cfg.get("extrude_distances", '10, 25, 50, 100')
             if re.match(r'^[0-9,\s]+$', dis):
                 dis = [str(i.strip()) for i in dis.split(',')]
@@ -245,7 +247,7 @@ class Panel(ScreenPanel):
     def extrude(self, widget, direction):
         temp = self._printer.get_dev_stat(self.current_extruder, "temperature")
         if temp < 190:
-            script = {"script": "M104 S240"}
+            script = {"script": f"M104 S{self.preheat_temp}"}
             self._screen._confirm_send_action(None,
                                               _("The nozzle temperature is too low, Are you sure you want to heat it?"),
                                               "printer.gcode.script", script, save_button=False)

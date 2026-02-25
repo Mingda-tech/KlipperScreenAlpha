@@ -99,6 +99,9 @@ screw_rotation: 0
 extrude_distances: 5, 10, 15, 25
 extrude_speeds: 1, 2, 5, 25
 
+# Define the preheat temperature for the extrude panel when nozzle is below 190°C. Default 240
+extrude_preheat_temp: 240
+
 # Camera needs to be configured in moonraker:
 # https://moonraker.readthedocs.io/en/latest/configuration/#webcam
 ```
